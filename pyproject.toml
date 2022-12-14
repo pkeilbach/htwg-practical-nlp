@@ -1,0 +1,7 @@
+[project]
+name = "htwg-practical-nlp"
+version = "0.0.1"
+description = "A practical course on natural language processing @ HTWG Konstanz."
+readme = "README.md"
+authors = [{ name = "Pascal Keilbach", email = "dev@pk17.org" }]
+requires-python = ">=3.8"

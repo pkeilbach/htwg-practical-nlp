@@ -1,2 +1,3 @@
 # Practical Natural Language Processing
-Course on Practical Natural Language Processing @ HTWG Konstanz
+
+A practical course on natural language processing @ HTWG Konstanz.
