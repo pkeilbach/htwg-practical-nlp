@@ -1,0 +1,60 @@
+site_name: Practical NLP
+site_description: A practical course on natural language processing @ HTWG Konstanz.
+repo_url: https://github.com/pkeilbach/htwg-practical-nlp
+repo_name: pkeilbach/htwg-practical-nlp
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.instant
+    - navigation.indexes
+    - toc.follow
+  palette:
+    primary: cyan
+    accent: blue
+  icon:
+    repo: fontawesome/brands/git-alt
+plugins:
+  - search:
+      lang: en
+extra:
+  social:
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:pascal.keilbach@htwg-konstanz.de
+    - icon: fontawesome/brands/github
+      link: https://github.com/pkeilbach/htwg-practical-nlp
+markdown_extensions:
+  - toc:
+      permalink: true
+nav:
+- Welcome: index.md
+- About: 
+  - about/course.md
+  - about/syllabus.md
+  - about/instructor.md
+  - about/organizational.md
+- Getting Started: getting_started.md
+- Lectures:
+  - Part 1 - Intro to NLP:
+    - lectures/part01/index.md
+    - lectures/part01/nlp_intro.md
+    - lectures/part01/pre_processing.md
+    - lectures/part01/feature_engineering.md
+  - Part 2 - Classification and Vector Space:
+    - lectures/part02/index.md
+    - lectures/part02/logistic_regression.md
+    - lectures/part02/vector_space_models.md
+    - lectures/part02/k_nearest_neighbors.md
+  - Part 3 - Probabilistic NLP Models:
+    - lectures/part03/index.md
+    - lectures/part03/naive_bayes.md
+    - lectures/part03/minimum_edit_distance.md
+    - lectures/part03/hidden_markov_models.md
+    - lectures/part03/n_grams.md
+  - Part 4 - Advanced NLP Concepts:
+    - lectures/part04/index.md
+    - lectures/part04/sequence_models.md
+    - lectures/part04/attention_models.md
+    - lectures/part04/production_scale_nlp.md
+- FAQ: faq.md
