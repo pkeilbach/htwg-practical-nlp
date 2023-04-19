@@ -6,6 +6,7 @@ readme = "README.md"
 authors = [{ name = "Pascal Keilbach", email = "dev@pk17.org" }]
 dependencies = [
     "mkdocs-material~=8.5.11",
-    "nltk"
+    "nltk",
+    "pre-commit",
 ]
 requires-python = ">=3.8"
