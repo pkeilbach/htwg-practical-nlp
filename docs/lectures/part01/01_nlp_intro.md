@@ -10,12 +10,12 @@ The following figure gives an overview of real-world NLP applications along with
 - **Voice-based assistants** like [Alexa](https://www.amazon.com/how-does-alexa-work/b?ie=UTF8&node=21166405011) or [Siri](https://machinelearning.apple.com/research/hey-siri) utilize a variety of NLP techniques to interact with its users, i.e. they need to understand user commands and questions, and reply accordingly using Text-to-Speech (TTS).
 - Modern **search engines** like [Google](https://www.google.com/search/howsearchworks/) or [Bing](https://support.microsoft.com/en-us/topic/how-bing-delivers-search-results-d18fc815-ac37-4723-bc67-9229ce3eb6a3) make heavy use of NLP for a variety of subtasks, such as understanding the user query, autocompletion, or ranking and grouping the query results.
 - **Social media platforms** make use of NLP, e.g. to analyse user comments, or make suggestions to their users.
-Also platforms like Youtube or conference tools are able to automatically create transcriptions on the fly using "Speech-to-text" (SST) technologies.
+  Also platforms like Youtube or conference tools are able to automatically create transcriptions on the fly using "Speech-to-text" (SST) technologies.
 - In popular **email applications** like Gmail or Outlook, NLP is used for tasks like spam filtering, [calendar event extraction](https://patents.google.com/patent/US8832205B2/en) or [smart replies](https://blog.google/products/gmail/save-time-with-smart-reply-in-gmail/).
 - **Text processing apps** offer auto-correction or auto-completion features to their users, i.e. spell-checking or grammar correction.
-[Grammarly](https://www.grammarly.com/blog/how-does-grammarly-work/) is a nice example here, as well as any smartphone keyboard.
+  [Grammarly](https://www.grammarly.com/blog/how-does-grammarly-work/) is a nice example here, as well as any smartphone keyboard.
 - More and more companies offer **chatbots** (aka conversational agents) on their websites for their clients.
-With [ChatGPT](https://openai.com/blog/chatgpt/), **conversational agents** (and NLP in general) reached a new level just recently.
+  With [ChatGPT](https://openai.com/blog/chatgpt/), **conversational agents** (and NLP in general) reached a new level just recently.
 
 !!! question
 
@@ -31,17 +31,17 @@ Some fundamental tasks appear across many NLP projects.
 For example, if you want to find out if some tweets have a positive or negative meaning (as in sentiment analysis), or if an email is spam or not, both would be a text classification task.
 The following table gives an overview of frequently used NLP tasks.
 
-| NLP Task | Description | Examples |
-| -------- | ----------- | -------- |
-| **Language modeling** | Predict the next word in a sentence based on the previous word or context | auto-correction or auto-completion |
-| **Text classification** | Classify text in different categories, depending on the use-case | Email spam filter or sentiment analysis |
-| **Information extraction** | Extract relevant information from text | Extract calendar events from emails or names in social media posts |
-| **Information retrieval** | Find documents that are relevant to a specific user query | Search engines like [Google](https://www.google.com/) |
-| **Conversational agent** | A dialogue system that can converse in human language | Voice assistants like Alexa or Siri, ChatGPT |
-| **Text summarization** | Create short summaries of longer text while preserving the key message and meaning of the text | [Reddit autotldr](https://www.reddit.com/r/autotldr/comments/31b9fm/faq_autotldr_bot/) to summarize long Reddit submissions |
-| **Question answering** | A system that can answer questions posed in natural language | Search engines or voice assistants |
-| **Machine translation** | Convert a piece of text from one language into another | Translator apps like [DeepL](https://www.deepl.com/translator) or automatic transcription of calls or videos |
-| **Topic modeling** | Uncover the topical structure of a (large) set of documents | Group blog posts by their main topic |
+| NLP Task                   | Description                                                                                    | Examples                                                                                                                    |
+| -------------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **Language modeling**      | Predict the next word in a sentence based on the previous word or context                      | auto-correction or auto-completion                                                                                          |
+| **Text classification**    | Classify text in different categories, depending on the use-case                               | Email spam filter or sentiment analysis                                                                                     |
+| **Information extraction** | Extract relevant information from text                                                         | Extract calendar events from emails or names in social media posts                                                          |
+| **Information retrieval**  | Find documents that are relevant to a specific user query                                      | Search engines like [Google](https://www.google.com/)                                                                       |
+| **Conversational agent**   | A dialogue system that can converse in human language                                          | Voice assistants like Alexa or Siri, ChatGPT                                                                                |
+| **Text summarization**     | Create short summaries of longer text while preserving the key message and meaning of the text | [Reddit autotldr](https://www.reddit.com/r/autotldr/comments/31b9fm/faq_autotldr_bot/) to summarize long Reddit submissions |
+| **Question answering**     | A system that can answer questions posed in natural language                                   | Search engines or voice assistants                                                                                          |
+| **Machine translation**    | Convert a piece of text from one language into another                                         | Translator apps like [DeepL](https://www.deepl.com/translator) or automatic transcription of calls or videos                |
+| **Topic modeling**         | Uncover the topical structure of a (large) set of documents                                    | Group blog posts by their main topic                                                                                        |
 
 The figure shows the NLP tasks from the table organized by their complexity, where complexity means a best guess of the relative difficulty to develop a comprehensive solution.
 
@@ -101,8 +101,8 @@ Description:
 - Smallest units of speech sound in a language
 - Vary across languages, i.e. each language has its own set of phonemes.
 - Standard English has [44 phonemes](https://en.wikipedia.org/wiki/Received_Pronunciation#Phonology) (i.e. 24 consonant phonemes, and 20 vowel phonemes)
-    - German: 46 phonemes
-    - Spanish: 24 phonemes
+  - German: 46 phonemes
+  - Spanish: 24 phonemes
 - Usually denoted in slashes using the symbols of the [International Phonetic Alphabeth (IPA)](https://en.wikipedia.org/wiki/International_Phonetic_Alphabet)
 - May or may not have a meaning by themselves, but can induce meaning, e.g. `/s/` for plural or `/ɪ/` for adjective
 - A nice list of examples can be found [here](https://englishphonetics.net/english-phonetics-academy/the-44-sounds-of-english-based-on-the-IPA.html)
@@ -193,7 +193,7 @@ Important for:
     > *"The girl plays tennis."*
 
     Grammatical analysis 👉 *The girl (subject) plays (verb) tennis (object).*
-    
+
     POS-tagging using the universal tagset: 👉 *The (DET) girl (NOUN) plays (VERB) tennis (NOUN) .(.)*
 
 The following snippet shows POS-tagging in Python using the NLTK library and the universal tagset:
@@ -212,18 +212,18 @@ The following snippet shows POS-tagging in Python using the NLTK library and the
 
 !!! question
 
-    Imagine you need to analyze a set of tweets and the sentence above changes to: 
-    
+    Imagine you need to analyze a set of tweets and the sentence above changes to:
+
     > *"The girl 👧 plays tennis 🎾."*
-    
+
     Given the code above, how would you expect the POS-tagger to handle emojis?
-    
+
     Find some [further information here](https://aclanthology.org/2021.acl-long.110v1.pdf).
 
 <!--
 Answer:
 
-It would depend on the use case, there are situations where the emoji is a crucial part of the sentence, to indicate emotions (e.g. social media posts). 
+It would depend on the use case, there are situations where the emoji is a crucial part of the sentence, to indicate emotions (e.g. social media posts).
 If it is just about the conveyed information, it is probably OK to remove them during pre-processing.
 -->
 
@@ -234,8 +234,8 @@ If it is just about the conveyed information, it is probably OK to remove them d
 - Includes **world knowledge** and **common sense**
 - Depending on the context, a word or sentence may **change its meaning**, as in the case of ambiguity
 - Consists of semantics and pragmatics (external context)
-    - **Semantics** refers to the direct meaning of words or sentences, without external context
-    - **Pragmatics** add world knowledge and enables us to infer implied meaning
+  - **Semantics** refers to the direct meaning of words or sentences, without external context
+  - **Pragmatics** add world knowledge and enables us to infer implied meaning
 
 !!! example
 
@@ -243,7 +243,7 @@ If it is just about the conveyed information, it is probably OK to remove them d
 
     > I'm so hungry, I could eat a horse!
 
-    Semantics would assume that this person wants to eat a horse. 
+    Semantics would assume that this person wants to eat a horse.
     Pragmatics applies world knowledge and infers that this person is very hungry.
 
     The [sad story](https://en.wikipedia.org/wiki/For_sale:_baby_shoes,_never_worn) of how Hemingway supposedly won a 10$ bet shows the difference between semantics and pragmatics.
@@ -256,7 +256,7 @@ Important for:
 
 !!! info
 
-    Being a linguistic expert is not necessary to master NLP, but by understanding the basic building blocks of language, we can use the right NLP tools in real-world projects. 
+    Being a linguistic expert is not necessary to master NLP, but by understanding the basic building blocks of language, we can use the right NLP tools in real-world projects.
 
 ## Challenges in NLP
 
@@ -304,13 +304,13 @@ The language of mathematics is designed to be unambiguous.
 
 !!! info
 
-    A nice collection of examples of how ambiguity and world knowledge play together are [Winograd schemas](https://cs.nyu.edu/~davise/papers/WinogradSchemas/WS.html). 
-    
+    A nice collection of examples of how ambiguity and world knowledge play together are [Winograd schemas](https://cs.nyu.edu/~davise/papers/WinogradSchemas/WS.html).
+
     Here is an example:
 
     > The city councilmen refused the demonstrators a permit because they [feared/advocated] violence.
 
-    1. If the word is *feared*, then *they* presumably refers to the city council. 
+    1. If the word is *feared*, then *they* presumably refers to the city council.
     2. If it is *advocated*, then *they* presumably refers to the demonstrators.
 
     Examples like this one are easily disambiguated by the human reader (sometimes we don't even notice that there is ambiguity), mostly because of world knowledge, but they pose challenges to most NLP techniques.
@@ -459,7 +459,7 @@ TODO
 
 !!! info
 
-    A very good starting algorithm for text classification tasks in [**Naive Bayes**](https://en.wikipedia.org/wiki/Naive_Bayes_classifier) algorithm. 
+    A very good starting algorithm for text classification tasks in [**Naive Bayes**](https://en.wikipedia.org/wiki/Naive_Bayes_classifier) algorithm.
     This is primarily because it is relatively simple to understand and implement, and very fast to train and run.
     We will cover the **Naive Bayes algorithm** later in the course, as well as in one of the labs.
 
@@ -517,14 +517,14 @@ TODO
     We will cover it in more detail later in the course.
     For interested readers, I can recommend the following blog posts:
 
-    
+
     - [Attention Mechanism in the Transformers Model](https://www.baeldung.com/cs/attention-mechanism-transformers)
     - [Transforming Natural Language Understanding: Attention, GPT, BERT, and Switch](https://ravishrawal.medium.com/transforming-natural-language-understanding-c1ac7f57613f)
 
     For now, it is just important to grasp the intuition behind the attention concept, which is similar to human attention.
 
 <!--
-TODO 
+TODO
 - filter out relevant blog posts
 - link "attention is all you need" paper in part04
 
@@ -550,34 +550,34 @@ DL has brought NLP to the next level, and powerful transformer models have becom
 However, DL is not the silver bullet for all NLP tasks, especially when it comes to industrial applications:
 
 - **Overfitting on small datasets**:
-DL models need more training data to fit all their parameters, but many times, sufficient training data is not available.
-Hence, they overfit on small datasets and have poor generalization capabilities.
-Also, consider Occam's razor: given that all other conditions are equal, the simpler solution should be preferred.
+  DL models need more training data to fit all their parameters, but many times, sufficient training data is not available.
+  Hence, they overfit on small datasets and have poor generalization capabilities.
+  Also, consider Occam's razor: given that all other conditions are equal, the simpler solution should be preferred.
 
 - **Domain adaption**:
-Most DL models are trained on common domains (e.g. news articles).
-If we try to use them for a different domain (e.g. social media), we may observe poor performance.
-This is because language is domain-specific (think of all the emojis and all the slang words in social media posts).
-Therefore, a well-designed rule-based domain-specific that encodes all required knowledge may outperform a complex DL model.
+  Most DL models are trained on common domains (e.g. news articles).
+  If we try to use them for a different domain (e.g. social media), we may observe poor performance.
+  This is because language is domain-specific (think of all the emojis and all the slang words in social media posts).
+  Therefore, a well-designed rule-based domain-specific that encodes all required knowledge may outperform a complex DL model.
 
 - **Explainable models**:
-Most of the time, DL models work like a black box, but in many use cases, industries demand interpretable results that can be explained to end users.
-In such cases, traditional approaches might be more useful.
-For example, with Naive Bayes for sentiment analysis, the effect of positive vs. negative words can be easily explained.
-While for computer vision, many techniques exist to explain model predictions, this is not as common in NLP.
+  Most of the time, DL models work like a black box, but in many use cases, industries demand interpretable results that can be explained to end users.
+  In such cases, traditional approaches might be more useful.
+  For example, with Naive Bayes for sentiment analysis, the effect of positive vs. negative words can be easily explained.
+  While for computer vision, many techniques exist to explain model predictions, this is not as common in NLP.
 
 - **Common sense and world knowledge**
-As mentioned earlier, teaching NLP models common sense, and world knowledge remains a challenge.
-Also, logical reasoning falls into this category, and understanding events and understand their consequences are complex tasks for machines.
+  As mentioned earlier, teaching NLP models common sense, and world knowledge remains a challenge.
+  Also, logical reasoning falls into this category, and understanding events and understand their consequences are complex tasks for machines.
 
 - **Cost**
-Many cost factors apply to complex NLP models, especially when DL-based.
-They require a lot of (labeled) data, and training not only takes a lot of time but also consumes a lot of hardware resources.
-In addition, such large models may have latency issues.
+  Many cost factors apply to complex NLP models, especially when DL-based.
+  They require a lot of (labeled) data, and training not only takes a lot of time but also consumes a lot of hardware resources.
+  In addition, such large models may have latency issues.
 
 - **Deployment**
-In some use cases, some deployment constraints apply.
-For example, the NLP system needs to run on an embedded device with limited resources, or even offline, rather than in the cloud.
+  In some use cases, some deployment constraints apply.
+  For example, the NLP system needs to run on an embedded device with limited resources, or even offline, rather than in the cloud.
 
 ![Occam's Razor Comic](https://phdcomics.com/comics/archive/phd101209s.gif "Occam's Razor Comic")
 
@@ -607,13 +607,13 @@ For example, the NLP system needs to run on an embedded device with limited reso
 
 !!! question
 
-    In a hate speech detection project on tweets, a lesson learned was that a simple Naive Bayes prototype performed similarly, if not better, than a fine-tuned BERT model. 
+    In a hate speech detection project on tweets, a lesson learned was that a simple Naive Bayes prototype performed similarly, if not better, than a fine-tuned BERT model.
     Why do you think that is?
 
 <!--
 Answer:
 
-Tweets are very short snippets of text and contain a lot of slang or informal words, as well as emojis. 
+Tweets are very short snippets of text and contain a lot of slang or informal words, as well as emojis.
 Models like BERT are trained on rather "clean" corpora, like news articles.
 We can adapt that, but for short text like tweets, BERT probably provides an overhead, and we found that a simple approach tailored to that exact use case leads to similar if not better results, with much less effort.
 -->
@@ -626,7 +626,7 @@ We can adapt that, but for short text like tweets, BERT probably provides an ove
 - AI plays a crucial role in modern NLP applications, but not every NLP application requires AI. There are multiple approaches to achieve the several NLP tasks (e.g. regex, rule-based)
 
 <!--
-TODO 
+TODO
 - ChatGPT is based on foundation models, see email SAP in ICN folder
 
 OpenAI's ChatGPT has captured the world's attention and generated significant media coverage. It demonstrates impressive capabilities such as text summarization, creative writing, translation, and even code generation.
