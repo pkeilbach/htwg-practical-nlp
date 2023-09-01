@@ -51,8 +51,8 @@ nav:
       - Part 1 - Intro to NLP:
           - lectures/part01/index.md
           - lectures/part01/01_nlp_intro.md
-          - lectures/part01/pre_processing.md
-          - lectures/part01/feature_engineering.md
+          - lectures/part01/02_nlp_pipeline.md
+          - lectures/part01/03_text_representation.md
       - Part 2 - Classification and Vector Space:
           - lectures/part02/index.md
           - lectures/part02/logistic_regression.md
