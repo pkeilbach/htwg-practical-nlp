@@ -139,8 +139,10 @@ This part covers somewhat advanced topics, they should be only explained on a hi
 
 Bird, S., Klein, E., & Loper, E. (2009). Natural Language Processing with Python: Analyzing Text with the Natural Language Toolkit. O'Reilly Media. <https://www.oreilly.com/library/view/natural-language-processing/9780596803346/> Also available open source: <https://www.nltk.org/book_1ed/>
 
-Jurafsky, D., & Martin, J. H. (2008). Speech and Language Processing: An Introduction to Natural Language Processing, Computational Linguistics, and Speech Recognition (2nd ed.). Prentice Hall. <https://www.amazon.de/dp/0131873210> Draft of 3rd edition also available open source: <https://web.stanford.edu/\~jurafsky/slp3/>
+Jurafsky, D., & Martin, J. H. (2008). Speech and Language Processing: An Introduction to Natural Language Processing, Computational Linguistics, and Speech Recognition (2nd ed.). Prentice Hall. <https://www.amazon.de/dp/0131873210> Draft of 3rd edition also available open source: <https://web.stanford.edu/~jurafsky/slp3/>
 
 Tunstall, L., Von Werra, L., & Wolf, T. (2022). Natural Language Processing with Transformers. O'Reilly Media. <https://www.oreilly.com/library/view/natural-language-processing/9781098136789/>
 
 Vajjala, S., Majumder, B., Gupta, A., & Surana, H. (2020). Practical Natural Language Processing: A Comprehensive Guide to Building Real-World NLP Systems. O'Reilly Media. <https://www.oreilly.com/library/view/practical-natural-language/9781492054047/>
+
+Bishop, C. (2006). Pattern Recognition and Machine Learning. Springer. <https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf>
