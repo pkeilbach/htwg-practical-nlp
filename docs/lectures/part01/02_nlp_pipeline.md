@@ -4,43 +4,43 @@ Like with many other complex problems, in NLP, it makes sense to break the probl
 This step-by-step processing is also referred to as a _pipeline_.
 Using a pipeline and breaking down an NLP problem into different steps offers several advantages that contribute to the overall efficiency and effectiveness of the NLP process:
 
-1. **Modularization and Reusability:**
-   Breaking down the NLP process into distinct steps allows for modularization.
-   Each step can be designed as a separate module with well-defined inputs and outputs.
-   This modularity promotes code reusability and makes swapping out or updating individual components easier without affecting the entire system.
+1.  **Modularization and Reusability:**
+    Breaking down the NLP process into distinct steps allows for modularization.
+    Each step can be designed as a separate module with well-defined inputs and outputs.
+    This modularity promotes code reusability and makes swapping out or updating individual components easier without affecting the entire system.
 
-2. **Complexity Management:**
-   NLP tasks can be intricate, involving numerous subtasks and techniques.
-   By dividing the problem into manageable steps, it becomes easier to focus on each aspect separately.
-   This simplifies the development, debugging, and maintenance of the NLP solution.
+2.  **Complexity Management:**
+    NLP tasks can be intricate, involving numerous subtasks and techniques.
+    By dividing the problem into manageable steps, it becomes easier to focus on each aspect separately.
+    This simplifies the development, debugging, and maintenance of the NLP solution.
 
-3. **Parallelization and Efficiency:**
-   Different steps of the pipeline can often be executed in parallel, speeding up the overall process.
-   For instance, while one part of the pipeline preprocesses data, another can perform feature engineering, enhancing computational efficiency.
+3.  **Parallelization and Efficiency:**
+    Different steps of the pipeline can often be executed in parallel, speeding up the overall process.
+    For instance, while one part of the pipeline preprocesses data, another can perform feature engineering, enhancing computational efficiency.
 
-4. **Experimentation and Iteration:**
-   A structured pipeline allows researchers and practitioners to experiment with various techniques and algorithms at different stages.
-   This iterative approach facilitates the testing of different configurations and helps identify the best-performing components for each step.
+4.  **Experimentation and Iteration:**
+    A structured pipeline allows researchers and practitioners to experiment with various techniques and algorithms at different stages.
+    This iterative approach facilitates the testing of different configurations and helps identify the best-performing components for each step.
 
-5. **Collaboration:**
-   When working in teams, a well-defined pipeline allows team members to focus on specific stages of the NLP process, enhancing collaboration and specialization.
-   Team members can work on their respective areas of expertise while contributing to the overall project.
+5.  **Collaboration:**
+    When working in teams, a well-defined pipeline allows team members to focus on specific stages of the NLP process, enhancing collaboration and specialization.
+    Team members can work on their respective areas of expertise while contributing to the overall project.
 
-6. **Debugging and Troubleshooting:**
-   If a problem arises in a specific stage of the pipeline, it's easier to identify the source and address the issue when the process is divided into distinct steps.
-   This targeted approach simplifies debugging and reduces the scope of potential errors.
+6.  **Debugging and Troubleshooting:**
+    If a problem arises in a specific stage of the pipeline, it's easier to identify the source and address the issue when the process is divided into distinct steps.
+    This targeted approach simplifies debugging and reduces the scope of potential errors.
 
-7. **Scalability:**
-   As NLP projects grow in complexity, a modular pipeline can accommodate the addition of new components or steps as needed.
-   This scalability is especially important when dealing with evolving data sources and changing requirements.
+7.  **Scalability:**
+    As NLP projects grow in complexity, a modular pipeline can accommodate the addition of new components or steps as needed.
+    This scalability is especially important when dealing with evolving data sources and changing requirements.
 
-8. **Adaptation to Different Tasks:**
-   The pipeline structure can be adapted and reused for various NLP tasks.
-   By modifying or replacing specific steps, the same pipeline can be applied to tasks like sentiment analysis, text summarization, machine translation, and more.
+8.  **Adaptation to Different Tasks:**
+    The pipeline structure can be adapted and reused for various NLP tasks.
+    By modifying or replacing specific steps, the same pipeline can be applied to tasks like sentiment analysis, text summarization, machine translation, and more.
 
-9. **Documentation and Transparency:**
-   A well-defined pipeline provides a clear outline of the entire NLP process.
-   This documentation is valuable for sharing insights, collaborating, and ensuring transparency in the development and deployment process.
+9.  **Documentation and Transparency:**
+    A well-defined pipeline provides a clear outline of the entire NLP process.
+    This documentation is valuable for sharing insights, collaborating, and ensuring transparency in the development and deployment process.
 
 In essence, the concept of a pipeline in NLP enhances organization, flexibility, collaboration, and maintainability throughout the development lifecycle.
 It facilitates the transformation of raw text data into valuable insights by systematically addressing the challenges specific to natural language processing tasks.
@@ -56,41 +56,41 @@ The color indicates whether the pipeline step is relevant for the course.
 
 ![Generic NLP pipeline which indicates the scope for this course](/img/nlp-pipeline.drawio.svg "Generic NLP pipeline ")
 
-1. **Business Goal**
-   An organization considering ML should have a clear idea of the problem and the business value to be gained by solving that problem.
-   You must be able to measure business value against specific business objectives and success criteria.
+1.  **Business Goal**
+    An organization considering ML should have a clear idea of the problem and the business value to be gained by solving that problem.
+    You must be able to measure business value against specific business objectives and success criteria.
 
-2. **Data Acquisition:**
-   In this initial step, you gather the raw text data that you will use for your NLP task.
-   This could involve scraping websites, accessing databases, or any other method to collect relevant text documents.
+2.  **Data Acquisition:**
+    In this initial step, you gather the raw text data that you will use for your NLP task.
+    This could involve scraping websites, accessing databases, or any other method to collect relevant text documents.
 
-3. **Text Cleaning:**
-   Text data often contains noise, such as special characters, HTML tags, or irrelevant content.
-   Text cleaning involves removing or correcting these elements to ensure the data is in a consistent and usable format.
+3.  **Text Cleaning:**
+    Text data often contains noise, such as special characters, HTML tags, or irrelevant content.
+    Text cleaning involves removing or correcting these elements to ensure the data is in a consistent and usable format.
 
-4. **Pre-Processing:**
-   Pre-processing includes a series of tasks like tokenization (breaking text into words or subword units), lowercasing, and stemming/lemmatization (reducing words to their base form).
-   This step helps standardize the text and make it ready for further analysis.
+4.  **Pre-Processing:**
+    Pre-processing includes a series of tasks like tokenization (breaking text into words or subword units), lowercasing, and stemming/lemmatization (reducing words to their base form).
+    This step helps standardize the text and make it ready for further analysis.
 
-5. **Feature Engineering:**
-   Feature engineering involves transforming the pre-processed text into numerical representations that machine learning models can work with.
-   This could include techniques like TF-IDF (Term Frequency-Inverse Document Frequency) or word embeddings like Word2Vec or GloVe.
+5.  **Feature Engineering:**
+    Feature engineering involves transforming the pre-processed text into numerical representations that machine learning models can work with.
+    This could include techniques like TF-IDF (Term Frequency-Inverse Document Frequency) or word embeddings like Word2Vec or GloVe.
 
-6. **Modeling:**
-   In this step, you select and train a machine learning or deep learning model that suits your NLP task, such as text classification, named entity recognition, or machine translation.
-   The model learns patterns from the numerical representations of the text data.
+6.  **Modeling:**
+    In this step, you select and train a machine learning or deep learning model that suits your NLP task, such as text classification, named entity recognition, or machine translation.
+    The model learns patterns from the numerical representations of the text data.
 
-7. **Evaluation:**
-   After training your model, you need to assess its performance.
-   Evaluation involves using metrics like accuracy, precision, recall, F1-score, or others, depending on the task, to measure how well the model is performing on unseen data.
+7.  **Evaluation:**
+    After training your model, you need to assess its performance.
+    Evaluation involves using metrics like accuracy, precision, recall, F1-score, or others, depending on the task, to measure how well the model is performing on unseen data.
 
-8. **Deployment:**
-   Once you're satisfied with your model's performance, you deploy it to a production environment where it can be used to make predictions on new incoming text data.
-   This could involve integrating it into a web application, API, or other systems.
+8.  **Deployment:**
+    Once you're satisfied with your model's performance, you deploy it to a production environment where it can be used to make predictions on new incoming text data.
+    This could involve integrating it into a web application, API, or other systems.
 
-9. **Monitoring and Model Updating:**
-   After deployment, continuously monitoring the model's performance in real-world scenarios is essential.
-   Suppose the model's accuracy drops or its predictions become less reliable over time due to changing patterns in the data. In that case, you might need to retrain or update the model to maintain its effectiveness.
+9.  **Monitoring and Model Updating:**
+    After deployment, continuously monitoring the model's performance in real-world scenarios is essential.
+    Suppose the model's accuracy drops or its predictions become less reliable over time due to changing patterns in the data. In that case, you might need to retrain or update the model to maintain its effectiveness.
 
 <!-- prettier-ignore-start -->
 !!! note
@@ -106,30 +106,30 @@ https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/well-ar
 Data acquisition techniques in Natural Language Processing (NLP) are crucial for obtaining high-quality data to train and evaluate models.
 Here's an overview of four common data acquisition techniques:
 
-1. **Web Scraping:**
-   This involves extracting data from websites.
-   It's widely used for collecting large amounts of text data from various sources, such as news articles, blogs, and social media platforms.
-   Libraries like [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/) or [Scrapy](https://scrapy.org/) are commonly used for web scraping.
+1.  **Web Scraping:**
+    This involves extracting data from websites.
+    It's widely used for collecting large amounts of text data from various sources, such as news articles, blogs, and social media platforms.
+    Libraries like [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/) or [Scrapy](https://scrapy.org/) are commonly used for web scraping.
 
-2. **Crowdsourcing:**
-   Crowdsourcing platforms like Amazon Mechanical Turk allow researchers to gather labeled data by outsourcing tasks to a distributed workforce. This is particularly useful for tasks that require human judgment, like annotating sentiment, entity recognition, and more.
+2.  **Crowdsourcing:**
+    Crowdsourcing platforms like Amazon Mechanical Turk allow researchers to gather labeled data by outsourcing tasks to a distributed workforce. This is particularly useful for tasks that require human judgment, like annotating sentiment, entity recognition, and more.
 
-3. **Pre-existing Datasets:**
-   Many publicly available datasets have been curated for specific NLP tasks.
-   Examples include the [IMDb dataset](https://developer.imdb.com/non-commercial-datasets/) for sentiment analysis, the [Penn Treebank](https://catalog.ldc.upenn.edu/LDC99T42) for language modeling, or the [CoNLL dataset](https://www.clips.uantwerpen.be/conll2003/ner/) for named entity recognition.
-   Also, these datasets serve as benchmarks for various NLP tasks.
+3.  **Pre-existing Datasets:**
+    Many publicly available datasets have been curated for specific NLP tasks.
+    Examples include the [IMDb dataset](https://developer.imdb.com/non-commercial-datasets/) for sentiment analysis, the [Penn Treebank](https://catalog.ldc.upenn.edu/LDC99T42) for language modeling, or the [CoNLL dataset](https://www.clips.uantwerpen.be/conll2003/ner/) for named entity recognition.
+    Also, these datasets serve as benchmarks for various NLP tasks.
 
-4. **Human Annotation:**
-   For tasks that require labeled data, researchers often rely on human annotators to label samples.
-   This is common in tasks like text classification, part-of-speech tagging, and entity recognition.
-   Annotators follow guidelines provided by researchers to label data accurately.
-   Crowdsourcing platforms like [Amazon Mechanical Turk](https://www.mturk.com/) allow to distribute such tasks to human annotators.
+4.  **Human Annotation:**
+    For tasks that require labeled data, researchers often rely on human annotators to label samples.
+    This is common in tasks like text classification, part-of-speech tagging, and entity recognition.
+    Annotators follow guidelines provided by researchers to label data accurately.
+    Crowdsourcing platforms like [Amazon Mechanical Turk](https://www.mturk.com/) allow to distribute such tasks to human annotators.
 
-5. **Data Augmentation:**
-   Data augmentation involves creating new data samples from existing ones by applying various transformations.
-   In NLP, this can involve techniques like paraphrasing, synonym replacement, and perturbation of sentences.
-   Augmentation helps increase the diversity of the training data and can improve model generalization.
-   A popular tool (not only) for data augmentation is [snorkel](https://www.snorkel.org/).
+5.  **Data Augmentation:**
+    Data augmentation involves creating new data samples from existing ones by applying various transformations.
+    In NLP, this can involve techniques like paraphrasing, synonym replacement, and perturbation of sentences.
+    Augmentation helps increase the diversity of the training data and can improve model generalization.
+    A popular tool (not only) for data augmentation is [snorkel](https://www.snorkel.org/).
 
 In many cases, it's a **combination of these techniques** that makes a well-rounded and robust dataset for training and evaluating NLP models.
 The choice of technique depends on the specific task, available resources, and ethical considerations.
@@ -243,17 +243,17 @@ Usually, it's also a good idea to remove URLs, as they often contain random char
 
 Here are some other text cleaning steps worth mentioning:
 
-1. **Handling Numbers:**
-   Decide whether to keep or remove numbers based on the analysis's goals.
-   You might replace numbers with placeholders like `NUM` or convert them to words.
+1.  **Handling Numbers:**
+    Decide whether to keep or remove numbers based on the analysis's goals.
+    You might replace numbers with placeholders like `NUM` or convert them to words.
 
-2. **Handling Special Characters**
-   Special characters like "+" or emojis often convey a meaning.
-   Depending on your application, you can choose to preserve emojis as-is, replace them with their textual descriptions, e.g., "☺️" becomes "smiley face", or remove them altogether.
-   Not surprisingly, emojis are helpful for sentiment analysis.
+2.  **Handling Special Characters**
+    Special characters like "+" or emojis often convey a meaning.
+    Depending on your application, you can choose to preserve emojis as-is, replace them with their textual descriptions, e.g., "☺️" becomes "smiley face", or remove them altogether.
+    Not surprisingly, emojis are helpful for sentiment analysis.
 
-3. **Removing whitespace:**
-   Extra spaces, tabs `\t`, or line breaks `\n` should be normalized to a single space to ensure consistent formatting.
+3.  **Removing whitespace:**
+    Extra spaces, tabs `\t`, or line breaks `\n` should be normalized to a single space to ensure consistent formatting.
 
 ## Text Normalization
 
@@ -364,17 +364,17 @@ The choice between these techniques depends on the specific NLP task and the des
 
 ### Other Text Normalization Steps
 
-1. **Spelling Correction:**
-   Human-typed data often has spelling errors. Custom solutions are usually not robust enough, but online services like [Bing Spell Check](https://learn.microsoft.com/en-us/azure/cognitive-services/bing-spell-check/quickstarts/python) offer REST APIs to tackle the spelling correction problem more sophisticatedly.
+1.  **Spelling Correction:**
+    Human-typed data often has spelling errors. Custom solutions are usually not robust enough, but online services like [Bing Spell Check](https://learn.microsoft.com/en-us/azure/cognitive-services/bing-spell-check/quickstarts/python) offer REST APIs to tackle the spelling correction problem more sophisticatedly.
 
-2. **Contractions expansion:**
-   Especially in the English language, expanding contractions like "can't" to "cannot" or "I'm" to "I am." should be resolved to ensure consistent word representations.
+2.  **Contractions expansion:**
+    Especially in the English language, expanding contractions like "can't" to "cannot" or "I'm" to "I am." should be resolved to ensure consistent word representations.
 
-3. **Handling Abbreviations and Acronyms:**
-   Expanding abbreviations and acronyms to their full forms, or vice versa, to ensure consistency.
+3.  **Handling Abbreviations and Acronyms:**
+    Expanding abbreviations and acronyms to their full forms, or vice versa, to ensure consistency.
 
-4. **Normalization of Date and Time Formats:**
-   Converting various date and time representations into a standardized format, for example, transforming `September 1st, 2023` to `2023-09-01`.
+4.  **Normalization of Date and Time Formats:**
+    Converting various date and time representations into a standardized format, for example, transforming `September 1st, 2023` to `2023-09-01`.
 
 ## Feature Engineering
 
