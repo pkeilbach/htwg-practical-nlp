@@ -43,6 +43,7 @@ nav:
   - Welcome: index.md
   - About:
       - about/course.md
+      - about/profile.md
       - about/syllabus.md
       - about/instructor.md
       - about/organizational.md
