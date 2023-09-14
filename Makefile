@@ -2,7 +2,6 @@ project: pre_commit nltk
 
 pre_commit: requirements
 	.venv/bin/pre-commit install
-	.venv/bin/pre-commit autoupdate
 
 nltk: requirements
 	.venv/bin/python3 -m nltk.downloader -d .venv/nltk_data popular
