@@ -1,15 +1,28 @@
-docs: requirements
-	.venv/bin/mkdocs serve
+project: pre_commit nltk
 
 pre_commit: requirements
 	.venv/bin/pre-commit install
-	.venv/bin/pre-commit autoupdate
 
-requirements: .venv
-	.venv/bin/pip install --upgrade .
-	rm -rf ./build/
-	rm -rf ./src/htwg_practical_nlp.egg-info/
-	.venv/bin/python3 -m nltk.downloader popular
+nltk: requirements
+	.venv/bin/python3 -m nltk.downloader -d .venv/nltk_data popular
+
+requirements: pip
+	.venv/bin/python3 -m pip install -e .
+
+pip: .venv
+	.venv/bin/pip install --upgrade pip
 
 .venv:
 	python3.10 -m venv --upgrade-deps .venv
+
+jupyter: project
+	.venv/bin/jupyter notebook --no-browser
+
+mkdocs: project
+	.venv/bin/mkdocs serve
+
+pytest:
+	.venv/bin/pytest
+
+assignment_1:
+	.venv/bin/pytest tests/htwgnlp/test_preprocessing.py
