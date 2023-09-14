@@ -2,6 +2,9 @@
 
 This module contains the tests for the TweetProcessor class.
 Run the tests with `make assignment_1` in the terminal.
+You don't need to worry about the implementation of this module or the pytest framework,
+but if you are wondering what pytest.mark.parametrize does, check out the pytest documentation here:
+https://docs.pytest.org/en/stable/parametrize.html
 """
 
 import pytest
