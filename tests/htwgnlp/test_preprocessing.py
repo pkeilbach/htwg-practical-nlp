@@ -1,3 +1,9 @@
+"""Tests for the preprocessing module.
+
+This module contains the tests for the TweetProcessor class.
+Run the tests with `make assignment_1` in the terminal.
+"""
+
 import pytest
 
 from htwgnlp.preprocessing import TweetProcessor

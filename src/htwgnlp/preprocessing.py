@@ -9,6 +9,7 @@ as well as from the Python standard library.
 You can find the documentation for the nltk library here: https://www.nltk.org/
 You can find the documentation for the Python standard library here: https://docs.python.org/3/library/
 Your task is complete when all the tests in the test_preprocessing.py file pass.
+You can check if the tests pass by running `make assignment_1` in the terminal.
 You can follow the `TODO ASSIGNMENT 1` comments to find the places where you need to implement something.
 """
 
