@@ -18,7 +18,7 @@ pip: .venv
 jupyter: project
 	.venv/bin/jupyter notebook --no-browser
 
-mkdocs: project
+lecture_notes: project
 	.venv/bin/mkdocs serve
 
 pytest:
