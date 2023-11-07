@@ -19,9 +19,14 @@ Here are some general information about the presentations:
 
 ## Topics and Dates
 
-You can find the list of topics in this [GitHub issue](https://github.com/pkeilbach/htwg-practical-nlp/issues/13).
+You can find the list of topics in the GitHub issues when filtering for the `presentation topic` label.
 
-The issue also contains all relevant information about how we will organize the assignment of the topics.
+If you are interested in a topic, please add yourself as an assignee to the issue.
+
+Remember that you can also suggest your own topic. If you do so, please create a new issue and add the `presentation topic` label.
+
+If multiple students are interested in the same topic, we will figure out a way to assign the topics fairly.
+In case of doubt, a first-come-first-serve approach may be applied, so it's probably a good idea to be quick! 😉
 
 As for the dates, we will discuss them in one of the first lectures.
 
