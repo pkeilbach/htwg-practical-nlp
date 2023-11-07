@@ -27,7 +27,7 @@ As for the dates, we will discuss them in one of the first lectures.
 
 ## Submission
 
-In addition to the verbal presentation, the student should submit a **blog-like article** about the topic based on this [Markdown template](./template.md). 📝
+In addition to the verbal presentation, the student should submit a **blog-like article** about the topic based on this [Markdown template](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/docs/presentations/template.md). 📝
 
 Please make sure the article is short and crisp. There are no hard rules, but maybe a reading time of not more than 10 minutes is a good approximation. ⏳
 

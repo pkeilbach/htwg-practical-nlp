@@ -56,5 +56,7 @@ nav:
       - lectures/nlp_intro.md
       - lectures/nlp_pipeline.md
   - Assignments: assignments.md
-  - Presentations: presentations/presentations.md
+  - Presentations:
+      - presentations/presentations.md
+      - Article Template: presentations/template.md
   - FAQ: faq.md

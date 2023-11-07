@@ -1,5 +1,7 @@
 # Title
 
+_You can download this file [here](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/docs/presentations/template.md)_
+
 ## TL;DR
 
 A brief summary of the entire article's key points.
