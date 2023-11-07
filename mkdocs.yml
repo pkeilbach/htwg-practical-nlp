@@ -48,32 +48,13 @@ extra_javascript:
 nav:
   - Welcome: index.md
   - About:
-      - about/course.md
       - about/profile.md
-      - about/syllabus.md
-      - about/instructor.md
-      - about/organizational.md
+      - about/prerequisites.md
   - Getting Started: getting_started.md
   - Lectures:
-      - Part 1 - Intro to NLP:
-          - lectures/part01/index.md
-          - lectures/part01/01_nlp_intro.md
-          - lectures/part01/02_nlp_pipeline.md
-          - lectures/part01/03_text_representation.md
-      - Part 2 - Classification and Vector Space:
-          - lectures/part02/index.md
-          - lectures/part02/logistic_regression.md
-          - lectures/part02/vector_space_models.md
-          - lectures/part02/k_nearest_neighbors.md
-      - Part 3 - Probabilistic NLP Models:
-          - lectures/part03/index.md
-          - lectures/part03/naive_bayes.md
-          - lectures/part03/minimum_edit_distance.md
-          - lectures/part03/hidden_markov_models.md
-          - lectures/part03/n_grams.md
-      - Part 4 - Advanced NLP Concepts:
-          - lectures/part04/index.md
-          - lectures/part04/sequence_models.md
-          - lectures/part04/attention_models.md
-          - lectures/part04/production_scale_nlp.md
+      - lectures/preface.md
+      - lectures/nlp_intro.md
+      - lectures/nlp_pipeline.md
+  - Assignments: assignments.md
+  - Presentations: presentations/presentations.md
   - FAQ: faq.md
