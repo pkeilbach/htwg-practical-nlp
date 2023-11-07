@@ -19,7 +19,7 @@ Here are some general information about the presentations:
 
 ## Topics and Dates
 
-You can find the list of topics in the GitHub issues when filtering for the `presentation topic` label.
+You can find the list of topics in the GitHub issues when filtering for the [`presentation topic` label](https://github.com/pkeilbach/htwg-practical-nlp/issues?q=is%3Aissue+is%3Aopen+label%3A%22presentation+topic%22).
 
 If you are interested in a topic, please add yourself as an assignee to the issue.
 
