@@ -1,4 +1,4 @@
-# Chapter 2: The NLP Pipeline
+# NLP Pipeline
 
 Like with many other complex problems, in NLP, it makes sense to break the problem that needs to be solved down into several sub-problems.
 This step-by-step processing is also referred to as a _pipeline_.
@@ -375,17 +375,3 @@ The choice between these techniques depends on the specific NLP task and the des
 
 4.  **Normalization of Date and Time Formats:**
     Converting various date and time representations into a standardized format, for example, transforming `September 1st, 2023` to `2023-09-01`.
-
-## Feature Engineering
-
-### Classical Pipeline
-
-### DL Pipeline
-
-## Modeling
-
-## Evaluation
-
-## Post-Modeling Phases
-
-## Working with other Languages
