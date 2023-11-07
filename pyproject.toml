@@ -6,8 +6,9 @@ readme = "README.md"
 authors = [{ name = "Pascal Keilbach", email = "dev@pk17.org" }]
 dependencies = [
     "jupyter",
-    "mkdocs-material~=8.5.11",
+    "mkdocs-material",
     "nltk",
+    "pandas",
     "pre-commit",
     "pytest",
 ]
