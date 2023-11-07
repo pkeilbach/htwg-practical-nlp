@@ -1,4 +1,9 @@
-# Chapter 1: Introduction to NLP
+# Introduction to NLP
+
+Welcome to the world of natural language processing (NLP).
+The first lecture will give you a basic understanding of what NLP is about, the problems we deal with and the challenges that come with it.
+We will take a look at some real-world NLP applications and learn about the most important NLP tasks.
+Also we will dissect language into its building blocks and learn about the relation between NLP and AI.
 
 ## Real-world NLP Applications
 
@@ -24,6 +29,45 @@ The following figure gives an overview of real-world NLP applications along with
 <!--
 Answer: ask students in the course
 -->
+
+## NLP Research vs. NLP Engineering
+
+Natural Language Processing (NLP) is a broad field that encompasses a wide range of topics, including linguistics, computer science, and artificial intelligence.
+When working on NLP problems, it is important to know which perspective we are having on the problem.
+
+There is an academic perspective on NLP, which is focused on advancing the field through research and innovation.
+And there is a practical perspective on NLP, which is focused on applying NLP techniques to solve real-world problems.
+It is important to understand the difference between these two views, as they require different skills and lead to different career paths.
+
+Depending on the perspective, the goals and metrics, the data and methodology, as well as the challenges that are faced, can be very different.
+For example, as a software engineer in the industry, aspects like scalability, cost or robustness of your NLP system are more important than if you are a researcher in academia.
+On the other hand, as a researcher, your primary goal is to find answers to your research questions rather than bothering with latest frameworks and tools.
+
+However, as a software engineer working on NLP problems, it is important to get the gist of the theoretical foundations of NLP, in order to properly adapt it on your business problem.
+At the same time, many research projects are driven by practical needs and are often inspired by real-world problems.
+The following figure illustrates the relation between the research and engineering side of NLP.
+
+![A diagram that shows the relation between NLP research and NLP engineering](/img/nlp-research-vs-nlp-engineering.drawio.svg "NLP research vs. NLP engineering")
+
+The following table summarizes the main differences between NLP research and NLP engineering.
+
+| Aspect                           | NLP Research                                                                                                | NLP Engineering                                                                                                                                                  |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Nature of Work                   | Advancing NLP through innovative methods, models, and theories with creativity and scientific rigor         | Applying NLP techniques to real-world problems and creating efficient systems                                                                                    |
+| Focus                            | Developing new methods, models, algorithms, and theories                                                    | Building scalable, reliable, and efficient systems for handling large datasets and producing high-quality outputs                                                |
+| Workplace                        | Academic institutions, research labs, or R&D-focused companies                                              | Product teams, software companies, or organizations with NLP needs                                                                                               |
+| Knowledge and Skills Required    | Strong foundation in mathematics, statistics, computer science, linguistics, deep NLP knowledge             | Software engineering principles, practical experience with NLP tools, familiarity with NLP architectures and models, strong data processing skills               |
+| Programming Languages/Frameworks | Proficiency in languages like Python, PyTorch, TensorFlow                                                   | Use of Python, NLP libraries (spaCy, NLTK, Gensim), and other relevant tools                                                                                     |
+| Responsibilities                 | Conducting literature reviews, designing experiments, analyzing results, writing research papers            | Designing and building efficient NLP systems as well as integration with other systems such as web services, databases, and cloud services                       |
+| Goal Definition                  | Abstract and ambitious goals driven by curiosity, exploration, and discovery                                | Concrete and specific goals driven by customer needs, business requirements, and user feedback                                                                   |
+| Performance Metrics              | Academic metrics like accuracy, recall, F1-score, perplexity, etc.                                          | Product metrics such as speed, scalability, robustness, usability, etc.                                                                                          |
+| Methodology                      | Based on scientific methods and experiments                                                                 | Tend to use software engineering methodology and best practices (SCRUM, DevOps, etc.)                                                                            |
+| Datasets                         | Use open source or benchmark datasets                                                                       | Use real-world data that is often less structured and unlabelled                                                                                                 |
+| Core Challenges                  | Finding novel research questions, managing research uncertainty, balancing publication quality and quantity | Adapting solutions to different domains, ensuring reliability and security, managing real-world data diversity and noise, balancing product performance and cost |
+
+In this course, we will focus on the engineering perspective of NLP.
+While we will cover all important theoretical foundations, the main objective is to provide you with the skills that are required to successfully design and implement NLP systems in the industry.
+We will learn some of the most important NLP tools, libraries and frameworks that are used in real-world NLP projects.
 
 ## NLP Tasks
 
@@ -68,9 +112,6 @@ Answer:
     An **NLP application** is usually use-case driven, i.e. it has a specific goal in mind or provides added value to its users. It makes use of one or more **NLP tasks** to achieve that goal.
 
 <!--
-TODO
-- what about POS tagging and NER? The tasks/applications are based on the book but somehow seem not consistent.
-- Differentiation between NLP applications and NLP tasks?
 
 Resources on the categorization of NLP tasks:
 
@@ -525,6 +566,15 @@ TODO
 
 <!--
 TODO
+- ChatGPT is based on foundation models, see email SAP in ICN folder
+
+OpenAI's ChatGPT has captured the world's attention and generated significant media coverage. It demonstrates impressive capabilities such as text summarization, creative writing, translation, and even code generation.
+ChatGPT is based on recent breakthroughs in AI, called foundation models, which are trained on massive amounts of data and can be applied to a wide variety of tasks. SAP has been exploring foundation models since mid-2022 with initial proof of concepts and partner discussions and is already using smaller foundation models productively in SAP AI Business Services. We see foundation models as a disruptive innovation that can benefit our employees and customers.
+
+-->
+
+<!--
+TODO
 - filter out relevant blog posts
 - link "attention is all you need" paper in part04
 
@@ -625,11 +675,7 @@ We can adapt that, but for short text like tweets, BERT probably provides an ove
 - to better understand NLP and its challenges, we need to have a basic understanding of what **language** is, especially its building blocks: phonemes, morphemes & lexemes, syntax, and context
 - AI plays a crucial role in modern NLP applications, but not every NLP application requires AI. There are multiple approaches to achieve the several NLP tasks (e.g. regex, rule-based)
 
-<!--
-TODO
-- ChatGPT is based on foundation models, see email SAP in ICN folder
+## References
 
-OpenAI's ChatGPT has captured the world's attention and generated significant media coverage. It demonstrates impressive capabilities such as text summarization, creative writing, translation, and even code generation.
-ChatGPT is based on recent breakthroughs in AI, called foundation models, which are trained on massive amounts of data and can be applied to a wide variety of tasks. SAP has been exploring foundation models since mid-2022 with initial proof of concepts and partner discussions and is already using smaller foundation models productively in SAP AI Business Services. We see foundation models as a disruptive innovation that can benefit our employees and customers.
-
--->
+- <https://medium.com/bitgrit-data-science-publication/nlp-in-academia-vs-the-real-world-9dee491bea38>
+- <https://www.linkedin.com/advice/3/what-main-differences-between-nlp-research>
