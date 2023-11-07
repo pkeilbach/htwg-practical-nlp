@@ -2,22 +2,22 @@
 
 This module contains the TweetProcessor class which is used to preprocess tweets.
 
-ASSIGNMENT 1:
-Your job in assignment 1 is to implement the methods of this class.
+ASSIGNMENT-1:
+Your job in this assignment is to implement the methods of this class.
 Note that you will need to import several modules from the nltk library, 
 as well as from the Python standard library.
 You can find the documentation for the nltk library here: https://www.nltk.org/
 You can find the documentation for the Python standard library here: https://docs.python.org/3/library/
 Your task is complete when all the tests in the test_preprocessing.py file pass.
 You can check if the tests pass by running `make assignment_1` in the terminal.
-You can follow the `TODO ASSIGNMENT 1` comments to find the places where you need to implement something.
+You can follow the `TODO ASSIGNMENT-1` comments to find the places where you need to implement something.
 """
 
 
 class TweetProcessor:
-    # TODO ASSIGNMENT 1: Add a `stemmer` attribute to the class
+    # TODO ASSIGNMENT-1: Add a `stemmer` attribute to the class
 
-    # TODO ASSIGNMENT 1: Add a `tokenizer` attribute to the class
+    # TODO ASSIGNMENT-1: Add a `tokenizer` attribute to the class
     #  - text should be lowercased
     #  - handles should be stripped
     #  - the length should be reduced for repeated characters
@@ -32,7 +32,7 @@ class TweetProcessor:
         Returns:
             str: the tweet without urls
         """
-        # TODO ASSIGNMENT 1: implement this function
+        # TODO ASSIGNMENT-1: implement this function
         raise NotImplementedError("This function needs to be implemented.")
 
     @staticmethod
@@ -46,7 +46,7 @@ class TweetProcessor:
         Returns:
             str: the tweet without hashtags symbols
         """
-        # TODO ASSIGNMENT 1: implement this function
+        # TODO ASSIGNMENT-1: implement this function
         raise NotImplementedError("This function needs to be implemented.")
 
     def tokenize(self, tweet: str) -> list[str]:
@@ -59,7 +59,7 @@ class TweetProcessor:
         Returns:
             list[str]: the tokenized tweet
         """
-        # TODO ASSIGNMENT 1: implement this function
+        # TODO ASSIGNMENT-1: implement this function
         raise NotImplementedError("This function needs to be implemented.")
 
     @staticmethod
@@ -72,7 +72,7 @@ class TweetProcessor:
         Returns:
             list[str]: the tokenized tweet without stopwords
         """
-        # TODO ASSIGNMENT 1: implement this function
+        # TODO ASSIGNMENT-1: implement this function
         raise NotImplementedError("This function needs to be implemented.")
 
     @staticmethod
@@ -85,7 +85,7 @@ class TweetProcessor:
         Returns:
             list[str]: the tokenized tweet without punctuation
         """
-        # TODO ASSIGNMENT 1: implement this function
+        # TODO ASSIGNMENT-1: implement this function
         raise NotImplementedError("This function needs to be implemented.")
 
     def stem(self, tokens: list[str]) -> list[str]:
@@ -97,7 +97,7 @@ class TweetProcessor:
         Returns:
             list[str]: the tokenized tweet with stemmed tokens
         """
-        # TODO ASSIGNMENT 1: implement this function
+        # TODO ASSIGNMENT-1: implement this function
         raise NotImplementedError("This function needs to be implemented.")
 
     def process_tweet(self, tweet: str) -> list[str]:
@@ -109,5 +109,5 @@ class TweetProcessor:
         Returns:
             list[str]: the processed tweet
         """
-        # TODO ASSIGNMENT 1: implement this function
+        # TODO ASSIGNMENT-1: implement this function
         raise NotImplementedError("This function needs to be implemented.")
