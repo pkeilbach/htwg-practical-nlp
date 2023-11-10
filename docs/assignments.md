@@ -27,7 +27,7 @@ Once you implemented everything, you can run the tests to check if everything wo
 You can run the tests using the `make` commands, for example:
 
 ```sh
-make assignment_01
+make assignment_1
 ```
 
 If all your tests pass, you successfully completed the assignment! 🚀
