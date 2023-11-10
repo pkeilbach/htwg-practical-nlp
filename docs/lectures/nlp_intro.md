@@ -4,6 +4,7 @@ Welcome to the world of natural language processing (NLP).
 The first lecture will give you a basic understanding of what NLP is about, the problems we deal with and the challenges that come with it.
 We will take a look at some real-world NLP applications and learn about the most important NLP tasks.
 Also we will dissect language into its building blocks and learn about the relation between NLP and AI.
+The goal is to get a good intuition of what it means to work with language from a programmatic perspective.
 
 ## Real-world NLP Applications
 
@@ -125,12 +126,12 @@ Resources on the categorization of NLP tasks:
 
 ## Building Blocks of Language
 
-- Linguistic is the systematic study of language
-- NLP tries to make language processable by computer systems
-- To study NLP, we don't need to be linguistic experts, but it is important to understand some core linguistic concepts
-- Section aims to give a short glimpse into linguistics
-- In linguistics, each of the building blocks described in this section is a research area for itself.
-- For the scope of this course, we think of human language as composed of four major building blocks: phonemes, morphemes and lexemes, syntax, and context
+While linguistics is the systematic study of language, NLP tries to make language processable by computer systems.
+
+To study NLP, we don't need to be linguistic experts, but it is important to understand some core linguistic concepts. In this section, we will dissect language into its building blocks.
+
+For the scope of this course, we think of human language as composed of four major building blocks: phonemes, morphemes and lexemes, syntax, and context.
+In linguistics, each of the building blocks described in this section is a research area for itself.
 
 ![Building blocks of language as relevant for this course](/img/language-building-blocks.drawio.svg "Building blocks of language as relevant for this course")
 
@@ -284,10 +285,13 @@ If it is just about the conveyed information, it is probably OK to remove them d
 
     > I'm so hungry, I could eat a horse!
 
-    Semantics would assume that this person wants to eat a horse.
-    Pragmatics applies world knowledge and infers that this person is very hungry.
+    **Semantics** would assume that this person wants to eat a horse. 🐎
 
+    **Pragmatics** applies **world knowledge** and infers that this person is very hungry. 🍴
+
+<!--
     The [sad story](https://en.wikipedia.org/wiki/For_sale:_baby_shoes,_never_worn) of how Hemingway supposedly won a 10$ bet shows the difference between semantics and pragmatics.
+-->
 
 Important for:
 
@@ -303,11 +307,11 @@ Important for:
 
 ### Ambiguity
 
-- Occurs when a word, phrase, or sentence has more than one plausible interpretation
-- The intended meaning often depends on the context or world knowledge
-- Related to vagueness and uncertainty
-- Most languages are inherently ambiguous
-- Humans use it sometimes on purpose
+- Occurs when a word, phrase, or sentence has **more than one plausible interpretation**
+- The intended meaning often depends on the **context or world knowledge**
+- Related to **vagueness and uncertainty**
+- Most **languages** are **inherently ambiguous**
+- Humans use it sometimes **on purpose**
 
 !!! example
 
@@ -376,6 +380,10 @@ The language of mathematics is designed to be unambiguous.
 
     Leo Tolstoy, Anna Karenina
 
+!!! question
+
+    Is [GenAI](https://en.wikipedia.org/wiki/Generative_artificial_intelligence) creative?
+
 ### Diversity
 
 - Many times, no direct mapping between the vocabularies of any two languages
@@ -385,6 +393,11 @@ The language of mathematics is designed to be unambiguous.
 !!! example
 
     The German word [*Heimat*](https://en.wikipedia.org/wiki/Heimat) has no exact English equivalent.
+
+<!--
+Comment:
+Anybody who used NLP solutions in another language than english probably has experienced lower performance.
+-->
 
 ## NLP meets Artificial Intelligence
 
@@ -403,16 +416,16 @@ Machine Learning (ML):
 
 Deep Learning (DL):
 
-- Algorithms based on artificial neural networks
+- Algorithms based on artificial **neural networks**
 - Inspired by the neurons of the human brain and how they interact
-- Significant advances in the past years
+- Significant **advances** in the past years
 
 Natural Language Processing (NLP):
 
-- Aims to give computers the ability to understand text and spoken words in much the same way human beings can
+- Aims to give **computers** the ability to **understand text and spoken words** in much the same way human beings can
 - Combines computational linguistics with statistical, machine learning, and deep learning models
 - Leverage advances in ML and DL
-- Early work is also based on rules and heuristics
+- Not **necessarily based on AI**, early work is also based on rules and heuristics
 
 !!! info
 
@@ -461,16 +474,9 @@ limitations: hard to solve complex NLP tasks
 - learn **mapping function** from input to output
 - requires a large number of **labeled training data**, i.e. known input-output pairs
 
-!!! question
+!!! example
 
-    An **email spam filter** is a very common example where supervised learning is used in NLP.
-    What would you take as features?
-
-<!--
-Answer
-
-TODO
--->
+    An **email spam filter** is a common example where supervised learning is used in NLP.
 
 #### Unsupervised learning
 
@@ -485,18 +491,13 @@ TODO
 #### Semi-supervised learning
 
 - Small labeled dataset and a large unlabeled data set
-- Make use of additional unlabeled data to better capture the shape of the underlying data distribution and generalize better to new samples[^1]
-- Important when labeling is challenging or expensive[^2]
-
-[^1]: <https://scikit-learn.org/stable/modules/semi_supervised.html>
-[^2]: <https://machinelearningmastery.com/what-is-semi-supervised-learning/>
+- Make use of additional unlabeled data to better capture the shape of the underlying data distribution and generalize better to new samples
+- Important when labeling is challenging or expensive
 
 #### Reinforcement learning
 
 - Does not need a lot of training data, and can be created during training
-- Learns tasks by being rewarded for desired behaviors and punished for bad ones ("trial and error")[^3]
-
-[^3]: <https://databasecamp.de/en/ml/reinforcement-learnings>
+- Learns tasks by being rewarded for desired behaviors and punished for bad ones ("trial and error")
 
 !!! info
 
@@ -506,93 +507,64 @@ TODO
 
 ### Deep Learning for NLP
 
-- Neural networks have been used extensively for complex unstructured data
-- Language is exactly that by nature
-- Some neural network architectures have become popular and status quo in NLP
+In this section we will introduce some important concepts of deep learning for NLP.
+We will only scratch the surface as we will meet some of those concepts later in the course.
 
 #### Language Models
 
-<!-- TODO What is a language model? -->
+- System that is trained to **understand and generate** human-like text
+- Designed to **predict** and generate sequences of words or characters based on the input it receives
+- Learns **patterns, structures, and relationships** within a given language by being exposed to **large amounts of text data**
+- They can be based on **various architectures**, including RNNs, LSTMs, CNNs, and more recently, transformers
 
-#### Recurrent Neural Networks (RNNs)
+!!! example
 
-- language is sequential by nature, e.g. text flows from one direction to another
-- RNNs are specifically designed for sequential processing
-- Can remember what they have processed so far
-- Cannot remember long contexts, do not perform well on long texts
-
-#### Long Short-Term Memory (LSTM)
-
-- Special type of RNN to mitigate RNN shortcomings on long texts
-- Let go of irrelevant context, and only remember the context that is required to solve the task at hand
+    GPT-3, based on the transformer architecture, is an example of a powerful language model.
 
 #### Convolutional Neural Networks (CNNs)
 
 - Adapted from computer vision tasks
-- Require word embeddings to build sentences matrices, which can be treated analogously to images
+- Require **word embeddings** to build sentences matrices, which can be treated analogously to images
+
+#### Recurrent Neural Networks (RNNs)
+
+- language is sequential by nature, e.g. text flows from one direction to another
+- RNNs are a type of neural network designed for **sequential data**, making them suitable for tasks where the order of the input matters
+- Can remember what they have processed so far, but cannot remember long contexts
+
+#### Long Short-Term Memory (LSTM)
+
+- LSTMs are a specific type of RNN designed to address the vanishing gradient problem, enabling better learning of long-range dependencies in sequential data.
+- Let go of **irrelevant context**, and only remember the context that is required to solve the task at hand
 
 #### Transformers
 
-- Model textual context but not in a sequential manner
+- **Type of architecture** that has gained prominence in NLP
+- Use **self-attention mechanisms** to capture relationships between different parts of a sequence simultaneously, making them effective for processing sequential data, including language
 - Look at surrounding words to derive context (e.g. bank as a river bank or financial institution)
-- utilizes the concept of attention
 
 #### Transfer Learning
 
-- Train a very large transformer model on a huge dataset for generic NLP tasks (pre-training)
-- Fine-tune the pre-trained model on downstream tasks (e.g. entity extraction, question answering)
-- The model is able to transfer the pre-trained knowledge for downstream tasks
-- Example: [Bidirectional Encoder Representations from Transformers (BERT)](https://arxiv.org/abs/1810.04805v2), trained on 40GB of textual data
+- Transfer learning is a machine learning **paradigm** where a model trained on one task is **adapted or fine-tuned** for a different but related task
+- Often used to leverage **pre-trained models** for specific applications
+- The model is able to **transfer** the pre-trained knowledge for downstream tasks
 
-#### Attention
+#### Foundation Models
 
-- In general, attention is the ability to focus on important things and ignore irrelevant things
-- Similar to NLP, certain parts of a sentence are more important than others
-- More specifically, attention in NLP describes how each word in the input relates to other words in the input
-- The higher the value, the more attention is paid to those words
-- Attention is a mechanism of how to embed context into NLP models
+- The term **foundation model** refers to **large-scale** language models **based on the transformer** architecture
+- They serve as a **starting point** for various NLP tasks
+- It emphasizes the idea that a **pre-trained model** forms the **foundation** and can be adapted for various tasks
 
 !!! info
 
-    The concept of attention is a rather complex one, but also a very crucial one for SOTA NLP models.
-    We will cover it in more detail later in the course.
-    For interested readers, I can recommend the following blog posts:
+    GPT-3 is known to be trained on 45 TB of text data and the model has about 175 billion parameters.
 
+#### Attention
 
-    - [Attention Mechanism in the Transformers Model](https://www.baeldung.com/cs/attention-mechanism-transformers)
-    - [Transforming Natural Language Understanding: Attention, GPT, BERT, and Switch](https://ravishrawal.medium.com/transforming-natural-language-understanding-c1ac7f57613f)
-
-    For now, it is just important to grasp the intuition behind the attention concept, which is similar to human attention.
-
-<!--
-TODO
-- ChatGPT is based on foundation models, see email SAP in ICN folder
-
-OpenAI's ChatGPT has captured the world's attention and generated significant media coverage. It demonstrates impressive capabilities such as text summarization, creative writing, translation, and even code generation.
-ChatGPT is based on recent breakthroughs in AI, called foundation models, which are trained on massive amounts of data and can be applied to a wide variety of tasks. SAP has been exploring foundation models since mid-2022 with initial proof of concepts and partner discussions and is already using smaller foundation models productively in SAP AI Business Services. We see foundation models as a disruptive innovation that can benefit our employees and customers.
-
--->
-
-<!--
-TODO
-- filter out relevant blog posts
-- link "attention is all you need" paper in part04
-
-Blog posts on the attention concept
-
-- https://ravishrawal.medium.com/transforming-natural-language-understanding-c1ac7f57613f
-- https://towardsdatascience.com/3-neural-network-architectures-you-need-to-know-for-nlp-5660f11281be
-- https://machinelearningmastery.com/the-transformer-attention-mechanism/
-- https://towardsdatascience.com/all-you-need-to-know-about-attention-and-transformers-in-depth-understanding-part-1-552f0b41d021
-- https://www.baeldung.com/cs/attention-mechanism-transformers
-- https://daleonai.com/transformers-explained
-- https://towardsdatascience.com/3-neural-network-architectures-you-need-to-know-for-nlp-5660f11281be
-- https://medium.com/@datamonsters/artificial-neural-networks-for-natural-language-processing-part-1-64ca9ebfa3b2
-- https://medium.com/analytics-vidhya/attention-transformer-and-bert-a-simulating-nlp-journey-2a4abbfb6e74
-- https://towardsdatascience.com/bert-explained-state-of-the-art-language-model-for-nlp-f8b21a9b6270
-- https://medium.com/analytics-vidhya/https-medium-com-understanding-attention-mechanism-natural-language-processing-9744ab6aed6a
-
--->
+- The Attention mechanism is a key component of the transformer model architecture and plays a crucial role in capturing **contextual information across sequences**.
+- Attention mechanisms, particularly **self-attention** in the context of transformers, allow models to **focus on different parts of the input sequence** when making predictions.
+- Especially beneficial for capturing long-range dependencies.
+- In general, attention is the ability to **focus on important things and ignore irrelevant things**, as certain parts of a sentence are more important than others
 
 #### Limitations
 
@@ -670,12 +642,19 @@ We can adapt that, but for short text like tweets, BERT probably provides an ove
 
 ## Key Takeaways
 
-<!-- TODO complete this section -->
-
-- to better understand NLP and its challenges, we need to have a basic understanding of what **language** is, especially its building blocks: phonemes, morphemes & lexemes, syntax, and context
-- AI plays a crucial role in modern NLP applications, but not every NLP application requires AI. There are multiple approaches to achieve the several NLP tasks (e.g. regex, rule-based)
+- Our modern lives are full of NLP applications, and we encounter them every day.
+- When building an NLP system or application, we need to **understand the problem** we are trying to solve and the **NLP tasks** that are required to solve it.
+- To work on NLP problems, we need to have a basic understanding of **how we can approach language programmatically**.
+- It is also important to understand if we are looking at a problem from a research or engineering **perspective**.
+- The **basic building blocks of language** are phonemes, morphemes & lexemes, syntax, and context.
+- Trying to map language to a computer system poses several **challenges**, as language is inherently ambiguous, requires world knowledge, and involves creativity and diversity.
+- It is very common to make use of **AI to solve NLP problems**, but not every NLP problem requires AI. Depending on the use case, **rule-based approaches** may be sufficient.
+- Recent advancement in NLP is mainly driven by **deep learning** and **transformer models** and their ability to learn from large amounts of data. This is the beginning of a new era in NLP.
 
 ## References
 
 - <https://medium.com/bitgrit-data-science-publication/nlp-in-academia-vs-the-real-world-9dee491bea38>
 - <https://www.linkedin.com/advice/3/what-main-differences-between-nlp-research>
+- <https://scikit-learn.org/stable/modules/semi_supervised.html>
+- <https://machinelearningmastery.com/what-is-semi-supervised-learning/>
+- <https://databasecamp.de/en/ml/reinforcement-learnings>
