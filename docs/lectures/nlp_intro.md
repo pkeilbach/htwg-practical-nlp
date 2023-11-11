@@ -11,7 +11,7 @@ The goal is to get a good intuition of what it means to work with language from 
 In our daily digital lives, we interact with a lot of apps and tools that are based on NLP technologies.
 The following figure gives an overview of real-world NLP applications along with popular examples.
 
-![An overview of real-world NLP applications with popular examples](/img/nlp-real-world-applications.drawio.svg "Real-world NLP applications")
+![An overview of real-world NLP applications with popular examples](../img/nlp-real-world-applications.drawio.svg "Real-world NLP applications")
 
 - **Voice-based assistants** like [Alexa](https://www.amazon.com/how-does-alexa-work/b?ie=UTF8&node=21166405011) or [Siri](https://machinelearning.apple.com/research/hey-siri) utilize a variety of NLP techniques to interact with its users, i.e. they need to understand user commands and questions, and reply accordingly using Text-to-Speech (TTS).
 - Modern **search engines** like [Google](https://www.google.com/search/howsearchworks/) or [Bing](https://support.microsoft.com/en-us/topic/how-bing-delivers-search-results-d18fc815-ac37-4723-bc67-9229ce3eb6a3) make heavy use of NLP for a variety of subtasks, such as understanding the user query, autocompletion, or ranking and grouping the query results.
@@ -48,7 +48,7 @@ However, as a software engineer working on NLP problems, it is important to get 
 At the same time, many research projects are driven by practical needs and are often inspired by real-world problems.
 The following figure illustrates the relation between the research and engineering side of NLP.
 
-![A diagram that shows the relation between NLP research and NLP engineering](/img/nlp-research-vs-nlp-engineering.drawio.svg "NLP research vs. NLP engineering")
+![A diagram that shows the relation between NLP research and NLP engineering](../img/nlp-research-vs-nlp-engineering.drawio.svg "NLP research vs. NLP engineering")
 
 The following table summarizes the main differences between NLP research and NLP engineering.
 
@@ -90,7 +90,7 @@ The following table gives an overview of frequently used NLP tasks.
 
 The figure shows the NLP tasks from the table organized by their complexity, where complexity means a best guess of the relative difficulty to develop a comprehensive solution.
 
-![NLP Tasks ordered by their complexity](/img/nlp-tasks.drawio.svg "NLP tasks by complexity")
+![NLP Tasks ordered by their complexity](../img/nlp-tasks.drawio.svg "NLP tasks by complexity")
 
 !!! warning
 
@@ -133,7 +133,7 @@ To study NLP, we don't need to be linguistic experts, but it is important to und
 For the scope of this course, we think of human language as composed of four major building blocks: phonemes, morphemes and lexemes, syntax, and context.
 In linguistics, each of the building blocks described in this section is a research area for itself.
 
-![Building blocks of language as relevant for this course](/img/language-building-blocks.drawio.svg "Building blocks of language as relevant for this course")
+![Building blocks of language as relevant for this course](../img/language-building-blocks.drawio.svg "Building blocks of language as relevant for this course")
 
 ### Phonemes
 
@@ -401,7 +401,7 @@ Anybody who used NLP solutions in another language than english probably has exp
 
 ## NLP meets Artificial Intelligence
 
-![Venn Diagram depicting the relation between AI, ML, DL, and NLP](/img/ai-ml-dl-nlp.drawio.svg "Relation between AI, ML, DL, and NLP")
+![Venn Diagram depicting the relation between AI, ML, DL, and NLP](../img/ai-ml-dl-nlp.drawio.svg "Relation between AI, ML, DL, and NLP")
 
 !!! quote "Artificial Intelligence (AI), Oxford English Dictionary"
 
