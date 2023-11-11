@@ -54,7 +54,7 @@ It facilitates the transformation of raw text data into valuable insights by sys
 The following figure shows a generic NLP pipeline, followed by a high-level description of each step.
 The color indicates whether the pipeline step is relevant for the course.
 
-![Generic NLP pipeline which indicates the scope for this course](/img/nlp-pipeline.drawio.svg "Generic NLP pipeline ")
+![Generic NLP pipeline which indicates the scope for this course](../img/nlp-pipeline.drawio.svg "Generic NLP pipeline ")
 
 1.  **Business Goal**
     An organization considering ML should have a clear idea of the problem and the business value to be gained by solving that problem.
