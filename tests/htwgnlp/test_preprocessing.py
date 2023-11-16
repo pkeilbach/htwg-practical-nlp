@@ -39,6 +39,10 @@ processor = TweetProcessor()
             "URLs like this one: http://example.com and https://another.com",
             "URLs like this one:  and ",
         ),
+        (
+            "URLs with the http-protocol like this one: http://example.com and http://another.com",
+            "URLs with the http-protocol like this one:  and ",
+        ),
         ("https://example.com/with/path?query=1", ""),
     ],
 )
