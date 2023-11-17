@@ -412,7 +412,7 @@ Machine Learning (ML):
 - Branch of AI
 - Algorithms that can learn to perform tasks based on a large number of **examples**
 - No explicit instructions required, algorithm learns **patterns**
-- Requires numeric representation (aka "features") of the training data
+- Requires **numeric representation** (aka "features") of the training data
 
 Deep Learning (DL):
 
@@ -540,7 +540,7 @@ We will only scratch the surface as we will meet some of those concepts later in
 #### Transformers
 
 - **Type of architecture** that has gained prominence in NLP
-- Use **self-attention mechanisms** to capture relationships between different parts of a sequence simultaneously, making them effective for processing sequential data, including language
+- Use **attention mechanisms** to capture relationships between different parts of a sequence simultaneously, making them effective for processing sequential data, including language
 - Look at surrounding words to derive context (e.g. bank as a river bank or financial institution)
 
 #### Transfer Learning
@@ -561,7 +561,7 @@ We will only scratch the surface as we will meet some of those concepts later in
 
 #### Attention
 
-- The Attention mechanism is a key component of the transformer model architecture and plays a crucial role in capturing **contextual information across sequences**.
+- The attention mechanism is a key component of the transformer model architecture and plays a crucial role in capturing **contextual information across sequences**.
 - Attention mechanisms, particularly **self-attention** in the context of transformers, allow models to **focus on different parts of the input sequence** when making predictions.
 - Especially beneficial for capturing long-range dependencies.
 - In general, attention is the ability to **focus on important things and ignore irrelevant things**, as certain parts of a sentence are more important than others
