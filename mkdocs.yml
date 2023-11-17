@@ -54,7 +54,7 @@ nav:
   - Lectures:
       - lectures/preface.md
       - lectures/nlp_intro.md
-      - lectures/nlp_pipeline.md
+      - lectures/preprocessing.md
   - Assignments: assignments.md
   - Presentations:
       - presentations/presentations.md
