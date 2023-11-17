@@ -1,4 +1,6 @@
-# NLP Pipeline
+# Preprocessing
+
+## The NLP pipeline
 
 Like with many other complex problems, in NLP, it makes sense to break the problem that needs to be solved down into several sub-problems.
 This step-by-step processing is also referred to as a _pipeline_.
@@ -45,11 +47,10 @@ Using a pipeline and breaking down an NLP problem into different steps offers se
 In essence, the concept of a pipeline in NLP enhances organization, flexibility, collaboration, and maintainability throughout the development lifecycle.
 It facilitates the transformation of raw text data into valuable insights by systematically addressing the challenges specific to natural language processing tasks.
 
-<!-- prettier-ignore-start -->
 !!! info
+
     Pipeline processing can be found in many areas of machine learning and computer science in general, e.g., data engineering or DevOps.
     An NLP pipeline can be seen as an adapted machine learning pipeline, as many of its steps apply to machine learning in general.
-<!-- prettier-ignore-end -->
 
 The following figure shows a generic NLP pipeline, followed by a high-level description of each step.
 The color indicates whether the pipeline step is relevant for the course.
@@ -92,10 +93,9 @@ The color indicates whether the pipeline step is relevant for the course.
     After deployment, continuously monitoring the model's performance in real-world scenarios is essential.
     Suppose the model's accuracy drops or its predictions become less reliable over time due to changing patterns in the data. In that case, you might need to retrain or update the model to maintain its effectiveness.
 
-<!-- prettier-ignore-start -->
 !!! note
+
     Depending on the specific NLP task and the complexity of the data, you might need to delve deeper into each step and consider additional techniques or subtasks.
-<!-- prettier-ignore-end -->
 
 <!-- TODO
 https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/well-architected-machine-learning-lifecycle.html
@@ -163,12 +163,13 @@ else:
     print("Abstract not found.")
 ```
 
-<!-- prettier-ignore-start -->
 !!! warning
+
     As you can see, it already involves quite some custom logic and pitfalls and won't work if Wikipedia decides to change the HTML element.
     Many Websites offer APIs that allow much more straightforward access to their data via HTTP call, e.g., the [Twitter API](https://developer.twitter.com/en/docs/twitter-api).
 
 !!! note
+
     While such techniques are valuable, each comes with its own challenges:
 
       - Web scraping can be legally and ethically complex and often requires a lot of custom logic
@@ -178,11 +179,9 @@ else:
       - Data augmentation requires creativity to maintain semantic meaning.
 
 !!! tip
+
     As you may know, [kaggle](https://www.kaggle.com/) is an excellent source for browsing public datasets for various use cases.
     Also, the [Linguistic Data Consortium](https://www.ldc.upenn.edu/) has curated a [top ten list](https://catalog.ldc.upenn.edu/topten) of datasets for NLP tasks.
-<!-- prettier-ignore-end -->
-
-## Pre-Processing
 
 ## Text Cleaning
 
@@ -198,16 +197,15 @@ Convert all text to lowercase to ensure consistent handling of words regardless 
 'welcome to the htwg practical nlp course'
 ```
 
-<!-- prettier-ignore-start -->
 !!! warning
 
     Lowercasing is common in NLP, but it may not always be appropriate for every NLP task.
     In some cases, the case of the text may carry valuable information, such as in tasks related to named entity recognition, where distinguishing between "US" (the country) and "us" (the pronoun) is essential.
 
 !!! info
+
     Depending on the use case, you may need to do other string operations.
     Python offers a lot of useful [string methods](https://docs.python.org/3/library/stdtypes.html#string-methods) to work with text data.
-<!-- prettier-ignore-end -->
 
 ### Remove Punctuation
 
@@ -233,11 +231,10 @@ When dealing with text from web pages, HTML tags are often present and need to b
 
 Usually, it's also a good idea to remove URLs, as they often contain random characters and symbols and, therefore, add noise to the text.
 
-<!-- prettier-ignore-start -->
 !!! note
+
     While you could also achieve it with a simple regex `re.sub(r'<.*?>', '', html)`, it might not cover all edge cases and HTML entities like, e.g., `&nsbm`.
     Therefore, using a well-established library for such tasks is generally a better approach.
-<!-- prettier-ignore-end -->
 
 ### Other Cleaning Steps
 
@@ -261,10 +258,9 @@ Text normalization involves transforming the text to a standard or canonical for
 At this stage, the text most likely still contains morphological variants of the same word, like conjunctions, plural, tenses, etc.
 Text normalization steps aim to bring the text into a standardized form.
 
-<!-- prettier-ignore-start -->
 !!! example
+
     For information retrieval or information extraction about the US, we might want to see information from documents, whether they mention the US or the USA.
-<!-- prettier-ignore-end -->
 
 ### Tokenization
 
@@ -289,12 +285,11 @@ You can also tokenize at the level of sentences using the sentence tokenizer:
 ['Salvatore has the best pizza in town.', 'You should try the Calabrese.', "It's my favorite."]
 ```
 
-<!-- prettier-ignore-start -->
 !!! info
+
     Which tokenizer to use can be a crucial decision for your NLP project.
     The code example above uses NLTK's [default word tokenizer](https://www.nltk.org/api/nltk.tokenize.html#nltk.tokenize.word_tokenize), but others are available.
     Please consider the [API reference](https://www.nltk.org/api/nltk.tokenize.html#submodules) of NLTK's tokenize module for more information.
-<!-- prettier-ignore-end -->
 
 ### Stopword Removal
 
@@ -331,10 +326,9 @@ Stemming can be computationally faster than lemmatization since it involves simp
 ['happili', 'fli', 'feet', 'deni', 'sensat', 'airlin', 'cat', 'hous', 'agre', 'better']
 ```
 
-<!-- prettier-ignore-start -->
 !!! warning
+
     Stemming algorithms use heuristic rules to perform these transformations, which can lead to over-stemming (reducing words too aggressively) or under-stemming (not reducing words enough).
-<!-- prettier-ignore-end -->
 
 #### Lemmatization
 
@@ -356,11 +350,10 @@ It provides a cleaner and more linguistically accurate representation of words.
 Stemming is faster but might result in less linguistically accurate roots, while lemmatization is more accurate but can be slower due to its linguistic analysis.
 The choice between these techniques depends on the specific NLP task and the desired trade-off between speed and accuracy.
 
-<!-- prettier-ignore-start -->
 !!! note
+
     Note that we require the POS tag as a second argument for NLTK's [`WordNetLemmatizer`](https://www.nltk.org/api/nltk.stem.wordnet.html#nltk.stem.wordnet.WordNetLemmatizer.lemmatize).
     This is why we use the [Python unpacking operator `*`](https://docs.python.org/3/tutorial/controlflow.html#unpacking-argument-lists) here
-<!-- prettier-ignore-end -->
 
 ### Other Text Normalization Steps
 
