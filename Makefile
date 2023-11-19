@@ -26,3 +26,7 @@ pytest:
 
 assignment_1:
 	.venv/bin/pytest tests/htwgnlp/test_preprocessing.py
+
+assignment_2:
+	.venv/bin/pytest tests/htwgnlp/test_features.py
+	.venv/bin/pytest tests/htwgnlp/test_logistic_regression.py
