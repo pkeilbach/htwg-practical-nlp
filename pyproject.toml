@@ -7,6 +7,7 @@ authors = [{ name = "Pascal Keilbach", email = "dev@pk17.org" }]
 dependencies = [
     "jupyter",
     "mkdocs-material",
+    "matplotlib",
     "nltk",
     "pandas",
     "pre-commit",
