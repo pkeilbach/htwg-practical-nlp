@@ -65,31 +65,27 @@ The color indicates whether the pipeline step is relevant for the course.
     In this initial step, you gather the raw text data that you will use for your NLP task.
     This could involve scraping websites, accessing databases, or any other method to collect relevant text documents.
 
-3.  **Text Cleaning:**
-    Text data often contains noise, such as special characters, HTML tags, or irrelevant content.
-    Text cleaning involves removing or correcting these elements to ensure the data is in a consistent and usable format.
-
-4.  **Pre-Processing:**
+3.  **Pre-Processing:**
     Pre-processing includes a series of tasks like tokenization (breaking text into words or subword units), lowercasing, and stemming/lemmatization (reducing words to their base form).
     This step helps standardize the text and make it ready for further analysis.
 
-5.  **Feature Engineering:**
+4.  **Feature Engineering:**
     Feature engineering involves transforming the pre-processed text into numerical representations that machine learning models can work with.
     This could include techniques like TF-IDF (Term Frequency-Inverse Document Frequency) or word embeddings like Word2Vec or GloVe.
 
-6.  **Modeling:**
+5.  **Modeling:**
     In this step, you select and train a machine learning or deep learning model that suits your NLP task, such as text classification, named entity recognition, or machine translation.
     The model learns patterns from the numerical representations of the text data.
 
-7.  **Evaluation:**
+6.  **Evaluation:**
     After training your model, you need to assess its performance.
     Evaluation involves using metrics like accuracy, precision, recall, F1-score, or others, depending on the task, to measure how well the model is performing on unseen data.
 
-8.  **Deployment:**
+7.  **Deployment:**
     Once you're satisfied with your model's performance, you deploy it to a production environment where it can be used to make predictions on new incoming text data.
     This could involve integrating it into a web application, API, or other systems.
 
-9.  **Monitoring and Model Updating:**
+8.  **Monitoring and Model Updating:**
     After deployment, continuously monitoring the model's performance in real-world scenarios is essential.
     Suppose the model's accuracy drops or its predictions become less reliable over time due to changing patterns in the data. In that case, you might need to retrain or update the model to maintain its effectiveness.
 
@@ -111,21 +107,18 @@ Here's an overview of four common data acquisition techniques:
     It's widely used for collecting large amounts of text data from various sources, such as news articles, blogs, and social media platforms.
     Libraries like [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/) or [Scrapy](https://scrapy.org/) are commonly used for web scraping.
 
-2.  **Crowdsourcing:**
-    Crowdsourcing platforms like Amazon Mechanical Turk allow researchers to gather labeled data by outsourcing tasks to a distributed workforce. This is particularly useful for tasks that require human judgment, like annotating sentiment, entity recognition, and more.
-
-3.  **Pre-existing Datasets:**
+2.  **Pre-existing Datasets:**
     Many publicly available datasets have been curated for specific NLP tasks.
     Examples include the [IMDb dataset](https://developer.imdb.com/non-commercial-datasets/) for sentiment analysis, the [Penn Treebank](https://catalog.ldc.upenn.edu/LDC99T42) for language modeling, or the [CoNLL dataset](https://www.clips.uantwerpen.be/conll2003/ner/) for named entity recognition.
     Also, these datasets serve as benchmarks for various NLP tasks.
 
-4.  **Human Annotation:**
+3.  **Human Annotation:**
     For tasks that require labeled data, researchers often rely on human annotators to label samples.
     This is common in tasks like text classification, part-of-speech tagging, and entity recognition.
     Annotators follow guidelines provided by researchers to label data accurately.
     Crowdsourcing platforms like [Amazon Mechanical Turk](https://www.mturk.com/) allow to distribute such tasks to human annotators.
 
-5.  **Data Augmentation:**
+4.  **Data Augmentation:**
     Data augmentation involves creating new data samples from existing ones by applying various transformations.
     In NLP, this can involve techniques like paraphrasing, synonym replacement, and perturbation of sentences.
     Augmentation helps increase the diversity of the training data and can improve model generalization.
@@ -165,7 +158,7 @@ else:
 
 !!! warning
 
-    As you can see, it already involves quite some custom logic and pitfalls and won't work if Wikipedia decides to change the HTML element.
+    As you can see, it already involves quite some custom logic and pitfalls and won't work if Wikipedia makes changes that affect the HTML tree.
     Many Websites offer APIs that allow much more straightforward access to their data via HTTP call, e.g., the [Twitter API](https://developer.twitter.com/en/docs/twitter-api).
 
 !!! note
@@ -173,7 +166,6 @@ else:
     While such techniques are valuable, each comes with its own challenges:
 
       - Web scraping can be legally and ethically complex and often requires a lot of custom logic
-      - Crowdsourcing requires careful task design and quality control
       - Pre-existing datasets might not always align perfectly with your task
       - Human annotation can be expensive and time-consuming
       - Data augmentation requires creativity to maintain semantic meaning.
