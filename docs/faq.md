@@ -3,7 +3,7 @@
 ## How is this course graded?
 
 The course is graded based on a written 90-minute exam at the end of the semester.
-For more details, see the [course profile](./about/profile.md#assessment).
+For more details, see the [course profile](./about/course_profile.md#assessment).
 
 ## When is an assignment considered completed?
 

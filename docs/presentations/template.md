@@ -24,5 +24,5 @@ Recap key points, takeaways, and lessons learned.
 
 ## References
 
-- [Title](link)
+- [Title](https://www.example.com/)
 - ...
