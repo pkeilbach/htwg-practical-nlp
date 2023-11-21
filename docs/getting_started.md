@@ -44,6 +44,8 @@ The recommended Python version for this course is 3.10. in a virtual environment
     On Windows, it is recommended to use the [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/).
     Then you can follow the instructions for Linux.
 
+    If you are a VS Code user, you need to [install the WSL extension](https://code.visualstudio.com/docs/remote/wsl).
+
     There is currently no setup guide for native Windows, but I'm happy to accept a pull request for [this issue](https://github.com/pkeilbach/htwg-practical-nlp/issues/12). 😉
 
 !!! warning
@@ -79,7 +81,7 @@ If everything went well, you should be good to go.
 You can test your installation by running the tests for the first assignment.
 
 ```sh
-make assignment_01
+make assignment_1
 ```
 
 In your terminal, you should see 56 failed tests. 😨
