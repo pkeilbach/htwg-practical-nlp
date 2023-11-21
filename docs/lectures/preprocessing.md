@@ -360,3 +360,12 @@ The choice between these techniques depends on the specific NLP task and the des
 
 4.  **Normalization of Date and Time Formats:**
     Converting various date and time representations into a standardized format, for example, transforming `September 1st, 2023` to `2023-09-01`.
+
+## Key Takeaways
+
+- The NLP pipeline is a systematic approach to solving NLP problems by breaking them down into distinct steps.
+- Many times, the success of an NLP project is determined already before the actual modeling step. Preprocessing and data acquisition play an important role, and in practice, much effort is spent on these steps.
+- Text cleaning and normalization are essential steps in the NLP pipeline that help standardize the text and make it ready for further analysis.
+- Text cleaning involves removing any elements from the text that are considered irrelevant, noisy, or potentially problematic for downstream NLP tasks.
+- Text normalization involves transforming the text to a standard or canonical form, making it consistent and easier to work with.
+- It depends on the specific NLP task which text cleaning and normalization techniques are appropriate.
