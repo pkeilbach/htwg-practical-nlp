@@ -55,6 +55,7 @@ nav:
       - lectures/preface.md
       - lectures/nlp_intro.md
       - lectures/preprocessing.md
+      - lectures/feature_extraction.md
       - lectures/logistic_regression.md
   - Assignments: assignments.md
   - Presentations:
