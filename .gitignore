@@ -1,9 +1,8 @@
 # assignment solutions
 *_private.py
 
-# local notes
-notes.md
-books/
+# local files
+local/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
