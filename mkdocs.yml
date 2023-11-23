@@ -57,6 +57,7 @@ nav:
       - lectures/preprocessing.md
       - lectures/feature_extraction.md
       - lectures/logistic_regression.md
+      - lectures/naive_bayes.md
   - Assignments: assignments.md
   - Presentations:
       - presentations/presentations.md
