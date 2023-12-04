@@ -6,13 +6,13 @@ In **classification**, the goal is to predict a discrete class label, such as "s
 
 !!! info
 
-    In the assignment, we will conduct a **sentiment analysis on tweets using logistic regression**, and try to predict whether a tweet has an overall positive or negative meaning.
+    In the assignment, we will conduct a **sentiment analysis on tweets using logistic regression**, and try to predict whether a tweet has an overall **positive or negative meaning**.
 
 ## Supervised Learning
 
-In **supervised learning**, the goal is to learn a function that maps an input to an output based on example input-output pairs.
+In **supervised learning**, the goal is to **learn a function**, i.e. the parameters of a function, that **maps an input to an output** based on example input-output pairs.
 
-When working with text data, we need to make sure to apply the required preprocessing steps in order to extract the required features from the text data.
+When working with **text data**, we need to make sure to apply the required **preprocessing** steps in order to extract the required features from the text data.
 
 ![Supervised learning overview](../img/supervised-learning-overview.drawio.svg)
 
@@ -56,16 +56,18 @@ On the other hand, as $z$ approaches $\infty$, the denominator of the sigmoid fu
 
 ## Training
 
-In logistic regression, the goal is typically binary classification, where the algorithm learns to classify input data into one of two classes.
-During the training phase, the algorithm adjusts its parameters (weights and bias) based on the input data in order to minimize the difference between its predictions and the actual labels in the training dataset.
+In logistic regression, the goal is typically **binary classification**, where the algorithm learns to classify input data into one of two classes.
+During the **training phase**, the algorithm **adjusts its parameters** (weights and bias) based on the input data in order to **minimize the difference between its predictions and the actual labels** in the training dataset.
 
-The process involves using an optimization algorithm (usually gradient descent) to find the optimal values for the parameters that minimize a cost function.
-The cost function measures the difference between the predicted outputs and the true labels.
+The process involves using an **optimization algorithm** (usually gradient descent) to find the optimal values for the parameters that **minimize a cost function**.
+The cost function measures the **difference** between the predicted outputs and the true labels.
 The training process continues iteratively until the algorithm converges to a set of parameters that yield satisfactory predictions on the training data.
 
 ### Gradient Descent
 
 Training in logistic regression is based on the **gradient descent** algorithm. Here is a brief overview of the steps involved:
+
+![Logistic regresseion gradient descent steps](../img/logistic-regression-gradient-descent.drawio.svg)
 
 1.  **Initialize Parameters:** Set the initial values for the weights $\theta$, considering the **bias term**.
     This is the starting point for the optimization process.
@@ -90,9 +92,8 @@ Training in logistic regression is based on the **gradient descent** algorithm. 
 6.  **Repeat:** Iterate steps 2-5 until the convergence criteria are met, such as reaching a maximum number of iterations or achieving a sufficiently small change in the cost function.
 
 These steps represent the core of the gradient descent algorithm in the context of logistic regression.
-The goal is to iteratively update the parameters in the direction that minimizes the cost function, eventually reaching a set of parameters that optimally fit the training data.
 
-![Logistic regresseion gradient descent steps](../img/logistic-regression-gradient-descent.drawio.svg)
+The goal is to **iteratively update the parameters** in the direction that minimizes the cost function, eventually reaching a set of **parameters that optimally fit the training data**.
 
 !!! info "Bias Term"
 
@@ -101,7 +102,7 @@ The goal is to iteratively update the parameters in the direction that minimizes
 
 !!! info "Learning Rate"
 
-    The **learning rate $\alpha$** is a hyperparameter that controls the step size at each iteration while moving toward a minimum of the cost function.
+    The **learning rate $\alpha$** is a hyperparameter that controls the **step size at each iteration** while moving toward a minimum of the cost function.
     It is a crucial parameter in optimization algorithms that are used to train machine learning models.
 
     If the learning rate is too small, the algorithm may take a long time to converge or may get stuck in a local minimum.
@@ -113,7 +114,7 @@ The goal is to iteratively update the parameters in the direction that minimizes
 
 ### Cost Function
 
-The cost function measures the difference between the predicted labels and the actual class labels (aka cost).
+The cost function measures the **difference** between the **predicted labels** and the **actual class labels** (aka cost).
 
 The cost function $J(\theta)$ in logistic regression is given as
 
@@ -132,6 +133,11 @@ A low cost means good predictions, so the goal is to **minimize the cost functio
 When performing gradient descent, the cost should **decrease with every iteration**.
 
 ![Gradient descent cost vs. number of iterations](../img/gradient-descent-cost-vs-iteration.png)
+
+!!! info
+
+    For our purposes, we do not bother the derivation of the cost function.
+    However, if you are interested, you can read more about it [here](https://ml-explained.com/blog/logistic-regression-explained).
 
 ### Compute Gradient and Update Weights
 
@@ -155,7 +161,7 @@ where
 - $\mathbf{h}$ is the vector of outputs of the sigmoid function for all samples.
 - $\mathbf{y}$ is the vector of training labels.
 
-So the term $\mathbf{h - y}$ is essentially the vector of errors, representing the difference between the predicted values and the actual values.
+So the term $\mathbf{h - y}$ is essentially the **vector of errors**, representing the difference between the predicted values and the actual values.
 For the equation to work, we need to transpose the matrix of input features $\mathbf{X}$.
 
 ## Testing
@@ -199,8 +205,8 @@ The figure in the [supervised learning](#supervised-learning) section also indic
 
 ## Key Takeaways
 
-- Logistic regression is a supervised learning algorithm that can be used for classification.
-- The prediction function in logistic regression is a sigmoid function that outputs a probability value between 0 and 1.
-- The cost function measures the difference between the predicted labels and the actual class labels.
-- The goal is to minimize the cost function.
-- Training in logistic regression is based on the gradient descent algorithm.
+- Logistic regression is a **supervised learning** algorithm that can be used for classification.
+- The **prediction function** in logistic regression is a **sigmoid function** that outputs a probability value between 0 and 1.
+- The **cost function** measures the difference between the predicted labels and the actual class labels.
+- The goal is to **minimize** the cost function.
+- Training in logistic regression is based on the **gradient descent** algorithm.
