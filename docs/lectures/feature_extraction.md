@@ -29,7 +29,7 @@ In a one-hot encoded vector, each word in the vocabulary $V$ is assigned a uniqu
 
 The dimension of a feature vector $x$ is equal to the size of the vocabulary $|V|$:
 
-$$ dim(x) = |V| $$.
+$$ dim(x) = |V| $$
 
 Here is a coding example:
 
@@ -63,7 +63,7 @@ array([2, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0])
 
 !!! info
 
-    In Bow, the values in the vector can be integers representing word counts or real numbers representing [TF-IDF weights](https://en.wikipedia.org/wiki/Tf%E2%80%93idf).
+    In BoW, the values in the vector can be integers representing word counts or real numbers representing [TF-IDF weights](https://en.wikipedia.org/wiki/Tf%E2%80%93idf).
 
 !!! warning "Dimensionality"
 
@@ -138,7 +138,9 @@ We can observe that some words take clear sides, like `happy` and `sad`, while o
     - Numpy array
     - ...
 
-Based on this table, we can build the feature vector for a document $i$ as follows:
+Based on this table, we can build the feature vector for a document $i$, by summing up the positive and negative frequencies of each word in the document.
+
+Considering the **bias unit** as the first feature, the feature vector $x_i$ looks like this:
 
 <!-- prettier-ignore-start -->
 $$ x_i = [1, \sum_{j=1}^{m} n_{pos}(w_j), \sum_{j=1}^{m} n\_{neg}(w_j)] $$
