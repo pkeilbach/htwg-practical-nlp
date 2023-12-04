@@ -1,6 +1,11 @@
 """Logistic Regression module for NLP.
 
 This module contains the Logistic Regression class for NLP tasks.
+
+Hints:
+- Take a look at [Python's assert statement](https://realpython.com/python-assert-statement/#the-syntax-of-the-assert-statement)
+- Take a look at [`np.where`](https://numpy.org/doc/stable/reference/generated/numpy.where.html)
+- Get familiar with the difference between [`np.dot`](https://numpy.org/doc/stable/reference/generated/numpy.dot.html), [`np.matmul`](https://numpy.org/doc/stable/reference/generated/numpy.matmul.html), and [`np.multiply`](https://numpy.org/doc/stable/reference/generated/numpy.multiply.html).
 """
 
 import numpy as np

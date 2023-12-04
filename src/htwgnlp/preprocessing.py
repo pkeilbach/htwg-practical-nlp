@@ -66,6 +66,8 @@ class TweetProcessor:
     def remove_stopwords(tokens: list[str]) -> list[str]:
         """Removes stopwords from a tweet.
 
+        Only English stopwords are removed.
+
         Args:
             tokens (list[str]): the tokenized tweet
 
