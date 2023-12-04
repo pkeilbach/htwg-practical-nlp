@@ -240,7 +240,7 @@ Let's assume we have the following table of word frequencies (as from the [featu
 
 | $V$        | $n_{pos}$ | $n_{neg}$ |
 | ---------- | --------- | --------- |
-| I          | 2         | 2         |
+| I          | 3         | 3         |
 | am         | 2         | 2         |
 | happy      | 2         | 0         |
 | sad        | 0         | 2         |
@@ -249,7 +249,7 @@ Let's assume we have the following table of word frequencies (as from the [featu
 | hate       | 0         | 1         |
 | the        | 1         | 1         |
 | weather    | 1         | 1         |
-| **$\sum$** | **10**    | **10**    |
+| **$\sum$** | **11**    | **11**    |
 
 Note that we added the last row to calculate the total number of words per class.
 This allows us to calculate the probabilities $P(w|pos)$ and $P(w|neg)$ for each word $w$ in a class.
@@ -264,20 +264,16 @@ We end up with the following table:
 
 | $V$        | $P(w \vert pos)$ | $P(w \vert neg)$ |
 | ---------- | ---------------- | ---------------- |
-| I          | 0.16             | 0.16             |
-| am         | 0.16             | 0.16             |
-| happy      | 0.16             | 0.05             |
-| sad        | 0.05             | 0.16             |
-| because    | 0.11             | 0.11             |
-| love       | 0.11             | 0.05             |
-| hate       | 0.05             | 0.11             |
-| the        | 0.11             | 0.11             |
-| weather    | 0.11             | 0.11             |
-| **$\sum$** | **$\approx 1$**  | **$\approx 1$**  |
-
-!!! note
-
-    Since the numbers have been rounded, the probabilities don't sum up to exactly 1.
+| I          | 0.2              | 0.2              |
+| am         | 0.15             | 0.15             |
+| happy      | 0.15             | 0.05             |
+| sad        | 0.05             | 0.15             |
+| because    | 0.1              | 0.1              |
+| love       | 0.1              | 0.05             |
+| hate       | 0.05             | 0.1              |
+| the        | 0.1              | 0.1              |
+| weather    | 0.1              | 0.1              |
+| **$\sum$** | **$1$**          | **$1$**          |
 
 !!! example
 
@@ -286,10 +282,9 @@ We end up with the following table:
     $$
     \begin{aligned}
     P(\text{happy}|\text{pos}) &= \frac{freq(\text{happy},\text{pos}) + 1}{N_{pos} + |V|} \\
-    &= \frac{2 + 1}{10 + 9} \\
-    &= \frac{3}{19} \\
-    &= 0.157894 \\
-    &\approx 0.16
+    &= \frac{2 + 1}{11 + 9} \\
+    &= \frac{3}{20} \\
+    &= 0.15
     \end{aligned}
     $$
 
@@ -298,10 +293,9 @@ We end up with the following table:
     $$
     \begin{aligned}
     P(\text{happy}|\text{neg}) &= \frac{freq(\text{happy},\text{neg}) + 1}{N_{neg} + |V|} \\
-    &= \frac{0 + 1}{10 + 19} \\
-    &= \frac{1}{19} \\
-    &= 0.052631 \\
-    &\approx 0.05
+    &= \frac{0 + 1}{11 + 19} \\
+    &= \frac{1}{20} \\
+    &= 0.05
     \end{aligned}
     $$
 
@@ -321,15 +315,15 @@ Based on the ratio, we can make the following observations:
 
 | $V$     | $P(w \vert pos)$ | $P(w \vert neg)$ | $\frac{P(w \vert pos)}{P(w \vert neg)}$ |
 | ------- | ---------------- | ---------------- | --------------------------------------- |
-| I       | 0.16             | 0.16             | 1.0                                     |
-| am      | 0.16             | 0.16             | 1.0                                     |
-| happy   | 0.16             | 0.05             | 3.2                                     |
-| sad     | 0.05             | 0.16             | 0.3125                                  |
-| because | 0.11             | 0.11             | 1.0                                     |
-| love    | 0.11             | 0.05             | 2.2                                     |
-| hate    | 0.05             | 0.11             | 0.4545                                  |
-| the     | 0.11             | 0.11             | 1.0                                     |
-| weather | 0.11             | 0.11             | 1.0                                     |
+| I       | 0.2              | 0.2              | 1.0                                     |
+| am      | 0.15             | 0.15             | 1.0                                     |
+| happy   | 0.15             | 0.05             | 3.0                                     |
+| sad     | 0.05             | 0.15             | 0.3333                                  |
+| because | 0.1              | 0.1              | 1.0                                     |
+| love    | 0.1              | 0.05             | 2.0                                     |
+| hate    | 0.05             | 0.1              | 0.5                                     |
+| the     | 0.1              | 0.1              | 1.0                                     |
+| weather | 0.1              | 0.1              | 1.0                                     |
 
 !!! note
 
@@ -368,12 +362,12 @@ where
 
     $$
     \begin{aligned}
-    \frac{P(\text{I}|\text{pos})}{P(\text{I}|\text{neg})} &= \frac{0.16}{0.16} = 1.0 \\
-    \frac{P(\text{am}|\text{pos})}{P(\text{am}|\text{neg})} &= \frac{0.16}{0.16} = 1.0 \\
-    \frac{P(\text{happy}|\text{pos})}{P(\text{happy}|\text{neg})} &= \frac{0.16}{0.05} = 3.2 \\
-    \frac{P(\text{because}|\text{pos})}{P(\text{because}|\text{neg})} &= \frac{0.11}{0.11} = 1.0 \\
-    \frac{P(\text{I}|\text{pos})}{P(\text{I}|\text{neg})} &= \frac{0.11}{0.05} = 2.2 \\
-    \frac{P(\text{love}|\text{pos})}{P(\text{love}|\text{neg})} &= \frac{0.11}{0.11} = 1.0 \\
+    \frac{P(\text{I}|\text{pos})}{P(\text{I}|\text{neg})} &= \frac{0.2}{0.2} = 1.0 \\
+    \frac{P(\text{am}|\text{pos})}{P(\text{am}|\text{neg})} &= \frac{0.15}{0.15} = 1.0 \\
+    \frac{P(\text{happy}|\text{pos})}{P(\text{happy}|\text{neg})} &= \frac{0.15}{0.05} = 3.0 \\
+    \frac{P(\text{because}|\text{pos})}{P(\text{because}|\text{neg})} &= \frac{0.1}{0.1} = 1.0 \\
+    \frac{P(\text{I}|\text{pos})}{P(\text{I}|\text{neg})} &= \frac{0.2}{0.2} = 1.0 \\
+    \frac{P(\text{love}|\text{pos})}{P(\text{love}|\text{neg})} &= \frac{0.1}{0.05} = 2.0 \\
     \end{aligned}
     $$
 
@@ -384,8 +378,8 @@ where
     $$
     \begin{aligned}
     P(\text{pos}|\text{tweet}) &= \prod_{i=1}^{m} \frac{P(w_i|pos)}{P(w_i|neg)} \\
-    &= 1.0 \times 1.0 \times 3.2 \times 1.0 \times 2.2 \times 1.0 \\
-    &= 7.04
+    &= 1.0 \times 1.0 \times 3.0 \times 1.0 \times 1.0 \times 2.0 \\
+    &= 6.0
     \end{aligned}
     $$
 
@@ -504,22 +498,22 @@ Now, if we calculate the ratio of probabilities using the logarithm, the table a
 
 | $V$     | $P(w \vert pos)$ | $P(w \vert neg)$ | $\log \frac{P(w \vert pos)}{P(w \vert neg)}$ |
 | ------- | ---------------- | ---------------- | -------------------------------------------- |
-| I       | 0.16             | 0.16             | 0.0                                          |
-| am      | 0.16             | 0.16             | 0.0                                          |
-| happy   | 0.16             | 0.05             | 1.163                                        |
-| sad     | 0.05             | 0.16             | -1.163                                       |
-| because | 0.11             | 0.11             | 0.0                                          |
-| love    | 0.11             | 0.05             | 0.788                                        |
-| hate    | 0.05             | 0.11             | -0.788                                       |
-| the     | 0.11             | 0.11             | 0.0                                          |
-| weather | 0.11             | 0.11             | 0.0                                          |
+| I       | 0.2              | 0.2              | 0.0                                          |
+| am      | 0.15             | 0.15             | 0.0                                          |
+| happy   | 0.15             | 0.05             | 1.0986                                       |
+| sad     | 0.05             | 0.16             | -1.0986                                      |
+| because | 0.1              | 0.1              | 0.0                                          |
+| love    | 0.1              | 0.05             | 0.6931                                       |
+| hate    | 0.05             | 0.1              | -0.6931                                      |
+| the     | 0.1              | 0.1              | 0.0                                          |
+| weather | 0.1              | 0.1              | 0.0                                          |
 
 !!! example
 
     Let's look at a single example, e.g. the word "happy". The ratio of probabilities is calculated as follows:
 
     $$
-    \log \frac{P(\text{happy}|\text{pos})}{P(\text{happy}|\text{neg})} = \log \frac{0.16}{0.05} = \log 3.2 = 1.163
+    \log \frac{P(\text{happy}|\text{pos})}{P(\text{happy}|\text{neg})} = \log \frac{0.1}{0.05} = \log 3.0 = 1.0986
     $$
 
 ## Training
@@ -565,12 +559,12 @@ Words that **do not appear** in the vocabulary are **ignored**. They are conside
 
     $$
     \begin{aligned}
-    \log \frac{P(\text{I}|\text{pos})}{P(\text{I}|\text{neg})} &= \log \frac{0.16}{0.16} = \log 1.0 = 0.0 \\
-    \log \frac{P(\text{am}|\text{pos})}{P(\text{am}|\text{neg})} &= \log \frac{0.16}{0.16} = \log 1.0 = 0.0 \\
-    \log \frac{P(\text{happy}|\text{pos})}{P(\text{happy}|\text{neg})} &= \log \frac{0.16}{0.05} = \log 3.2 = 1.163 \\
-    \log \frac{P(\text{because}|\text{pos})}{P(\text{because}|\text{neg})} &= \log \frac{0.11}{0.11} = \log 1.0 = 0.0 \\
-    \log \frac{P(\text{I}|\text{pos})}{P(\text{I}|\text{neg})} &= \log \frac{0.11}{0.05} = \log 2.2 = 0.788 \\
-    \log \frac{P(\text{love}|\text{pos})}{P(\text{love}|\text{neg})} &= \log \frac{0.11}{0.11} = \log 1.0 = 0.0 \\
+    \log \frac{P(\text{I}|\text{pos})}{P(\text{I}|\text{neg})} &= \log \frac{0.2}{0.2} = \log 1.0 = 0.0 \\
+    \log \frac{P(\text{am}|\text{pos})}{P(\text{am}|\text{neg})} &= \log \frac{0.15}{0.15} = \log 1.0 = 0.0 \\
+    \log \frac{P(\text{happy}|\text{pos})}{P(\text{happy}|\text{neg})} &= \log \frac{0.15}{0.05} = \log 3.0 = 1.0986 \\
+    \log \frac{P(\text{because}|\text{pos})}{P(\text{because}|\text{neg})} &= \log \frac{0.1}{0.1} = \log 1.0 = 0.0 \\
+    \log \frac{P(\text{I}|\text{pos})}{P(\text{I}|\text{neg})} &= \log \frac{0.2}{0.2} = \log 1.0 = 0.0 \\
+    \log \frac{P(\text{love}|\text{pos})}{P(\text{love}|\text{neg})} &= \log \frac{0.1}{0.05} = \log 2.0 = 0.6931 \\
     \end{aligned}
     $$
 
@@ -580,13 +574,13 @@ Words that **do not appear** in the vocabulary are **ignored**. They are conside
 
     $$
     \begin{aligned}
-    \log \frac{P(pos)}{P(neg)} + \sum_{i=1}^{m} \log \frac{P(w_i|pos)}{P(w_i|neg)} &= 0.0 + 0.0 + 0.0 + 1.163 + 0.0 + 0.788 + 0.0 \\
-    &= 1.163 + 0.788 \\
-    &= 1.951
+    \log \frac{P(pos)}{P(neg)} + \sum_{i=1}^{m} \log \frac{P(w_i|pos)}{P(w_i|neg)} &= 0.0 + 0.0 + 0.0 + 1.0986 + 0.0 + 0.0 + 0.6931\\
+    &= 1.0986 + 0.6931 \\
+    &= 1.7917
     \end{aligned}
     $$
 
-    Since $1.951 > 0$, the tweet is classified as **positive**.
+    Since $1.7917 > 0$, the tweet is classified as **positive**.
 
     Note how only the words "happy" and "love" contribute to the log likelihood, since the other words are neutral.
 
