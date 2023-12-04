@@ -79,8 +79,8 @@ Let's assume we have a binary classification problem with two classes: positive 
 When using only the positive and negative frequencies as features, we will only have **three features**:
 
 - The bias unit
-- The sum of positive frequencies of the unique words in the document
-- The sum of negative frequencies of the unique words in the document
+- The sum of positive frequencies of the words in the document
+- The sum of negative frequencies of the words in the document
 
 Compared to a sparse representation, this will significantly reduce the number of features and thus, improve the model's performance, because we have fewer parameters to fit.
 
@@ -110,7 +110,7 @@ Given the corpus and the labels above, we can build the following table:
 
 | $V$     | $n_{pos}$ | $n_{neg}$ |
 | ------- | --------- | --------- |
-| I       | 2         | 2         |
+| I       | 3         | 3         |
 | am      | 2         | 2         |
 | happy   | 2         | 0         |
 | sad     | 0         | 2         |
@@ -127,6 +127,7 @@ We can observe that some words take clear sides, like `happy` and `sad`, while o
     - The word `happy` appears twice in the positive class and zero times in the negative class.
     - The word `sad` appears zero times in the positive class and twice in the negative class.
     - The word `because` appears once in the positive class and once in the negative class.
+    - The word `I` appears three times in the positive class and three times in the negative class.
 
 !!! info
 
@@ -145,18 +146,18 @@ $$ x_i = [1, \sum_{j=1}^{m} n_{pos}(w_j), \sum_{j=1}^{m} n\_{neg}(w_j)] $$
 
 !!! example
 
-    Let's consider the following document $i$:
+    Given the table of frequencies above, let's consider the following document:
 
-    $$ \text{I am happy because I love the weather} $$
+    $$ \text{I am happy because the sun is shining} $$
 
-    To get the feature vector, we sum up the frequencies of every **unique word** in the document per class:
+    To get the feature vector, we sum up the frequencies of every word in the document per class:
 
-    - $n_{pos} = 10$
-    - $n_{neg} = 7$
+    - $n_{pos} = 3 + 2 + 2 + 1 + 1 = 9$
+    - $n_{neg} = 3 + 2 + 0 + 1 + 1 = 7$
 
     Considering the **bias unit** as the first feature, the feature vector $x_i$ for this document is:
 
-    $$ x_i = [1, 10, 7] $$
+    $$ x_i = [1, 9, 7] $$
 
 !!! question
 
