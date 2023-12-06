@@ -150,4 +150,107 @@ We could visualize those vectors in a vector space as follows:
 
 ## Eucledian Distance
 
+The **Euclidean distance** between two vectors $\mathbf{x}$ and $\mathbf{y}$ in an n-dimensional space is defined as follows:
+
+$$
+\begin{align}
+d &= \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2 + \dots + (x_n - y_n)^2} \\
+&= \sqrt{\sum_{i=1}^n (x_i - y_i)^2}
+\end{align}
+$$
+
+It is the **straight line** between two points in an n-dimensional space, and derived from the Pythagorean theorem.
+
+We can also interpret it as the **length of the vector** that connects the two points (aka the **norm** of the vector).
+
+!!! quote "Pythagoraen Theorem"
+
+    In a right triangle, the square of the hypotenuse is equal to the sum of the squares of the other two sides.
+
+    $$
+    c^2 = a^2 + b^2
+    $$
+
+Using the Euclidean distance, we can calculate **how close** two vectors are and thus, use it as a **similarity metric**.
+
+![Euclidean distance](../img/vector-space-models-euclidean-distance.drawio.svg)
+
+!!! example
+
+    If we continue with the example from above, we can calculate the Euclidean distance between the **machine learning** category vector $\mathbf{ml}$ and the **entertainment** category vector $\mathbf{e}$ as follows:
+
+    Let the two vectors be:
+
+    $$
+    \begin{align}
+    \mathbf{ml} &= [9000, 500] \\
+    \mathbf{e} &= [1000, 7500]
+    \end{align}
+    $$
+
+    Then the Euclidean distance is calculated as follows:
+
+    $$
+    \begin{align}
+    d &= \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2} \\
+    &= \sqrt{(ml_1 - e_1)^2 + (ml_2 - e_2)^2} \\
+    &= \sqrt{(9000 - 1000)^2 + (500 - 7500)^2} \\
+    &= 8000
+    \end{align}
+    $$
+
+As you can see from the formula, this generalizes to **any number of dimensions**.
+
+!!! example
+
+    Let's assume we have the following **co-oocurrence matrix**, and we want to calculate the Euclidean distance between the words **beer** and **pizza**.
+
+    |   | data | beer | pizza |
+    | - | ---- | ---- | ------ |
+    | AI | 6 | 0    | 1      |
+    | drinks | 0 | 4    | 6      |
+    | food | 0 | 6    | 8      |
+
+    Based on this co-occurrence matrix, we can represent the words **beer** and **pizza** as the following vectors:
+
+    $$
+    \begin{align}
+    \mathbf{b} &= [0, 4, 6] \\
+    \mathbf{p} &= [1, 6, 8]
+    \end{align}
+    $$
+
+    Then the Euclidean distance is calculated as follows:
+
+    $$
+    \begin{align}
+    d &= \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2 + (x_3 - y_3)^2} \\
+    &= \sqrt{(b_1 - p_1)^2 + (b_2 - p_2)^2 + (b_3 - p_3)^2} \\
+    &= \sqrt{(0 - 1)^2 + (4 - 6)^2 + (6 - 8)^2} \\
+    &= \sqrt{1 + 4 + 4} \\
+    &= 3
+    \end{align}
+    $$
+
+In Python, we can calculate the Euclidean distance using the `numpy.linalg.norm` function.
+
+```python
+import numpy as np
+
+# Define two vectors
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+
+# Calculate the Euclidean distance
+distance = np.linalg.norm(a - b)
+
+print("Euclidean distance:", distance)
+```
+
+!!! note
+
+    The [`numpy.linalg.norm`](https://numpy.org/doc/stable/reference/generated/numpy.linalg.norm.html) function calculates the norm of a vector or matrix.
+
+    Since the **norm of a vector is its length**, the function can be used to calculate the Euclidean distance between two vectors.
+
 ## Cosine Similarity
