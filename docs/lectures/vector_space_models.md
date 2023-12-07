@@ -254,3 +254,147 @@ print("Euclidean distance:", distance)
     Since the **norm of a vector is its length**, the function can be used to calculate the Euclidean distance between two vectors.
 
 ## Cosine Similarity
+
+The cosine similarity is another way of measuring the similarity between two vectors.
+
+The **intuition** is that vectors pointing in the **similar direction** share a similar proportion of words, and thus, are more similar to each other.
+
+Let's take a look at the following figure:
+
+![Cosine similarity](../img/vector-space-models-euclidean-distance-cosine-similarity.drawio.svg)
+
+Normally, the **food** and **agriculture** categories would be considered more similar, because they share a similar proportion of words.
+
+However, the Euclidean distance would suggest that the **agriculture** and **history** categories are more similar to each other than the **agriculture** and **food** categories, since $d_2 < d_1$.
+
+This is because the **Euclidean distance** is biased towards longer vectors, or in our case, categories with more words.
+
+To avoid that, we could also compare the angles, or the **cosine of the angles**, between the vectors to measure their similarity.
+
+As the figure shows, the angle between the **agriculture** and **food** categories is smaller than the angle between the **agriculture** and **history** categories, and thus, would be a better measure of similarity in this case.
+
+!!! info
+
+    When corpora are different in size, the Euclidean distance is **biased towards longer vectors**. In such cases, it is better to use the **cosine similarity** as a measure of similarity.
+
+!!! note
+
+    Form the figure, we can see that:
+
+    - vectors pointing in the **similar direction** means their word frequencies are **similar**, and
+    - vectors pointing in **different directions** means the word frequencies are **dissimilar**.
+
+Let's take a look at the math behind the cosine similarity.
+
+The **norm** of a vector $\mathbf{x}$, or its length, is defined as the square root of the sum of the squared vector elements:
+
+$$
+\|\mathbf{x}\| = \sqrt{\sum_{i=1}^n x_i^2}
+$$
+
+The **dot product** of two vectors $\mathbf{x}$ and $\mathbf{y}$ is defined as the sum of the products of the corresponding vector elements:
+
+$$
+\mathbf{x} \cdot \mathbf{y} = \sum_{i=1}^n x_i \cdot y_i
+$$
+
+From trigonometry, we know that the **cosine of the angle** is defined as follows:
+
+$$
+\cos(\theta) = \frac{\text{adjacent}}{\text{hypotenuse}}
+$$
+
+In vector space,
+
+- the **adjacent** is the **dot product** of the two vectors (the projection of one vector onto the other), and
+- the **hypotenuse** is the **product of the norms** of the two vectors,
+
+which leads us to the following formula:
+
+$$
+\cos(\theta) = \frac{\mathbf{x} \cdot \mathbf{y}}{\|\mathbf{x}\| \|\mathbf{y}\|}
+$$
+
+The following figure shows how we can use the cosine similarity to measure the similarity between two vectors.
+
+![Cosine similarity](../img/vector-space-models-cosine-similarity.drawio.svg)
+
+- If the vectors are orthogonal, like the vectors $\mathbf{v}$ and $\mathbf{w}$, the cosine similarity is 0, since $\cos(90) = 0$.
+- If the vectors point exactly in the same direction, like the vectors $\mathbf{x}$ and $\mathbf{y}$, the cosine similarity is 1, since $\cos(0) = 1$.
+
+!!! note
+
+    Since we are dealing with word counts, there won't be any negative values in the vectors, and our vectors will always point in the first quadrant.
+
+!!! example
+
+    Given the following diagram
+
+    ![Cosine similarity example](../img/vector-space-models-cosine-similarity-example.drawio.svg)
+
+    we can calculate the cosine similarity between the vectors for the categories **agriculture** $\mathbf{a}$ and **history** $\mathbf{h}$ as follows:
+
+    Let the two vectors be:
+
+    $$
+    \begin{align}
+    \mathbf{a} &= [10, 40] \\
+    \mathbf{h} &= [30, 10]
+    \end{align}
+    $$
+
+    Then the cosine similarity is calculated as follows:
+
+    $$
+    \begin{align}
+    \cos(\theta) &= \frac{\mathbf{a} \cdot \mathbf{h}}{\|\mathbf{a}\| \|\mathbf{h}\|} \\
+    &= \frac{\sum_{i=1}^n a_i h_i}{\sqrt{\sum_{i=1}^n a_i^2} \sqrt{\sum_{i=1}^n h_i^2}} \\
+    &= \frac{(10 \times 30) + (40 \times 10)}{\sqrt{(10^2 + 40^2)} \sqrt{(30^2 + 10^2)}} \\
+    &= 0.5368
+    \end{align}
+    $$
+
+!!! example
+
+    Let's assume we have the following **co-oocurrence matrix**, and we want to calculate the cosine similarity between the words **beer** and **pizza**.
+
+    |   | data | beer | pizza |
+    | - | ---- | ---- | ------ |
+    | AI | 6 | 0    | 1      |
+    | drinks | 0 | 4    | 6      |
+    | food | 0 | 6    | 8      |
+
+    Based on this co-occurrence matrix, we can represent the words **beer** and **pizza** as the following vectors:
+
+    $$
+    \begin{align}
+    \mathbf{b} &= [0, 4, 6] \\
+    \mathbf{p} &= [1, 6, 8]
+    \end{align}
+    $$
+
+    Then the cosine similarity is calculated as follows:
+
+    $$
+    \begin{align}
+    \cos(\theta) &= \frac{\mathbf{b} \cdot \mathbf{p}}{\|\mathbf{b}\| \|\mathbf{p}\|} \\
+    &= \frac{\sum_{i=1}^n b_i p_i}{\sqrt{\sum_{i=1}^n b_i^2} \sqrt{\sum_{i=1}^n p_i^2}} \\
+    &= \frac{(0 \times 1) + (4 \times 6) + (6 \times 8)}{\sqrt{(0^2 + 4^2 + 6^2)} \sqrt{(1^2 + 6^2 + 8^2)}} \\
+    &= 0.9935
+    \end{align}
+    $$
+
+Here is a NumPy implementation of the cosine similarity:
+
+```python
+import numpy as np
+
+# Define two vectors
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+
+# Calculate the cosine similarity
+similarity = np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+
+print("Cosine similarity:", similarity)
+```
