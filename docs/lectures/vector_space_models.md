@@ -2,6 +2,8 @@
 
 Vector space models are a way of representing the meaning of words in a document. They are a fundamental concept in NLP, and are used in many applications such as document classification, information retrieval, and question answering.
 
+## Introduction
+
 Using vector space models, we can capture similarities, differences, dependencies or many other relationships between words.
 
 !!! example
@@ -398,3 +400,90 @@ similarity = np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 
 print("Cosine similarity:", similarity)
 ```
+
+## Working with Word Vectors
+
+We can use word vectors to find relationships between words.
+
+Using simple vector arithmetics, we can already do some interesting things, like finding the capital of a country.
+
+![Working with word vectors](../img/vector-space-models-capitals.drawio.svg)
+
+Knowing that the capital of Germany is Berlin, we can use this relationship to find the capital of the USA.
+
+!!! question
+
+    If you were given the pair **Australia** and **Sydney** instead of Germany and Berlin, where do you think we would end up in the vector space for the USA?
+
+!!! example
+
+    A similar analogy would be the following:
+
+    prince 🤴 - male ♂️ + female ♀️ = princess 👸
+
+Suppose we have the following vector space, that has vector representations for countries and their capitals.
+
+![Countries and their capitals](../img/vector-space-models-countries-capitals.drawio.svg)
+
+We can express the relationship between a country and its capital by the **difference** between their vectors.
+
+Using this relationship, we can find the capital of a country by **adding the difference vector** to the vector of the country.
+
+Usually, we do not end up exactly at the capital, so we need to utilize **similarity metrics** to find the closest vector.
+
+As we learned, we could use the Euclidean distance or the cosine similarity to achieve this.
+
+In the end, we can leverage known relationships between words to find unknown relationships and make predictions.
+
+!!! example
+
+    Form the figure, we can see that
+
+    $$
+    \begin{align}
+    \mathbf{v}_{\text{Germany}} = [5, 6]\\
+    \mathbf{v}_{\text{Berlin}} = [10,5]
+    \end{align}
+    $$
+
+    Given these vectors, we can derive that the relationship $\mathbf{r}$ between Germany and its capital Berlin can be expressed by the difference between the two vectors:
+
+    $$
+    \begin{align}
+    \mathbf{r} &= \mathbf{v}_{\text{Germany}} - \mathbf{v}_{\text{Berlin}} \\
+    &= [10, 5] - [5, 6] \\
+    &= [5, -1]
+    \end{align}
+    $$
+
+    So the relationship $\mathbf{r}$ between country and capital can be expressed by the vector $[5, -1]$.
+
+    If we add this vector to the vector for the USA, we should end up close to the capital of the USA.
+
+    $$
+    \begin{align}
+    \mathbf{v}_{\text{dest}} &= \mathbf{v}_{\text{USA}} + \mathbf{r} \\
+    &= [5, 5] + [5, -1] \\
+    &= [10, 4]
+    \end{align}
+    $$
+
+    Now we can use the Euclidean distance or the cosine similarity to find the capital that is closest to the vector $\mathbf{v}_{\text{dest}}$.
+
+    Looking at the figure, the capital that is closest to the vector $\mathbf{v}_{\text{dest}}$ is **Washington DC** with $\mathbf{v}_{\text{Washington DC}} = [9, 3]$.
+
+Having words represented in a vector space allows us to capture relative meaning of words and find patterns in text. This is the **basis** for many advanced NLP tasks.
+
+As you can imagine, similar words will have similar vectors, and thus, will be **close to each other in the vector space**.
+
+!!! example
+
+    Given the word **doctor**, if we look at the words that are close to it in the vector space, we can see that they are probably all related to the medical field. For example: **nurse**, **hospital**, **patient**, **medicine**, etc.
+
+    We can also imagine that all countries will be close to each other, and all cities will be close to each other, or all animals will be close to each other, etc.
+
+    Also we can expect that sub groups like **water animals**, **land animals**, etc. will be grouped together.
+
+!!! info
+
+    For a demo, please see the related notebook `vector_space_models.ipynb`.
