@@ -63,5 +63,6 @@ nav:
   - Assignments: assignments.md
   - Presentations:
       - presentations/presentations.md
-      - Article Template: presentations/template.md
+      - Articles:
+          - Article Template: presentations/articles/template.md
   - FAQ: faq.md
