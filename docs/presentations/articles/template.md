@@ -1,6 +1,10 @@
 # Title
 
-_You can download this file [here](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/docs/presentations/template.md)_
+_You can download this file [here](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/docs/presentations/articles/template.md)_
+
+<!-- feel free to add a profile link, remove the link, or remove the author information completely -->
+
+_Author: [John Doe](mailto:john.doe@example.com)_
 
 ## TL;DR
 
