@@ -29,15 +29,58 @@ Besides that, there are no strict rules about the presentation format. You can u
 
     You **don't need to submit** any presentation **slides** or other assets from your verbal presentation.
 
+    You only need to submit the **blog article** (see below).
+
 ## Blog Article
 
-In addition to the verbal presentation, the student should submit a **blog-like article** about the topic based on this [Markdown template](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/docs/presentations/template.md). 📝
+In addition to the verbal presentation, the student should submit a **blog-like article** about the topic based on this [Markdown template](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/docs/presentations/articles/template.md). 📝
 
 Keep the article short and crisp. There are no hard rules, but maybe a **reading time** of not more than **10 minutes** is a good approximation. ⏳
 
-!!! info "Submission"
+The article should be written in **English** and should be **self-contained**. :gb:
 
-    The article does not need to be submitted on the same day as the presentation. You can submit it later, but please make sure to submit it before the **end of the semester** (the exact date will be announced). 📅
+You have the following options to **submit the article**: 📬
+
+1.  **Via pull request to the Github repository (preferred) 🤓**
+
+    Please add your article to the `docs/presentations/articles/` folder and name it `<your topic>.md`.
+
+    Then create a pull request to the `main` branch of the repository.
+
+    ```sh
+    git checkout -b presentation-<your topic>
+    git add docs/presentations/articles/<your topic>.md
+    git commit -m "Add blog article for <your topic>"
+    git push -u origin presentation-<your topic>
+    ```
+
+    Through [GitHub](https://github.com/pkeilbach/htwg-practical-nlp/pulls), you can then create a pull request to the `main` branch.
+
+    Please add the `presentation topic` label to your pull request, and add me as a reviewer.
+
+    !!! note "Pull Requests ✅"
+
+        If you are not familiar with GitHub and pull requests, this is a great opportunity to learn about it!
+        It is a very common workflow in software development, and you will probably encounter it in your future career.
+
+        You can find a quick guide [here](https://guides.github.com/activities/hello-world/), and learn more about pull requests [here](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) and [here](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+
+    !!! tip "Shortcut 💫"
+
+        Usually, after pushing your branch to the remote repository, GitHub will already **suggest** you to create a pull request via a "Compare & pull request" banner.
+
+    !!! warning "Publishing 📣"
+
+        If you submit via pull request, you implicitly agree to publish the article on the course website. However, feel free to remove the author information if you don't want to be named.
+
+2.  **Via email to the lecturer 📧**
+
+    You can just send me the markdown file via [email](mailto:pascal.keilbach@htwg-konstanz.de).
+    Please let me know if it is OK to publish the article on the course website.
+
+!!! info "Submission Deadline 📅"
+
+    The article does not need to be submitted on the same day as the presentation. You can submit it later, but please make sure to submit it before the **end of the semester** (the exact date will be announced).
 
 ## Topics and Dates
 
