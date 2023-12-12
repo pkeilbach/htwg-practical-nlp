@@ -59,6 +59,7 @@ nav:
       - lectures/feature_extraction.md
       - lectures/logistic_regression.md
       - lectures/naive_bayes.md
+      - lectures/vector_space_models.md
   - Assignments: assignments.md
   - Presentations:
       - presentations/presentations.md
