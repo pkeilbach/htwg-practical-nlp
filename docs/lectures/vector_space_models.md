@@ -62,6 +62,8 @@ She considered him her friend
 
 ## Co-Occurrence Matrix
 
+The **co-occurrence matrix** is a matrix that counts the number of times that a word appears in the context of other words within a given window size $k$.
+
 From the co-occurrence matrix, we can extract the word vectors.
 
 The vector representation of a word is called a **word embedding**.
@@ -487,3 +489,14 @@ As you can imagine, similar words will have similar vectors, and thus, will be *
 !!! info
 
     For a demo, please see the related notebook `vector_space_models.ipynb`.
+
+## Key Takeaways
+
+- Vector space models are a way of **representing the meaning of words** in a document. They are a fundamental concept in NLP, and are used in many applications such as document classification, information retrieval, and question answering.
+- Using vector space models, we can capture similarities, differences, dependencies or many other **relationships** between words.
+- With vector space models, we can capture the **relative meaning** of words by identifying the **context** around each word in the text.
+- Using the **co-occurrence matrix**, we can extract the word vectors. The vector representation of a word is called a **word embedding**.
+- In this lecture, we learned two different approaches to create word embeddings: the **word by word design** and the **word by document design**.
+- When we have word vectors available, we can use a similarity metric like the **Euclidean distance** or the **cosine similarity** to measure the similarity between vectors.
+- Using simple **vector arithmetics**, we can put word vectors into relation with each other and find interesting relationships between words.
+- Understanding the concept of vector space models is the **basis** for many advanced NLP tasks.
