@@ -82,7 +82,7 @@ class WordEmbeddings:
         # TODO ASSIGNMENT-4: implement this method
         raise NotImplementedError("This method needs to be implemented.")
 
-    def euclidean_distance(self, v) -> np.ndarray:
+    def euclidean_distance(self, v: np.ndarray) -> np.ndarray:
         """Returns the Euclidean distance between the given vector `v` and all the embedding vectors.
 
         Args:
@@ -94,7 +94,7 @@ class WordEmbeddings:
         # TODO ASSIGNMENT-4: implement this method
         raise NotImplementedError("This method needs to be implemented.")
 
-    def cosine_similarity(self, v) -> np.ndarray:
+    def cosine_similarity(self, v: np.ndarray) -> np.ndarray:
         """Returns the cosine similarity between the given vector `v` and all the embedding vectors.
 
         Args:
