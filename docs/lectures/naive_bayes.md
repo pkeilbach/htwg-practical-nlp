@@ -14,7 +14,7 @@ To do this, we need to build the **log ratio of probabilities** for each word in
 
 For example, if the word "happy" appears 20 times in positive tweets and 5 times in negative tweets, then the ratio of probabilities is $20/5=4$. This means that the word "happy" is more likely to appear in a positive tweet. If the ratio would be less than 1, then the word is more likely to appear in a negative tweet.
 
-Taking the logarithm is a mathematical trick to avoid **numerical underflow** and simplify the calculations.
+Taking the **logarithm** is a mathematical trick to avoid **numerical underflow** and simplify the calculations.
 
 Using the **log ratio of probabilities**, we can calculate the log likelihood of a tweet being positive or negative by summing up the log ratio of probabilities for each word in the tweet, and thus, **predict** the class of the tweet.
 
@@ -127,7 +127,7 @@ $$
     This is calculated as follows:
 
     $$
-    P(B|A) = \frac{P(A \cap B)}{P(A)} = \frac{4/100}{35/100} = \frac{4}{35} = 0.114
+    P(B|A) = \frac{P(A \cap B)}{P(A)} = \frac{4/100}{35/100} = \frac{4}{35} = 0.1143
     $$
 
 ## Bayes Rule
@@ -183,11 +183,11 @@ With that, we have **derived Bayes Rule**.
     P(A) &= 0.4 \\
     P(B) &= 0.13 \\
     P(B|A) &= 0.25 \\
-    P(A|B) &= \frac{P(B|A)P(A)}{P(B)} = \frac{0.25 \times 0.4}{0.13} = 0.769
+    P(A|B) &= \frac{P(B|A)P(A)}{P(B)} = \frac{0.25 \times 0.4}{0.13} = 0.7692
     \end{aligned}
     $$
 
-    The probability that the tweet "amazing to be here" is positive is 0.769.
+    The probability that the tweet "amazing to be here" is positive is 0.7692.
 
 !!! info "Thomas Bayes"
 
@@ -441,7 +441,7 @@ $$
     Then the prior ratio is calculated as
 
     $$
-    \frac{P(pos)}{P(neg)} = \frac{0.35}{0.65} = 0.538
+    \frac{P(pos)}{P(neg)} = \frac{0.35}{0.65} = 0.5385
     $$
 
 If we apply the prior to the likelihood, we get the following formula:
@@ -501,7 +501,7 @@ Now, if we calculate the ratio of probabilities using the logarithm, the table a
 | I       | 0.2              | 0.2              | 0.0                                          |
 | am      | 0.15             | 0.15             | 0.0                                          |
 | happy   | 0.15             | 0.05             | 1.0986                                       |
-| sad     | 0.05             | 0.16             | -1.0986                                      |
+| sad     | 0.05             | 0.15             | -1.0986                                      |
 | because | 0.1              | 0.1              | 0.0                                          |
 | love    | 0.1              | 0.05             | 0.6931                                       |
 | hate    | 0.05             | 0.1              | -0.6931                                      |
@@ -513,7 +513,7 @@ Now, if we calculate the ratio of probabilities using the logarithm, the table a
     Let's look at a single example, e.g. the word "happy". The ratio of probabilities is calculated as follows:
 
     $$
-    \log \frac{P(\text{happy}|\text{pos})}{P(\text{happy}|\text{neg})} = \log \frac{0.1}{0.05} = \log 3.0 = 1.0986
+    \log \frac{P(\text{happy}|\text{pos})}{P(\text{happy}|\text{neg})} = \log \frac{0.15}{0.05} = \log 3.0 = 1.0986
     $$
 
 ## Training
