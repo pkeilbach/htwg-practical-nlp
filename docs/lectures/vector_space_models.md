@@ -490,6 +490,131 @@ As you can imagine, similar words will have similar vectors, and thus, will be *
 
     For a demo, please see the related notebook `vector_space_models.ipynb`.
 
+## Transforming Word Vectors
+
+We can make use of vector transformations to build a simple **translation system**.
+
+!!! example
+
+    Let's assume that in the english language, the word **cat** :gb:🐈 is represented by the vector
+
+    $$
+    \mathbf{v}_{\text{cat}} = [1, 3, 4]
+    $$
+
+    And in the french language, the word **chat** :fr:🐈 is represented by the vector
+
+    $$
+    \mathbf{v}_{\text{chat}} = [2, -4, -1]
+    $$
+
+    Then we want to find a transformation operation that transforms the english word vector $\mathbf{v}_{\text{cat}}$ :gb:🐈 into the french word vector $\mathbf{v}_{\text{chat}}$ :fr:🐈.
+
+The basic idea is that one vector space can be transformed into another vector space using a **rotation matrix**.
+
+!!! example
+
+    If we have the english word vectors for **cat**, **dog**, and **bird**, and the french word vectors for **chat**, **chien**, and **oiseau**, we can find a rotation matrix that transforms the english word vectors into the french word vectors.
+
+![Transforming word vectors](../img/vector-space-models-transforming-word-vectors.drawio.svg)
+
+Mathematically, we want to minimize the distance between the dot product of the two matrices $\mathbf{X} \mathbf{R}$ and the matrix $\mathbf{Y}$.
+
+$$
+\mathbf{X} \mathbf{R} \approx \mathbf{Y}
+$$
+
+We can find the rotation matrix $\mathbf{R}$ by calculating a loss function that measures the difference between the dot product of the two matrices $\mathbf{X} \mathbf{R}$ and the matrix $\mathbf{Y}$.
+
+1. Initialize the rotation matrix $\mathbf{R}$ with random values.
+2. Calculate the dot product of the two matrices $\mathbf{X} \mathbf{R}$.
+3. Calculate the loss function by comparing the dot product of the two matrices $\mathbf{X} \mathbf{R}$ and the matrix $\mathbf{Y}$.
+4. Update the rotation matrix $\mathbf{R}$ using gradient descent.
+5. Repeat steps 2-4 until the loss function is minimized.
+
+Once we have the rotation matrix $\mathbf{R}$, we can use it to transform the word vectors from one language into another. We will end up somewhere in the vector space of the other language, and then apply a **similarity metric** to find candidates for the translation.
+
+!!! example
+
+    Let's assume we have the following three english word vectors:
+
+    $$
+    \begin{align}
+    \mathbf{v}_{\text{cat}} &= [1, 3, 4] \\
+    \mathbf{v}_{\text{dog}} &= [2, 2, 2] \\
+    \mathbf{v}_{\text{bird}} &= [3, 1, 0]
+    \end{align}
+    $$
+
+    And the following three equivalent french word vectors:
+
+    $$
+    \begin{align}
+    \mathbf{v}_{\text{chat}} &= [2, -4, -1] \\
+    \mathbf{v}_{\text{chien}} &= [2, -2, -2] \\
+    \mathbf{v}_{\text{oiseau}} &= [2, -2, -1]
+    \end{align}
+    $$
+
+    We can represent the english vectors as a matrix $\mathbf{X}$ and the french vectors as matrix $\mathbf{Y}$ as follows:
+
+    $$
+    \mathbf{X} =
+    \begin{pmatrix}
+      1 & 3 & 4 \\
+      2 & 2 & 2 \\
+      3 & 1 & 0
+    \end{pmatrix}
+    $$
+
+    $$
+    \mathbf{Y} =
+    \begin{pmatrix}
+      2 & -4 & -1 \\
+      2 & -2 & -2 \\
+      2 & -2 & -1
+    \end{pmatrix}
+    $$
+
+    Now, we are lookng for a rotation matrix $\mathbf{R}$ that transforms the word vectors $\mathbf{v}_{\text{cat}}$, $\mathbf{v}_{\text{dog}}$, and $\mathbf{v}_{\text{bird}}$ into the word vectors $\mathbf{v}_{\text{chat}}$, $\mathbf{v}_{\text{chien}}$, and $\mathbf{v}_{\text{oiseau}}$ such that:
+
+    $$
+    \begin{align}
+    \begin{pmatrix}
+      1 & 3 & 4 \\
+      2 & 2 & 2 \\
+      3 & 1 & 0
+    \end{pmatrix}
+    \mathbf{R}
+    &=
+    \begin{pmatrix}
+      2 & -4 & -1 \\
+      2 & -2 & -2 \\
+      2 & -2 & -1
+    \end{pmatrix}
+    \end{align}
+    $$
+
+Here is a NumPy implementation of such a transformation using `numpy.dot`:
+
+```python
+>>> import numpy as np
+>>> X = np.array([[1, 3, 4], [2, 2, 2], [3, 1, 0], [4, 2, 1], [5, 1, 3]])
+>>> R = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+>>> np.dot(X, R)
+array([[1, 3, 4],
+       [2, 2, 2],
+       [3, 1, 0],
+       [4, 2, 1],
+       [5, 1, 3]])
+```
+
+!!! question
+
+    Why do we want to find a rotation matrix $\mathbf{R}$ that transforms the english word vectors into the french word vectors, instead of just using a dictionary to translate the words?
+
+<!-- Answer: because translation is not always a key-value problem. If there is no direct translation, we can still find a relationship between the words. -->
+
 ## Key Takeaways
 
 - Vector space models are a way of **representing the meaning of words** in a document. They are a fundamental concept in NLP, and are used in many applications such as document classification, information retrieval, and question answering.
@@ -499,4 +624,5 @@ As you can imagine, similar words will have similar vectors, and thus, will be *
 - In this lecture, we learned two different approaches to create word embeddings: the **word by word design** and the **word by document design**.
 - When we have word vectors available, we can use a similarity metric like the **Euclidean distance** or the **cosine similarity** to measure the similarity between vectors.
 - Using simple **vector arithmetics**, we can put word vectors into relation with each other and find interesting relationships between words.
+- **Translation** can be done by finding a **rotation matrix** that transforms the word vectors from one language into another.
 - Understanding the concept of vector space models is the **basis** for many advanced NLP tasks.
