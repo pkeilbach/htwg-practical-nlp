@@ -110,6 +110,10 @@ In the word by word design, the **co-occurrence matrix** counts the number of ti
 
     Note that the vector is of size $n$, where $n$ is the number of unique words in the vocabulary.
 
+!!! note
+
+    The co-occurance matrix, as shown here, shows the **unigram** counts. Later in the course, we will also look at **bigram** counts, or **n-gram** counts in general, which allow us to capture more context. This concept is the basis for **language models**.
+
 ## Word by Document Design
 
 For a word by document design, the process is quite similar.
