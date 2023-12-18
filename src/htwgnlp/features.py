@@ -56,7 +56,7 @@ class CountVectorizer:
     def get_features(self, tweet: list[str]) -> np.ndarray:
         """Returns a feature vector for a given tweet.
 
-        The feature vector is a row vector of the form [1, pos, neg], where pos is the number of positive words in the tweet and neg is the number of negative words in the tweet.
+        The feature vector is a row vector of the form `[1, pos, neg]`, where `pos` and `neg` are the sum of the frequencies of the words in the tweet in the positive and negative class, respectively.
 
         Args:
             tweet (list[str]): a tokenized tweet
