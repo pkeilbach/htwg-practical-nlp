@@ -60,6 +60,7 @@ nav:
       - lectures/logistic_regression.md
       - lectures/naive_bayes.md
       - lectures/vector_space_models.md
+      - lectures/minimum_edit_distance.md
   - Assignments: assignments.md
   - Presentations:
       - presentations/presentations.md
