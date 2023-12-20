@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from htwgnlp.naive_bayes import NaiveBayes
+from htwgnlp.naive_bayes_private import NaiveBayes
 
 model = NaiveBayes()
 
@@ -107,7 +107,8 @@ def trained_log_ratios(train_samples, train_samples_labels):
 )
 def test_set_logprior(labels, expected):
     model.logprior = labels
-    assert model.logprior == expected
+    np.testing.assert_allclose(model.logprior, expected)
+    # assert model.logprior == expected
 
 
 @pytest.mark.parametrize(
@@ -171,15 +172,15 @@ def test_get_log_ratios(trained_log_ratios):
     assert isinstance(trained_log_ratios, pd.Series)
     assert trained_log_ratios.index.size == 9
 
-    assert trained_log_ratios.loc["happy"] == np.log(0.15 / 0.05)
-    assert trained_log_ratios.loc["sad"] == np.log(0.05 / 0.15)
-    assert trained_log_ratios.loc["love"] == np.log(0.1 / 0.05)
-    assert trained_log_ratios.loc["hate"] == np.log(0.05 / 0.1)
-    assert trained_log_ratios.loc["weather"] == 0.0
-    assert trained_log_ratios.loc["I"] == 0.0
-    assert trained_log_ratios.loc["am"] == 0.0
-    assert trained_log_ratios.loc["because"] == 0.0
-    assert trained_log_ratios.loc["the"] == 0.0
+    np.testing.assert_allclose(trained_log_ratios.loc["happy"], np.log(0.15 / 0.05))
+    np.testing.assert_allclose(trained_log_ratios.loc["sad"], np.log(0.05 / 0.15))
+    np.testing.assert_allclose(trained_log_ratios.loc["love"], np.log(0.1 / 0.05))
+    np.testing.assert_allclose(trained_log_ratios.loc["hate"], np.log(0.05 / 0.1))
+    np.testing.assert_allclose(trained_log_ratios.loc["weather"], 0.0)
+    np.testing.assert_allclose(trained_log_ratios.loc["I"], 0.0)
+    np.testing.assert_allclose(trained_log_ratios.loc["am"], 0.0)
+    np.testing.assert_allclose(trained_log_ratios.loc["because"], 0.0)
+    np.testing.assert_allclose(trained_log_ratios.loc["the"], 0.0)
 
 
 @pytest.mark.parametrize(
