@@ -12,7 +12,7 @@ Open Source Large Language Models (OSLLMs) sind mächtige, quelloffene KI-Modell
 Man unterscheidet zwischen:
 
 <div style="text-align:center">
-  <img src="image-1.png" alt="Alt text" width="500"/>
+  <img src="./assets/image-1.png" alt="Alt text" width="500"/>
 </div>
 
 Es existieren verschiedene Lizenzen für Open-Source-Software, wobei die Mehrheit dem Apache 2.0-Standard unterliegt.
@@ -41,7 +41,7 @@ Diese Sprachmodelle können für verschiedene Anwendungsfälle trainiert werden,
 ## 1) BLOOM
 
 <div style="text-align:center">
-  <img src="image-2.png" alt="Alt text" width="500"/>
+  <img src="./assets/image-2.png" alt="Alt text" width="500"/>
 </div>
 
 Unser erstes Large Language Model (LLM) war Bloom, das im Juli 2022 als wegweisendes Open-Source-Modell veröffentlicht wurde. Vor Bloom konnten nur wenige industrielle Labore aufgrund begrenzter Ressourcen und Rechte die vollen Potenziale großer Sprachmodelle ausschöpfen. Bloom durchbrach diesen Status quo als erstes mehrsprachiges LLM, das transparent trainiert wurde.
@@ -61,14 +61,14 @@ Nach Bloom wurden viele weitere LLMs veröffentlicht, darunter die Modelle der F
 Die ersten beiden Modelle dieser Serie verfügen über **7B** und **40B** Parameter.
 Zusätzlich sind diese Modelle unter der APACHE 2.0 Lizenz verfügbar, was auch eine kommerzielle Nutzung ermöglicht.
 
-| FALCON 180B                                                                                                                                                                                                                                                                                                |                          |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
-| 🏆 Im September 2023 präsentierte das TII den großen Bruder der Falcon-Serie mit **180B** Parametern, der bei seiner Einführung die höchste Platzierung in den meisten Benchmarks erreichte. Der Schlüssel zum Erfolg lag in ihrem hochwertigen Datensatz, der ebenfalls Open Source veröffentlicht wurde. | ![Alt text](image-3.png) |
+| FALCON 180B                                                                                                                                                                                                                                                                                                |                                   |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| 🏆 Im September 2023 präsentierte das TII den großen Bruder der Falcon-Serie mit **180B** Parametern, der bei seiner Einführung die höchste Platzierung in den meisten Benchmarks erreichte. Der Schlüssel zum Erfolg lag in ihrem hochwertigen Datensatz, der ebenfalls Open Source veröffentlicht wurde. | ![Alt text](./assets/image-3.png) |
 
 #### 2.1 ) Das Datensatz
 
 <div style="text-align:center">
-  <img src="image-4.png" alt="Alt text" width="500"/>
+  <img src="./assets/image-4.png" alt="Alt text" width="500"/>
 </div>
 
 Der neue Datensatz **RefinedWeb** stellt einen innovativen, umfassenden Web-Datensatz auf Basis von CommonCrawl dar. Falcon verbessert diese Daten durch Deduplizierung und strenge Filterung des Inhalts.
@@ -76,7 +76,7 @@ Neben RefinedWeb wurden auch Bücher, Konversationen, Code und technisch-wissens
 Das Modell wurde hauptsächlich auf **Englisch** trainiert, jedoch wurden 7% des Datensatzes auf **europäische Sprachen** erweitert.
 
 <div style="text-align:center">
-  <img src="image-5.png" alt="Alt text" width="500"/>
+  <img src="./assets/image-5.png" alt="Alt text" width="500"/>
 </div>
 
 !!! info benötigte Ressourcen
@@ -101,7 +101,7 @@ _ Nutzung: min. 16 GB GPU-RAM
 Ein weiterer Erfolg unter den Open-Source LLM modelle sind die Llama-Modell von Meta
 
 <div style="text-align:center">
-  <img src="image-6.png" alt="Alt text" width="200"/>
+  <img src="./assets/image-6.png" alt="Alt text" width="200"/>
 </div>
 
 #### 3.1) LLaMA 1
@@ -121,7 +121,7 @@ Das Open-Source-Modell ist leider auf nicht-kommerzielle Nutzung beschränkt.
 #### 3.2) Open LLaMA
 
 <div style="text-align:center">
-  <img src="image-7.png" alt="Alt text" width="150"/>
+  <img src="./assets/image-7.png" alt="Alt text" width="150"/>
 </div>
 
 Eine Gruppe von Studierenden an der UC Berkeley in Kalifornien reagierte darauf und gründete OpenLM Research. Zwei Monate später veröffentlichten sie das OpenLLama-Modell, das auf dem LLAMA-Modell von Meta basiert.
@@ -131,7 +131,7 @@ OpenLLama bietet Modelle in den Versionen mit **3B**, **7B** und **13B** Paramet
 Sie sind eine Kombination aus dem Refined-Web-Datensatz von Falcon, dem Starcoder-Datensatz und dem Redpajama-Datensatz, welcher eine Reproduktion des LLaMA-Datensatzes ist.
 
 <div style="text-align:center">
-  <img src="image-8.png" alt="Alt text" width="600"/>
+  <img src="./assets/image-8.png" alt="Alt text" width="600"/>
 </div>
 
 #### 3.2) LLaMA 2
@@ -151,7 +151,7 @@ Wie mache ich mein Modell zu einem Assistenten?
 Wir möchten Fragen stellen und Antworten generieren. Dafür wird das Basis-Modell auf einen neuen Datensatz feinabgestimmt, der dem Modell zeigt, wie es auf Grundlage von Instruktionen Antworten generieren soll.
 
 <div style="text-align:center">
-  <img src="image-9.png" alt="Alt text" width="400"/>
+  <img src="./assets/image-9.png" alt="Alt text" width="400"/>
 </div>
 
 !!! info Instruct Datasets
@@ -190,7 +190,7 @@ Self-instruct from davinci-003 API (52K samples)
 1. Bei replicate.com mit github anmelden.
 2. Auf deinem Name klicken -> API Tokens -> API Token kopieren.
 <div style="text-align:center">
-  <img src="image-13.png" alt="Alt text" width="200"/>
+  <img src="./assets/image-13.png" alt="Alt text" width="200"/>
 </div>
 <br><br>
 
@@ -272,5 +272,5 @@ Self-instruct from davinci-003 API (52K samples)
 #### Example Running on local URL: http://127.0.0.1:8085
 
 <div style="text-align:center">
-  <img src="image-14.png" alt="Alt text" width="1000"/>
+  <img src="./assets/image-14.png" alt="Alt text" width="1000"/>
 </div>
