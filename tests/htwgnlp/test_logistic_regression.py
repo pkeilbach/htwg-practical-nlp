@@ -4,8 +4,8 @@
 
 from contextlib import nullcontext as does_not_raise
 
-import pytest
 import numpy as np
+import pytest
 
 from htwgnlp.logistic_regression import LogisticRegression
 

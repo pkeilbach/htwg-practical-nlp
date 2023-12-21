@@ -54,8 +54,76 @@ If all your tests pass, you successfully completed the assignment! 🚀
 
 To submit an assignment, you will need to demonstrate a successful test run.
 
+Also we may walk through your code together to check if you understood the most important concepts.
+
 ## Jupyter Notebooks
 
 Some of the assignments are accompanied by Jupyter notebooks.
 
 See the [Getting Started](./getting_started.md) guide for instructions on how to start the Jupyter server.
+
+## Working on your Assignments locally
+
+There are a few strategies on how to work on your assignments locally.
+
+What you end up using is up to your personal preference.
+
+### Using a single branch
+
+This is probably the easiest way to work on your assignments and **generally the recommended way**.
+
+You can create a new branch for your assignments:
+
+```sh
+git checkout -b my-assigments
+```
+
+Then, you can work on your assignments and commit your changes locally:
+
+```sh
+git add .
+git commit -m "solution for assignment 1"
+```
+
+Whenever updates are available, you can switch back to the `main` branch, pull the latest changes, and merge them into your branch:
+
+```sh
+git checkout main
+git pull
+git checkout my-assigments
+git merge main
+```
+
+!!! warning
+
+    You should **not push** your branch to the remote repository.
+    It should not be visible to others.
+    Your implementation is only valid for yourself, in your local repository, and will not be merged into the `main` branch.
+
+### Using multiple branches
+
+Similarly, you could create a new branch for each assignment:
+
+```sh
+git checkout -b my-assigments-1
+git add .
+git commit -m "solution for assignment 1"
+```
+
+But note that you would need to merge updates from the `main` branch into each of your assignment branches.
+
+Also keep in mind that some assignments build upon each other.
+
+### Using stashing
+
+You could also work on your assignments directly in the `main` branch, and whenever you need to pull the latest changes, you can stash your changes, pull the latest changes, and then pop your changes back:
+
+```sh
+git stash
+git pull
+git stash pop
+```
+
+Note that this way, you may lose your changes if you do not stash them properly.
+
+See the [git stash documentation](https://git-scm.com/docs/git-stash) for more details.

@@ -14,9 +14,10 @@ You can follow the `TODO ASSIGNMENT-1` comments to find the places where you nee
 """
 
 
-from nltk.stem import PorterStemmer
 import re  # used for pattern matching and manipulation of strings.
 import string
+
+from nltk.stem import PorterStemmer
 
 
 class TweetProcessor:
@@ -110,6 +111,8 @@ class TweetProcessor:
     @staticmethod
     def remove_stopwords(tokens: list[str]) -> list[str]:
         """Removes stopwords from a tweet.
+
+        Only English stopwords are removed.
 
         Args:
             tokens (list[str]): the tokenized tweet

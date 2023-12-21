@@ -29,15 +29,97 @@ Besides that, there are no strict rules about the presentation format. You can u
 
     You **don't need to submit** any presentation **slides** or other assets from your verbal presentation.
 
+    You only need to submit the **blog article** (see below).
+
 ## Blog Article
 
-In addition to the verbal presentation, the student should submit a **blog-like article** about the topic based on this [Markdown template](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/docs/presentations/template.md). 📝
+In addition to the verbal presentation, the student should submit a **blog-like article** about the topic based on this [Markdown template](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/docs/presentations/articles/template.md). 📝
+
+!!! info "Markdown"
+
+    If you are not familiar with Markdown, you can find a quick guide [here](https://guides.github.com/features/mastering-markdown/), or check out the official [Markdown specification](https://daringfireball.net/projects/markdown/syntax).
 
 Keep the article short and crisp. There are no hard rules, but maybe a **reading time** of not more than **10 minutes** is a good approximation. ⏳
 
-!!! info "Submission"
+The article should be written in **English**. :gb:
 
-    The article does not need to be submitted on the same day as the presentation. You can submit it later, but please make sure to submit it before the **end of the semester** (the exact date will be announced). 📅
+You have the following options to **submit the article**: 📬
+
+### Submission via Pull Request
+
+This is the preferred way to submit the article. 🤓
+
+1.  **Add your aricle to the repository**
+
+    Please add your article to the `docs/presentations/articles/` folder and name it `<your topic>.md`.
+
+    !!! info "Assets"
+
+        If you want to include images or other assets, please add them to the `docs/presentations/articles/assets/` folder.
+
+        From your markdown file, you can then reference the assets like this:
+
+        ```md
+        <!-- the relative link is important -->
+        ![alt text](./assets/image.png)
+        ```
+
+2.  **Include the article in the `mkdocs.yml` file**
+
+    You need to add the article to the `mkdocs.yml` file so that it is included in the generated website. Please append it to the `Articles` section like this:
+
+    ```yaml
+    nav:
+      - Presentations:
+          - presentations/presentations.md
+          - Articles:
+              - Article Template: presentations/articles/template.md
+              - <your topic>: presentations/articles/<your topic>.md
+    ```
+
+3.  **Push your changes to the remote repository**
+
+    After you have added the article to the repository, you need to push your changes to the remote repository.
+
+    ```sh
+    git checkout -b presentation-<your topic>
+    git add .
+    git commit -m "Add blog article for <your topic>"
+    git push -u origin presentation-<your topic>
+    ```
+
+4.  **Create a pull request to the `main` branch**
+
+    Finally, create a [pull request](https://github.com/pkeilbach/htwg-practical-nlp/pulls) to the `main` branch of the repository.
+
+    !!! tip "Shortcut 💫"
+
+        Usually, after pushing your branch to the remote repository, GitHub will already **suggest** you to create a pull request via a "Compare & pull request" banner.
+
+    Please add the `presentation topic` label to your pull request, and add me as a reviewer.
+
+    !!! note "Pull Requests ✅"
+
+        If you are not familiar with GitHub and pull requests, this is a great opportunity to learn about it!
+        It is a very common workflow in software development, and you will probably encounter it in your future career.
+
+        You can find a quick guide [here](https://guides.github.com/activities/hello-world/), and learn more about pull requests [here](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) and [here](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+
+    !!! warning "Publishing 📣"
+
+        If you submit via pull request, you implicitly agree to publish the article on the course website. However, feel free to remove the author information if you don't want to be named.
+
+### Submission via Email
+
+Alternatively, you can just send me the markdown file via [email](mailto:pascal.keilbach@htwg-konstanz.de).
+
+If you choose this way, please let me know if it is OK to publish the article on the course website.
+
+If you include any assets, like images, please attach them to your email.
+
+!!! info "Submission Deadline 📅"
+
+    The article does not need to be submitted on the same day as the presentation. You can submit it later, but please make sure to submit it before the **end of the semester** (the exact date will be announced).
 
 ## Topics and Dates
 

@@ -30,3 +30,6 @@ assignment_1:
 assignment_2:
 	.venv/bin/pytest tests/htwgnlp/test_features.py
 	.venv/bin/pytest tests/htwgnlp/test_logistic_regression.py
+
+assignment_3:
+	.venv/bin/pytest tests/htwgnlp/test_naive_bayes.py

@@ -1,10 +1,9 @@
 from collections import defaultdict
 
-import pytest
 import numpy as np
+import pytest
 
 from htwgnlp.features import CountVectorizer
-
 
 tweets = [
     ["this", "is", "a", "tweet"],  # 1
@@ -44,6 +43,7 @@ def test_build_word_frequencies(vectorizer):
         (["this", "is", "a", "test", "tweet"], np.array([1, 6, 2])),
         (["some", "random", "tweet"], np.array([1, 2, 1])),
         (["this", "is", "a", "sunny", "day"], np.array([1, 4, 1])),
+        (["this", "is", "a", "sunny", "and", "a", "warm", "day"], np.array([1, 6, 2])),
     ],
 )
 def test_get_features(vectorizer, tweet, expected):
