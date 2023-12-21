@@ -66,4 +66,5 @@ nav:
       - presentations/presentations.md
       - Articles:
           - Article Template: presentations/articles/template.md
+          - Open Source LLMs: presentations/articles/OS_LLMs_Robert.md
   - FAQ: faq.md
