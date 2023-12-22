@@ -46,8 +46,10 @@ For the **minimum edit distance**, we want to find the **minimum number of opera
     Consider the words `kitten` 🐈 and `sitting` 🧘. The edit distance between them is 3 because the following three operations can transform one into the other:
 
     - Replace `k` with `s`
-    - Insert `i` after `s`
+    - Replace `e` with `i`
     - Insert `g` at the end
+
+    For this intuitive example, we do not consider the cost of each operation. We will look at that later.
 
 ## Applications
 
@@ -66,6 +68,8 @@ But also in other fields, such as:
 - **DNA Sequencing:** In bioinformatics, Minimum Edit Distance is applied to **compare DNA or RNA sequences**. It helps identify the evolutionary relationships between different genetic sequences by quantifying the number of mutations needed to transform one sequence into another.
 
 - **Genealogy and Historical Linguistics:** Minimum Edit Distance is used to study language evolution and historical relationships between languages by **comparing words and phrases across different time periods**.
+
+![Applications of Minimum Edit Distance for DNA Sequencing](https://www.baeldung.com/wp-content/uploads/sites/4/2020/08/lev-sample-blue.png)
 
 For this lecture, we will specifally look at how the Minimum Edit Distance can be used in **autocorrection** systems.
 
@@ -181,7 +185,7 @@ To implement the following operations, Python [index slicing](https://realpython
 >>> word = "play"
 >>> word[:2]
 'pl'
->>> word[2:]z
+>>> word[2:]
 'ay'
 ```
 
@@ -356,7 +360,7 @@ In NLP, one of the most common algorithms for calculating the minimum edit dista
 
 The Levenshtein distance algorithm is a **dynamic programming** algorithm that calculates the minimum edit distance between two strings.
 
-!!! info
+!!! info "Dynamic Programming"
 
     Dynamic programming is a method for solving complex problems by breaking them down into simpler subproblems. It is often used when the subproblems are overlapping, i.e. when subproblems share subproblems.
 
@@ -465,7 +469,8 @@ We can find the edit distance between the source word `play` and the target word
 Let's start in the top left corner of the table, which represents the transformation `# -> #`, that is, transforming an empty string into an empty string. This is a special case, since we do not need to do any edits to transform an empty string into an empty string. So the cost of this transformation is zero.
 
 - The cell `D[1,0]` represents the path `p -> #`, that is, deleting `p` so that we have an empty string, which has a cost of 1.
-- The cell `D[0,1]` represents the path `# -> 1`, that is, inserting `s` into an empty string, which has a cost of 1.
+- The cell `D[0,1]` represents the path `# -> s`, that is, inserting `s` into an empty string, which has a cost of 1.
+- The cell `D[0,0]` represents the path `# -> #`, that is, transforming an empty string into an empty string, which has a cost of 0.
 
 ![Minimum Edit Distance Phase 2](../img/minimum-edit-distance-phase-2.drawio.svg)
 
