@@ -39,7 +39,7 @@ For the **minimum edit distance**, we want to find the **minimum number of opera
 
     Note that there are other algorithms for calculating the edit distance, including the [Wagner-Fischer algorithm](https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm), the [Needleman-Wunsch algorithm](https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm), or the [Jaro-Winkler algorithm](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance).
 
-    Also see NLTK's [edit distance](https://www.nltk.org/_modules/nltk/metrics/distance.html) module for more information.
+    Also see NLTK's [edit distance](https://www.nltk.org/api/nltk.metrics.distance.html) module for more information.
 
 !!! example
 
