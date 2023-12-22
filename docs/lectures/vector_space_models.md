@@ -1,6 +1,6 @@
 # Vector Space Models
 
-Vector space models are a way of representing the meaning of words in a document. They are a fundamental concept in NLP, and are used in many applications such as document classification, information retrieval, and question answering.
+Vector space models are a way of representing the meaning of words in a document. They are a **fundamental concept in NLP**, and are used in many applications such as document classification, information retrieval, and question answering.
 
 ## Introduction
 
