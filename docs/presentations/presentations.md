@@ -51,17 +51,27 @@ This is the preferred way to submit the article. 🤓
 
 1.  **Add your aricle to the repository**
 
-    Please add your article to the `docs/presentations/articles/` folder and name it `<your topic>.md`.
+    Please add your article to the `docs/presentations/articles/` folder and name it `your_topic.md`. Please use [snake_case](https://en.wikipedia.org/wiki/Snake_case) for the file name.
 
     !!! info "Assets"
 
-        If you want to include images or other assets, please add them to the `docs/presentations/articles/assets/` folder.
+        If you want to use images in your article, please try to include them from public sources like Wikipedia or Wikimedia Commons. Please make sure to include the link in a separate reference section to avoid licensing issues.
+
+        In Markdown, you can include images like this:
+
+        ```md
+        ![alt text](https://example.com/image.png)
+        ```
+
+        In case you need to include images or other assets as files (e.g. a diagram you created by yourself), please add them to the `docs/presentations/articles/assets/` folder.
+
+        Please use [kebab-case](https://en.wikipedia.org/wiki/Kebab_case) for the asset file names, and prefix them with the topic name, e.g. `your-topic-image.png`.
 
         From your markdown file, you can then reference the assets like this:
 
         ```md
         <!-- the relative link is important -->
-        ![alt text](./assets/image.png)
+        ![alt text](./assets/your-topic-image.png)
         ```
 
 2.  **Include the article in the `mkdocs.yml` file**
