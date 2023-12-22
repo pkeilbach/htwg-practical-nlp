@@ -84,7 +84,7 @@ This is the preferred way to submit the article. 🤓
           - presentations/presentations.md
           - Articles:
               - Article Template: presentations/articles/template.md
-              - <your topic>: presentations/articles/<your topic>.md
+              - <your topic>: presentations/articles/your_topic.md
     ```
 
 3.  **Push your changes to the remote repository**
@@ -92,11 +92,15 @@ This is the preferred way to submit the article. 🤓
     After you have added the article to the repository, you need to push your changes to the remote repository.
 
     ```sh
-    git checkout -b presentation-<your topic>
-    git add .
+    git checkout -b presentation-your-topic
+    git add docs/presentations/articles/
     git commit -m "Add blog article for <your topic>"
-    git push -u origin presentation-<your topic>
+    git push -u origin presentation-your-topic
     ```
+
+    !!! warning
+
+        Please make sure to only add your article and related assets to the commit.
 
 4.  **Create a pull request to the `main` branch**
 
