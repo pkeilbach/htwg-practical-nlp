@@ -51,7 +51,7 @@ This is the preferred way to submit the article. 🤓
 
 1.  **Add your aricle to the repository**
 
-    Please add your article to the `docs/presentations/articles/` folder and name it `your_topic.md`. Please use [snake_case](https://en.wikipedia.org/wiki/Snake_case) for the file name.
+    Please add your article to the `docs/presentations/articles/` folder and name it `your_topic.md`. Please use [snake case](https://en.wikipedia.org/wiki/Snake_case) for the file name.
 
     !!! info "Assets"
 
@@ -65,7 +65,7 @@ This is the preferred way to submit the article. 🤓
 
         In case you need to include images or other assets as files (e.g. a diagram you created by yourself), please add them to the `docs/presentations/articles/assets/` folder.
 
-        Please use [kebab-case](https://en.wikipedia.org/wiki/Kebab_case) for the asset file names, and prefix them with the topic name, e.g. `your-topic-image.png`.
+        Please use [kebab case](https://en.wikipedia.org/wiki/Kebab_case) for the asset file names, and prefix them with the topic name, e.g. `your-topic-image.png`.
 
         From your markdown file, you can then reference the assets like this:
 
