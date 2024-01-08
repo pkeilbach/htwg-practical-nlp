@@ -460,6 +460,16 @@ This is called **numerical underflow**.
 
 To avoid this, we can use the logarithm instead.
 
+!!! warning "Numerical Underflow"
+
+    Numerical underflow occurs when the result of a calculation is too small to be represented by the computer.
+
+    This can happen when multiplying many small numbers, because the result gets smaller and smaller with each multiplication.
+
+    The computer can only represent numbers up to a certain precision, so at some point the result will be rounded to zero.
+
+    This is a problem and can lead to errors, as we lose information about the probabilities.
+
 !!! tip
 
     Because they avoid the risk of numerical underflow and they are way more convenient to work with, **logarithms** appear throughout deep-learning and NLP.
