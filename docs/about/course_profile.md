@@ -36,6 +36,4 @@ In this case, the lectures will also be in English.
 
 ## Course Format
 
-The course will be held in a **hybrid format**.
-Approximately five lectures will be held in person.
-The remaining lectures will be held online.
+The course will be held in a **hybrid format**. There will be a few in-person lectures throughout the semester, but most of the course will be held online.
