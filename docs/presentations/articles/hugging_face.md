@@ -39,9 +39,9 @@ ds = load_dataset("wikimedia/wikipedia", "20231101.en")
 ```
 
 
-### Terraformer API: Transform Text Effortlessly
+### Transformers API: Transform Text Effortlessly
 
-The Terraformer API is a testament to Hugging Face's innovation. This API simplifies the process of text transformation, making it accessible even to those with limited programming skills. It supports a variety of NLP tasks and can be integrated into various applications.
+The Transformers API is a testament to Hugging Face's innovation. This API simplifies the process of text transformation, making it accessible even to those with limited programming skills. It supports a variety of NLP tasks and can be integrated into various applications.
 
 ```python
 # Load model directly
@@ -50,6 +50,14 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 tokenizer = AutoTokenizer.from_pretrained("gpt2")
 model = AutoModelForCausalLM.from_pretrained("gpt2")
 ```
+
+### Tokenizers
+
+Hugging Face Tokenizers sind ein wesentlicher Bestandteil der modernen Verarbeitung natürlicher Sprache. Diese Tokenizer zeichnen sich durch ihre Schnelligkeit und Flexibilität aus und unterstützen eine Vielzahl von Tokenisierungsmethoden wie BPE (Byte-Pair-Encoding), WordPiece oder SentencePiece. Eines der Hauptmerkmale der Hugging Face Tokenizer ist ihre Kompatibilität mit verschiedenen Sprachmodellen wie BERT, GPT und RoBERTa, was sie zu einem universellen Werkzeug in der NLP-Community macht. Mit fortlaufenden Innovationen und Updates bleiben die Hugging Face Tokenizers an der Spitze der NLP-Technologie, indem sie kontinuierlich verbesserte Effizienz und Genauigkeit in der Sprachverarbeitung bieten.
+
+### Inference
+
+Hugging Face Inference spielt eine entscheidende Rolle in der Umsetzung von trainierten Sprachmodellen in produktive Anwendungen. Die Plattform bietet eine intuitive und leistungsfähige Infrastruktur für das Inferenzieren von Modellen, was bedeutet, dass Entwickler mühelos auf bereits trainierte Modelle zugreifen können, um Echtzeit-Vorhersagen für verschiedenste NLP-Aufgaben zu generieren. Dank der effizienten Implementierung und der Unterstützung von Hardware-Beschleunigungstechnologien ermöglicht Hugging Face Inference die nahtlose Integration von Sprachmodellen in Anwendungen, angefangen von Chatbots über maschinelles Übersetzen bis hin zu Sentimentanalysen.
 
 ## Key Takeaways
 
@@ -61,6 +69,6 @@ model = AutoModelForCausalLM.from_pretrained("gpt2")
 
 ## References
 
-- [Hugging Face: The AI community building the future.](https://Hugging Face.co/)
-- [Hugging Face Transformers Documentation](https://Hugging Face.co/docs/transformers/index)
-- [Hugging Face Datasets Library](https://Hugging Face.co/docs/datasets/index)
+- [Hugging Face: The AI community building the future.](https://HuggingFace.co/)
+- [Hugging Face Transformers Documentation](https://HuggingFace.co/docs/transformers/index)
+- [Hugging Face Datasets Library](https://HuggingFace.co/docs/datasets/index)
