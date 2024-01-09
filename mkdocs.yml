@@ -66,5 +66,5 @@ nav:
       - presentations/presentations.md
       - Articles:
           - Article Template: presentations/articles/template.md
-          - HuggingFace: presentations/articles/hugging_face.md
+          - Hugging Face: presentations/articles/hugging_face.md
   - FAQ: faq.md
