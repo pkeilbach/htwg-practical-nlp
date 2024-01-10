@@ -49,6 +49,8 @@ A text corpus is a large and structured **set of texts**, such as:
 - Blog posts
 - Tweets
 
+A corpus can be **general**, such as Wikipedia or news articles, or it can be **domain specific**, such as medical texts or legal documents.
+
 !!! note "Vocabulary size vs. corpus size"
 
     Note that the **vocabulary size** $|V|$ is the number of unique words in the corpus, whereas the **corpus size** $|C|$ is the total number of words in the corpus.
