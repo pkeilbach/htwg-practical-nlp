@@ -33,3 +33,6 @@ assignment_2:
 
 assignment_3:
 	.venv/bin/pytest tests/htwgnlp/test_naive_bayes.py
+
+assignment_4:
+	.venv/bin/pytest tests/htwgnlp/test_embeddings.py
