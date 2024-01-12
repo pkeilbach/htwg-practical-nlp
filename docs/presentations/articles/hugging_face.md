@@ -14,10 +14,10 @@ Hugging Face has made a name for itself in model hosting. It offers a vast repos
 from transformers import pipeline, set_seed
 
 # Example of using a pre-trained model
->>> generator = pipeline('text-generation', model='gpt2')  
->>> set_seed(42)  
->>> generated_texts = generator("The student worked on", max_length=30, num_return_sequences=2)  
->>> print(generated_texts)
+generator = pipeline('text-generation', model='gpt2')  
+set_seed(42)  
+generated_texts = generator("The student worked on", max_length=30, num_return_sequences=2)  
+print(generated_texts)
 ```
 
 This outputs the following:
