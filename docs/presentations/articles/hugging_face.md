@@ -14,12 +14,15 @@ Hugging Face has made a name for itself in model hosting. It offers a vast repos
 from transformers import pipeline, set_seed
 
 # Example of using a pre-trained model
-generator = pipeline('text-generation', model='gpt2')  
-set_seed(42)  
-generated_texts = generator("The student worked on", max_length=30, num_return_sequences=2)  
-print(generated_texts)
+>>> generator = pipeline('text-generation', model='gpt2')  
+>>> set_seed(42)  
+>>> generated_texts = generator("The student worked on", max_length=30, num_return_sequences=2)  
+>>> print(generated_texts)
+```
 
-Output: [{'generated_text': 'The student worked on his paper, which you can read about here. You can get an ebook with that part, or an audiobook with some of'}, {'generated_text': 'The student worked on this particular task by making the same basic task in his head again and again, without the help of some external helper, even when'}]
+This outputs the following:
+```python
+[{'generated_text': 'The student worked on his paper, which you can read about here. You can get an ebook with that part, or an audiobook with some of'}, {'generated_text': 'The student worked on this particular task by making the same basic task in his head again and again, without the help of some external helper, even when'}]
 ```
 
 ### Spaces: A Collaborative Environment
@@ -53,11 +56,33 @@ model = AutoModelForCausalLM.from_pretrained("gpt2")
 
 ### Tokenizers
 
-Hugging Face Tokenizers sind ein wesentlicher Bestandteil der modernen Verarbeitung natürlicher Sprache. Diese Tokenizer zeichnen sich durch ihre Schnelligkeit und Flexibilität aus und unterstützen eine Vielzahl von Tokenisierungsmethoden wie BPE (Byte-Pair-Encoding), WordPiece oder SentencePiece. Eines der Hauptmerkmale der Hugging Face Tokenizer ist ihre Kompatibilität mit verschiedenen Sprachmodellen wie BERT, GPT und RoBERTa, was sie zu einem universellen Werkzeug in der NLP-Community macht. Mit fortlaufenden Innovationen und Updates bleiben die Hugging Face Tokenizers an der Spitze der NLP-Technologie, indem sie kontinuierlich verbesserte Effizienz und Genauigkeit in der Sprachverarbeitung bieten.
+Hugging face tokenisers are an essential component of modern natural language processing. These tokenisers are characterised by their speed and flexibility and support a variety of tokenisation methods such as BPE (Byte-Pair-Encoding), WordPiece or SentencePiece. One of the key features of Hugging Face Tokenisers is their compatibility with different language models such as BERT, GPT and RoBERTa, making them a universal tool in the NLP community. With ongoing innovations and updates, Hugging Face Tokenisers remain at the forefront of NLP technology by providing continuously improved efficiency and accuracy in language processing.
+
+```python
+from tokenizers import Tokenizer
+from tokenizers.models import BPE
+tokenizer = Tokenizer(BPE(unk_token="[UNK]"))
+```
 
 ### Inference
 
-Hugging Face Inference spielt eine entscheidende Rolle in der Umsetzung von trainierten Sprachmodellen in produktive Anwendungen. Die Plattform bietet eine intuitive und leistungsfähige Infrastruktur für das Inferenzieren von Modellen, was bedeutet, dass Entwickler mühelos auf bereits trainierte Modelle zugreifen können, um Echtzeit-Vorhersagen für verschiedenste NLP-Aufgaben zu generieren. Dank der effizienten Implementierung und der Unterstützung von Hardware-Beschleunigungstechnologien ermöglicht Hugging Face Inference die nahtlose Integration von Sprachmodellen in Anwendungen, angefangen von Chatbots über maschinelles Übersetzen bis hin zu Sentimentanalysen.
+Hugging Face Inference plays a crucial role in turning trained language models into productive applications. The platform provides an intuitive and powerful infrastructure for inferencing models, which means that developers can easily access pre-trained models to generate real-time predictions for a wide range of NLP tasks. Thanks to its efficient implementation and support for hardware acceleration technologies, Hugging Face Inference enables the seamless integration of language models into applications ranging from chatbots to machine translation and sentiment analysis.
+
+The Inference API Url is always defined like this: 
+```python
+ENDPOINT = https://api-inference.huggingface.co/models/<MODEL_ID>
+```
+
+Example in Python with gpt2:
+```python
+import requests
+API_URL = "https://api-inference.huggingface.co/models/gpt2"
+headers = {"Authorization": f"Bearer {API_TOKEN}"}
+def query(payload):
+    response = requests.post(API_URL, headers=headers, json=payload)
+    return response.json()
+data = query("Write a story about a Knight")
+```
 
 ## Key Takeaways
 
