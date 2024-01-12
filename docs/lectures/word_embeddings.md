@@ -95,12 +95,224 @@ The dimension of the word embeddings is one of the **hyperparameters** of the mo
 
 ## Continuous Bag of Words (CBOW)
 
-## Transforming Words to Vectors
+For the Continuous Bag-of-Words (CBOW) model, the learning task is to **predict the center word** for a given context $C$.
+
+The **rationale** of the CBOW model is, that if two words are surrounded by a similar sets of words when used in various sentences, then those two words tend to be **related in their meaning**.
+
+!!! example
+
+    Given the sentence:
+
+    > The little ___ is barking 🐶
+
+    Candidates for the center word are: dog, puppy, hound, terrier, etc., as they are all used frequently in the same context.
+
+![CBOW Schema](../img/word-embeddings-cbow-schema.drawio.svg)
+
+As a _by-product_ of this learning task, we will obtain the **word embeddings**.
+
+The following visualization shows the CBOW model for a context size of $C=2$. This means, we take into account the two words before and after the center word. This would be equivalent to a window size of 5.
+
+![CBOW Model](../img/word-embeddings-cbow.drawio.svg)
+
+!!! info
+
+    The context window size $C$ is another **hyperparameter** of the model.
+
+!!! example
+
+    Given the sentence:
+
+    > I am happy because I am learning
+
+    and a context window of size $C=2$, the input and output pairs would be:
+
+    | Input (Context) | Output (Center Word) |
+    | --------------- | -------------------- |
+    | [I, am, because, I] | happy |
+    | [am, happy, I, am] | because |
+    | [happy, because, am, learning] | I |
+
+!!! tip "Skip-Gram Model"
+
+    The **Skip-Gram model** can be seen as the **opposite** of the CBOW model. It tries to predict the context words given the center word.
+
+    More details can be found in the [original paper](https://arxiv.org/abs/1301.3781).
+
+## Training Data for CBOW Model
+
+To train the CBOW model, we need to generate training data.
+
+For this, we need to transform the vectors of the context words into a single vector. This can be done by **averaging** the one-hot vectors of the context words. The resulting vector is the **context vector**, which is the input to the CBOW model.
+
+Here is an overview of the process:
+
+![Transforming Words to Vectors](../img/word-embeddings-cbow-transformation.drawio.svg)
+
+With this approach, we can generate training data for the CBOW model.
+
+- The **input** is the context vector
+- The **expected output** is the vector of the center word
+
+!!! example
+
+    Given the corpus:
+
+    > I am happy because I am learning
+
+    The vocabulary is:
+
+    > $[\text{am}, \text{because}, \text{happy}, \text{I}, \text{learning}]$
+
+    And the one-hot encoded vectors are:
+
+    | Word | Vector |
+    | ---- | ------ |
+    | am | $[1, 0, 0, 0, 0]$ |
+    | because | $[0, 1, 0, 0, 0]$ |
+    | happy | $[0, 0, 1, 0, 0]$ |
+    | I | $[0, 0, 0, 1, 0]$ |
+    | learning | $[0, 0, 0, 0, 1]$ |
+
+    To build a single vector for any given context words, we average the one-hot encoded vectors of the context words.
+
+    For example, if the context words are [I, am, because, I], then the average vector would be:
+
+    $$
+    \frac{1}{4} \cdot \begin{pmatrix}\begin{bmatrix}0 \\ 0 \\ 0 \\ 1 \\ 0\end{bmatrix} + \begin{bmatrix}1 \\ 0 \\ 0 \\ 0 \\ 0\end{bmatrix} + \begin{bmatrix}0 \\ 1 \\ 0 \\ 0 \\ 0\end{bmatrix} + \begin{bmatrix}0 \\ 0 \\ 0 \\ 1 \\ 0\end{bmatrix}\end{pmatrix} = \frac{1}{4} \cdot \begin{pmatrix}\begin{bmatrix}1 \\ 1 \\ 0 \\ 2 \\ 0\end{bmatrix}\end{pmatrix} = \begin{pmatrix}\begin{bmatrix}0.25 \\ 0.25 \\ 0 \\ 0.5 \\ 0\end{bmatrix}\end{pmatrix}
+    $$
+
+    Doing this for a few more examples, we can generate the training data for the CBOW model:
+
+    | Context words | Context vector | Center word | Center vector |
+    | ------------- | -------------- | ----------- | ------------- |
+    | $[\text{I}, \text{am}, \text{because}, \text{I}]$ | $[0.25, 0.25, 0, 0.5, 0]$ | $\text{happy}$ | $[0, 0, 1, 0, 0]$ |
+    | $[\text{am}, \text{happy}, \text{I}, \text{am}]$ | $[0.5, 0, 0.25, 0.25, 0]$ | $\text{because}$ | $[0, 1, 0, 0, 0]$ |
+    | $[\text{happy}, \text{because}, \text{am}, \text{learning}]$ | $[0.25, 0.25, 0.25, 0, 0.25]$ | $\text{I}$ | $[0, 0, 0, 1, 0]$ |
 
 ## Architecure of CBOW Model
 
-- Architecture Diagram showing input, hidden and output layers
+The following figure shows the architecture of the CBOW model.
+
+![CBOW Architecture](../img/word-embeddings-cbow-architecture.drawio.svg)
+
+First, let's clarify the notation:
+
+- $V$ is the vocabulary size
+- $N$ is the number of dimensions of the word embeddings
+- $m$ is the number of samples in the training data set
+
+Now, let's look at the architecture in more detail:
+
+- $\mathbf{X}$ is the input matrix of size $V \times m$. This is the matrix of the context vectors, where each column is a context vector. This means the **input layer** has $V$ neurons, one for each word in the vocabulary.
+- $\mathbf{H}$ is the **hidden layer** matrix of size $N \times m$. This is the matrix of the **word embeddings**, where each column is a word embedding. This means the **hidden layer** has $N$ neurons, which is the number of dimensions of the word embeddings.
+- $\mathbf{\hat{Y}}$ is the output matrix of size $V \times m$. This is the matrix of the word vectors of the predicted center words, where each column is a word vector. This mean the **output layer** has $V$ neurons, one for each word in the vocabulary.
+- $\mathbf{W}$ denotes the weight matrices. There are two weight matrices, one for the input layer and one for the output layer.
+  - $\mathbf{W_1}$ is the weight matrix for the input layer and is of size $N \times V$.
+  - $\mathbf{W_2}$ is the weight matrix for the output layer and is of size $V \times N$.
+
+TODO PK: explicitly state that the word embeddings come from the hidden layer!
+
+!!! note "Shallow Dense Neural Network"
+
+    This architecture is called a **shallow dense neural network**, because it has only one hidden layer and all neurons are connected to each other.
+
+To compute the next layer $\mathbf{Z}$, we multiply the weight matrix with the previous layer:
+
+$$
+\mathbf{Z} = \mathbf{W} \cdot \mathbf{X}
+$$
+
+!!! info "Activation Functions"
+
+    You would also need to apply an [activation function](https://en.wikipedia.org/wiki/Activation_function) on $\mathbf{Z}$ but we will not cover this in this lecture. What is important is to understand how the dimensions of the matrices are related.
+
+    The purpose of the activation function is to introduce non-linearity into the network, allowing it to learn from complex patterns and relationships in the data.
+
+    Without activation functions (or with only linear activation functions), a neural network would behave like a linear model, regardless of its depth. This is because a composition of linear functions is still a linear function. Introducing non-linear activation functions enables the neural network to model and learn more complex mappings between inputs and outputs.
+
+    Two popular activation functions are the [sigmoid function](https://en.wikipedia.org/wiki/Sigmoid_function) and the [ReLU function](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)).
+
+!!! example
+
+    Assume you have a vocabulary size of 8000 words, and want to learn 400-dimensional word embeddings.
+
+    Then the sizes of the layers, i.e. the number of neurons, would be as follows:
+
+    - Input layer: $V = 8000$
+    - Hidden layer: $N = 400$
+    - Output layer: $V = 8000$
+
+!!! info "Matrix Multiplication"
+
+    Note that two multiply two matrices $A$ and $B$, the number of columns of $A$ must be equal to the number of rows of $B$:
+
+    $$
+    A_{m \times n} \cdot B_{n \times p} = C_{m \times p}
+    $$
+
+    In other words, the number of columns of the first matrix must be equal to the number of rows of the second matrix, and the resulting matrix will have the number of rows of the first matrix and the number of columns of the second matrix.
+
+!!! info "Batch Processing"
+
+    Usually when training a neural network, we use **batch processing**, i.e. we process multiple samples at once. This is more efficient than processing one sample at a time.
+
+    The batch size is another **hyperparameter** of the model.
+
+    As we can see from the matrix multiplication, the size of the weight matrices does not depend on the batch size, since the batch size only affects the number of columns of the input matrix.
+
+!!! info "Loss Function"
+
+    TODO PK
+
+    - Loss function: cross entropy
 
 ## Evaluation of Word Embeddings
 
-- Intrinsic vs. Extrinsic Evaluation
+When evaluating word embeddings, we can distinguish between intrinsic and extrinsic evaluation.
+
+**Intrinsic evaluation** methods assess how well the word embeddings capture the semantic or syntactic relationships between the words.
+
+We can evaluate the relationship between words using the following methods:
+
+- Analogies
+- Clustering
+- Visualization
+
+!!! example "Analogies"
+
+    Semantic analogies:
+
+    > "France" is to "Paris" as "Italy" is to <?>
+
+    Syntactic analogies:
+
+    > "seen" is to "saw" as "been" is to <?>
+
+!!! warning "Ambiguous Words"
+
+    Be careful with ambiguous words:
+
+    > "wolf" is to "pack" as "bee" is to <?>
+
+    Correct answers could be "hive", "colony", or "swarm".
+
+In **external evaluation**, we use the word embeddings as input to a downstream task, e.g. sentiment analysis, named entity recognition, or parts-of-speech tagging, and evaluate the performance of the task with established metrics such as accuracy or F1-score.
+
+The performance of the task is then used as a measure of the quality of the word embeddings.
+
+External evaluation is more **practical**, because it allows us to evaluate the word embeddings in the context of a real-world application.
+
+!!! example
+
+    In named entity recognition, we want to identify the names of people, places, organizations, etc. in a text. Given the sentence:
+
+    > "Marc is going to Paris to visit the Louvre."
+
+    We can find the following named entities:
+
+    > "Marc" (person), "Paris" (location), "Louvre" (organization)
+
+!!! warning
+
+    Note that with external evaluation methods, we evaluate both the word embeddings and the downstream task. This makes troubleshooting more difficult.
