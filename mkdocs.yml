@@ -62,6 +62,7 @@ nav:
       - lectures/vector_space_models.md
       - lectures/minimum_edit_distance.md
       - lectures/language_models.md
+      - lectures/word_embeddings.md
   - Assignments: assignments.md
   - Presentations:
       - presentations/presentations.md
