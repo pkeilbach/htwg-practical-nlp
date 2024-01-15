@@ -1,5 +1,7 @@
 # Word Embeddings
 
+In this lecture, we will learn about word embeddings, which are a way to represent words as vectors. We will learn about the Continuous Bag-of-Words (CBOW) model, which is a machine learning model that learns word embeddings from a corpus.
+
 ## Revisit One-Hot Encoding
 
 In the lecture about feature extraction, we have seen that we can represent words as vectors using [one hot encoding](./feature_extraction.md#one-hot-encoding).
@@ -328,3 +330,13 @@ External evaluation is more **practical**, because it allows us to evaluate the 
 !!! warning
 
     Note that with external evaluation methods, we evaluate both the word embeddings and the downstream task. This makes troubleshooting more difficult.
+
+## Key Takeaways
+
+- Word embeddings are a way to represent words as vectors.
+- With word embeddings, each dimension represents a different **aspect** of the word. We do not know what exactly each dimension represents, but we know that similar words are close to each other in the vector space.
+- To create word embeddings, we typically use a **machine learning model** that performs a **learning task** on a corpus.
+- A famous example of a word embeddings model is the **Continuous Bag-of-Words (CBOW)** model. It learns to predict the center word based on its context words.
+- The **rationale** of the CBOW model is, that if two words are surrounded by a similar sets of words when used in various sentences, then those two words tend to be **related in their meaning**.
+- It's architecture is a **shallow dense neural network** with a single hidden layer. The word embeddings are essentially a by-product of the learning task, i.e. they are the **weights of the hidden layer** after training.
+- We can evaluate the quality of word embeddings using **intrinsic** and **extrinsic** evaluation methods, where extrinsic evaluation is more practical, because it allows us to evaluate the word embeddings in the context of a real-world application.
