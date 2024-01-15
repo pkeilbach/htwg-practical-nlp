@@ -179,12 +179,12 @@ With that, we have **derived Bayes Rule**.
     Let $A$ be the event that a tweet is positive and $B$ be the event that a tweet contains the word "amazing".
 
     $$
-    \begin{aligned}
+    \begin{align}
     P(A) &= 0.4 \\
     P(B) &= 0.13 \\
     P(B|A) &= 0.25 \\
     P(A|B) &= \frac{P(B|A)P(A)}{P(B)} = \frac{0.25 \times 0.4}{0.13} = 0.7692
-    \end{aligned}
+    \end{align}
     $$
 
     The probability that the tweet "amazing to be here" is positive is 0.7692.
@@ -280,23 +280,23 @@ We end up with the following table:
     Let's calculate the probability $P(\text{happy}|\text{pos})$ of the word "happy" given that the tweet is **positive**.
 
     $$
-    \begin{aligned}
+    \begin{align}
     P(\text{happy}|\text{pos}) &= \frac{freq(\text{happy},\text{pos}) + 1}{N_{pos} + |V|} \\
     &= \frac{2 + 1}{11 + 9} \\
     &= \frac{3}{20} \\
     &= 0.15
-    \end{aligned}
+    \end{align}
     $$
 
     Let's calculate the probability $P(\text{happy}|\text{neg})$ of the word "happy" given that the tweet is **negative**.
 
     $$
-    \begin{aligned}
+    \begin{align}
     P(\text{happy}|\text{neg}) &= \frac{freq(\text{happy},\text{neg}) + 1}{N_{neg} + |V|} \\
     &= \frac{0 + 1}{11 + 19} \\
     &= \frac{1}{20} \\
     &= 0.05
-    \end{aligned}
+    \end{align}
     $$
 
 ## Ratio of Probabilities
@@ -361,14 +361,14 @@ where
     We have the following ratios of probabilities:
 
     $$
-    \begin{aligned}
+    \begin{align}
     \frac{P(\text{I}|\text{pos})}{P(\text{I}|\text{neg})} &= \frac{0.2}{0.2} = 1.0 \\
     \frac{P(\text{am}|\text{pos})}{P(\text{am}|\text{neg})} &= \frac{0.15}{0.15} = 1.0 \\
     \frac{P(\text{happy}|\text{pos})}{P(\text{happy}|\text{neg})} &= \frac{0.15}{0.05} = 3.0 \\
     \frac{P(\text{because}|\text{pos})}{P(\text{because}|\text{neg})} &= \frac{0.1}{0.1} = 1.0 \\
     \frac{P(\text{I}|\text{pos})}{P(\text{I}|\text{neg})} &= \frac{0.2}{0.2} = 1.0 \\
     \frac{P(\text{love}|\text{pos})}{P(\text{love}|\text{neg})} &= \frac{0.1}{0.05} = 2.0 \\
-    \end{aligned}
+    \end{align}
     $$
 
     Note that the words "ice" and "cream" are not in the vocabulary, so we ignore them.
@@ -376,11 +376,11 @@ where
     Given these ratios, we can calculate the likelihood of the tweet being positive as follows:
 
     $$
-    \begin{aligned}
+    \begin{align}
     P(\text{pos}|\text{tweet}) &= \prod_{i=1}^{m} \frac{P(w_i|pos)}{P(w_i|neg)} \\
     &= 1.0 \times 1.0 \times 3.0 \times 1.0 \times 1.0 \times 2.0 \\
     &= 6.0
-    \end{aligned}
+    \end{align}
     $$
 
 ## Prior
@@ -459,6 +459,16 @@ This can have several consequences, and numbers can become so **small** that com
 This is called **numerical underflow**.
 
 To avoid this, we can use the logarithm instead.
+
+!!! warning "Numerical Underflow"
+
+    Numerical underflow occurs when the result of a calculation is too small to be represented by the computer.
+
+    This can happen when multiplying many small numbers, because the result gets smaller and smaller with each multiplication.
+
+    The computer can only represent numbers up to a certain precision, so at some point the result will be rounded to zero.
+
+    This is a problem and can lead to errors, as we lose information about the probabilities.
 
 !!! tip
 
@@ -558,14 +568,14 @@ Words that **do not appear** in the vocabulary are **ignored**. They are conside
     We have the following **ratios of probabilities**:
 
     $$
-    \begin{aligned}
+    \begin{align}
     \log \frac{P(\text{I}|\text{pos})}{P(\text{I}|\text{neg})} &= \log \frac{0.2}{0.2} = \log 1.0 = 0.0 \\
     \log \frac{P(\text{am}|\text{pos})}{P(\text{am}|\text{neg})} &= \log \frac{0.15}{0.15} = \log 1.0 = 0.0 \\
     \log \frac{P(\text{happy}|\text{pos})}{P(\text{happy}|\text{neg})} &= \log \frac{0.15}{0.05} = \log 3.0 = 1.0986 \\
     \log \frac{P(\text{because}|\text{pos})}{P(\text{because}|\text{neg})} &= \log \frac{0.1}{0.1} = \log 1.0 = 0.0 \\
     \log \frac{P(\text{I}|\text{pos})}{P(\text{I}|\text{neg})} &= \log \frac{0.2}{0.2} = \log 1.0 = 0.0 \\
     \log \frac{P(\text{love}|\text{pos})}{P(\text{love}|\text{neg})} &= \log \frac{0.1}{0.05} = \log 2.0 = 0.6931 \\
-    \end{aligned}
+    \end{align}
     $$
 
     Note that the words "ice" and "cream" are not in the vocabulary, so we ignore them.
@@ -573,11 +583,11 @@ Words that **do not appear** in the vocabulary are **ignored**. They are conside
     Given these ratios, and considering the **log prior**, we can calculate the **log likelihood** of the tweet being positive as follows:
 
     $$
-    \begin{aligned}
+    \begin{align}
     \log \frac{P(pos)}{P(neg)} + \sum_{i=1}^{m} \log \frac{P(w_i|pos)}{P(w_i|neg)} &= 0.0 + 0.0 + 0.0 + 1.0986 + 0.0 + 0.0 + 0.6931\\
     &= 1.0986 + 0.6931 \\
     &= 1.7917
-    \end{aligned}
+    \end{align}
     $$
 
     Since $1.7917 > 0$, the tweet is classified as **positive**.
