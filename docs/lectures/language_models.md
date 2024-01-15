@@ -112,17 +112,18 @@ The **order** is important. Only words that appear next to each other in the tex
 
     Given the example above, the words "I" and "eat" do not form a bigram ❌
 
-Words that appear next to each other frequently are called **collocations**. An N-gram language model can learn and leverage these collocations to improve its predictive accuracy and generate more coherent and contextually relevant language. They play a key role in understanding the nuances of a language.
+!!! info "Collocations"
 
-!!! example
+    Words that appear next to each other frequently are called **collocations**.
 
-    Given the example above, the words "I want" and "want to" are collocations, because they appear next to each other frequently ✅
+    An N-gram language model can learn and leverage these collocations to improve its predictive accuracy and generate more coherent and contextually relevant language. They play a key role in understanding the nuances of a language.
 
-    Other common collocations are:
+    Here are some examples:
 
     - "ice cream" 🍦
     - "machine learning" 🤖
     - "New York" 🗽
+    - "want to"
 
 ## N-gram Probabilities
 
@@ -231,7 +232,7 @@ The formula states that the conditional probability of the third word given the 
 
     The probability of the trigram $w_{i-2},w_{i-1},w_i$ is the probability of the word $w_i$ given the bigram $w_{i-2},w_{i-1}$ has already occurred.
 
-    We can also say it is the conditional probabity of the third word, given that the previous two words have already occurred.
+    We can also say it is the _conditional probabity_ of the third word, given that the previous two words have already occurred.
 
 !!! example
 
@@ -994,7 +995,7 @@ $$
     The probability of the sentence "John drinks chocolate" cannot be directly estimated:
 
     $$
-    P(\text{chocholate} | \text{drinks John}) = ?
+    P(\text{chocholate} | \text{John drinks}) = ?
     $$
 
     However, we can use the bigram probability of $P(\text{chocholate} | \text{drinks})$ to estimate the probability of the sentence.
@@ -1002,7 +1003,7 @@ $$
     Using **stupid backoff**, we can estimate the probability as follows:
 
     $$
-    P(\text{chocholate} | \text{drinks John}) = 0.4 \cdot P(\text{chocholate} | \text{drinks})
+    P(\text{chocholate} | \text{John drinks}) = 0.4 \cdot P(\text{chocholate} | \text{drinks})
     $$
 
 ### Interpolation
