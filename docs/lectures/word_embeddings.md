@@ -75,7 +75,7 @@ The [corpus](./language_models.md#text-corpus) are words in their context of int
 
 After **preprocessing**, we should have the words represented as **vectors**. Typically, we use one-hot encoding for this.
 
-Those one-hot encoded vectors are then fed into the word **embeddings method**. This is usually a machine learning model, that performs a learning task on the corpus, for example, predicting the next word in a sentence, or predicting the center word in a context window.
+Those one-hot encoded vectors are then fed into the word **embeddings method**. This is usually a machine learning model, that performs a **learning task** on the corpus, for example, predicting the next word in a sentence, or predicting the center word in a context window.
 
 The dimension of the word embeddings is one of the **hyperparameters** of the model which needs to be determined. In practice, it typically ranges from a few hundred to a few thousand dimensions.
 
@@ -95,7 +95,7 @@ The dimension of the word embeddings is one of the **hyperparameters** of the mo
 
 ## Continuous Bag of Words (CBOW)
 
-For the Continuous Bag-of-Words (CBOW) model, the learning task is to **predict the center word** for a given context $C$.
+For the Continuous Bag-of-Words (CBOW) model, the learning task is to **predict the center word** based on its context $C$.
 
 The **rationale** of the CBOW model is, that if two words are surrounded by a similar sets of words when used in various sentences, then those two words tend to be **related in their meaning**.
 
@@ -192,11 +192,17 @@ With this approach, we can generate training data for the CBOW model.
 
 ## Architecure of CBOW Model
 
-The following figure shows the architecture of the CBOW model.
+The **architecture** of CBOW is a neural network model with a single hidden layer. The input layer corresponds to the context words, and the output layer corresponds to the target word.
+
+!!! note "Shallow Dense Neural Network"
+
+    From an architectural point of view, we speak of a **shallow dense neural network**, because it has only one hidden layer and all neurons are connected to each other.
+
+The **learning objective** is to minimize the prediction error between the predicted target word and the actual target word. The hidden layer weights of the neural network are adjusted to achieve this task.
 
 ![CBOW Architecture](../img/word-embeddings-cbow-architecture.drawio.svg)
 
-First, let's clarify the notation:
+Let's clarify the notation:
 
 - $V$ is the vocabulary size
 - $N$ is the number of dimensions of the word embeddings
@@ -211,27 +217,17 @@ Now, let's look at the architecture in more detail:
   - $\mathbf{W_1}$ is the weight matrix for the input layer and is of size $N \times V$.
   - $\mathbf{W_2}$ is the weight matrix for the output layer and is of size $V \times N$.
 
-TODO PK: explicitly state that the word embeddings come from the hidden layer!
-
-!!! note "Shallow Dense Neural Network"
-
-    This architecture is called a **shallow dense neural network**, because it has only one hidden layer and all neurons are connected to each other.
-
 To compute the next layer $\mathbf{Z}$, we multiply the weight matrix with the previous layer:
 
 $$
 \mathbf{Z} = \mathbf{W} \cdot \mathbf{X}
 $$
 
-!!! info "Activation Functions"
+!!! quote "Word Embeddings"
 
-    You would also need to apply an [activation function](https://en.wikipedia.org/wiki/Activation_function) on $\mathbf{Z}$ but we will not cover this in this lecture. What is important is to understand how the dimensions of the matrices are related.
+    The weights of the hidden layer, after training, serve as the **word embeddings**. These weights are essentially the vector representations of words in the continuous vector space.
 
-    The purpose of the activation function is to introduce non-linearity into the network, allowing it to learn from complex patterns and relationships in the data.
-
-    Without activation functions (or with only linear activation functions), a neural network would behave like a linear model, regardless of its depth. This is because a composition of linear functions is still a linear function. Introducing non-linear activation functions enables the neural network to model and learn more complex mappings between inputs and outputs.
-
-    Two popular activation functions are the [sigmoid function](https://en.wikipedia.org/wiki/Sigmoid_function) and the [ReLU function](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)).
+    The key insight is that the hidden layer learns to encode semantic relationships between words based on the co-occurrence patterns observed during training.
 
 !!! example
 
@@ -242,6 +238,20 @@ $$
     - Input layer: $V = 8000$
     - Hidden layer: $N = 400$
     - Output layer: $V = 8000$
+
+!!! note
+
+    In this lecture, we don't want to go into the details of the neural network architecture. However, it is important that you understand the **dimensions of the matrices** and how they are related.
+
+!!! info "Activation Functions"
+
+    You would also need to apply an [activation function](https://en.wikipedia.org/wiki/Activation_function) on $\mathbf{Z}$ but we will not cover this in this lecture. What is important is to understand how the dimensions of the matrices are related.
+
+    The purpose of the activation function is to introduce non-linearity into the network, allowing it to learn from complex patterns and relationships in the data.
+
+    Without activation functions (or with only linear activation functions), a neural network would behave like a linear model, regardless of its depth. This is because a composition of linear functions is still a linear function. Introducing non-linear activation functions enables the neural network to model and learn more complex mappings between inputs and outputs.
+
+    Two popular activation functions are the [sigmoid function](https://en.wikipedia.org/wiki/Sigmoid_function) and the [ReLU function](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)).
 
 !!! info "Matrix Multiplication"
 
@@ -263,9 +273,11 @@ $$
 
 !!! info "Loss Function"
 
-    TODO PK
+    In CBOW, the **loss function** is typically the [cross entropy](https://en.wikipedia.org/wiki/Cross_entropy) loss function.
 
-    - Loss function: cross entropy
+    The cross entropy loss function is a measure of how well the **predicted probability distribution** of the target word matches the **actual probability distribution** of the target word.
+
+    The goal during training is to minimize this cross-entropy loss, and the **backpropagation** algorithm is used to adjust the model's parameters (weights) accordingly.
 
 ## Evaluation of Word Embeddings
 
