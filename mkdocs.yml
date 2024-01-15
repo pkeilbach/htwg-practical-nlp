@@ -62,10 +62,12 @@ nav:
       - lectures/vector_space_models.md
       - lectures/minimum_edit_distance.md
       - lectures/language_models.md
+      - lectures/word_embeddings.md
   - Assignments: assignments.md
   - Presentations:
       - presentations/presentations.md
       - Articles:
           - Article Template: presentations/articles/template.md
           - Open Source LLMs: presentations/articles/OS_LLMs_Robert.md
+          - Hugging Face: presentations/articles/hugging_face.md
   - FAQ: faq.md
