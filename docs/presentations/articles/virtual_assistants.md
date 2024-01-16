@@ -11,7 +11,7 @@ Virtual assistants like Siri, Alexa, and Google Assistant rely on Natural Langua
 
 This articel will feature the underlying technology, how virtual assistants work, and how we as developers can use them.
 
-## Underlying Technologies - (rename, can be multiple)
+## Underlying Technologies
 
 1. Speech Recognition
 2. NLP
