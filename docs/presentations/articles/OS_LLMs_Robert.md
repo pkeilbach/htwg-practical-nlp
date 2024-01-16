@@ -1,6 +1,6 @@
 # Open-Source LLMs
 
-#### An Overview of Open Source LLMs: What Open Source Alternatives Exist to OpenAI's GPT-3.5 and How Can I Utilize Them?
+This article gives an overview of Open Source LLMs: what Open Source alternatives exist to OpenAI's GPT-3.5 and how can we utilize them?
 
 Autor: Karoly Robert Hegyi
 Datum: 21.12.2023
