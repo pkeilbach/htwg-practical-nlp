@@ -65,4 +65,5 @@ nav:
       - presentations/presentations.md
       - Articles:
           - Article Template: presentations/articles/template.md
+          - Virtual Assistants: presentations/articles/virtual_assistants.md
   - FAQ: faq.md
