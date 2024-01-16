@@ -1,10 +1,10 @@
 # Vector Space Models
 
-Vector space models are a way of representing the meaning of words in a document. They are a fundamental concept in NLP, and are used in many applications such as document classification, information retrieval, and question answering.
+Vector space models are a way of representing the meaning of words in a document. They are a **fundamental concept in NLP**, and are used in many applications such as document classification, information retrieval, and question answering.
 
 ## Introduction
 
-Using vector space models, we can capture similarities, differences, dependencies or many other relationships between words.
+Using vector space models, we can capture **similarities, differences, dependencies** or many other **relationships** between words.
 
 !!! example
 
@@ -66,9 +66,9 @@ The **co-occurrence matrix** is a matrix that counts the number of times that a 
 
 From the co-occurrence matrix, we can extract the word vectors.
 
-The vector representation of a word is called a **word embedding**.
+The **vector representation** of a word is called a **word embedding**.
 
-We can use those word embeddings to find relationships between words.
+We can use those word embeddings to find **relationships** between words.
 
 In the following, we will look at two different approaches to create word embeddings.
 
@@ -89,27 +89,30 @@ In the word by word design, the **co-occurrence matrix** counts the number of ti
 
     > I like simple data
 
-    > I prefer simple and raw data
+    > I prefer simple raw data
 
     With a window size of $k=2$, the co-occurrence matrix would look as follows:
 
-    |   | I | like | prefer | simple | and | raw | data |
-    | - | - | ---- | ------ | ------ | --- | --- | ---- |
-    | I | 0 | 1    | 1      | 2      | 1   | 1   | 1    |
-    | like | 1 | 0    | 0      | 1      | 0   | 0   | 1    |
-    | prefer | 1 | 0    | 0      | 1      | 0   | 0   | 1    |
-    | simple | 2 | 1    | 1      | 0      | 1   | 1   | 2    |
-    | and | 1 | 0    | 0      | 1      | 0   | 0   | 1    |
-    | raw | 1 | 0    | 0      | 1      | 0   | 0   | 1    |
-    | data | 1 | 1    | 1      | 2      | 1   | 1   | 0    |
+    |   | I | like | prefer | simple | raw | data |
+    | - | - | ---- | ------ | ------ | --- | ---- |
+    | I | 0 | 1    | 1      | 2      | 0   | 0    |
+    | like | 1 | 0    | 0      | 1      | 0   | 1    |
+    | prefer | 1 | 0    | 0      | 1      | 1   | 0    |
+    | simple | 2 | 1    | 1      | 0      | 1   | 2    |
+    | raw | 0 | 0    | 1      | 1      | 0   | 1    |
+    | data | 0 | 1    | 0      | 2      | 1   | 0    |
 
     If we look more closely at the word **data**, we can see that it appears in the context of the word **simple** twice, and in the context of the word **and** once, given a window size of $k=2$.
 
     So the word **data** can be represented as the following vector:
 
-    $$x_{data} = [1, 1, 1, 2, 1, 1, 0]$$
+    $$x_{data} = [0, 1, 0, 2, 1, 0]$$
 
     Note that the vector is of size $n$, where $n$ is the number of unique words in the vocabulary.
+
+!!! note
+
+    The co-occurance matrix, as shown here, shows the **unigram** counts. Later in the course, we will also look at **bigram** counts, or **n-gram** counts in general, which allow us to capture more context. This concept is the basis for **language models**.
 
 ## Word by Document Design
 
@@ -148,9 +151,9 @@ We could visualize those vectors in a vector space as follows:
 
 !!! note
 
-    For the sake of drawing, instead of the word vectors, the figure shows the vectors of the categories.
+    For the sake of drawing, instead of using the categories as the axis and showing the word vectors, the figure shows the vectors of the categories.
 
-    However, we should see similar results if we would draw the word vectors in a three-dimensional vector space.
+    However, we should see similar results if we would draw the word vectors in a three-dimensional vector space, using the categories as the axes (as you should usually do).
 
 ## Eucledian Distance
 
@@ -203,7 +206,7 @@ Using the Euclidean distance, we can calculate **how close** two vectors are and
     \end{align}
     $$
 
-As you can see from the formula, this generalizes to **any number of dimensions**.
+As you can see from the formula above, this generalizes to **any number of dimensions**.
 
 !!! example
 
@@ -435,7 +438,7 @@ Usually, we do not end up exactly at the capital, so we need to utilize **simila
 
 As we learned, we could use the Euclidean distance or the cosine similarity to achieve this.
 
-In the end, we can leverage known relationships between words to find unknown relationships and make predictions.
+In the end, we can **leverage known relationship**s between words to find unknown relationships and make predictions.
 
 !!! example
 
@@ -472,7 +475,7 @@ In the end, we can leverage known relationships between words to find unknown re
 
     Now we can use the Euclidean distance or the cosine similarity to find the capital that is closest to the vector $\mathbf{v}_{\text{dest}}$.
 
-    Looking at the figure, the capital that is closest to the vector $\mathbf{v}_{\text{dest}}$ is **Washington DC** with $\mathbf{v}_{\text{Washington DC}} = [9, 3]$.
+    Looking at the figure, the capital that is **closest** to the vector $\mathbf{v}_{\text{dest}}$ is **Washington DC** with $\mathbf{v}_{\text{Washington DC}} = [9, 3]$.
 
 Having words represented in a vector space allows us to capture relative meaning of words and find patterns in text. This is the **basis** for many advanced NLP tasks.
 

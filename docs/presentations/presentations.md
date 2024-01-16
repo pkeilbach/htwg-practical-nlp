@@ -35,26 +35,80 @@ Besides that, there are no strict rules about the presentation format. You can u
 
 In addition to the verbal presentation, the student should submit a **blog-like article** about the topic based on this [Markdown template](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/docs/presentations/articles/template.md). 📝
 
+!!! info "Markdown"
+
+    If you are not familiar with Markdown, you can find a quick guide [here](https://guides.github.com/features/mastering-markdown/), or check out the official [Markdown specification](https://daringfireball.net/projects/markdown/syntax).
+
 Keep the article short and crisp. There are no hard rules, but maybe a **reading time** of not more than **10 minutes** is a good approximation. ⏳
 
-The article should be written in **English** and should be **self-contained**. :gb:
+The article should be written in **English**. :gb:
 
 You have the following options to **submit the article**: 📬
 
-1.  **Via pull request to the Github repository (preferred) 🤓**
+### Submission via Pull Request
 
-    Please add your article to the `docs/presentations/articles/` folder and name it `<your topic>.md`.
+This is the preferred way to submit the article. 🤓
 
-    Then create a pull request to the `main` branch of the repository.
+1.  **Add your aricle to the repository**
 
-    ```sh
-    git checkout -b presentation-<your topic>
-    git add docs/presentations/articles/<your topic>.md
-    git commit -m "Add blog article for <your topic>"
-    git push -u origin presentation-<your topic>
+    Please add your article to the `docs/presentations/articles/` folder and name it `your_topic.md`. Please use [snake case](https://en.wikipedia.org/wiki/Snake_case) for the file name.
+
+    !!! info "Assets"
+
+        If you want to use images in your article, please try to include them from public sources like Wikipedia or Wikimedia Commons. Please make sure to include the link in a separate reference section to avoid licensing issues.
+
+        In Markdown, you can include images like this:
+
+        ```md
+        ![alt text](https://example.com/image.png)
+        ```
+
+        In case you need to include images or other assets as files (e.g. a diagram you created by yourself), please add them to the `docs/presentations/articles/assets/` folder.
+
+        Please use [kebab case](https://en.wikipedia.org/wiki/Kebab_case) for the asset file names, and prefix them with the topic name, e.g. `your-topic-image.png`.
+
+        From your markdown file, you can then reference the assets like this:
+
+        ```md
+        <!-- the relative link is important -->
+        ![alt text](./assets/your-topic-image.png)
+        ```
+
+2.  **Include the article in the `mkdocs.yml` file**
+
+    You need to add the article to the `mkdocs.yml` file so that it is included in the generated website. Please append it to the `Articles` section like this:
+
+    ```yaml
+    nav:
+      - Presentations:
+          - presentations/presentations.md
+          - Articles:
+              - Article Template: presentations/articles/template.md
+              - <your topic>: presentations/articles/your_topic.md
     ```
 
-    Through [GitHub](https://github.com/pkeilbach/htwg-practical-nlp/pulls), you can then create a pull request to the `main` branch.
+3.  **Push your changes to the remote repository**
+
+    After you have added the article to the repository, you need to push your changes to the remote repository.
+
+    ```sh
+    git checkout -b presentation-your-topic
+    git add docs/presentations/articles/
+    git commit -m "Add blog article for <your topic>"
+    git push -u origin presentation-your-topic
+    ```
+
+    !!! warning
+
+        Please make sure to only add your article and related assets to the commit.
+
+4.  **Create a pull request to the `main` branch**
+
+    Finally, create a [pull request](https://github.com/pkeilbach/htwg-practical-nlp/pulls) to the `main` branch of the repository.
+
+    !!! tip "Shortcut 💫"
+
+        Usually, after pushing your branch to the remote repository, GitHub will already **suggest** you to create a pull request via a "Compare & pull request" banner.
 
     Please add the `presentation topic` label to your pull request, and add me as a reviewer.
 
@@ -65,18 +119,17 @@ You have the following options to **submit the article**: 📬
 
         You can find a quick guide [here](https://guides.github.com/activities/hello-world/), and learn more about pull requests [here](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) and [here](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
 
-    !!! tip "Shortcut 💫"
-
-        Usually, after pushing your branch to the remote repository, GitHub will already **suggest** you to create a pull request via a "Compare & pull request" banner.
-
     !!! warning "Publishing 📣"
 
         If you submit via pull request, you implicitly agree to publish the article on the course website. However, feel free to remove the author information if you don't want to be named.
 
-2.  **Via email to the lecturer 📧**
+### Submission via Email
 
-    You can just send me the markdown file via [email](mailto:pascal.keilbach@htwg-konstanz.de).
-    Please let me know if it is OK to publish the article on the course website.
+Alternatively, you can just send me the markdown file via [email](mailto:pascal.keilbach@htwg-konstanz.de).
+
+If you choose this way, please let me know if it is OK to publish the article on the course website.
+
+If you include any assets, like images, please attach them to your email.
 
 !!! info "Submission Deadline 📅"
 

@@ -71,15 +71,15 @@ The following steps are performed when a user interacts with a voice assistant:
 
 ### Siri
 
-![Hey Siri](../images/Hey_Siri.png "Siri")
+![Hey Siri](./assets/hey-siri.png "Siri")
 
 ### Alexa
 
-![Alexa](../images/Alexa.png "Alexa")
+![Alexa](./assets/alexa.png "Alexa")
 
 ### Google Assistant
 
-![Google Assistant](../images/GoogleAssistant.png "Google Assistant")
+![Google Assistant](./assets/google-assistant.png "Google Assistant")
 
 ## Developer Interaction
 

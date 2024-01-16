@@ -60,10 +60,14 @@ nav:
       - lectures/logistic_regression.md
       - lectures/naive_bayes.md
       - lectures/vector_space_models.md
+      - lectures/minimum_edit_distance.md
+      - lectures/language_models.md
+      - lectures/word_embeddings.md
   - Assignments: assignments.md
   - Presentations:
       - presentations/presentations.md
       - Articles:
           - Article Template: presentations/articles/template.md
           - Virtual Assistants: presentations/articles/virtual_assistants.md
+          - Hugging Face: presentations/articles/hugging_face.md
   - FAQ: faq.md
