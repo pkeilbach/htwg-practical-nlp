@@ -43,7 +43,7 @@ Open-source LLMs not only enable free usage but also impress with transparency b
 
 These language models can be trained for various use cases, with larger models aiming for a balanced mixture of these individual aspects.
 
-## 1) BLOOM
+## BLOOM
 
 <div style="text-align:center">
   <img src="https://assets.website-files.com/6139f3cdcbbff3a68486761d/62cce3c835539c54f31329b1_image1.png" alt="Alt text" width="500"/>
