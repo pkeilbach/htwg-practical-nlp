@@ -21,8 +21,9 @@ They are distinguished into:
 
 Various licenses exist for open-source software, with the majority adhering to the Apache 2.0 standard.
 
-!!! info Apache 2.0
-Allows users to use, distribute, modify, and distribute modified versions of the software for any purpose under the terms of the license, without worrying about license fees.
+!!! info "Apache 2.0"
+
+    Allows users to use, distribute, modify, and distribute modified versions of the software for any purpose under the terms of the license, without worrying about license fees.
 
 ## Advantages of OS-LLMs
 
