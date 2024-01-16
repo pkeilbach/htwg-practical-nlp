@@ -1,4 +1,4 @@
-<span style="color:red; font-size: 40px; font-weight: bold;">Open-Source LLMs</span>
+# Open-Source LLMs
 
 #### An Overview of Open Source LLMs: What Open Source Alternatives Exist to OpenAI's GPT-3.5 and How Can I Utilize Them?
 
