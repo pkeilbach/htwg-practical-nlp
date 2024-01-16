@@ -1,6 +1,5 @@
 # Virtual Assistants
 
-<!-- feel free to add a profile link, remove the link, or remove the author information completely -->
 
 _Author: [Marco Mollo](mailto:ma161mol@htwg-konstanz.de)_
 
