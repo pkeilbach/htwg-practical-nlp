@@ -70,4 +70,5 @@ nav:
           - Article Template: presentations/articles/template.md
           - Open Source LLMs: presentations/articles/OS_LLMs_Robert.md
           - Hugging Face: presentations/articles/hugging_face.md
+          - Open Source LLMs: presentations/articles/OS_LLMs_Robert.md
   - FAQ: faq.md
