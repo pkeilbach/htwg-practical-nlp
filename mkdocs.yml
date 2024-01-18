@@ -71,4 +71,5 @@ nav:
           - Article Template: presentations/articles/template.md
           - Virtual Assistants: presentations/articles/virtual_assistants.md
           - Hugging Face: presentations/articles/hugging_face.md
+          - Open Source LLMs: presentations/articles/open_source_llms.md
   - FAQ: faq.md
