@@ -173,27 +173,28 @@ Through the web application <https://www.llama2.ai>, hosted by Replicate, you ca
 
 ### Method 2 - Via API
 
-1.  Sign in to replicate.com with GitHub.
-2.  Click on your name -> API Tokens -> Copy API Token.
+Alternatively, you can use the API to interact with the model. This is particularly useful if you want to integrate the model into your own application.
+
+1.  Sign in to replicate.com with GitHub. Click on your name -> API Tokens -> Copy API Token.
 
     ![Replicate API](./assets/os-llms-replicate-api.png)
 
-3.  Open VSCode or another IDE.
+2.  Open VSCode or another IDE.
 
-4.  Install Replicate
+3.  Install Replicate
 
     ```bash
     pip install replicate
     ```
 
-5.  Set Replicate API Token
+4.  Set Replicate API Token
 
     ```bash
     import os
     os.environ["REPLICATE_API_TOKEN"]= "r8_ePatc**********"
     ```
 
-6.  Run the LLaMA 2 Model
+5.  Run the LLaMA 2 Model
 
     ```python
     import replicate
@@ -214,7 +215,7 @@ Through the web application <https://www.llama2.ai>, hosted by Replicate, you ca
     )
     ```
 
-7.  Create full output:
+6.  Create full output:
 
     ```python
     full_output = ""
@@ -225,13 +226,17 @@ Through the web application <https://www.llama2.ai>, hosted by Replicate, you ca
     print(full_output)
     ```
 
-8.  If you want to create a small UI so you can interact with your model, you can use Gradio.
+### Optional: GUI with Gradio
+
+If you want to create a small UI so you can interact with your model, you can use Gradio.
+
+1.  Install Gradio
 
     ```bash
     pip install gradio
     ```
 
-9.  Generate function:
+2.  Generate function:
 
     ```python
     def generate(prompt):
@@ -255,7 +260,7 @@ Through the web application <https://www.llama2.ai>, hosted by Replicate, you ca
         return full_output
     ```
 
-10. Launch Gradio
+3.  Launch Gradio
 
     ```python
     import gradio as gr
