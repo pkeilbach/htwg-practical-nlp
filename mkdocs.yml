@@ -63,6 +63,7 @@ nav:
       - lectures/minimum_edit_distance.md
       - lectures/language_models.md
       - lectures/word_embeddings.md
+      - lectures/sequence_models.md
   - Assignments: assignments.md
   - Presentations:
       - presentations/presentations.md
