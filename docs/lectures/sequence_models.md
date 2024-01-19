@@ -40,7 +40,7 @@ RNNs **propagate information** from the beginning of a sequence through to the e
 
 We can see this process illustrated in the following figure:
 
-![Illustration of a Recurrent Neural Network](https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/wJtPFB_DQXabTxQfw-F2vw_f9dd1fba8fad4f60a7bbab6df1ab22f6_Screen-Shot-2021-04-05-at-11.36.14-AM.png?expiry=1705622400000&hmac=6TCbHU6naKmy5w_fxwGN5sXiMnzcP8ja_KRYffR70AU)
+![Illustration of a Recurrent Neural Network](../img/sequence-models-rnn.png)
 
 Here is a summary of the steps:
 
@@ -128,7 +128,7 @@ Note that the computations of the forward and backward RNNs are independent of e
     1. Get the hidden state for the current layer (propagate information through time). ➡️
     2. Use the hidden state of the current layer as input for the next layer (propagate information through layers). ⬆️
 
-    ![Illustration of a deep RNN](https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/TX8kndTKTSC_JJ3Uyv0gJA_12fb3fe51ea04583a2af4ebc7adbbbe0_Screen-Shot-2021-04-05-at-2.18.01-PM.png?expiry=1705622400000&hmac=WBKrhPgrucDbnUPzG7b9snM3jIFjpjylfLNCxQqU7lA)
+    ![Illustration of a deep RNN](../img/sequence-models-deep-rnn.png)
 
 ## Vanishing Gradient Problem
 
@@ -136,7 +136,7 @@ While RNNs are very powerful, they have a major limitation: the **vanishing grad
 
 Here is an illustration:
 
-![Illustration of the vanishing gradient problem](https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/s628EX6UTWOtvBF-lN1jnQ_784604c3e3964ed3933b9be9bf1e7b9c_Screen-Shot-2021-04-08-at-11.41.24-AM.png?expiry=1705622400000&hmac=04gYR-0QvOB4zNaJu1bLt4k115uxVLaVGCpHhkN2jCM)
+![Illustration of the vanishing gradient problem](../img/sequence-models-vanishing-gradient.png)
 
 The problem can be summarized as follows:
 

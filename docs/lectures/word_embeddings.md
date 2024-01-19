@@ -8,9 +8,8 @@ In the lecture about feature extraction, we have seen that we can represent word
 
 One-hot encoding is a very simple way to represent words as vectors, but it has some major **disadvantages**:
 
-- the resulting vectors are very **high dimensional**, i.e. one dimension for each word in the vocabulary: $n_{\text{dim}} = |V|$
-
-- it does not capture **meaning**, i.e. all words have the same distance to each other:
+- ❌ the resulting vectors are very **high dimensional**, i.e. one dimension for each word in the vocabulary: $n_{\text{dim}} = |V|$
+- ❌ it does not capture **meaning**, i.e. all words have the same distance to each other:
 
   ![One-Hot Encoding](../img/word-embeddings-one-hot-encoding-distance.png)
 
@@ -31,13 +30,13 @@ In the real world, word embeddings are usually much higher dimensional, e.g. 100
 
 Each dimension represents a different aspect of the word. We do not know what exactly each dimension represents, but we know that similar words are close to each other in the vector space.
 
-Word embeddings have the following advantages:
+Word embeddings have the following **advantages**:
 
-- they are dense, i.e. they do not contain many zeros
-- they are low dimensional, i.e. they do not require much memory
-- they allow us to encide meaning
-- they capture semantic and syntactic information
-- they are computationally efficient
+- ✅ they are dense, i.e. they do not contain many zeros
+- ✅ they are low dimensional, i.e. they do not require much memory
+- ✅ they allow us to encide meaning
+- ✅ they capture semantic and syntactic information
+- ✅ they are computationally efficient
 
 !!! note
 
