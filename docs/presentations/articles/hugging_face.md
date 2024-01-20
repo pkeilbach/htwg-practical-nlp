@@ -6,7 +6,7 @@ _Author: [Luis Nothvogel](mailto:luis.nothvogel@htwg-konstanz.de)_
   
 Hugging Face has emerged as a pivotal player in the AI and machine learning arena, specializing in natural language processing (NLP). This article delves into its core offerings, including model hosting, spaces, datasets, pricing, and the Terraformer API. Hugging Face is not only a repository for cutting-edge models but also a platform for collaboration and innovation in AI.  
 
-### Model Hosting on Hugging Face
+## Model Hosting on Hugging Face
 
 Hugging Face has made a name for itself in model hosting. It offers a vast repository of pre-trained models, primarily focused on NLP tasks such as text classification, question answering, and language generation. According to them they host over 350k models. Users can easily download and deploy these models. Moreover, Hugging Face allows users to upload and share their models with the community.
 
@@ -25,11 +25,11 @@ This outputs the following:
 [{'generated_text': 'The student worked on his paper, which you can read about here. You can get an ebook with that part, or an audiobook with some of'}, {'generated_text': 'The student worked on this particular task by making the same basic task in his head again and again, without the help of some external helper, even when'}]
 ```
 
-### Spaces: A Collaborative Environment
+## Spaces: A Collaborative Environment
 
 Spaces are an innovative feature of Hugging Face, offering a collaborative environment where developers can build, showcase, and share machine learning applications. Users can deploy models as web applications, creating interactive demos that are accessible to a broader audience. Spaces support various frameworks like Streamlit and Gradio. According to them they host over 150k spaces.
 
-### Diverse Datasets at Your Disposal
+## Diverse Datasets at Your Disposal
 
 The Hugging Face ecosystem includes a wide range of datasets, catering to different NLP tasks. The Datasets library simplifies the process of loading and processing data, ensuring efficiency and consistency in model training. According to them they host over 75k datasets.
 
@@ -42,7 +42,7 @@ ds = load_dataset("wikimedia/wikipedia", "20231101.en")
 ```
 
 
-### Transformers API: Transform Text Effortlessly
+## Transformers API: Transform Text Effortlessly
 
 The Transformers API is a testament to Hugging Face's innovation. This API simplifies the process of text transformation, making it accessible even to those with limited programming skills. It supports a variety of NLP tasks and can be integrated into various applications.
 
@@ -54,7 +54,7 @@ tokenizer = AutoTokenizer.from_pretrained("gpt2")
 model = AutoModelForCausalLM.from_pretrained("gpt2")
 ```
 
-### Tokenizers
+## Tokenizers
 
 Hugging face tokenisers are an essential component of modern natural language processing. These tokenisers are characterised by their speed and flexibility and support a variety of tokenisation methods such as BPE (Byte-Pair-Encoding), WordPiece or SentencePiece. One of the key features of Hugging Face Tokenisers is their compatibility with different language models such as BERT, GPT and RoBERTa, making them a universal tool in the NLP community. With ongoing innovations and updates, Hugging Face Tokenisers remain at the forefront of NLP technology by providing continuously improved efficiency and accuracy in language processing.
 
@@ -64,7 +64,7 @@ from tokenizers.models import BPE
 tokenizer = Tokenizer(BPE(unk_token="[UNK]"))
 ```
 
-### Inference
+## Inference
 
 Hugging Face Inference plays a crucial role in turning trained language models into productive applications. The platform provides an intuitive and powerful infrastructure for inferencing models, which means that developers can easily access pre-trained models to generate real-time predictions for a wide range of NLP tasks. Thanks to its efficient implementation and support for hardware acceleration technologies, Hugging Face Inference enables the seamless integration of language models into applications ranging from chatbots to machine translation and sentiment analysis.
 
