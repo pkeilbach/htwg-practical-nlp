@@ -72,4 +72,5 @@ nav:
           - Virtual Assistants: presentations/articles/virtual_assistants.md
           - Hugging Face: presentations/articles/hugging_face.md
           - Open Source LLMs: presentations/articles/open_source_llms.md
+          - SpaCy: presentations/articles/spacy.md
   - FAQ: faq.md
