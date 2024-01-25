@@ -369,12 +369,12 @@ This enables the model to effectively capture dependencies between input and out
 
 ## Key Takeaways
 
-- Attention models tackle the shortcomings of sequence models like RNNs by allowing the model to **focus** on specific parts of the input sequence when making predictions or generating output sequences.
+- Attention models address the limitations of sequence models like RNNs by enabling the model to **selectively weigh and focus** on specific parts of the input sequence when making predictions or generating output sequences.
 - Attention **mimics the human ability** to selectively concentrate on relevant information while processing input data.
 - Mathematically, attention is a weighted sum of the values, calculated from **Query (Q) and Key (K) and Value (V)** vectors.
 - A model architecture that uses attention is called a **Transformer**. It is a type of neural network architecture that is used for a wide range of natural language processing tasks, such as machine translation, text summarization, and question answering.
 - The transformer architecture was introduced in the paper ["Attention Is All You Need"](https://arxiv.org/abs/1706.03762) by Vaswani, et al. from 2017 and set new standards in natural language processing.
-- Transformers can be **parallelized**, making them much faster to train than RNNs. But in order to process text in parallel, they must still keep track of the **order of words** in a sentence, which is done by adding **positional encoding** to the input embeddings.
+- Transformers can be **parallelized** because attention does not require sequential processing of words, making them much faster to train than RNNs. However, to process text in parallel, they still need to maintain the **order of words** in a sentence, which is achieved by incorporating **positional encoding** into the input embeddings.
 - **Multi-head attention** is a variant of the attention mechanism that allows the model to capture more complex patterns and relationships between words in the sequence.
 - The transformer model consists of an **encoder** and a **decoder** that are connected through the attention mechanism.
 
