@@ -65,6 +65,7 @@ nav:
       - lectures/word_embeddings.md
       - lectures/sequence_models.md
       - lectures/attention_models.md
+      - lectures/further_reading.md
   - Assignments: assignments.md
   - Presentations:
       - presentations/presentations.md
