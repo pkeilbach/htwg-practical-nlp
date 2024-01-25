@@ -34,7 +34,7 @@ Word embeddings have the following **advantages**:
 
 - ✅ they are dense, i.e. they do not contain many zeros
 - ✅ they are low dimensional, i.e. they do not require much memory
-- ✅ they allow us to encide meaning
+- ✅ they allow us to encode meaning
 - ✅ they capture semantic and syntactic information
 - ✅ they are computationally efficient
 
