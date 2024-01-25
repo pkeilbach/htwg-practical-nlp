@@ -75,13 +75,17 @@ Suppose we have a sequence of words $X = \{x_1, x_2, ..., x_n\}$. Depending on t
 
     - The attention score $e_{ij}$ between a query vector $q_i$ and a key vector $k_j$ is calculated using a function, most commonly the dot product:
 
-      $$e_{ij} = q_i \cdot k_j$$
+    $$
+    e_{ij} = q_i \cdot k_j
+    $$
 
 3.  **Softmax:**
 
     - The scores are passed through a softmax function to get normalized attention weights:
 
-      $$a_{ij} = \frac{e^{e_{ij}}}{\sum_{k=1}^{n} e^{e_{ik}}}$$
+    $$
+    a_{ij} = \frac{e^{e_{ij}}}{\sum_{k=1}^{n} e^{e_{ik}}}
+    $$
 
     - These weights $a_{ij}$ represent the importance of each word $x_j$ with respect to the query word $x_i$.
     - In other words, the softmax function's output includes which keys are closest to the query.
@@ -102,9 +106,22 @@ Suppose we have a sequence of words $X = \{x_1, x_2, ..., x_n\}$. Depending on t
 
     - The final attention vector $A_i$ for a word $x_i$ is the weighted sum of the Value vectors $v_j$ across all words, based on the attention weights:
 
-      $$
-      A_i = \sum_{j=1}^{n} a_{ij} \cdot v_j
-      $$
+    $$
+    A_i = \sum_{j=1}^{n} a_{ij} \cdot v_j
+    $$
+
+When we write the equations above in matrix form, we get the following:
+
+$$
+Attention(Q, K, V) = \text{softmax}(QK^T)V
+$$
+
+Where:
+
+- $Q$ is the matrix of Query vectors.
+- $K$ is the matrix of Key vectors.
+- $V$ is the matrix of Value vectors.
+- $d_k$ is the dimensionality of the Key vectors.
 
 In summary, attention allows the model to **dynamically** focus on different parts of the input sequence. It is a layer of calculations that let the model focus on the most important parts of the sequence for each step.
 
@@ -361,17 +378,14 @@ This enables the model to effectively capture dependencies between input and out
 - **Multi-head attention** is a variant of the attention mechanism that allows the model to capture more complex patterns and relationships between words in the sequence.
 - The transformer model consists of an **encoder** and a **decoder** that are connected through the attention mechanism.
 
-## Further Reading
+!!! note "Further Reading"
 
-Here are some resources that may be interesting for you if you want to dig deeper into the topic.
+    The transformer is a sophisticated architecture and attention is a complex concept. If you want to dig deeper into those topics, here are some resources that may be interesting for you:
 
-- [Attention and Augmented Recurrent Neural Networks](https://distill.pub/2016/augmented-rnns/)
-- [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)
-
-<https://blog.research.google/2017/08/transformer-novel-neural-network.html>
-
-<https://www.coursera.org/learn/attention-models-in-nlp/home/week/2>
-
-<https://learn.microsoft.com/en-us/training/modules/explore-foundation-models-in-model-catalog/4-transformers>
-
-<https://towardsdatascience.com/all-you-need-to-know-about-attention-and-transformers-in-depth-understanding-part-1-552f0b41d021#fb36>
+    - [Attention and Augmented Recurrent Neural Networks](https://distill.pub/2016/augmented-rnns/)
+    - [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)
+    - [The Illustrated GPT-2 (Visualizing Transformer Language Models)](https://jalammar.github.io/illustrated-gpt2/)
+    - [https://jalammar.github.io/how-gpt3-works-visualizations-animations/](https://jalammar.github.io/how-gpt3-works-visualizations-animations/)
+    - [The Annotated Transformer](https://nlp.seas.harvard.edu/2018/04/03/attention.html)
+    - [Microsoft Learn: Understand the transformer architecture used for NLP](https://learn.microsoft.com/en-us/training/modules/explore-foundation-models-in-model-catalog/4-transformers)
+    - [The Transformer Family](https://lilianweng.github.io/lil-log/2020/04/07/the-transformer-family.html)
