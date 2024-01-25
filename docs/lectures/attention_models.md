@@ -233,6 +233,10 @@ We will look at both of these concepts in more detail below.
 
     The BLEU score is a metric for evaluating the **quality of machine translation**. It is based on the precision of the translation, and it measures how many words in the machine translation match the reference translation. The higher the BLEU score, the better the translation.
 
+!!! info "Large Language Models"
+
+    Large language models (LLMs) are essentially a type of transformer model that are trained on large amounts of text data. The GPT models by [OpenAI](https://platform.openai.com/docs/models) are examples of large language models.
+
 ### Multi-Head Attention
 
 Attention mechanisms enable models to focus on different parts of the input sequence when processing each output token, allowing them to capture long-range dependencies effectively. Multi-head attention extends this concept by computing attention from multiple linearly projected "heads" in **parallel**, which are then concatenated and projected again to obtain the final output.
