@@ -74,20 +74,20 @@ class ActionCheckFlightAvailability(Action):
 
 Let's walk through a simple scenario to illustrate how Rasa works:
 
-1. **User Input:** "I want to book a flight from New York to London."
+1.  **User Input:** "I want to book a flight from New York to London."
 
-2. **Rasa NLU Output:**
+2.  **Rasa NLU Output:**
 
-   - Intent: `book_flight`
-   - Entities: `origin=New York`, `destination=London`
+    - Intent: `book_flight`
+    - Entities: `origin=New York`, `destination=London`
 
-3. **Rasa Core Decision:**
+3.  **Rasa Core Decision:**
 
-   - Trigger `book_flight` action
+    - Trigger `book_flight` action
 
-4. **Rasa Action:**
+4.  **Rasa Action:**
 
-   - `action_check_flight_availability` is executed, checking flight availability and responding accordingly.
+- `action_check_flight_availability` is executed, checking flight availability and responding accordingly.
 
 5. **Bot Response:** "Yes, flights are available."
 
