@@ -127,9 +127,9 @@ Upon making a request to the Bing Spell Check API, the response includes valuabl
 - `suggestion`: The suggested word to replace the flagged word with.
 - `token`: The word in the text query string that is not spelled correctly or is grammatically incorrect.
 - `type`: The type of error that caused the word to be flagged. Possible values include:
-  - `RepeatedToken`
+  - `RepeatedToken`: Identifies instances of repeated tokens in the text
   - `UnknownToken`: All other spelling or grammar errors.
-- Score: A value that indicates the level of confidence that the suggested correction is correct.
+- `Score`: A value that indicates the level of confidence that the suggested correction is correct.
 
 ## Key Takeaways
 
