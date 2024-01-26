@@ -76,4 +76,5 @@ nav:
           - Open Source LLMs: presentations/articles/open_source_llms.md
           - SpaCy: presentations/articles/spacy.md
           - Rasa: presentations/articles/rasa.md
+          - Bing Spell Check API: presentations/articles/bing_spell_check_api.md
   - FAQ: faq.md
