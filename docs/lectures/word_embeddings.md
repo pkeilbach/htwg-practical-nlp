@@ -8,9 +8,8 @@ In the lecture about feature extraction, we have seen that we can represent word
 
 One-hot encoding is a very simple way to represent words as vectors, but it has some major **disadvantages**:
 
-- the resulting vectors are very **high dimensional**, i.e. one dimension for each word in the vocabulary: $n_{\text{dim}} = |V|$
-
-- it does not capture **meaning**, i.e. all words have the same distance to each other:
+- ❌ the resulting vectors are very **high dimensional**, i.e. one dimension for each word in the vocabulary: $n_{\text{dim}} = |V|$
+- ❌ it does not capture **meaning**, i.e. all words have the same distance to each other:
 
   ![One-Hot Encoding](../img/word-embeddings-one-hot-encoding-distance.png)
 
@@ -31,13 +30,13 @@ In the real world, word embeddings are usually much higher dimensional, e.g. 100
 
 Each dimension represents a different aspect of the word. We do not know what exactly each dimension represents, but we know that similar words are close to each other in the vector space.
 
-Word embeddings have the following advantages:
+Word embeddings have the following **advantages**:
 
-- they are dense, i.e. they do not contain many zeros
-- they are low dimensional, i.e. they do not require much memory
-- they allow us to encide meaning
-- they capture semantic and syntactic information
-- they are computationally efficient
+- ✅ they are dense, i.e. they do not contain many zeros
+- ✅ they are low dimensional, i.e. they do not require much memory
+- ✅ they allow us to encode meaning
+- ✅ they capture semantic and syntactic information
+- ✅ they are computationally efficient
 
 !!! note
 
@@ -204,6 +203,10 @@ The **learning objective** is to minimize the prediction error between the predi
 
 ![CBOW Architecture](../img/word-embeddings-cbow-architecture.drawio.svg)
 
+!!! tip
+
+    Right-click on the image and select "Open image in new tab" to see a larger version of the image, or use the zoom function of your browser.
+
 Let's clarify the notation:
 
 - $V$ is the vocabulary size
@@ -212,24 +215,38 @@ Let's clarify the notation:
 
 Now, let's look at the architecture in more detail:
 
-- $\mathbf{X}$ is the input matrix of size $V \times m$. This is the matrix of the context vectors, where each column is a context vector. This means the **input layer** has $V$ neurons, one for each word in the vocabulary.
-- $\mathbf{H}$ is the **hidden layer** matrix of size $N \times m$. This is the matrix of the **word embeddings**, where each column is a word embedding. This means the **hidden layer** has $N$ neurons, which is the number of dimensions of the word embeddings.
-- $\mathbf{\hat{Y}}$ is the output matrix of size $V \times m$. This is the matrix of the word vectors of the predicted center words, where each column is a word vector. This mean the **output layer** has $V$ neurons, one for each word in the vocabulary.
-- $\mathbf{W}$ denotes the weight matrices. There are two weight matrices, one for the input layer and one for the output layer.
-  - $\mathbf{W_1}$ is the weight matrix for the input layer and is of size $N \times V$.
-  - $\mathbf{W_2}$ is the weight matrix for the output layer and is of size $V \times N$.
+- $\mathbf{X}$ is the input matrix of size $V \times m$. This is the matrix of the context vectors, where each _column_ is a context vector. This means the **input layer** has $V$ neurons, one for each word in the vocabulary.
+- $\mathbf{H}$ is the **hidden layer** matrix of size $N \times m$. This means the **hidden layer** has $N$ neurons, which is the number of dimensions of the word embeddings.
+- $\mathbf{\hat{Y}}$ is the output matrix of size $V \times m$. This is the matrix of the word vectors of the predicted center words, where each _column_ is a word vector. This mean the **output layer** has $V$ neurons, one for each word in the vocabulary.
+- $\mathbf{Y}$ represent the expected output matrix of size $V \times m$. This is the matrix of the word vectors of the actual center words, where each _column_ is a word vector.
+
+There are **two weight matrices**, one that connects the input layer to the hidden layer, and one that connects the hidden layer to the output layer.
+
+- $\mathbf{W}_1$ is the weight matrix that connects the input layer to the hidden layer and is of size $N \times V$ (aka _weight matrix of the hidden layer_). This is the matrix of the **word embeddings**, where each _column_ represents the word embedding of a word in the vocabulary.
+
+- $\mathbf{W}_2$ is the weight matrix for the output layer and is of size $V \times N$ (aka _weight matrix of the output layer_).
+
+!!! info "Word Embeddings"
+
+    The **weights of the hidden layer** $\mathbf{W}_1$, after training, serve as the **word embeddings**. Each word in the vocabulary is associated with a unique set of weights, and these weights serve as the vector representation or embedding for that word.
+
+    In the case of CBOW, the **input layer** represents the context words, and the **weights** connecting this input layer to the hidden layer capture the **relationships** and **semantics** of the words in the context.
+
+    The **hidden layer** acts as a transformative space where the input (context words) is transformed into the output (center word prediction), and the weights within this layer serve as the learned representations or embeddings for the words.
+
+    The weights connecting the hidden layer to the output layer $\mathbf{W}_2$ are responsible for producing the final prediction based on the learned representations from the embeddings, and thus cannot be considered as the word embeddings.
 
 To compute the next layer $\mathbf{Z}$, we multiply the weight matrix with the previous layer:
 
 $$
-\mathbf{Z} = \mathbf{W} \cdot \mathbf{X}
+\mathbf{Z} = \mathbf{W}_{N \times V} \cdot \mathbf{X}_{V \times m}
 $$
 
-!!! quote "Word Embeddings"
+Since the number of columns in the weight matrix matches the number of rows in the input matrix, we can multiply the two matrices, and the resulting matrix $\mathbf{Z}$ will be of size $N \times m$.
 
-    The weights of the hidden layer, after training, serve as the **word embeddings**. These weights are essentially the vector representations of words in the continuous vector space.
+!!! warning
 
-    The key insight is that the hidden layer learns to encode semantic relationships between words based on the co-occurrence patterns observed during training.
+    When looking at the diagram, you may think it may be the other way around, i.e. $\mathbf{Z} = \mathbf{X} \cdot \mathbf{W}$, but this is **not** the case.
 
 !!! example
 
@@ -243,7 +260,7 @@ $$
 
 !!! note
 
-    In this lecture, we don't want to go into the details of the neural network architecture. However, it is important that you understand the **dimensions of the matrices** and how they are related.
+    In this lecture, we don't want to go into the details of the neural network architecture. However, it is important to know what the matrices represent.
 
 !!! info "Activation Functions"
 
@@ -255,15 +272,13 @@ $$
 
     Two popular activation functions are the [sigmoid function](https://en.wikipedia.org/wiki/Sigmoid_function) and the [ReLU function](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)).
 
-!!! info "Matrix Multiplication"
+!!! note "Matrix Multiplication"
 
-    Note that two multiply two matrices $A$ and $B$, the number of columns of $A$ must be equal to the number of rows of $B$:
+    Two matrices $\mathbf{A}$ and $\mathbf{B}$ can be multiplied if the number of columns of $\mathbf{A}$ is equal to the number of rows of $\mathbf{B}$.
 
     $$
     A_{m \times n} \cdot B_{n \times p} = C_{m \times p}
     $$
-
-    In other words, the number of columns of the first matrix must be equal to the number of rows of the second matrix, and the resulting matrix will have the number of rows of the first matrix and the number of columns of the second matrix.
 
 !!! info "Batch Processing"
 
@@ -271,7 +286,9 @@ $$
 
     The batch size is another **hyperparameter** of the model.
 
-    As we can see from the matrix multiplication, the size of the weight matrices does not depend on the batch size, since the batch size only affects the number of columns of the input matrix.
+    As we can see from the matrix multiplication above, the weight matrices are independent of the batch size, i.e. they are the same for any batch size.
+
+    Batch processing is also important for **parallelization**, i.e. we can process multiple batches in parallel on different processors.
 
 !!! info "Loss Function"
 
