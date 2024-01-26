@@ -12,7 +12,7 @@ _Rasa_ is an open-source conversational AI framework with two main components: R
 
 ## Key Components of Rasa
 
-### 1. Rasa NLU
+### Rasa NLU
 
 Rasa NLU is the natural language understanding component of the framework. It is responsible for extracting intents and entities from user messages. With support for both rule-based and machine learning-based approaches, Rasa NLU allows developers to train models that can understand user input in a contextual manner.
 
@@ -37,7 +37,7 @@ Rasa NLU is the natural language understanding component of the framework. It is
 - Book a flight from [London](origin) to [Paris](destination)
 ```
 
-### 2. Rasa Core
+### Rasa Core
 
 Rasa Core is the dialogue management component that handles the flow of the conversation. It decides how the chatbot should respond to user inputs based on the current context and the predicted intents and entities from Rasa NLU. This allows for dynamic and contextually aware conversations.
 
@@ -53,7 +53,7 @@ Rasa Core is the dialogue management component that handles the flow of the conv
   - utter_goodbye
 ```
 
-### 3. Rasa Actions
+### Rasa Actions
 
 Rasa Actions are custom code snippets that define the behavior of the chatbot. They can perform actions such as calling APIs, querying databases, or any other custom logic required for the conversation. This extensibility makes Rasa suitable for a wide range of applications.
 
@@ -95,15 +95,15 @@ This example showcases how Rasa seamlessly integrates natural language understan
 
 ## Advantages of Rasa
 
-### 1. Open Source and Customizable
+### Open Source and Customizable
 
 Being an open-source framework, Rasa provides developers with the flexibility to customize and extend its functionalities. This is crucial for tailoring conversational agents to specific use cases and industries.
 
-### 2. Contextual Understanding
+### Contextual Understanding
 
 Rasa excels in understanding the context of a conversation, allowing for more natural and meaningful interactions. Its ability to maintain context over multiple turns enables the creation of sophisticated and personalized chatbots.
 
-### 3. Scalability
+### Scalability
 
 Rasa is designed to scale, making it suitable for projects ranging from small prototypes to large-scale enterprise applications. Its modular architecture allows developers to scale different components independently.
 
