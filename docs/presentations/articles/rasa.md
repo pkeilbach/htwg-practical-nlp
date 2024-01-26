@@ -87,9 +87,9 @@ Let's walk through a simple scenario to illustrate how Rasa works:
 
 4.  **Rasa Action:**
 
-- `action_check_flight_availability` is executed, checking flight availability and responding accordingly.
+    - `action_check_flight_availability` is executed, checking flight availability and responding accordingly.
 
-5. **Bot Response:** "Yes, flights are available."
+5.  **Bot Response:** "Yes, flights are available."
 
 This example showcases how Rasa seamlessly integrates natural language understanding with dynamic dialogue management to create a contextually aware conversation.
 
