@@ -64,6 +64,8 @@ nav:
       - lectures/language_models.md
       - lectures/word_embeddings.md
       - lectures/sequence_models.md
+      - lectures/attention_models.md
+      - lectures/further_reading.md
   - Assignments: assignments.md
   - Presentations:
       - presentations/presentations.md
@@ -73,5 +75,6 @@ nav:
           - Hugging Face: presentations/articles/hugging_face.md
           - Open Source LLMs: presentations/articles/open_source_llms.md
           - SpaCy: presentations/articles/spacy.md
+          - Rasa: presentations/articles/rasa.md
           - Bing Spell Check API: presentations/articles/bing_spell_check_api.md
   - FAQ: faq.md

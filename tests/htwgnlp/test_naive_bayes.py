@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from htwgnlp.naive_bayes_private import NaiveBayes
+from htwgnlp.naive_bayes import NaiveBayes
 
 model = NaiveBayes()
 
