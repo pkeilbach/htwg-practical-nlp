@@ -77,4 +77,5 @@ nav:
           - SpaCy: presentations/articles/spacy.md
           - Rasa: presentations/articles/rasa.md
           - Bing Spell Check API: presentations/articles/bing_spell_check_api.md
+          - OpenAI API: presentations/articles/openai_api.md
   - FAQ: faq.md
