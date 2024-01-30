@@ -32,7 +32,7 @@ and managing stored data. Other services like Beats are often integrated for var
 !!! example "Elastic Stack"
     
     Logstash is usually used to ingest data from various sources into Elasticsearch (optionally parsing it beforehand).
-    Beats are Agents, attached to for example Applications to collect logs or other metrics. Kibana utilizes the powerful search engine of Elasticsearch to then visualize the data
+    Beats are Agents, attached to for example Applications to collect logs or other metrics. Kibana utilizes the powerful search engine of Elasticsearch to then visualize the data.
     ![ELK Stack - Data Flow](./assets/elasticsearch-elk-stack-data-flow.png)
 
 ### Licensing Controversies
