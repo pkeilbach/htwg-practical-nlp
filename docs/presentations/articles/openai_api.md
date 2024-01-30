@@ -63,7 +63,7 @@ In essence, the OpenAI API serves as a comprehensive toolkit for developers, off
 4. The API is able to communicate with external APIs to increase the capability of the language model.
 5. Developers have the flexibility to create and fine-tune custom models tailored to specific use cases, ensuring that AI solutions meet the unique requirements of individual applications.
 
-# References:
+## References
 
 1. OpenAI, OpenAI API Intorduction [Link](https://platform.openai.com/docs/introduction)
 2. Sutskever, I., Vinyals, O., & Le, Q. V. (2014). Sequence to Sequence Learning with Neural Networks. In Advances in Neural Information Processing Systems (pp. 3104-3112).
