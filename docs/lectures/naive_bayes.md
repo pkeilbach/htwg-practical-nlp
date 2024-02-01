@@ -293,7 +293,7 @@ We end up with the following table:
     $$
     \begin{align}
     P(\text{happy}|\text{neg}) &= \frac{freq(\text{happy},\text{neg}) + 1}{N_{neg} + |V|} \\
-    &= \frac{0 + 1}{11 + 19} \\
+    &= \frac{0 + 1}{11 + 9} \\
     &= \frac{1}{20} \\
     &= 0.05
     \end{align}
