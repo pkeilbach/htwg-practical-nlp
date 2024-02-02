@@ -78,4 +78,5 @@ nav:
           - Rasa: presentations/articles/rasa.md
           - Bing Spell Check API: presentations/articles/bing_spell_check_api.md
           - Elasticsearch: presentations/articles/elasticsearch.md
+          - Langchain: presentations/articles/langchain.md
   - FAQ: faq.md
