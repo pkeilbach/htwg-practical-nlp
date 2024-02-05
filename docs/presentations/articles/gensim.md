@@ -1,6 +1,5 @@
 # Gensim
 
-<!-- feel free to add a profile link, remove the link, or remove the author information completely -->
 
 _Author: [Fabian Renz](mailto:fa721ren@htwg-konstanz.de)_
 
