@@ -75,4 +75,5 @@ nav:
           - Hugging Face: presentations/articles/hugging_face.md
           - Open Source LLMs: presentations/articles/open_source_llms.md
           - SpaCy: presentations/articles/spacy.md
+          - Gensim: presentations/articles/gensim.md
   - FAQ: faq.md
