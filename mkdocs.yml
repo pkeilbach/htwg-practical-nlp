@@ -80,4 +80,5 @@ nav:
           - OpenAI API: presentations/articles/openai_api.md
           - Elasticsearch: presentations/articles/elasticsearch.md
           - Langchain: presentations/articles/langchain.md
+          - Gensim: presentations/articles/gensim.md
   - FAQ: faq.md
