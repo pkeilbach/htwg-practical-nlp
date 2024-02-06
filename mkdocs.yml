@@ -77,6 +77,8 @@ nav:
           - SpaCy: presentations/articles/spacy.md
           - Rasa: presentations/articles/rasa.md
           - Bing Spell Check API: presentations/articles/bing_spell_check_api.md
+          - OpenAI API: presentations/articles/openai_api.md
           - Elasticsearch: presentations/articles/elasticsearch.md
           - Langchain: presentations/articles/langchain.md
+          - Gensim: presentations/articles/gensim.md
   - FAQ: faq.md
