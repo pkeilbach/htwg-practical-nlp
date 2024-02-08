@@ -35,7 +35,7 @@ Also Google has great learning resources available on [Google Cloud](https://www
 
 ## Podcasts
 
-- Lex Fridman's [Podcast](https://lexfridman.com/podcast/) is podcast about AI, deep learning, science, and technology. He interviews some of the most interesting people in the field of AI and machine learning, like [Sam Altman](https://www.youtube.com/watch?v=L_Guz73e6fw), [Andrew Ng](https://www.youtube.com/watch?v=0jspaMLxBig), or [Yann LeCun](https://www.youtube.com/watch?v=SGSOCuByo24).
+- Lex Fridman's [Podcast](https://lexfridman.com/podcast/) is a podcast about AI, deep learning, science, and technology. He interviews some of the most interesting people in the field of AI and machine learning, like [Sam Altman](https://www.youtube.com/watch?v=L_Guz73e6fw), [Andrew Ng](https://www.youtube.com/watch?v=0jspaMLxBig), or [Yann LeCun](https://www.youtube.com/watch?v=SGSOCuByo24).
 
 ## Related fields of study
 
