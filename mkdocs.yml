@@ -81,4 +81,5 @@ nav:
           - Elasticsearch: presentations/articles/elasticsearch.md
           - Langchain: presentations/articles/langchain.md
           - Gensim: presentations/articles/gensim.md
+          - GitHub Copilot: presentations/articles/github_copilot.md
   - FAQ: faq.md
