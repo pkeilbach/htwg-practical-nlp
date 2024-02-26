@@ -1,6 +1,5 @@
 # Gensim
 
-
 _Author: [Fabian Renz](mailto:fa721ren@htwg-konstanz.de)_
 
 ## TL;DR

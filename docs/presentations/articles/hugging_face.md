@@ -1,10 +1,10 @@
 # Hugging Face
 
-_Author: [Luis Nothvogel](mailto:luis.nothvogel@htwg-konstanz.de)_  
-  
-## TL;DR  
-  
-Hugging Face has emerged as a pivotal player in the AI and machine learning arena, specializing in natural language processing (NLP). This article delves into its core offerings, including model hosting, spaces, datasets, pricing, and the Terraformer API. Hugging Face is not only a repository for cutting-edge models but also a platform for collaboration and innovation in AI.  
+_Author: [Luis Nothvogel](mailto:luis.nothvogel@htwg-konstanz.de)_
+
+## TL;DR
+
+Hugging Face has emerged as a pivotal player in the AI and machine learning arena, specializing in natural language processing (NLP). This article delves into its core offerings, including model hosting, spaces, datasets, pricing, and the Terraformer API. Hugging Face is not only a repository for cutting-edge models but also a platform for collaboration and innovation in AI.
 
 ## Model Hosting on Hugging Face
 
@@ -14,13 +14,14 @@ Hugging Face has made a name for itself in model hosting. It offers a vast repos
 from transformers import pipeline, set_seed
 
 # Example of using a pre-trained model
-generator = pipeline('text-generation', model='gpt2')  
-set_seed(42)  
-generated_texts = generator("The student worked on", max_length=30, num_return_sequences=2)  
+generator = pipeline('text-generation', model='gpt2')
+set_seed(42)
+generated_texts = generator("The student worked on", max_length=30, num_return_sequences=2)
 print(generated_texts)
 ```
 
 This outputs the following:
+
 ```python
 [{'generated_text': 'The student worked on his paper, which you can read about here. You can get an ebook with that part, or an audiobook with some of'}, {'generated_text': 'The student worked on this particular task by making the same basic task in his head again and again, without the help of some external helper, even when'}]
 ```
@@ -34,13 +35,13 @@ Spaces are an innovative feature of Hugging Face, offering a collaborative envir
 The Hugging Face ecosystem includes a wide range of datasets, catering to different NLP tasks. The Datasets library simplifies the process of loading and processing data, ensuring efficiency and consistency in model training. According to them they host over 75k datasets.
 
 [Wikipdia Referenz](https://huggingface.co/datasets/wikimedia/wikipedia)
+
 ```python
 from datasets import load_dataset
 
 # Example of loading a dataset
 ds = load_dataset("wikimedia/wikipedia", "20231101.en")
 ```
-
 
 ## Transformers API: Transform Text Effortlessly
 
@@ -68,12 +69,14 @@ tokenizer = Tokenizer(BPE(unk_token="[UNK]"))
 
 Hugging Face Inference plays a crucial role in turning trained language models into productive applications. The platform provides an intuitive and powerful infrastructure for inferencing models, which means that developers can easily access pre-trained models to generate real-time predictions for a wide range of NLP tasks. Thanks to its efficient implementation and support for hardware acceleration technologies, Hugging Face Inference enables the seamless integration of language models into applications ranging from chatbots to machine translation and sentiment analysis.
 
-The Inference API Url is always defined like this: 
+The Inference API Url is always defined like this:
+
 ```python
 ENDPOINT = https://api-inference.huggingface.co/models/<MODEL_ID>
 ```
 
 Example in Python with gpt2:
+
 ```python
 import requests
 API_URL = "https://api-inference.huggingface.co/models/gpt2"
