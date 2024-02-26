@@ -1,6 +1,5 @@
 # Virtual Assistants
 
-
 _Author: [Marco Mollo](mailto:ma161mol@htwg-konstanz.de)_
 
 ## TL;DR
@@ -12,6 +11,7 @@ Virtual assistants like Siri, Alexa, and Google Assistant rely on Natural Langua
 This article will feature the underlying technology, how virtual assistants work, and how we as developers can use them.
 
 ## Underlying Technologies
+
 This section will cover the underlying technologies of virtual assistants.
 
 ### Speech Recognition
@@ -62,14 +62,17 @@ The following steps are performed when a user interacts with a voice assistant:
 - The response is sent back to the user
 
 ### Siri
+
 In this example, the user says "Hey Siri", which triggers the wake-up call and records everything else. Siri converts the voice to text and sends it to the cloud for processing. The text is analysed and a response is generated. The reply is sent back to the user.
 ![Hey Siri](./assets/hey-siri.png "Siri")
 
 ### Alexa
+
 This picture shows the same process for Alexa. The user says "Alexa" and the voice assistant starts listening to the user's request. The voice assistant converts the speech into text and sends it to the cloud for processing. The cloud sends requests to the services and generates a response. The response is sent back to the user.
 ![Alexa](./assets/alexa.png "Alexa")
 
 ### Google Assistant
+
 In this example, the user says "Hey Google, order a pizza from ExampleApp". The Google Assistant takes this input and looks in the shortcuts.xml to see if there is an intent that matches the user's request. If there is a match, Google Assistant sends the request to the application. The app then processes the request and sends a response back to Google Assistant. Google Assistant then sends the response back to the user.
 ![Google Assistant](./assets/google-assistant.png "Google Assistant")
 
@@ -80,6 +83,7 @@ In this example, the user says "Hey Google, order a pizza from ExampleApp". The 
 - You can integrate Google Assistant with [Actions on Google](https://developers.google.com/assistant/console?hl=de) for extending Assistant capabilities
 
 ### Example for Alexa Skill Kit
+
 In this example I created a skill that can tell you what food is available in a restaurant. The skill has two intents. The first intent is the FoodInfoIntent. This intent tells you what food is available. The second intent is the FoodRequestIntent. This intent tells you if a specific food is available.
 
 ```python
@@ -111,7 +115,7 @@ class FoodRequestIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         slots = handler_input.request_envelope.request.intent.slots
         foodtype = slots["foodtype"].value
-        
+
         if foodtype.lower() == "bananas" or foodtype.lower() == "banana":
             speak_output = "Yes we have bananas"
         elif foodtype.lower() == "steak":
