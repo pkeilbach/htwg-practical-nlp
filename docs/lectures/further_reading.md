@@ -47,4 +47,8 @@ Also Google has great learning resources available on [Google Cloud](https://www
 
 - **Legal:** NLP is also used in the legal domain to extract information from legal documents, like contracts, or to predict the outcome of a case. Here is a short [article](https://intellisoft.io/artificial-intelligence-ai-in-the-law-industry-key-trends-examples-usages/) about this topic.
 
+## Talks and Conferences
+
+- [TED Talk: How AI could empower any business](https://www.ted.com/talks/andrew_ng_how_ai_could_empower_any_business?hss_channel=lcp-18246783) by Andrew Ng
+
 _...to be continued._
