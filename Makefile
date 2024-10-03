@@ -9,16 +9,16 @@ nltk: requirements
 requirements: pip
 	.venv/bin/python3 -m pip install -e .
 
-pip: .venv
+pip: venv
 	.venv/bin/pip install --upgrade pip
 
-.venv:
-	python3.10 -m venv --upgrade-deps .venv
+venv:
+	python3 -m venv --upgrade-deps .venv
 
 jupyter: project
 	.venv/bin/jupyter notebook --no-browser
 
-lecture_notes: project
+docs: project
 	.venv/bin/mkdocs serve
 
 pytest:
