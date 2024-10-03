@@ -15,14 +15,14 @@ Both services are free to use.
 
 ## Install Python
 
-The recommended Python version for this course is 3.10. in a virtual environment.
+The recommended Python version for this course is 3.12. in a virtual environment.
 
 === ":fontawesome-brands-linux: Linux"
 
     ```sh
     sudo apt update
-    sudo apt install python3.10
-    sudo apt install python3.10-venv
+    sudo apt install python3.12
+    sudo apt install python3.12-venv
     ```
 
     In case this doesn't work, try to add the [deadsnakes PPA](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa) to your system, and try again.
