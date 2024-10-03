@@ -1,6 +1,6 @@
 # Getting Started
 
-This section describes how to set up your environment for this course.
+This page describes how to set up your environment for this course.
 
 ## Accounts
 
@@ -11,7 +11,6 @@ Both services are free to use.
 
     You can use your HTWG email address to register for GitHub and Mural.
     This will make it easier to identify you as a member of this course.
-    Also you may benefit from several student discounts.
 
 ## Install Python
 
@@ -36,7 +35,7 @@ The recommended Python version for this course is 3.12. in a virtual environment
     On Mac, you can use [Homebrew](https://brew.sh/) to install Python.
 
     ```sh
-    brew install python@3.10
+    brew install python@3.12
     ```
 
 === ":fontawesome-brands-windows: Windows"
@@ -53,13 +52,21 @@ The recommended Python version for this course is 3.12. in a virtual environment
     You are free to use another Python version if you wish, but be aware that this may cause problems with the provided code.
     Also if you are using Python outside a virtual environment or with a distribution like Anaconda, the described setup may not work.
 
-## Clone the repository
+## Fork and clone the repository
 
 Make sure you have [Git](https://git-scm.com/) installed on your system.
 
-```sh
-git clone https://github.com/pkeilbach/htwg-practical-nlp.git
-```
+Then, create a fork using the GitHub WebUI, and clone the repository to your local machine.
+
+<!-- TODO issue-123 reference contribution guide-->
+
+!!! info
+
+    If you are new to this, you can follow the official GitHub documentation on how to [fork a repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo).
+
+!!! note
+
+    You can also clone the course repository directly, but then you cannot contribute back bug fixes or enhancements (which would be highly appreciated! 👐). You can find more details about this in the contributing guide.
 
 ## Execute the Setup Script
 
@@ -84,14 +91,21 @@ You can test your installation by running the tests for the first assignment.
 make assignment_1
 ```
 
-In your terminal, you should see 56 failed tests. 😨
+In your terminal, you should see lots of failed tests. 😨
 
 But this is exactly what we want to see, since we haven't implemented anything yet! 🤓
 
-## Start the Jupyter Server
+!!! info
+
+    You can find more details on how we handle assignments on the [corresponding page](./assignments.md).
+
+## Jupyter
 
 Some of the assignments are accompanied by Jupyter notebooks.
-You can start the Jupyter server with the following command.
+
+If your IDE supports it, you can execute the Jupyter notebooks natively in your IDE (e.g. using the [VSCode Jupyter extension](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)).
+
+IF you prefer the WebUI, you can start the Jupyter server with the following command.
 
 ```sh
 make jupyter
@@ -108,7 +122,7 @@ Jupyter is now accessible at <http://localhost:8888/>.
 If you want, you can bring up the lecture notes on your local machine.
 
 ```sh
-make lecture_notes
+make docs
 ```
 
 The lecture notes are now accessible at <http://localhost:8000/>.
