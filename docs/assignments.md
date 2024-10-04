@@ -3,7 +3,9 @@
 During the semester, each student has to complete a couple of assignments.
 The assignments are ungraded, but they are mandatory to pass the course.
 
-## Assignment Structure
+If you have basic programming skills, you should be able to complete the assignments.
+
+## Structure
 
 Throughout the course, we will work on a Python package called `htwgnlp`.
 The package is located in the `src` directory and is a fully functional and installable Python package.
@@ -23,7 +25,7 @@ To work on an assignment, you will need to locate the `TODO ASSIGNMENT-*` items 
 
     You should check the unit tests located in the `tests` directory to see the exact requirements that need to be implemented.
 
-## Tests
+## Testing your Implementation
 
 Once you implemented everything, you can run the tests to check if everything works as expected.
 
@@ -62,7 +64,7 @@ If you successfully complete an assignment, you can run the accompanying noteboo
 
 See the [Getting Started](./getting_started.md) guide for instructions on how to start the Jupyter server.
 
-## Submitting Assignments
+## Submission
 
 To submit an assignment, you will need to provide screenshots of a successful test run.
 
