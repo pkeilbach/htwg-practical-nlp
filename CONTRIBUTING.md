@@ -15,21 +15,17 @@ While cloning, as described in the [getting started guide](./docs/getting_starte
 
 To fork this repository, you can follow the official GitHub documentation on how to [fork a repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo).
 
-Cloning and setting up the environment works as described in the [getting started guide](./docs/getting_started.md#clone-the-repository), besides that you need to clone your fork:
+If you fork a repository, a copy of the repository will then be created in your user space.
+Besides the contributing aspect, you can also work independently on your assignments and push your changes to your remote repository.
+
+Cloning and setting up the environment works as described in the [getting started guide](./docs/getting_started.md#clone-the-repository), besides that you need to clone your fork to your local machine (instead of the course repository):
 
 ```sh
 git clone https://github.com/<your-username>/htwg-practical-nlp.git
 ```
 
-!!! info
-
-    If you fork a repository, a copy of the repository will then be created in your user space.
-    Besides the contributing aspect, you can also work independently on your assignments and push your changes to your remote repository.
-
-!!! tip
-
-    Forking is a very common practice in open source developlment.
-    If you are new to open source development and have not forked a repository before, this may be a good learning opportunity for you! 🤓
+> 💡 Forking is a very common practice in open source developlment.
+> If you are new to open source development and have not forked a repository before, this may be a good learning opportunity for you! 🤓
 
 ## Syncing you Fork
 
@@ -43,9 +39,6 @@ git merge upstream/main
 ```
 
 You can also sync your fork in the web UI or GitHub CLI.
-You can find more details in the official [GitHub docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork).
+Find more details in the official [GitHub docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork).
 
-!!! info
-
-    Syncing your fork only updates your local copy of the repository.
-    To update your fork on GitHub.com, you must [push your changes](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository).
+> 💡 Syncing your fork only updates your local copy of the repository. To update your fork on GitHub.com, you must [push your changes](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository).
