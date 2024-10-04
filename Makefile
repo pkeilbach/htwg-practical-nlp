@@ -24,15 +24,15 @@ docs: project
 pytest:
 	.venv/bin/pytest
 
-assignment_1:
+assignment-1:
 	.venv/bin/pytest tests/htwgnlp/test_preprocessing.py
 
-assignment_2:
+assignment-2:
 	.venv/bin/pytest tests/htwgnlp/test_features.py
 	.venv/bin/pytest tests/htwgnlp/test_logistic_regression.py
 
-assignment_3:
+assignment-3:
 	.venv/bin/pytest tests/htwgnlp/test_naive_bayes.py
 
-assignment_4:
+assignment-4:
 	.venv/bin/pytest tests/htwgnlp/test_embeddings.py

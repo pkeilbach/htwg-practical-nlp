@@ -88,7 +88,7 @@ If everything went well, you should be good to go.
 You can test your installation by running the tests for the first assignment.
 
 ```sh
-make assignment_1
+make assignment-1
 ```
 
 In your terminal, you should see lots of failed tests. 😨
