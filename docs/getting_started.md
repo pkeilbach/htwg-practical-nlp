@@ -52,21 +52,23 @@ The recommended Python version for this course is 3.12. in a virtual environment
     You are free to use another Python version if you wish, but be aware that this may cause problems with the provided code.
     Also if you are using Python outside a virtual environment or with a distribution like Anaconda, the described setup may not work.
 
-## Fork and clone the repository
+## Clone the Repository
 
 Make sure you have [Git](https://git-scm.com/) installed on your system.
+Now you can clone the course repository:
 
-Then, create a fork using the GitHub WebUI, and clone the repository to your local machine.
+```sh
+git clone https://github.com/pkeilbach/htwg-practical-nlp.git
+```
 
-<!-- TODO issue-123 reference contribution guide-->
+!!! tip
 
-!!! info
+    While cloning the course repository, as described here, lets you _participate_ in the course,
+    it is generally recommended to [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks) the course repository.
 
-    If you are new to this, you can follow the official GitHub documentation on how to [fork a repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo).
+    That way you can _contribute_ back bug fixes, enhancements, etc., which is highly encouraged and appreciated 🚀
 
-!!! note
-
-    You can also clone the course repository directly, but then you cannot contribute back bug fixes or enhancements (which would be highly appreciated! 👐). You can find more details about this in the contributing guide.
+    You can find more details about contributing and forking the course repository in the [contributing guide](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md).
 
 ## Execute the Setup Script
 
@@ -83,12 +85,24 @@ This may take a few minutes. ☕
 
 If everything went well, you should be good to go.
 
+From now, make sure that you have the virtual environment activated.
+Usually, the IDE should automatically suggest you to activate it (e.g. VSCode).
+If that is not the case, you can activate the virtual environment with the following command
+
+```sh
+# activate the virtual environment manually
+source .venv/bin/activate
+
+# in case you need to deactivate it
+deactivate
+```
+
 ## Test your Installation
 
 You can test your installation by running the tests for the first assignment.
 
 ```sh
-make assignment_1
+make assignment-1
 ```
 
 In your terminal, you should see lots of failed tests. 😨
@@ -99,13 +113,17 @@ But this is exactly what we want to see, since we haven't implemented anything y
 
     You can find more details on how we handle assignments on the [corresponding page](./assignments.md).
 
+If you came this far, your initial setup was successful and you are ready to go! 🚀
+
+Now we can take a look at some other components of the repository.
+
 ## Jupyter
 
 Some of the assignments are accompanied by Jupyter notebooks.
 
 If your IDE supports it, you can execute the Jupyter notebooks natively in your IDE (e.g. using the [VSCode Jupyter extension](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)).
 
-IF you prefer the WebUI, you can start the Jupyter server with the following command.
+If you prefer the web UI, you can start the Jupyter server with the following command.
 
 ```sh
 make jupyter
@@ -127,6 +145,23 @@ make docs
 
 The lecture notes are now accessible at <http://localhost:8000/>.
 
----
+## Pulling Updates
 
-If you came this far, your initial setup was successful and you are ready to go! 🚀
+Every now and then, the course repository will be updated.
+To incorporate these updates, you will need to pull from the `main` branch:
+
+```sh
+# make sure you are on to the main branch
+git checkout main
+
+# pull the updates from the remote repository
+git pull
+```
+
+!!! note
+
+    For a fork, the process is a little different, and described in detail in the [contributing guide](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md#syncing-you-fork)
+
+!!! tip
+
+    It is good practice to pull the latest changes from `main` every now and then (just in case you are wondering why your assignment tests suddenly fail 😅). However, important updates will be announced in the lecture.

@@ -10,11 +10,14 @@ The package is located in the `src` directory and is a fully functional and inst
 The core sturcture will be provided, and the assignments will be about implementing the missing functionality.
 
 To work on an assignment, you will need to locate the `TODO ASSIGNMENT-*` items in the code.
-For example, to work on the first assignment, use the search functionality of your IDE to find all relevant items:
 
-```txt
-TODO ASSIGNMENT-1
-```
+!!! example
+
+    For example, to work on the first assignment, use the search functionality of your IDE to find all relevant items:
+
+    ```txt
+    TODO ASSIGNMENT-1
+    ```
 
 !!! tip
 
@@ -24,13 +27,16 @@ TODO ASSIGNMENT-1
 
 Once you implemented everything, you can run the tests to check if everything works as expected.
 
-You can run the tests using the `make` commands, for example:
-
-```sh
-make assignment_1
-```
-
+You can run the tests using the provided `make assignment-*` commands.
 If all your tests pass, you successfully completed the assignment! 🚀
+
+!!! example
+
+    For example, to test your implementation for the first assignment, you can run:
+
+    ```sh
+    make assignment-1
+    ```
 
 !!! tip
 
@@ -45,34 +51,50 @@ If all your tests pass, you successfully completed the assignment! 🚀
     pytest tests/htwgnlp/test_preprocessing.py
     ```
 
-!!! info
-
     Pytest is a very powerful testing framework and the de-facto standard for testing in Python.
-    You will not need to know all the details, but if you want to learn more, check out the [official documentation](https://docs.pytest.org/en/latest/contents.html).
-
-## Submitting Assignments
-
-To submit an assignment, you will need to demonstrate a successful test run.
-
-Also we may walk through your code together to check if you understood the most important concepts.
+    You will not need to know all the details, but if you want to learn more, check out the [official Pytest documentation](https://docs.pytest.org/en/latest/contents.html).
 
 ## Jupyter Notebooks
 
 Some of the assignments are accompanied by Jupyter notebooks.
 
+If you successfully complete an assignment, you can run the accompanying notebook and see your code in action.
+
 See the [Getting Started](./getting_started.md) guide for instructions on how to start the Jupyter server.
 
-## Working on your Assignments locally
+## Submitting Assignments
 
-There are a few strategies on how to work on your assignments locally.
+To submit an assignment, you will need to provide screenshots of a successful test run.
 
-What you end up using is up to your personal preference.
+<!-- TODO issue-121 provide example screenshot -->
+
+You can submit the screenshots via GitHub issue using the issue template for [Assignment Submission](https://github.com/pkeilbach/htwg-practical-nlp/issues/new/choose).
+
+!!! note
+
+    Submission via GitHub issue is preferred, but it is also accpeted if submit the screenshots via [email](mailto:pascal.keilbach@htwg-konstanz.de).
+
+## Working on your Assignments
+
+How you work on your assignments on your local machine is completely up to you.
+But following a consistent branching strategy will probably make you life easier.
+
+!!! info
+
+    This is regardless of whether you use the recommended approach to fork the repository, or just clone it locally.
+
+!!! note
+
+    Feel free to skip this section if you have basic familiarity with git and branching workflows.
+
+!!! tip
+
+    If you are new to git or not very experienced, this is a great learing opportunity for you, as git is a very important tool in nowadays software development.
+    You can work on the assignments without getting too much into git, but this is a great way to gain some experience with git.
 
 ### Using a single branch
 
-This is probably the easiest way to work on your assignments and **generally the recommended way**.
-
-You can create a new branch for your assignments:
+Generally, it is recommended to work on your assignments in a separte branch:
 
 ```sh
 git checkout -b my-assigments
@@ -85,24 +107,14 @@ git add .
 git commit -m "solution for assignment 1"
 ```
 
-Whenever updates are available, you can switch back to the `main` branch, pull the latest changes, and merge them into your branch:
+!!! tip
 
-```sh
-git checkout main
-git pull
-git checkout my-assigments
-git merge main
-```
-
-!!! warning
-
-    You should **not push** your branch to the remote repository.
-    It should not be visible to others.
-    Your implementation is only valid for yourself, in your local repository, and will not be merged into the `main` branch.
+    If you work on a fork, you can also push your changes to your remote repository.
+    This is not possible if you just clone the course repository.
 
 ### Using multiple branches
 
-Similarly, you could create a new branch for each assignment:
+Similarly, you could create a new branch for each assignment. This can help you to keep your work separated.
 
 ```sh
 git checkout -b my-assigments-1
@@ -110,20 +122,32 @@ git add .
 git commit -m "solution for assignment 1"
 ```
 
-But note that you would need to merge updates from the `main` branch into each of your assignment branches.
+### Using your local working tree
 
-Also keep in mind that some assignments build upon each other.
+If you don't want to deal with git, you could also work purely locally without committing anything.
 
-### Using stashing
+!!! warning
 
-You could also work on your assignments directly in the `main` branch, and whenever you need to pull the latest changes, you can stash your changes, pull the latest changes, and then pop your changes back:
+    This is not recommended, as this bears the risk of losing your progress, or dealing with lots of merge conflicts.
+    When pulling updates, you probably need to [stash](https://git-scm.com/docs/git-stash) your changes.
+    But be careful: if not done properly, you may lose your progress! 😱
+
+## Pulling Updates
+
+As described in the getting started guide, there will be [updates](getting_started.md#pulling-updates) from time to time.
+It can happen that these updates affect the assignments (just in case you are wondering why your tests suddenly fail 😅).
+
+Given that you work on a separate branch on your assignments, you can merge the latest version of the `main` branch into your assignment branch as follows:
 
 ```sh
-git stash
-git pull
-git stash pop
+# Fetch the latest changes from the remote main branch
+git fetch origin main
+
+# Merge the main branch into your current feature branch, e.g. my-assignments
+git merge origin/main
 ```
 
-Note that this way, you may lose your changes if you do not stash them properly.
+!!! info
 
-See the [git stash documentation](https://git-scm.com/docs/git-stash) for more details.
+    In case you work on a fork (which is awesome 🙌), the process is similar, but you need to fetch from the `upstream` remote repository.
+    This is described in the [contributing guide](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md#syncing-you-fork) in more detail.

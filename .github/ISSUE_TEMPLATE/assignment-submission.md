@@ -4,7 +4,6 @@ about: Template to submit assignments
 title: Submission for assignment(s) X,Y,Z
 labels: assignments
 assignees: pkeilbach
-
 ---
 
 I would like to submit the following assignments:
