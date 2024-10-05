@@ -1,6 +1,6 @@
 [project]
 name = "htwg-practical-nlp"
-version = "0.0.1"
+version = "0.1.0"
 description = "A practical course on natural language processing @ HTWG Konstanz."
 readme = "README.md"
 authors = [{ name = "Pascal Keilbach", email = "pascal.keilbach@htwg-konstanz.de" }]
