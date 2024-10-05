@@ -42,3 +42,40 @@ You can also sync your fork in the web UI or GitHub CLI.
 Find more details in the official [GitHub docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork).
 
 > 💡 Syncing your fork only updates your local copy of the repository. To update your fork on GitHub.com, you must [push your changes](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository).
+
+## Development Setup
+
+Once you forked the course repository, you can start with the development setup.
+
+The development setup is intented for contributors, and will install some additional dependencies.
+
+You can setup the development environment as follows:
+
+```
+make dev-setup
+```
+
+## Working with Pre-commit Hooks
+
+One such additional dependency is the [`pre-commit` framework](https://pre-commit.com/).
+
+On every commit, it runs some basic code quality checks to ensure that the contributed code satisfies certain standards, e.g. the [Black code formatter](https://black.readthedocs.io/en/stable/) for Python.
+
+> 💡 You can check all currently implemented `pre-commit` hooks in the [`pre-commit-config.yaml`](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/.pre-commit-config.yaml).
+
+The hooks are executed on the staged files, and it may happen that the hooks make changes the staged files (e.g. formatting), so you need to stage them again before finally comitting them:
+
+```sh
+# stage your files
+git add .
+
+# commiting your files will trigger the pre-commit hooks
+git commit -m "some cool updates"
+
+# assuming that your files violated some formatting rules,
+# the formatter hook will try to fix them, so you need to stage them again
+git add .
+
+# now the commit shall pass
+git commit -m "some cool updates"
+```

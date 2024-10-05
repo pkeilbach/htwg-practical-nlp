@@ -1,13 +1,15 @@
-project: pre_commit nltk
-
-pre_commit: requirements
-	.venv/bin/pre-commit install
-
-nltk: requirements
-	.venv/bin/python3 -m nltk.downloader -d .venv/nltk_data popular
+project: requirements
 
 requirements: pip
 	.venv/bin/python3 -m pip install -e .
+	.venv/bin/python3 -m nltk.downloader -d .venv/nltk_data popular
+
+dev-setup: requirements-dev
+	.venv/bin/pre-commit install
+
+requirements-dev: pip
+	.venv/bin/python3 -m pip install -e .[dev]
+	.venv/bin/python3 -m nltk.downloader -d .venv/nltk_data popular
 
 pip: venv
 	.venv/bin/pip install --upgrade pip
