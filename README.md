@@ -16,4 +16,4 @@ cd htwg-practical-nlp
 make
 ```
 
-For more details, check out the [Getting Started](./getting_started.md) guide.
+For more details, check out the [Getting Started](https://pkeilbach.github.io/htwg-practical-nlp/getting_started/) guide.
