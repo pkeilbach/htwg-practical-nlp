@@ -61,9 +61,9 @@ One such additional dependency is the [`pre-commit` framework](https://pre-commi
 
 On every commit, it runs some basic code quality checks to ensure that the contributed code satisfies certain standards, e.g. the [Black code formatter](https://black.readthedocs.io/en/stable/) for Python.
 
-> 💡 You can check all currently implemented `pre-commit` hooks in the `pre-commit-config.yaml`.
+> 💡 You can check all currently implemented `pre-commit` hooks in the [`pre-commit-config.yaml`](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/.pre-commit-config.yaml).
 
-The hooks are executed on the staged files, and it may happen that the hooks change the staged files (e.g. formatting), so you need to change them again:
+The hooks are executed on the staged files, and it may happen that the hooks make changes the staged files (e.g. formatting), so you need to stage them again before finally comitting them:
 
 ```sh
 # stage your files
