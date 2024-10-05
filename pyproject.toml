@@ -5,12 +5,11 @@ description = "A practical course on natural language processing @ HTWG Konstanz
 readme = "README.md"
 authors = [{ name = "Pascal Keilbach", email = "pascal.keilbach@htwg-konstanz.de" }]
 dependencies = [
-    "jupyter",
-    "mkdocs-material",
-    "matplotlib",
-    "nltk",
-    "pandas",
-    "pre-commit",
-    "pytest",
+    "jupyter~=1.1.1",
+    "mkdocs-material~=9.5.39",
+    "matplotlib~=3.9.2",
+    "nltk~=3.9.1",
+    "pandas~=2.2.3",
+    "pytest~=8.3.3",
 ]
 requires-python = ">=3.8"
