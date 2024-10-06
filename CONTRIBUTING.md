@@ -2,10 +2,26 @@
 
 In thise course, we follow an open source development approach, and highly encourage and appreciate any kind of contributions. 👐
 
-For example, you can help by improving the documentation, setup guides, the lecture notes, provide bug fixes for the assignments, work on open issues (watch out for the [good first issue label](https://github.com/pkeilbach/htwg-practical-nlp/labels/good%20first%20issue)) or just fix some typos.
-However small it is, every contribution is welcome - and will probably be rewarded (TBD)! 🏆
+This guide will help you to get the most out of this course and get you started with your first contribution! 🚀
 
-This guide will help you to get started with your first contribution! 🚀
+## What contributions can I make?
+
+There are no strict guidelines about the type of contributions.
+Anything that you think improves the course repository should be suitable for a contribution.
+
+Every contribution is welcome - and will be [rewarded](#rewarding-your-contributions)! 🏅
+
+Here is some inspiration:
+
+- Improve the documentation and setup guides 📘
+- Fix already known [bugs](https://github.com/pkeilbach/htwg-practical-nlp/labels/bug) 🐞
+- Report unknown bugs (e.g. in the assignments) - and ideally try to fix them 🔧
+- Work on open issues (specifically watch out for the [`good first issue`](https://github.com/pkeilbach/htwg-practical-nlp/labels/good%20first%20issue) label) 🐣
+- fix some typos 🖊️
+- ...
+
+You can also engage in [discussions](https://github.com/pkeilbach/htwg-practical-nlp/discussions).
+While this is not a contribution per se, a question of yours about an assignment or lecture may lead to an issue that needs to be solved!
 
 ## Forking the Course Repository
 
@@ -55,7 +71,15 @@ You can setup the development environment as follows:
 make dev-setup
 ```
 
-## Working with Pre-commit Hooks
+## Making contributions to the course repository
+
+If you have something that you can contribute to the course repository, you need to open a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests).
+
+Since you are usually not listed as collaborator, you will need to [create a pull request from your fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
+
+When creating your pull request, please consider the [best practices for creating pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/getting-started/best-practices-for-pull-requests#best-practices-for-creating-pull-requests).
+
+## Working with pre-commit hooks
 
 One such additional dependency is the [`pre-commit` framework](https://pre-commit.com/).
 
