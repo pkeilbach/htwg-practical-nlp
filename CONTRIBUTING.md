@@ -23,6 +23,26 @@ Here is some inspiration:
 You can also engage in [discussions](https://github.com/pkeilbach/htwg-practical-nlp/discussions).
 While this is not a contribution per se, a question of yours about an assignment or lecture may lead to an issue that needs to be solved!
 
+## Engage in discussions
+
+You will get the most out of this course if you actively participate and exchange with both your peers and me as the lecturer.
+
+We use [GitHub discussions](https://github.com/pkeilbach/htwg-practical-nlp/discussions) to discuss all things related to the course content.
+Both your peers and me can comment on your topic and hopefully resolve your issue.
+
+- Stuck with an assignment? Post your question to the [Q&A board 🙏](https://github.com/pkeilbach/htwg-practical-nlp/discussions/categories/q-a), maybe your peers have the same issue
+- Anything that was covered in the lecture was confusing? Post it to the [Q&A board 🙏](https://github.com/pkeilbach/htwg-practical-nlp/discussions/categories/q-a) and I will get back to it
+- Having a more general question? Use the [general board 💬](https://github.com/pkeilbach/htwg-practical-nlp/discussions/categories/general)
+- You have an idea what could be improved? Use the [idea board 💡](https://github.com/pkeilbach/htwg-practical-nlp/discussions/categories/ideas)
+
+Using the GitHub discussion tool is highly encouraged.
+Every question is welcome and there is no such thing as stupid questions.
+We all come from different backgrounds, and usually, if somehing is unclear to you, you are not alone. 👐
+
+Also, initiating discussions offers the chance to earn bonus points, since a question of yours might reveal a bug or issue that needs to be solved! 🏅
+
+> "Internal" announcements that are specific to the current semester will still be posted in Moodle, so that nobody misses anything.
+
 ## Forking the course repository
 
 The recommended way to work with this course is to [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks) the course repository.
