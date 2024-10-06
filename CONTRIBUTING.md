@@ -4,7 +4,7 @@ In thise course, we follow an open source development approach, and highly encou
 
 This guide will help you to get the most out of this course and get you started with your first contribution! 🚀
 
-## What contributions can I make?
+## How to contribute
 
 There are no strict guidelines about the type of contributions.
 Anything that you think improves the course repository should be suitable for a contribution.
@@ -22,6 +22,12 @@ Here is some inspiration:
 
 You can also engage in [discussions](https://github.com/pkeilbach/htwg-practical-nlp/discussions).
 While this is not a contribution per se, a question of yours about an assignment or lecture may lead to an issue that needs to be solved!
+
+Once you found something you can contribute, assign yourself to the issue so that it is clear to others that you are working on this topic.
+
+After you implemented your changes, you need to open a [pull request](#making-contributions-to-the-course-repository) so that I can review your changes.
+
+When I approve, we will merge your pull request, and besides being [rewarded](#rewarding-your-contributions), you will be listed as a [contributor](https://github.com/pkeilbach/htwg-practical-nlp/graphs/contributors)! 🎉
 
 ## Engage in discussions
 
