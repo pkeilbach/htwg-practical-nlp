@@ -23,7 +23,7 @@ Here is some inspiration:
 You can also engage in [discussions](https://github.com/pkeilbach/htwg-practical-nlp/discussions).
 While this is not a contribution per se, a question of yours about an assignment or lecture may lead to an issue that needs to be solved!
 
-## Forking the Course Repository
+## Forking the course repository
 
 The recommended way to work with this course is to [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks) the course repository.
 
@@ -43,7 +43,7 @@ git clone https://github.com/<your-username>/htwg-practical-nlp.git
 > 💡 Forking is a very common practice in open source developlment.
 > If you are new to open source development and have not forked a repository before, this may be a good learning opportunity for you! 🤓
 
-## Syncing your Fork
+## Syncing your fork
 
 During the semester, it is very likely that the course repository will be updated.
 To pull those updates from the course repository (aka the `upstream`), you need to do the following:
@@ -59,7 +59,7 @@ Find more details in the official [GitHub docs](https://docs.github.com/en/pull-
 
 > 💡 Syncing your fork only updates your local copy of the repository. To update your fork on GitHub.com, you must [push your changes](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository).
 
-## Development Setup
+## Development setup
 
 Once you forked the course repository, you can start with the development setup.
 
