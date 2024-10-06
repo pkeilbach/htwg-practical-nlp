@@ -79,3 +79,20 @@ git add .
 # now the commit shall pass
 git commit -m "some cool updates"
 ```
+
+## Rewarding your contributions
+
+To make contributions to the course repository more attractive for you, each contribution will be **rewarded with bonus points** that will be transferred to the exam. 🏅
+
+You can make as many contributions as you want but you can earn a **maximum of 5 bonus points** (TBD).
+
+> For example, if you reached 86 out of 100 points in the exam, and made contributions worth 5 bonus points, then your total points will be 91 🚀
+
+Each contribution should be a separate [pull request](#making-contributions-to-the-course-repository).
+
+I will decide individually, based on the contribution, how much bonus points your contribution is worth.
+But as a rule of thumb, you can assume that each contribution is worth 1 bonus point.
+
+> For example, if you spot a bug in the assignments and provide the fix by yourself, this is probably worth 2-3 bonus points.
+> On the other hand, fixing a single typo like in `orsnge` 🍊, is probably not worth a bonus point.
+> However, fixing 5 typos with one pull request probably is.
