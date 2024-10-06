@@ -27,7 +27,7 @@ While this is not a contribution per se, a question of yours about an assignment
 
 The recommended way to work with this course is to [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks) the course repository.
 
-While cloning, as described in the [getting started guide](./docs/getting_started.md#clone-the-repository), lets you _participate_ in the course and work on the assignments, only forking the course repository allows you to contribute back bug fixes, enhancements, etc.
+While cloning, as described in the [getting started guide](./docs/getting_started.md#clone-the-repository), lets you _participate_ in the course and work on the assignments, only forking the course repository allows you to _contribute_ back bug fixes, enhancements, etc.
 
 To fork this repository, you can follow the official GitHub documentation on how to [fork a repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo).
 
@@ -43,7 +43,7 @@ git clone https://github.com/<your-username>/htwg-practical-nlp.git
 > 💡 Forking is a very common practice in open source developlment.
 > If you are new to open source development and have not forked a repository before, this may be a good learning opportunity for you! 🤓
 
-## Syncing you Fork
+## Syncing your Fork
 
 During the semester, it is very likely that the course repository will be updated.
 To pull those updates from the course repository (aka the `upstream`), you need to do the following:
@@ -63,7 +63,8 @@ Find more details in the official [GitHub docs](https://docs.github.com/en/pull-
 
 Once you forked the course repository, you can start with the development setup.
 
-The development setup is intented for contributors, and will install some additional dependencies.
+The development setup is intented for contributors, and will install some additional dependencies (see the optional dependencies section in the [`pyproject.toml`](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/pyproject.toml) file).
+Specifically it will install some `pre-commit` hooks to assert that your contributed code meets some basic quality standards (see [below](#working-with-pre-commit-hooks)).
 
 You can setup the development environment as follows:
 
