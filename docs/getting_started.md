@@ -52,7 +52,7 @@ The recommended Python version for this course is 3.12. in a virtual environment
     You are free to use another Python version if you wish, but be aware that this may cause problems with the provided code.
     Also if you are using Python outside a virtual environment or with a distribution like Anaconda, the described setup may not work.
 
-## Clone the Repository
+## Clone the repository
 
 Make sure you have [Git](https://git-scm.com/) installed on your system.
 Now you can clone the course repository:
@@ -70,7 +70,7 @@ git clone https://github.com/pkeilbach/htwg-practical-nlp.git
 
     You can find more details about contributing and forking the course repository in the [contributing guide](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md).
 
-## Execute the Setup Script
+## Execute the setup script
 
 The setup script is provided as a `Makefile`.
 Change into the repository directory and execute the setup script.
@@ -97,7 +97,7 @@ source .venv/bin/activate
 deactivate
 ```
 
-## Test your Installation
+## Test your installation
 
 You can test your installation by running the tests for the first assignment.
 
@@ -117,7 +117,7 @@ If you came this far, your initial setup was successful and you are ready to go!
 
 Now we can take a look at some other components of the repository.
 
-## Jupyter
+## Start Jupyter server
 
 Some of the assignments are accompanied by Jupyter notebooks.
 
@@ -135,7 +135,7 @@ Jupyter is now accessible at <http://localhost:8888/>.
 
     Of course you can also use JupyterLab if you wish, but this is not included in the setup script.
 
-## Serve the Lecture Notes
+## Serve the lecture notes
 
 If you want, you can bring up the lecture notes on your local machine.
 
@@ -145,7 +145,7 @@ make docs
 
 The lecture notes are now accessible at <http://localhost:8000/>.
 
-## Pulling Updates
+## Pulling updates
 
 Every now and then, the course repository will be updated.
 To incorporate these updates, you will need to pull from the `main` branch:
