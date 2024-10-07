@@ -2,7 +2,7 @@
 
 The following skills are **recommended** to participate in the course.
 
-## Basic Programming Skills
+## Basic programming skills
 
 To complete the course, you will need basic programming skills.
 If you visited an introduction to programming course, you should be good to go.
@@ -15,7 +15,7 @@ If you visited an introduction to programming course, you should be good to go.
     In the end, we don't want to bother with advanced programming concepts but get excited with NLP!
     So don't worry if you just started your programming journey, you are still encouraged to take the course!
 
-## Basic Python Skills
+## Basic Python skills
 
 The code for this lecture is written in Python, so it is definetely an advantage if you have worked with Python before.
 However, if you are coming from a different langugage, you should be able to follow along.
@@ -38,7 +38,7 @@ However, all required commands will be provided in the instructions, so it is no
 
     We use `make` commands to automate the setup process and simplify the commands. You can check out the [`Makefile`](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/Makefile) to see what is actucally executed. If you have not used a `Makefile` before, you may find [this tuorial](https://makefiletutorial.com/) helpful.
 
-## Basic Knowledge of Git
+## Basic knowledge of Git
 
 The course material is hosted on GitHub pages and you can access it through the browser.
 As for the assignments, you will need to clone the repository and set up the development environment.
