@@ -135,7 +135,7 @@ git commit -m "some cool updates"
 
 To make contributions to the course repository more attractive for you, each contribution will be **rewarded with bonus points** that will be transferred to the exam. 🏅
 
-You can make as many contributions as you want but you can earn a **maximum of 5 bonus points** (TBD).
+You can make as many contributions as you want but you can earn a **maximum of 5 bonus points**.
 
 > For example, if you reached 86 out of 100 points in the exam, and made contributions worth 5 bonus points, then your total points will be 91 🚀
 

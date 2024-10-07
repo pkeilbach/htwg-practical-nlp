@@ -20,12 +20,12 @@ By the end of this course, students will be able to:
 
 The course is graded based on a **written 90-minute exam** at the end of the semester.
 To be admitted to the exam, you need to complete the [assignmnets](../assignments.md) and give a [presentation](../presentations/presentations.md).
-You can earn **bonus points** for the exam through [contributions](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md) to the course repository (TBD).
+You can earn **bonus points** for the exam through [contributions](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md) to the course repository.
 
 - **Exam** (graded)
 - **Assignments** (ungraded)
 - **Presentation** (ungraded)
-- **Contributions** (TBD)
+- **Contributions** (maximum of 5 bonus points for the exam)
 
 ## Course Language
 
