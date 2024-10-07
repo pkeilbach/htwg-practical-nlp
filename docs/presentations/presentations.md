@@ -53,3 +53,7 @@ It is recommended to provide your code as a GitHub repository that I can clone.
     - If you build a web service, after I cloned the repository, the service should come up by running `make` or `npm install && npm start`.
     - You could also provide a docker image that I can start with `docker run`.
     - If you provide a Python script, it is acceptable to do a `pip install` followed by a `python my_script.py`, since this is conventional in Python.
+
+!!! info
+
+    In case of doubt, feel free to ask in our [discussion board](https://github.com/pkeilbach/htwg-practical-nlp/discussions) or reach out to me directly.
