@@ -1,5 +1,6 @@
 """Tests for the embeddings module.
 """
+
 from contextlib import nullcontext as does_not_raise
 
 import numpy as np
