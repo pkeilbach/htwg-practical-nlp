@@ -1,16 +1,6 @@
-# Getting Started
+# Development Setup
 
-This page describes how to set up your environment for this course.
-
-## Accounts
-
-To get the most out of this course, you should have a [GitHub](https://github.com/) and [Mural](https://www.mural.co/) account.
-Both services are free to use.
-
-!!! tip
-
-    You can use your HTWG email address to register for GitHub and Mural.
-    This will make it easier to identify you as a member of this course.
+This page describes how to set up your development environment for this course.
 
 ## Install Python
 

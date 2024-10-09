@@ -42,11 +42,20 @@ MkDocs will render a nice-looking PDF file without any menu or other web items.
 ### How is this course graded?
 
 The course is graded based on a written 90-minute exam at the end of the semester.
-For more details, see the [course profile](./about/course_profile.md#assessment).
+For more details, see the [course profile](./course_profile.md#assessment).
 
 The presentation and assignments are ungraded.
 
 You can earn bonus points for the exam through [contributions](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md).
+
+### What are the prerequisites to take this course?
+
+The prerequisites can be found [here](course_profile.md#prerequisites).
+
+In general, I want to keep the entry barrier as low as possible, but you should bring some basic computer science skills.
+
+Let me know if you are unsure if you are unsure whether you can take the course or not!
+
 
 ## Contributions
 

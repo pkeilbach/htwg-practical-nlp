@@ -54,9 +54,7 @@ watch:
   - includes
 nav:
   - Welcome: index.md
-  - About:
-      - about/course_profile.md
-      - about/prerequisites.md
+  - About: course_profile.md
   - Getting Started: getting_started.md
   - Lectures:
       - lectures/preface.md
