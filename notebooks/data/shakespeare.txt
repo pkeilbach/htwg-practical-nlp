@@ -34,16 +34,16 @@ Who prologue-like your humble patience pray,
 Gently to hear, kindly to judge, our play.
 Exit
 SCENE I. London. An ante-chamber in the KING'S palace.
-Enter the ARCHBISHOP OF CANTERBURY, and the BISHOP OF ELY 
-CANTERBURY 
+Enter the ARCHBISHOP OF CANTERBURY, and the BISHOP OF ELY
+CANTERBURY
 My lord, I'll tell you; that self bill is urged,
 Which in the eleventh year of the last king's reign
 Was like, and had indeed against us pass'd,
 But that the scambling and unquiet time
 Did push it out of farther question.
-ELY 
+ELY
 But how, my lord, shall we resist it now?
-CANTERBURY 
+CANTERBURY
 It must be thought on. If it pass against us,
 We lose the better half of our possession:
 For all the temporal lands which men devout
@@ -57,17 +57,17 @@ Of indigent faint souls past corporal toil.
 A hundred almshouses right well supplied;
 And to the coffers of the king beside,
 A thousand pounds by the year: thus runs the bill.
-ELY 
+ELY
 This would drink deep.
-CANTERBURY 
+CANTERBURY
 'Twould drink the cup and all.
-ELY 
+ELY
 But what prevention?
-CANTERBURY 
+CANTERBURY
 The king is full of grace and fair regard.
-ELY 
+ELY
 And a true lover of the holy church.
-CANTERBURY 
+CANTERBURY
 The courses of his youth promised it not.
 The breath no sooner left his father's body,
 But that his wildness, mortified in him,
@@ -82,9 +82,9 @@ With such a heady currance, scouring faults
 Nor never Hydra-headed wilfulness
 So soon did lose his seat and all at once
 As in this king.
-ELY 
+ELY
 We are blessed in the change.
-CANTERBURY 
+CANTERBURY
 Hear him but reason in divinity,
 And all-admiring with an inward wish
 You would desire the king were made a prelate:
@@ -107,7 +107,7 @@ His hours fill'd up with riots, banquets, sports,
 And never noted in him any study,
 Any retirement, any sequestration
 From open haunts and popularity.
-ELY 
+ELY
 The strawberry grows underneath the nettle
 And wholesome berries thrive and ripen best
 Neighbour'd by fruit of baser quality:
@@ -115,16 +115,16 @@ And so the prince obscured his contemplation
 Under the veil of wildness; which, no doubt,
 Grew like the summer grass, fastest by night,
 Unseen, yet crescive in his faculty.
-CANTERBURY 
+CANTERBURY
 It must be so; for miracles are ceased;
 And therefore we must needs admit the means
 How things are perfected.
-ELY 
+ELY
 But, my good lord,
 How now for mitigation of this bill
 Urged by the commons? Doth his majesty
 Incline to it, or no?
-CANTERBURY 
+CANTERBURY
 He seems indifferent,
 Or rather swaying more upon our part
 Than cherishing the exhibiters against us;
@@ -135,9 +135,9 @@ Which I have open'd to his grace at large,
 As touching France, to give a greater sum
 Than ever at one time the clergy yet
 Did to his predecessors part withal.
-ELY 
+ELY
 How did this offer seem received, my lord?
-CANTERBURY 
+CANTERBURY
 With good acceptance of his majesty;
 Save that there was not time enough to hear,
 As I perceived his grace would fain have done,
@@ -145,40 +145,40 @@ The severals and unhidden passages
 Of his true titles to some certain dukedoms
 And generally to the crown and seat of France
 Derived from Edward, his great-grandfather.
-ELY 
+ELY
 What was the impediment that broke this off?
-CANTERBURY 
+CANTERBURY
 The French ambassador upon that instant
 Craved audience; and the hour, I think, is come
 To give him hearing: is it four o'clock?
-ELY 
+ELY
 It is.
-CANTERBURY 
+CANTERBURY
 Then go we in, to know his embassy;
 Which I could with a ready guess declare,
 Before the Frenchman speak a word of it.
-ELY 
+ELY
 I'll wait upon you, and I long to hear it.
 Exeunt
 SCENE II. The same. The Presence chamber.
-Enter KING HENRY V, GLOUCESTER, BEDFORD, EXETER, WARWICK, WESTMORELAND, and Attendants 
-KING HENRY V 
+Enter KING HENRY V, GLOUCESTER, BEDFORD, EXETER, WARWICK, WESTMORELAND, and Attendants
+KING HENRY V
 Where is my gracious Lord of Canterbury?
-EXETER 
+EXETER
 Not here in presence.
-KING HENRY V 
+KING HENRY V
 Send for him, good uncle.
-WESTMORELAND 
+WESTMORELAND
 Shall we call in the ambassador, my liege?
-KING HENRY V 
+KING HENRY V
 Not yet, my cousin: we would be resolved,
 Before we hear him, of some things of weight
 That task our thoughts, concerning us and France.
 Enter the ARCHBISHOP OF CANTERBURY, and the BISHOP of ELY
-CANTERBURY 
+CANTERBURY
 God and his angels guard your sacred throne
 And make you long become it!
-KING HENRY V 
+KING HENRY V
 Sure, we thank you.
 My learned lord, we pray you to proceed
 And justly and religiously unfold
@@ -204,7 +204,7 @@ Under this conjuration, speak, my lord;
 For we will hear, note and believe in heart
 That what you speak is in your conscience wash'd
 As pure as sin with baptism.
-CANTERBURY 
+CANTERBURY
 Then hear me, gracious sovereign, and you peers,
 That owe yourselves, your lives and services
 To this imperial throne. There is no bar
@@ -268,9 +268,9 @@ To bar your highness claiming from the female,
 And rather choose to hide them in a net
 Than amply to imbar their crooked titles
 Usurp'd from you and your progenitors.
-KING HENRY V 
+KING HENRY V
 May I with right and conscience make this claim?
-CANTERBURY 
+CANTERBURY
 The sin upon my head, dread sovereign!
 For in the book of Numbers is it writ,
 When the man dies, let the inheritance
@@ -289,7 +289,7 @@ O noble English. that could entertain
 With half their forces the full Pride of France
 And let another half stand laughing by,
 All out of work and cold for action!
-ELY 
+ELY
 Awake remembrance of these valiant dead
 And with your puissant arm renew their feats:
 You are their heir; you sit upon their throne;
@@ -297,33 +297,33 @@ The blood and courage that renowned them
 Runs in your veins; and my thrice-puissant liege
 Is in the very May-morn of his youth,
 Ripe for exploits and mighty enterprises.
-EXETER 
+EXETER
 Your brother kings and monarchs of the earth
 Do all expect that you should rouse yourself,
 As did the former lions of your blood.
-WESTMORELAND 
+WESTMORELAND
 They know your grace hath cause and means and might;
 So hath your highness; never king of England
 Had nobles richer and more loyal subjects,
 Whose hearts have left their bodies here in England
 And lie pavilion'd in the fields of France.
-CANTERBURY 
+CANTERBURY
 O, let their bodies follow, my dear liege,
 With blood and sword and fire to win your right;
 In aid whereof we of the spiritualty
 Will raise your highness such a mighty sum
 As never did the clergy at one time
 Bring in to any of your ancestors.
-KING HENRY V 
+KING HENRY V
 We must not only arm to invade the French,
 But lay down our proportions to defend
 Against the Scot, who will make road upon us
 With all advantages.
-CANTERBURY 
+CANTERBURY
 They of those marches, gracious sovereign,
 Shall be a wall sufficient to defend
 Our inland from the pilfering borderers.
-KING HENRY V 
+KING HENRY V
 We do not mean the coursing snatchers only,
 But fear the main intendment of the Scot,
 Who hath been still a giddy neighbour to us;
@@ -336,7 +336,7 @@ Galling the gleaned land with hot assays,
 Girding with grievous siege castles and towns;
 That England, being empty of defence,
 Hath shook and trembled at the ill neighbourhood.
-CANTERBURY 
+CANTERBURY
 She hath been then more fear'd than harm'd, my liege;
 For hear her but exampled by herself:
 When all her chivalry hath been in France
@@ -348,7 +348,7 @@ To fill King Edward's fame with prisoner kings
 And make her chronicle as rich with praise
 As is the ooze and bottom of the sea
 With sunken wreck and sunless treasuries.
-WESTMORELAND 
+WESTMORELAND
 But there's a saying very old and true,
 'If that you will France win,
 Then with Scotland first begin:'
@@ -357,7 +357,7 @@ To her unguarded nest the weasel Scot
 Comes sneaking and so sucks her princely eggs,
 Playing the mouse in absence of the cat,
 To tear and havoc more than she can eat.
-EXETER 
+EXETER
 It follows then the cat must stay at home:
 Yet that is but a crush'd necessity,
 Since we have locks to safeguard necessaries,
@@ -368,7 +368,7 @@ For government, though high and low and lower,
 Put into parts, doth keep in one consent,
 Congreeing in a full and natural close,
 Like music.
-CANTERBURY 
+CANTERBURY
 Therefore doth heaven divide
 The state of man in divers functions,
 Setting endeavour in continual motion;
@@ -407,7 +407,7 @@ If we, with thrice such powers left at home,
 Cannot defend our own doors from the dog,
 Let us be worried and our nation lose
 The name of hardiness and policy.
-KING HENRY V 
+KING HENRY V
 Call in the messengers sent from the Dauphin.
 Exeunt some Attendants
 Now are we well resolved; and, by God's help,
@@ -426,18 +426,18 @@ Enter Ambassadors of France
 Now are we well prepared to know the pleasure
 Of our fair cousin Dauphin; for we hear
 Your greeting is from him, not from the king.
-First Ambassador 
+First Ambassador
 May't please your majesty to give us leave
 Freely to render what we have in charge;
 Or shall we sparingly show you far off
 The Dauphin's meaning and our embassy?
-KING HENRY V 
+KING HENRY V
 We are no tyrant, but a Christian king;
 Unto whose grace our passion is as subject
 As are our wretches fetter'd in our prisons:
 Therefore with frank and with uncurbed plainness
 Tell us the Dauphin's mind.
-First Ambassador 
+First Ambassador
 Thus, then, in few.
 Your highness, lately sending into France,
 Did claim some certain dukedoms, in the right
@@ -451,10 +451,10 @@ He therefore sends you, meeter for your spirit,
 This tun of treasure; and, in lieu of this,
 Desires you let the dukedoms that you claim
 Hear no more of you. This the Dauphin speaks.
-KING HENRY V 
+KING HENRY V
 What treasure, uncle?
 Tennis-balls, my liege.
-KING HENRY V 
+KING HENRY V
 We are glad the Dauphin is so pleasant with us;
 His present and your pains we thank you for:
 When we have march'd our rackets to these balls,
@@ -494,7 +494,7 @@ So get you hence in peace; and tell the Dauphin
 His jest will savour but of shallow wit,
 When thousands weep more than did laugh at it.
 Convey them with safe conduct. Fare you well.
-KING HENRY V 
+KING HENRY V
 We hope to make the sender blush at it.
 Therefore, my lords, omit no happy hour
 That may give furtherance to our expedition;
@@ -7271,4 +7271,4 @@ Enter ENOBARBUS and LEPIDUS
   AGRIPPA. Let us go.
     Good Enobarbus, make yourself my guest
     Whilst you abide here.
-  ENOBARBUS. Humbly, sir, I thank you.           
+  ENOBARBUS. Humbly, sir, I thank you.
