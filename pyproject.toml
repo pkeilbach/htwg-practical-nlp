@@ -6,8 +6,8 @@ readme = "README.md"
 authors = [{ name = "Pascal Keilbach", email = "pascal.keilbach@htwg-konstanz.de" }]
 dependencies = [
     "jupyter~=1.1.1",
-    "mkdocs-material~=9.5.39",
     "matplotlib~=3.9.2",
+    "mkdocs-material~=9.5.39",
     "nltk~=3.9.1",
     "pandas~=2.2.3",
     "pytest~=8.3.3",
