@@ -6,6 +6,7 @@ theme:
   name: material
   language: en
   features:
+    - content.tooltips
     - navigation.tabs
     - navigation.instant
     - navigation.indexes
@@ -25,8 +26,9 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/pkeilbach/htwg-practical-nlp
 markdown_extensions:
-  - attr_list
+  - abbr
   - admonition
+  - attr_list
   - footnotes
   - toc:
       permalink: true
@@ -35,7 +37,9 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
@@ -46,6 +50,8 @@ extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+watch:
+  - includes
 nav:
   - Welcome: index.md
   - About:
