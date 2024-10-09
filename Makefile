@@ -23,6 +23,12 @@ jupyter:
 mkdocs:
 	.venv/bin/mkdocs serve
 
+format:
+	.venv/bin/black .
+
+type-check:
+	.venv/bin/mypy src/
+
 pytest:
 	.venv/bin/pytest
 

@@ -16,5 +16,10 @@ requires-python = ">=3.8"
 
 [project.optional-dependencies]
 dev = [
-    "pre-commit",
+    "pre-commit~=3.8.0",
+    "black[jupyter]~=24.10.0",
+    "mypy~=1.11.2"
 ]
+
+[tool.mypy]
+ignore_missing_imports = true
