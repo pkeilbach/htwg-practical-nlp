@@ -1,8 +1,10 @@
+install: requirements
+
 requirements: pip
 	.venv/bin/python3 -m pip install -e .
 	.venv/bin/python3 -m nltk.downloader -d .venv/nltk_data popular
 
-dev-setup: requirements-dev
+install-dev: requirements-dev
 	.venv/bin/pre-commit install
 
 requirements-dev: pip

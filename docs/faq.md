@@ -73,6 +73,14 @@ The value of the contribution will be defined by the instructor.
 
 You can earn a maximum of 5 bonus points throughout the semester with your [contributions](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md).
 
+### What kind of contributions can be rewarded?
+
+A rewardable contribution is a **code change** that is successfully merged to the main branch of the course repository.
+
+While participating in discussions is appreciated and encouraged, this a not a rewardable contribution.
+
+Find more details in the [contributing guide](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md#rewarding-your-contributions).
+
 ## Assignments
 
 ### When is an assignment considered completed?
