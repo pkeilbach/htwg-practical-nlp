@@ -1,16 +1,6 @@
-# Getting Started
+# Development Setup
 
-This page describes how to set up your environment for this course.
-
-## Accounts
-
-To get the most out of this course, you should have a [GitHub](https://github.com/) and [Mural](https://www.mural.co/) account.
-Both services are free to use.
-
-!!! tip
-
-    You can use your HTWG email address to register for GitHub and Mural.
-    This will make it easier to identify you as a member of this course.
+This page describes how to set up your development environment for this course.
 
 ## Install Python
 
@@ -52,23 +42,39 @@ The recommended Python version for this course is 3.12. in a virtual environment
     You are free to use another Python version if you wish, but be aware that this may cause problems with the provided code.
     Also if you are using Python outside a virtual environment or with a distribution like Anaconda, the described setup may not work.
 
-## Clone the Repository
+## Forking the Repository (Optional)
 
-Make sure you have [Git](https://git-scm.com/) installed on your system.
-Now you can clone the course repository:
+You can decide between forking the course repository, or just clone it:
 
-```sh
-git clone https://github.com/pkeilbach/htwg-practical-nlp.git
-```
+- When [forking](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks) the repository, you act as a _conributor_ to the course repository. You will go through the full development setup and can use your remote repository to manage your work. Also, you can contribute back changes to earn bonus points for the exam. 🏅
+- When [cloning](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) the repository, you act as a _user_ of the course repository. While this is a bit more leightweight, you work fully locally and cannot contribute to the course repository. 🙁
 
 !!! tip
 
-    While cloning the course repository, as described here, lets you _participate_ in the course,
-    it is generally recommended to [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks) the course repository.
+    Forking is a very common practice in open source developlment.
+    If you are new to open source development and have not forked a repository before, this may be a good learning opportunity for you! 🤓
 
-    That way you can _contribute_ back bug fixes, enhancements, etc., which is highly encouraged and appreciated 🚀
+If you decide to clone the repository, you can directly continue with [the next step](#clone-the-repository).
 
-    You can find more details about contributing and forking the course repository in the [contributing guide](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md).
+If you decide to fork the repository, you can follow the official GitHub documentation on how to [fork a repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo).
+
+!!! info
+
+    If you fork a repository, a copy of the repository will be created in your personal GitHub user space.
+
+## Clone the Repository
+
+Make sure you have [Git](https://git-scm.com/) installed on your system.
+
+Cloning the repository is straightforward, no matter if you work on a fork or not. You only need to watch out where you clone from:
+
+```sh
+# When cloning your fork, make sure to clone it from your personal GitHub user space
+git clone https://github.com/<your-username>/htwg-practical-nlp.git
+
+# cloning the course repository directly
+git clone https://github.com/pkeilbach/htwg-practical-nlp.git
+```
 
 ## Execute the Setup Script
 
@@ -77,25 +83,33 @@ Change into the repository directory and execute the setup script.
 This should create a virtual environment and install all required dependencies.
 
 ```sh
+# go to the project directory
 cd htwg-practical-nlp
+
+# use plain make to install all required dependencies
 make
+
+# if you plan to contribute, you need to install the dev dependencies
+make install-dev
 ```
 
 This may take a few minutes. ☕
 
 If everything went well, you should be good to go.
 
-From now, make sure that you have the virtual environment activated.
-Usually, the IDE should automatically suggest you to activate it (e.g. VSCode).
-If that is not the case, you can activate the virtual environment with the following command
+!!! info "Acticate the virtual environment"
 
-```sh
-# activate the virtual environment manually
-source .venv/bin/activate
+    From now, make sure that you have the virtual environment activated.
+    Usually, the IDE should automatically suggest you to activate it (e.g. VSCode).
+    If that is not the case, you can activate the virtual environment with the following command
 
-# in case you need to deactivate it
-deactivate
-```
+    ```sh
+    # activate the virtual environment manually
+    source .venv/bin/activate
+
+    # in case you need to deactivate it
+    deactivate
+    ```
 
 ## Test your Installation
 
@@ -111,7 +125,7 @@ But this is exactly what we want to see, since we haven't implemented anything y
 
 !!! info
 
-    You can find more details on how we handle assignments on the [corresponding page](./assignments.md).
+    You can find more details on how we handle assignments in the [assignments guide](./assignments.md).
 
 If you came this far, your initial setup was successful and you are ready to go! 🚀
 
@@ -145,23 +159,29 @@ make docs
 
 The lecture notes are now accessible at <http://localhost:8000/>.
 
-## Pulling Updates
+## Fetching Updates
 
-Every now and then, the course repository will be updated.
-To incorporate these updates, you will need to pull from the `main` branch:
+During the semester, it is very likely that the course repository will be updated.
+
+You can incorporate the updates as follows:
 
 ```sh
-# make sure you are on to the main branch
+# if you work on a fork, you need to fetch your updates from the course repository (aka 'upstream')
+git fetch upstream
 git checkout main
+git merge upstream/main
 
-# pull the updates from the remote repository
-git pull
+# otherwise, you need to fetch from origin
+git fetch origin
+git checkout main
+git merge origin/main
 ```
+
+!!! info "Pull updates regularly"
+
+    It is good practice to pull the latest changes from `main` every now and then (just in case you are wondering why your assignment tests suddenly fail 😅).
+    However, important updates will be announced in the lecture.
 
 !!! note
 
-    For a fork, the process is a little different, and described in detail in the [contributing guide](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md#syncing-you-fork)
-
-!!! tip
-
-    It is good practice to pull the latest changes from `main` every now and then (just in case you are wondering why your assignment tests suddenly fail 😅). However, important updates will be announced in the lecture.
+    Find more details about syncing a fork in the official [GitHub docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork).

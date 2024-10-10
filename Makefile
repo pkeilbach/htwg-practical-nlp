@@ -1,10 +1,10 @@
-project: requirements
+install: requirements
 
 requirements: pip
 	.venv/bin/python3 -m pip install -e .
 	.venv/bin/python3 -m nltk.downloader -d .venv/nltk_data popular
 
-dev-setup: requirements-dev
+install-dev: requirements-dev
 	.venv/bin/pre-commit install
 
 requirements-dev: pip
@@ -17,11 +17,19 @@ pip: venv
 venv:
 	python3 -m venv --upgrade-deps .venv
 
-jupyter: project
+# the following commands can only be used when `make` was executed successfully
+# TODO issue-135: print a hint on the console to execute `make`
+jupyter:
 	.venv/bin/jupyter notebook --no-browser
 
-docs: project
+mkdocs:
 	.venv/bin/mkdocs serve
+
+format:
+	.venv/bin/black .
+
+type-check:
+	.venv/bin/mypy src/
 
 pytest:
 	.venv/bin/pytest
