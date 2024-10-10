@@ -14,10 +14,14 @@ I'm excited to have you here and I hope you will enjoy the course.
 
 If you have [Python](https://docs.python.org/3/) and [Git](https://git-scm.com/) installed on your system, you can get started right away.
 
+After you forked or cloned the repository, execute one of the following commands:
+
 ```sh
-git clone https://github.com/pkeilbach/htwg-practical-nlp.git
-cd htwg-practical-nlp
+# regular setup
 make
+
+# development setup
+make install-dev
 ```
 
 For more details, check out the [Getting Started](./docs/getting_started.md) guide.
@@ -28,7 +32,9 @@ There are already a few things you can do _before_ our course officially starts:
 
 - **Enrol in the Moodle course**: 🙋‍♂️
 
-    This will give an an estimation of how many students plan to take the course. Also, we use the HTWG [Moodle](https://moodle.htwg-konstanz.de/moodle/) for internal announcements or anything that is related to the current semester.
+    We use the HTWG [Moodle](https://moodle.htwg-konstanz.de/moodle/) for internal announcements or anything that is related to the current semester.
+    This is to make sure that nobody misses anything.
+    Also it will give me an estimation of how many students plan to take the course.
 
 - **Check the course profile and prerequisities**: 📋
 
@@ -48,7 +54,7 @@ There are already a few things you can do _before_ our course officially starts:
 
 - **Set up your development environment for the course**: 🛠️
 
-    Go through the [getting started](./docs/getting_started.md) guide to set up you development environment for the course.
+    Go through the [getting started](./docs/getting_started.md) guide to set up your development environment for the course.
 
 - **Read through the contribution guide**: 👐
 
