@@ -31,6 +31,50 @@ The following figure gives an overview of real-world NLP applications along with
 Answer: ask students in the course
 -->
 
+## A brief history about NLP
+
+IMHO, every lecture should provide a little historical background in the beginning[^1]: 📜
+
+- **1950s–1990s**
+  Initial attempts are made to map hard rules around languages and follow logical steps to accomplish tasks like translating a sentence from one language to another.
+  While this works sometimes, strictly defined rules only work for concrete, well-defined tasks that the system has knowledge about.
+
+    !!! info "Noam Chomsky"
+
+        Renowned linguist and cognitive scientist [Noam Chomsky](https://en.wikipedia.org/wiki/Noam_Chomsky) introduced the theory of generative grammar, which revolutionized the understanding of language structure and acquisition. His work laid the theoretical groundwork for studying language processing and understanding the innate structures that govern language use. Chomsky's theories on syntax and the nature of language have influenced computational linguistics and the development of algorithms for natural language processing, informing how machines understand and generate human language. His critiques of AI's ability to fully understand language have also sparked important discussions on the limitations of current language models.
+
+- **1990s**
+  Language models begin evolving into statistical models and language patterns start being analyzed, but larger-scale projects are limited by computing power.
+
+- **2000s**
+  Advancements in machine learning increase the complexity of language models, and the wide adoption of the internet sees an enormous increase in available training data.
+
+    !!! info "Geoffrey Hinton"
+
+        Often referred to as one of the "Godfathers of Deep Learning," [Geoffrey Hinton](https://en.wikipedia.org/wiki/Geoffrey_Hinton) has made significant contributions to the field of neural networks and deep learning, which are foundational to modern language models. His work on backpropagation, neural networks, and the development of the dropout technique has greatly influenced the training of deep learning models. Hinton's research laid the groundwork for the advancement of architectures like BERT and GPT, significantly impacting natural language processing (NLP) and machine learning as a whole.
+
+        Together with [John Hopfield](https://en.wikipedia.org/wiki/John_Hopfield), he was awarded the 2024 Nobel Prize in Physics.
+
+
+- **2012**
+  Advancements in deep learning architectures and larger data sets lead to the development of GPT (Generative Pre-trained Transformer).
+
+- **2018**
+  Google introduces BERT (Bidirectional Encoder Representations from Transformers), which is a big leap in architecture and paves the way for future large language models.
+
+- **2020**
+  OpenAI releases GPT-3, which becomes the largest model at 175B parameters and sets a new performance benchmark for language-related tasks.
+
+    !!! info "Ilya Sutskever"
+
+        Co-founder and Chief Scientist at OpenAI, [Ilya Sutskever](https://en.wikipedia.org/wiki/Ilya_Sutskever) has played a pivotal role in the development of groundbreaking language models, including GPT-2 and GPT-3. His work in deep learning and reinforcement learning has advanced the understanding and capabilities of generative models. Sutskever's contributions to the architecture and training of these models have led to significant improvements in their performance on a wide range of language-related tasks. His leadership at OpenAI has also driven the broader adoption and awareness of large language models and their potential applications.
+
+- **2022**
+  ChatGPT is launched, which turns GPT-3 and similar models into a service that is widely accessible to users through a web interface and kicks off a huge increase in public awareness of LLMs and generative AI.
+
+- **2023**
+  Open source LLMs begin showing increasingly impressive results with releases such as Dolly 2.0, LLaMA, Alpaca, and Vicuna. GPT-4 is also released, setting a new benchmark for both parameter size and performance.
+
 ## NLP Research vs. NLP Engineering
 
 Natural Language Processing (NLP) is a broad field that encompasses a wide range of topics, including linguistics, computer science, and artificial intelligence.
