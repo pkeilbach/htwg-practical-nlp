@@ -42,8 +42,8 @@ It is important to understand the difference between these two views, as they re
 
 Depending on the perspective, the goals and metrics, the data and methodology, as well as the challenges that are faced, can be very different:
 
-- As a **software engineer** in the industry, aspects like scalability, cost or robustness of your NLP system are more important than if you are a researcher in academia. But still, if you work on an NLP problem, it is important to understand basic NLP concepts.
-- As a **researcher**, your primary goal is to find answers to your research questions rather than dealing with devops topics or the latest frameworks and tools. At the same time, many research projects are driven by practical needs and are often inspired by real-world problems.
+- As a **software engineer** in the industry, aspects like scalability, cost or robustness of your NLP system are more important than if you are a researcher in academia. But still, if you work on an NLP problem, it is important to understand basic NLP concepts. On the data side, you are likely to deal with noisy real-world data.
+- As a **researcher**, your primary goal is to find answers to your research questions and optimize towards perfomance metrics (e.g. [F1 score] or [perplexity]) rather than dealing with devops topics or the latest frameworks and tools. At the same time, many research projects are driven by practical needs and are often inspired by real-world problems. On the data side, you usually have well-defined datasets available.
 
 The following figure illustrates those differences:
 
@@ -51,3 +51,7 @@ The following figure illustrates those differences:
 
 In this course, we will lean bit more towards the apllication side of NLP.
 While we will cover all important theoretical foundations, the main objective is to provide you with the skills that are required to successfully design and implement NLP systems in the industry.
+
+<!-- page links -->
+[perplexity]: https://en.wikipedia.org/wiki/Perplexity
+[F1 score]: https://en.wikipedia.org/wiki/F-score
