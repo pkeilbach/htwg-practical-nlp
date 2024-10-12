@@ -30,3 +30,24 @@ After that, we dive into deep learning and how we can use it for NLP tasks.
 Finally, we will take a look at large language models, generative artificial intelligence, and the current advances in this field.
 
 ![Course structure](../img/course-structure.drawio.svg)
+
+## Academic research vs. practical applications
+
+NLP is a broad field that encompasses a wide range of topics, including linguistics, computer science, and artificial intelligence.
+When working on NLP problems, it is important to know which perspective we are having on the problem.
+
+There is an **academic perspective** on NLP, which is focused on advancing the field through research and innovation.
+And there is a **practical perspective** on NLP, which is focused on applying NLP techniques to solve real-world problems.
+It is important to understand the difference between these two views, as they require **different skills** and lead to different **career paths**.
+
+Depending on the perspective, the goals and metrics, the data and methodology, as well as the challenges that are faced, can be very different:
+
+- As a **software engineer** in the industry, aspects like scalability, cost or robustness of your NLP system are more important than if you are a researcher in academia. But still, if you work on an NLP problem, it is important to understand basic NLP concepts.
+- As a **researcher**, your primary goal is to find answers to your research questions rather than dealing with devops topics or the latest frameworks and tools. At the same time, many research projects are driven by practical needs and are often inspired by real-world problems.
+
+The following figure illustrates those differences:
+
+![A diagram that shows the relation between NLP research and NLP engineering](../img/preface-research-vs-application.drawio.svg "NLP research vs. NLP engineering")
+
+In this course, we will lean bit more towards the apllication side of NLP.
+While we will cover all important theoretical foundations, the main objective is to provide you with the skills that are required to successfully design and implement NLP systems in the industry.

@@ -75,45 +75,6 @@ IMHO, every lecture should provide a little historical background in the beginni
 - **2023**
   Open source LLMs begin showing increasingly impressive results with releases such as Dolly 2.0, LLaMA, Alpaca, and Vicuna. GPT-4 is also released, setting a new benchmark for both parameter size and performance.
 
-## NLP Research vs. NLP Engineering
-
-Natural Language Processing (NLP) is a broad field that encompasses a wide range of topics, including linguistics, computer science, and artificial intelligence.
-When working on NLP problems, it is important to know which perspective we are having on the problem.
-
-There is an academic perspective on NLP, which is focused on advancing the field through research and innovation.
-And there is a practical perspective on NLP, which is focused on applying NLP techniques to solve real-world problems.
-It is important to understand the difference between these two views, as they require different skills and lead to different career paths.
-
-Depending on the perspective, the goals and metrics, the data and methodology, as well as the challenges that are faced, can be very different.
-For example, as a software engineer in the industry, aspects like scalability, cost or robustness of your NLP system are more important than if you are a researcher in academia.
-On the other hand, as a researcher, your primary goal is to find answers to your research questions rather than bothering with latest frameworks and tools.
-
-However, as a software engineer working on NLP problems, it is important to get the gist of the theoretical foundations of NLP, in order to properly adapt it on your business problem.
-At the same time, many research projects are driven by practical needs and are often inspired by real-world problems.
-The following figure illustrates the relation between the research and engineering side of NLP.
-
-![A diagram that shows the relation between NLP research and NLP engineering](../img/nlp-research-vs-nlp-engineering.drawio.svg "NLP research vs. NLP engineering")
-
-The following table summarizes the main differences between NLP research and NLP engineering.
-
-| Aspect                           | NLP Research                                                                                                | NLP Engineering                                                                                                                                                  |
-| -------------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Nature of Work                   | Advancing NLP through innovative methods, models, and theories with creativity and scientific rigor         | Applying NLP techniques to real-world problems and creating efficient systems                                                                                    |
-| Focus                            | Developing new methods, models, algorithms, and theories                                                    | Building scalable, reliable, and efficient systems for handling large datasets and producing high-quality outputs                                                |
-| Workplace                        | Academic institutions, research labs, or R&D-focused companies                                              | Product teams, software companies, or organizations with NLP needs                                                                                               |
-| Knowledge and Skills Required    | Strong foundation in mathematics, statistics, computer science, linguistics, deep NLP knowledge             | Software engineering principles, practical experience with NLP tools, familiarity with NLP architectures and models, strong data processing skills               |
-| Programming Languages/Frameworks | Proficiency in languages like Python, PyTorch, TensorFlow                                                   | Use of Python, NLP libraries (spaCy, NLTK, Gensim), and other relevant tools                                                                                     |
-| Responsibilities                 | Conducting literature reviews, designing experiments, analyzing results, writing research papers            | Designing and building efficient NLP systems as well as integration with other systems such as web services, databases, and cloud services                       |
-| Goal Definition                  | Abstract and ambitious goals driven by curiosity, exploration, and discovery                                | Concrete and specific goals driven by customer needs, business requirements, and user feedback                                                                   |
-| Performance Metrics              | Academic metrics like accuracy, recall, F1-score, perplexity, etc.                                          | Product metrics such as speed, scalability, robustness, usability, etc.                                                                                          |
-| Methodology                      | Based on scientific methods and experiments                                                                 | Tend to use software engineering methodology and best practices (SCRUM, DevOps, etc.)                                                                            |
-| Datasets                         | Use open source or benchmark datasets                                                                       | Use real-world data that is often less structured and unlabelled                                                                                                 |
-| Core Challenges                  | Finding novel research questions, managing research uncertainty, balancing publication quality and quantity | Adapting solutions to different domains, ensuring reliability and security, managing real-world data diversity and noise, balancing product performance and cost |
-
-In this course, we will focus on the engineering perspective of NLP.
-While we will cover all important theoretical foundations, the main objective is to provide you with the skills that are required to successfully design and implement NLP systems in the industry.
-We will learn some of the most important NLP tools, libraries and frameworks that are used in real-world NLP projects.
-
 ## NLP Tasks
 
 Some fundamental tasks appear across many NLP projects.
