@@ -6,7 +6,7 @@ This course offers a comprehensive introduction to Natural Language Processing (
 
 Later in the course, students will delve into advanced NLP approaches, including word embeddings and sequence models, such as recurrent neural networks (RNNs) and their improvements with attention mechanisms. The course balances theory and practical application, preparing students to build and understand NLP systems in real-world contexts. Towards the end of the course, we will also touch on large language models, prompt engineering, and generative AI.
 
-## Learning Objectives
+## Learning objectives
 
 By the end of this course, students will be able to:
 
@@ -27,12 +27,12 @@ You can earn **bonus points** for the exam through [contributions](https://githu
 - **Presentation** (ungraded)
 - **Contributions** (TBD)
 
-## Course Language
+## Course language
 
 All course materials are provided in **English**.
 Lectures will be delivered in German, but can also be conducted in English if we have international students.
 
-## Course Format
+## Course format
 
 This course will be delivered in a **hybrid format**, consisting of both in-person and online lectures.
 Note that in-person lectures will not be streamed, and online lectures will not be recorded.

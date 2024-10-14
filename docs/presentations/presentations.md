@@ -4,7 +4,7 @@ During the semester, each student should give a presentation about an NLP-relate
 
 The presentation is ungraded, but mandatory to pass the course.
 
-## Topic
+## Topic choice
 
 The presentation can be about a tool, framework, technology, or just anything that you are interested in, as long as it fits into the broader context of NLP.
 
@@ -25,7 +25,7 @@ We will discuss the topic assignments in one of the first lectures.
     If multiple students are interested in the same topic, we will figure out a way to assign the topics fairly.
     In case of doubt, a first-come-first-serve approach may be applied, so it's probably a good idea to be quick! 😉
 
-## Scope
+## Scope and time
 
 The scope of the presentation should be around **15-20 minutes** and you should include a **demo or practical example**.
 
@@ -33,7 +33,7 @@ For the **demo**, try to aim for 30-50% of the time (depending on the topic). Fe
 
 Besides that, there are no strict rules about the presentation format. You can use slides if you want, but it is not mandatory.
 
-## Presentation Dates
+## Presentation dates
 
 We will discuss the dates of the presentations in one of the first lectures.
 

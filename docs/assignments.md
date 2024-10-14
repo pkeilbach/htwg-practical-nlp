@@ -5,7 +5,7 @@ The assignments are ungraded, but they are mandatory to pass the course.
 
 If you have basic programming skills, you should be able to complete the assignments.
 
-## Structure
+## Package structure
 
 Throughout the course, we will work on a Python package called `htwgnlp`.
 The package is located in the `src` directory and is a fully functional and installable Python package.
@@ -25,7 +25,7 @@ To work on an assignment, you will need to locate the `TODO ASSIGNMENT-*` items 
 
     You should check the unit tests located in the `tests` directory to see the exact requirements that need to be implemented.
 
-## Testing your Implementation
+## Testing your implementation
 
 Once you implemented everything, you can run the tests to check if everything works as expected.
 
@@ -56,7 +56,7 @@ If all your tests pass, you successfully completed the assignment! 🚀
     Pytest is a very powerful testing framework and the de-facto standard for testing in Python.
     You will not need to know all the details, but if you want to learn more, check out the [official Pytest documentation](https://docs.pytest.org/en/latest/contents.html).
 
-## Jupyter Notebooks
+## Run Jupyter notebooks
 
 Some of the assignments are accompanied by Jupyter notebooks.
 
@@ -64,7 +64,7 @@ If you successfully complete an assignment, you can run the accompanying noteboo
 
 See the [Getting Started](./getting_started.md) guide for instructions on how to start the Jupyter server.
 
-## Submission
+## Submit assignment
 
 To submit an assignment, you will need to provide screenshots of a successful test run.
 
@@ -76,7 +76,7 @@ You can submit the screenshots via GitHub issue using the issue template for [As
 
     Submission via GitHub issue is preferred, but it is also accpeted if submit the screenshots via [email](mailto:pascal.keilbach@htwg-konstanz.de).
 
-## Working on your Assignments
+## Working on your assignments
 
 How you work on your assignments on your local machine is completely up to you.
 But following a consistent branching strategy will probably make you life easier.
@@ -134,7 +134,7 @@ If you don't want to deal with git, you could also work purely locally without c
     When pulling updates, you probably need to [stash](https://git-scm.com/docs/git-stash) your changes.
     But be careful: if not done properly, you may lose your progress! 😱
 
-## Pulling Updates
+## Pulling updates
 
 As described in the getting started guide, there will be [updates](getting_started.md#pulling-updates) from time to time.
 It can happen that these updates affect the assignments (just in case you are wondering why your tests suddenly fail 😅).
