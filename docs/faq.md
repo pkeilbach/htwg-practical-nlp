@@ -56,6 +56,13 @@ In general, I want to keep the entry barrier as low as possible, but you should 
 
 Let me know if you are unsure if you are unsure whether you can take the course or not!
 
+## Can I take the course if I just started programming?
+
+I would say yes. I try to design the course materials in a way that students with little programming experience can participate, and I want to encourage everybody to participate. I will try my best to make it clear whenever we have a more advanced or language specific concept that goes beyond basic object oriented programming.
+
+However, it is certainly easier for you to follow along and complete the assignments if you bring basic computer science and software engineering knowledge, like Linux, Git, Python.
+
+Please check out the [course prerequisites](course_profile.md#prerequisites) and let me know if you have any doubts.
 
 ## Contributions
 
