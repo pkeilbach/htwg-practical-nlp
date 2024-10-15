@@ -1,15 +1,12 @@
-# Introduction to NLP
+# Introduction to Natural Language Processing
 
-Welcome to the world of natural language processing (NLP).
 The first lecture will give you a basic understanding of what NLP is about, the problems we deal with and the challenges that come with it.
-We will take a look at some real-world NLP applications and learn about the most important NLP tasks.
-Also we will dissect language into its building blocks and learn about the relation between NLP and AI.
 The goal is to get a good intuition of what it means to work with language from a programmatic perspective.
 
-## Real-world NLP Applications
+## NLP in our everyday lives
 
 In our daily digital lives, we interact with a lot of apps and tools that are based on NLP technologies.
-The following figure gives an overview of real-world NLP applications along with popular examples.
+The following figure gives an overview of real-world NLP applications along with popular examples[^1].
 
 ![An overview of real-world NLP applications with popular examples](../img/nlp-real-world-applications.drawio.svg "Real-world NLP applications")
 
@@ -27,13 +24,9 @@ The following figure gives an overview of real-world NLP applications along with
 
     Based on your **working experience**, where have you already encountered, or can think of, potential **NLP applications**?
 
-<!--
-Answer: ask students in the course
--->
-
 ## A brief history about NLP
 
-IMHO, every lecture should provide a little historical background in the beginning[^1]: 📜
+IMHO, every lecture should provide a little historical background in the beginning[^2]: 📜
 
 - **1950s–1990s**
   Initial attempts are made to map hard rules around languages and follow logical steps to accomplish tasks like translating a sentence from one language to another.
@@ -81,11 +74,11 @@ NLP is used for a wide variety of language-related tasks, including answering qu
 
 If you design an NLP system, you may make use of multiple tasks.
 
-Here are some tasks that can be solved by NLP[^2]:
+Here are some tasks that can be solved by NLP[^3]:
 
 ### Sentiment analysis
 
-- **Sentiment analysis classifies** the emotional intent of text.
+- **Sentiment analysis** is a **text classification** problem and it classifies the emotional intent of text.
 - **Input** is a text, and the **output** is the probability of the sentiment being positive, negative, or neutral.
 - **Features** used may include hand-generated features, word n-grams, TF-IDF, or deep learning models for capturing text dependencies.
 - Common **applications** include classifying customer reviews and identifying signs of mental illness in online comments.
@@ -103,6 +96,12 @@ Here are some tasks that can be solved by NLP[^2]:
 !!! info "Toxicity classification"
 
     Toxicity classification, a branch of sentiment analysis, categorizes hostile content like threats, insults, obscenities, and hate speech. It's used to moderate online conversations by detecting and silencing offensive comments or scanning for defamation.
+
+!!! info "Text classification with Naive Bayes"
+
+    A very good starting algorithm for text classification tasks in [**Naive Bayes**](https://en.wikipedia.org/wiki/Naive_Bayes_classifier) algorithm.
+    This is primarily because it is relatively simple to understand and implement, and very fast to train and run.
+    We will cover the **Naive Bayes algorithm** later in the course, as well as in one of the assignments.
 
 ### Machine translation
 
@@ -270,6 +269,12 @@ Description:
 - May or may not have a meaning by themselves, but can induce meaning, e.g. `/s/` for plural or `/ɪ/` for adjective
 - A nice list of examples can be found [here](https://englishphonetics.net/english-phonetics-academy/the-44-sounds-of-english-based-on-the-IPA.html)
 
+Important for:
+
+- Speech recognition
+- Speech-to-text
+- Text-to-speech
+
 !!! example "Examples"
 
     Consonant phonemes:
@@ -281,12 +286,6 @@ Description:
 
     - `/iː/` as in "bee" 🐝
     - `/æ/` as in "cat" 🐈
-
-Important for:
-
-- Speech recognition
-- Speech-to-text
-- Text-to-speech
 
 ### Morphemes and Lexemes
 
@@ -305,6 +304,13 @@ Lexemes:
 - Multiple words can go back to the same lexeme
 - Not synonymous with the term "word", rather comparable to an entry in a dictionary or an encyclopedia
 - Different verb forms go back to the same lexeme
+
+Important for:
+
+- Tokenization
+- Stemming
+- POS-tagging
+- Word embeddings
 
 !!! example "Examples"
 
@@ -325,13 +331,6 @@ Lexemes:
     - word $tumbling$ (verb) 👉 lexeme: $tumble$ 👉 morphemes: $tumble + ing$
     - word $happening$ (verb) 👉 lexeme: $happen$ 👉 morphemes: $happen + ing$
 
-Important for:
-
-- Tokenization
-- Stemming
-- POS-tagging
-- Word embeddings
-
 !!! tip
 
     A **lexeme** is **not synonymous to a word**, but can be thought of as an **abstract word**: if we use lexemes, they become words
@@ -346,20 +345,8 @@ Important for:
 - Set of rules to construct grammatically correct sentences out of words
 - The syntactic structure can be described in many different ways, e.g. grammar
 - In NLP, it is common to describe the anatomy of a sentence using part-of-speech (POS) tags
-- A popular tagging convention is [Penn Treebank tagset](https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html) which is also used by default by the Python [Natural Language Toolkit library](https://www.nltk.org/api/nltk.tag.html)
-- A simplified [universal tagset](https://github.com/slavpetrov/universal-pos-tags) by Google Research maps the Penn Treebank tagset to only 12 tags
 
-!!! example
-
-    Consider the following sentence:
-
-    > *"The girl plays tennis."*
-
-    Grammatical analysis 👉 *The girl (subject) plays (verb) tennis (object).*
-
-    POS-tagging using the universal tagset: 👉 *The (DET) girl (NOUN) plays (VERB) tennis (NOUN) .(.)*
-
-The following snippet shows POS-tagging in Python using the NLTK library and the universal tagset:
+The following snippet shows POS-tagging in Python using the NLTK library and the [universal tagset](https://github.com/slavpetrov/universal-pos-tags):
 
 ```python
 >>> from nltk import pos_tag, word_tokenize
@@ -372,6 +359,16 @@ The following snippet shows POS-tagging in Python using the NLTK library and the
     ('.', '.')
 ]
 ```
+
+!!! example
+
+    Consider the following sentence:
+
+    > *"The girl plays tennis."*
+
+    Grammatical analysis 👉 *The girl (subject) plays (verb) tennis (object).*
+
+    POS-tagging using the universal tagset: 👉 *The (DET) girl (NOUN) plays (VERB) tennis (NOUN) .(.)*
 
 !!! question
 
@@ -400,6 +397,12 @@ If it is just about the conveyed information, it is probably OK to remove them d
   - **Semantics** refers to the direct meaning of words or sentences, without external context
   - **Pragmatics** add world knowledge and enables us to infer implied meaning
 
+Important for:
+
+- Text summarization
+- Conversational agents
+- Sentiment analysis
+
 !!! example
 
     Consider the following sentence:
@@ -413,12 +416,6 @@ If it is just about the conveyed information, it is probably OK to remove them d
 <!--
     The [sad story](https://en.wikipedia.org/wiki/For_sale:_baby_shoes,_never_worn) of how Hemingway supposedly won a 10$ bet shows the difference between semantics and pragmatics.
 -->
-
-Important for:
-
-- Text summarization
-- Conversational agents
-- Sentiment analysis
 
 !!! info
 
@@ -497,13 +494,11 @@ The language of mathematics is designed to be unambiguous.
 
 !!! quote
 
-    *He stepped down, trying not to look long at her, as if she were the sun, yet he saw her, like the sun, even without looking.*
+    Writing beautiful novels probably requires a high degree of world knowledge and creativity:
+
+    > *He stepped down, trying not to look long at her, as if she were the sun, yet he saw her, like the sun, even without looking.*
 
     Leo Tolstoy, Anna Karenina
-
-!!! question
-
-    Is [GenAI](https://en.wikipedia.org/wiki/Generative_artificial_intelligence) creative?
 
 ### Diversity
 
