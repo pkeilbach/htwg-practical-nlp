@@ -520,7 +520,16 @@ Comment:
 Anybody who used NLP solutions in another language than english probably has experienced lower performance.
 -->
 
-## NLP meets Artificial Intelligence
+## NLP in the era of Artificial Intelligence
+
+In this section, we will look at NLP and how it is related to articial intelligence (AI).
+
+In general, NLP aims to give **computers** the ability to **understand text and spoken words** in much the same way human beings can.
+
+It combines computational linguistics with programming, statistics, machine learning, and deep learning.
+The field has greatly benefit from recent advancements in ML and DL and is one of the fast-growing research domains in AI.
+
+However, in its simplest forms, NLP is **not necessarily based on AI**, and we can also solve some of the simpler tasks with rule-based apporaches.
 
 ![Venn Diagram depicting the relation between AI, ML, DL, and NLP](../img/ai-ml-dl-nlp.drawio.svg "Relation between AI, ML, DL, and NLP")
 
@@ -528,31 +537,11 @@ Anybody who used NLP solutions in another language than english probably has exp
 
     The theory and development of computer systems able to perform tasks normally requiring human intelligence.
 
-Machine Learning (ML):
-
-- Branch of AI
-- Algorithms that can learn to perform tasks based on a large number of **examples**
-- No explicit instructions required, algorithm learns **patterns**
-- Requires **numeric representation** (aka "features") of the training data
-
-Deep Learning (DL):
-
-- Algorithms based on artificial **neural networks**
-- Inspired by the neurons of the human brain and how they interact
-- Significant **advances** in the past years
-
-Natural Language Processing (NLP):
-
-- Aims to give **computers** the ability to **understand text and spoken words** in much the same way human beings can
-- Combines computational linguistics with statistical, machine learning, and deep learning models
-- Leverage advances in ML and DL
-- Not **necessarily based on AI**, early work is also based on rules and heuristics
-
 !!! info
 
     A good read on how AI, ML, and DL are related is [this article](https://www.ibm.com/topics/artificial-intelligence) by IBM. [This article](https://www.ibm.com/topics/natural-language-processing) gives more details about the role of NLP in that context.
 
-### Heuristic-Based NLP
+### Rule-based NLP
 
 - Defining **rules** for the task to be solved
 - Utilize lexical resources
@@ -560,7 +549,7 @@ Natural Language Processing (NLP):
 
 !!! info "Regular expressions (regex)"
 
-    A powerful rule-based tool for text analysis are **regular expressions**, where we define search patterns to find substrings in a text.
+    A very common rule-based tool for text analysis are **regular expressions**, where we define search patterns to find substrings in a text.
     Regexes operate deterministically, i.e. it is either a match or not.
     [Here](https://docs.python.org/3/library/re.html) is a guide using regular expressions with Python, which will be useful throughout the course (as well as your entire journey as a Python developer).
 
@@ -586,11 +575,15 @@ limitations: hard to solve complex NLP tasks
 
 ### Machine Learning for NLP
 
+- Branch of AI
+- Algorithms that can learn to perform tasks based on a large number of **examples**
+- No explicit instructions required, algorithm learns **patterns**
+- Requires **numeric representation** (aka "features") of the training data
 - ML can be applied to textual data similar to other forms of data
 - A special focus needs to be put on **pre-processing** and **feature extraction**
 - training a model is then "business as usual"
 
-#### Supervised learning
+**Supervised learning**
 
 - learn **mapping function** from input to output
 - requires a large number of **labeled training data**, i.e. known input-output pairs
@@ -599,7 +592,7 @@ limitations: hard to solve complex NLP tasks
 
     An **email spam filter** is a common example where supervised learning is used in NLP.
 
-#### Unsupervised learning
+**Unsupervised learning**
 
 - Aims to find hidden patterns in given input data
 - Output is unknown, i.e. works with **unlabeled data**
@@ -609,29 +602,14 @@ limitations: hard to solve complex NLP tasks
     An example where unsupervised learning is used in NLP is **topic modeling**, where we try to identify topics in a large collection of text data, e.g. news articles, without prior knowledge of these topics.
     A simple approach to topic modeling is a [tag cloud](https://en.wikipedia.org/wiki/Tag_cloud).
 
-#### Semi-supervised learning
-
-- Small labeled dataset and a large unlabeled data set
-- Make use of additional unlabeled data to better capture the shape of the underlying data distribution and generalize better to new samples
-- Important when labeling is challenging or expensive
-
-#### Reinforcement learning
-
-- Does not need a lot of training data, and can be created during training
-- Learns tasks by being rewarded for desired behaviors and punished for bad ones ("trial and error")
-
-!!! info
-
-    A very good starting algorithm for text classification tasks in [**Naive Bayes**](https://en.wikipedia.org/wiki/Naive_Bayes_classifier) algorithm.
-    This is primarily because it is relatively simple to understand and implement, and very fast to train and run.
-    We will cover the **Naive Bayes algorithm** later in the course, as well as in one of the labs.
-
 ### Deep Learning for NLP
 
-In this section we will introduce some important concepts of deep learning for NLP.
-We will only scratch the surface as we will meet some of those concepts later in the course.
+When we speak of using deep learning for NLP, this encompasses all algorithms based on **artifical neural networks**.
+Deep learing approaches in NLP led to **significant advances** in the recent year in the field.
 
-#### Language Models
+This section gives a brief overview of the terms that are used in this context.
+
+**Language Models**
 
 - System that is trained to **understand and generate** human-like text
 - Designed to **predict** and generate sequences of words or characters based on the input it receives
@@ -642,35 +620,35 @@ We will only scratch the surface as we will meet some of those concepts later in
 
     GPT-3, based on the transformer architecture, is an example of a powerful language model.
 
-#### Convolutional Neural Networks (CNNs)
+**Convolutional Neural Networks (CNNs)**
 
 - Adapted from computer vision tasks
 - Require **word embeddings** to build sentences matrices, which can be treated analogously to images
 
-#### Recurrent Neural Networks (RNNs)
+**Recurrent Neural Networks (RNNs)**
 
 - language is sequential by nature, e.g. text flows from one direction to another
 - RNNs are a type of neural network designed for **sequential data**, making them suitable for tasks where the order of the input matters
 - Can remember what they have processed so far, but cannot remember long contexts
 
-#### Long Short-Term Memory (LSTM)
+**Long Short-Term Memory (LSTM)**
 
 - LSTMs are a specific type of RNN designed to address the vanishing gradient problem, enabling better learning of long-range dependencies in sequential data.
 - Let go of **irrelevant context**, and only remember the context that is required to solve the task at hand
 
-#### Transformers
+**Transformers**
 
 - **Type of architecture** that has gained prominence in NLP
 - Use **attention mechanisms** to capture relationships between different parts of a sequence simultaneously, making them effective for processing sequential data, including language
 - Look at surrounding words to derive context (e.g. bank as a river bank or financial institution)
 
-#### Transfer Learning
+**Transfer Learning**
 
 - Transfer learning is a machine learning **paradigm** where a model trained on one task is **adapted or fine-tuned** for a different but related task
 - Often used to leverage **pre-trained models** for specific applications
 - The model is able to **transfer** the pre-trained knowledge for downstream tasks
 
-#### Foundation Models
+**Foundation Models**
 
 - The term **foundation model** refers to **large-scale** language models **based on the transformer** architecture
 - They serve as a **starting point** for various NLP tasks
@@ -680,17 +658,17 @@ We will only scratch the surface as we will meet some of those concepts later in
 
     GPT-3 is known to be trained on 45 TB of text data and the model has about 175 billion parameters.
 
-#### Attention
+**Attention**
 
 - The attention mechanism is a key component of the transformer model architecture and plays a crucial role in capturing **contextual information across sequences**.
 - Attention mechanisms, particularly **self-attention** in the context of transformers, allow models to **focus on different parts of the input sequence** when making predictions.
 - Especially beneficial for capturing long-range dependencies.
 - In general, attention is the ability to **focus on important things and ignore irrelevant things**, as certain parts of a sentence are more important than others
 
-#### Limitations
+### Limitations of AI in NLP
 
 DL has brought NLP to the next level, and powerful transformer models have become SOTA in most NLP tasks.
-However, DL is not the silver bullet for all NLP tasks, especially when it comes to industrial applications:
+However, DL is not the silver bullet for all NLP tasks, especially when it comes to industrial applications[^1]:
 
 - **Overfitting on small datasets**:
   DL models need more training data to fit all their parameters, but many times, sufficient training data is not available.
@@ -722,8 +700,6 @@ However, DL is not the silver bullet for all NLP tasks, especially when it comes
   In some use cases, some deployment constraints apply.
   For example, the NLP system needs to run on an embedded device with limited resources, or even offline, rather than in the cloud.
 
-![Occam's Razor Comic](https://phdcomics.com/comics/archive/phd101209s.gif "Occam's Razor Comic")
-
 !!! example
 
     Consider the following sentence:
@@ -732,26 +708,36 @@ However, DL is not the silver bullet for all NLP tasks, especially when it comes
 
     As humans, we immediately reason that John's current location is the garden, and his previous location was inside his house, but this kind of reasoning is hard to incorporate into machines.
 
-!!! note
+!!! info "Is AI dumber than a cat?"
+
+    Read in [this](https://www.wsj.com/tech/ai/yann-lecun-ai-meta-aa59e2f5) Wall Street Journal article why [Yann LeCun](https://www.linkedin.com/in/yann-lecun/), Meta's Chief AI Scientist, thinks that AI is dumber than a cat. 🐱
+
+!!! note "Resource consumption of ChatGPT"
 
     An interesting [Twitter thread](https://twitter.com/tomgoldsteincs/status/1600196981955100694) from Professor Tom Goldstein gives some easily digestible figures about the resources consumed by ChatGPT.
     This is not what you can invest in your everyday NLP system!
 
-!!! warning
+!!! warning "AI is not always the best answer"
 
     DL has led to significant advances in NLP, but be aware that DL is not always the go-to solution for NLP projects.
     Most of the SOTA models are trained on common and very clean datasets, which does not apply to many industry use cases.
+
     Therefore it is even more important to understand the fundamentals of NLP and apply the right method for the right use case, as cutting-edge solutions may not always be the best choice.
+
     In many real-world scenarios, the focus is more on the data pipeline side.
-
-!!! tip
-
-    In many cases, it makes sense to start with a simple baseline model and adjust and improve model complexity iteratively.
 
 !!! question
 
     In a hate speech detection project on tweets, a lesson learned was that a simple Naive Bayes prototype performed similarly, if not better, than a fine-tuned BERT model.
     Why do you think that is?
+
+!!! tip "Start simple and improve iteratively"
+
+    In many cases, it makes sense to start with a simple baseline model and adjust and improve model complexity iteratively.
+
+    This is useful advice in many areas of software development. 😃
+
+    ![Occam's Razor Comic](https://phdcomics.com/comics/archive/phd101209s.gif "Occam's Razor Comic")
 
 <!--
 Answer:
@@ -772,10 +758,7 @@ We can adapt that, but for short text like tweets, BERT probably provides an ove
 - It is very common to make use of **AI to solve NLP problems**, but not every NLP problem requires AI. Depending on the use case, **rule-based approaches** may be sufficient.
 - Recent advancement in NLP is mainly driven by **deep learning** and **transformer models** and their ability to learn from large amounts of data. This is the beginning of a new era in NLP.
 
-## References
-
-- <https://medium.com/bitgrit-data-science-publication/nlp-in-academia-vs-the-real-world-9dee491bea38>
-- <https://www.linkedin.com/advice/3/what-main-differences-between-nlp-research>
-- <https://scikit-learn.org/stable/modules/semi_supervised.html>
-- <https://machinelearningmastery.com/what-is-semi-supervised-learning/>
-- <https://databasecamp.de/en/ml/reinforcement-learnings>
+<!-- footnotes -->
+[^1]: Vajjala, Sowmya, S.V. Bharathi, Bodhisattwa Majumder, Anuj Gupta, and Harshit Surana. *Practical Natural Language Processing: A Comprehensive Guide to Building Real-world NLP Systems*. Sebastopol, CA: O'Reilly Media, 2020. <https://www.practicalnlp.ai/>.
+[^2]: <https://www.databricks.com/sites/default/files/2023-06/compact-guide-to-large-language-models.pdf>
+[^3]: <https://www.deeplearning.ai/resources/natural-language-processing/>
