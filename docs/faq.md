@@ -88,6 +88,12 @@ While participating in discussions is appreciated and encouraged, this a not a r
 
 Find more details in the [contributing guide](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md#rewarding-your-contributions).
 
+## When can I start with contributions?
+
+Unless announced otherwise, please wait with your contributions until we officially kick off the semester in the first lecture.
+There, we will go through the policy and details so that everybody is on the same page.
+This is to give everybody a fair chance to contribute, and understand the processes and policies for contributions and earning bonus points.
+
 ## Assignments
 
 ### When is an assignment considered completed?

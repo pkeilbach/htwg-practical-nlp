@@ -4,6 +4,8 @@ In thise course, we follow an open source development approach, and highly encou
 
 This guide will help you to get the most out of this course and get you started with your first contribution! 🚀
 
+**⚠️ Please wait with your contributions until we officially kick off our course in the first lecture. This is to give everybody a fair chance to contribute and find suitable issues.**
+
 ## How to contribute
 
 There are many ways in which you can contribute to the course.
