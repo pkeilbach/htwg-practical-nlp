@@ -7,9 +7,10 @@ theme:
   language: en
   features:
     - content.tooltips
-    - navigation.tabs
-    - navigation.instant
     - navigation.indexes
+    - navigation.instant
+    - navigation.tabs
+    - navigation.top
     - toc.follow
   palette:
     primary: cyan
@@ -58,7 +59,7 @@ nav:
   - Getting Started: getting_started.md
   - Lectures:
       - lectures/preface.md
-      - lectures/nlp_intro.md
+      - Introduction: lectures/nlp_intro.md
       - lectures/preprocessing.md
       - lectures/feature_extraction.md
       - lectures/logistic_regression.md
