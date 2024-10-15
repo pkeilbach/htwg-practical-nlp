@@ -235,14 +235,16 @@ Here are some tasks that can be solved by NLP[^3]:
 
     In a modern **email application**, which of the above **NLP tasks** could be utilized to achieve a great user experience?
 
-<!--
-Answer:
-- information extraction: suggest calendar events
-- spam classification: spam or not spam
-- summarization: a potential plugin for long and annoying emails
-- information retrieval: email search capabilities
-- text generation: suggest answers or sophisticated autocompletion
--->
+    ??? info "Answer"
+
+        We can find many NLP tasks in a modern email client, such as:
+
+        - information extraction: suggest calendar events
+        - spam classification: spam or not spam
+        - summarization: a potential plugin for long and annoying emails
+        - information retrieval: email search capabilities
+        - text generation: suggest answers or sophisticated autocompletion
+        - ...
 
 ## Building Blocks of Language
 
@@ -380,12 +382,10 @@ The following snippet shows POS-tagging in Python using the NLTK library and the
 
     Find some [further information here](https://aclanthology.org/2021.acl-long.110v1.pdf).
 
-<!--
-Answer:
+    ??? info "Answer
 
-It would depend on the use case, there are situations where the emoji is a crucial part of the sentence, to indicate emotions (e.g. social media posts).
-If it is just about the conveyed information, it is probably OK to remove them during pre-processing.
--->
+        It would depend on the use case, there are situations where the emoji is a crucial part of the sentence, to indicate emotions (e.g. social media posts).
+        If it is just about the conveyed information, it is probably OK to remove them during pre-processing.
 
 ### Context
 
@@ -444,10 +444,11 @@ Important for:
 
     Which *language* is supposed to be the least ambiguous of all languages?
 
-<!--
-Answer:
-The language of mathematics is designed to be unambiguous.
--->
+    ??? info "Answer"
+
+        The language of mathematics is unambiguous by design. A mathematical term is means the same everywhere.
+
+        Also programming languages are designed to be unambiguous and deterministic.
 
 ### World Knowledge
 
@@ -560,13 +561,13 @@ However, in its simplest forms, NLP is **not necessarily based on AI**, and we c
 
     What NLP tasks do you think could be solved using rule-based approaches? What are the advantages and limitations of such approaches?
 
-<!--
-Answer:
+    ??? info "Answer"
 
-example: sentiment analysis based on word count, or a regex to map tracking numbers to shipping companies
-advantages: light-weight, quick & easy compared to DL models, are deterministic, i.e. AI will make mistakes, rule-based not, therefore can bridge gaps between NLP systems (eliminate AI mistakes with a rule-based approach)
-limitations: hard to solve complex NLP tasks
--->
+        - example: sentiment analysis based on word count, or a regex to map tracking numbers to shipping companies
+        - advantages: light-weight, quick & easy compared to DL models, are deterministic
+        - limitations: hard to solve more complex NLP tasks
+
+        We can use rule based approaches to bridge gaps between NLP systems, e.g. eliminate mistakes made by AI with rule-based approaches
 
 ### Machine Learning for NLP
 
@@ -723,8 +724,13 @@ However, DL is not the silver bullet for all NLP tasks, especially when it comes
 
 !!! question
 
-    In a hate speech detection project on tweets, a lesson learned was that a simple Naive Bayes prototype performed similarly, if not better, than a fine-tuned BERT model.
-    Why do you think that is?
+    In a hate speech detection project on tweets, a lesson learned was that a simple Naive Bayes prototype performed similarly, if not better, than a fine-tuned BERT model. Why do you think that is?
+
+    ??? info "Answer"
+
+        - Tweets are very short snippets of text and contain a lot of slang or informal words, as well as emojis.
+        - Models like BERT are trained on rather "clean" corpora, like news articles.
+        - We can adapt that, but for short text like tweets, BERT probably provides an overhead, and we found that a simple approach tailored to that exact use case leads to similar if not better results, with much less effort.
 
 !!! tip "Start simple and improve iteratively"
 
@@ -737,9 +743,7 @@ However, DL is not the silver bullet for all NLP tasks, especially when it comes
 <!--
 Answer:
 
-Tweets are very short snippets of text and contain a lot of slang or informal words, as well as emojis.
-Models like BERT are trained on rather "clean" corpora, like news articles.
-We can adapt that, but for short text like tweets, BERT probably provides an overhead, and we found that a simple approach tailored to that exact use case leads to similar if not better results, with much less effort.
+
 -->
 
 ## Key Takeaways
