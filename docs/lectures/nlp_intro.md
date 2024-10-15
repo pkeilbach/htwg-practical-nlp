@@ -75,31 +75,162 @@ IMHO, every lecture should provide a little historical background in the beginni
 - **2023**
   Open source LLMs begin showing increasingly impressive results with releases such as Dolly 2.0, LLaMA, Alpaca, and Vicuna. GPT-4 is also released, setting a new benchmark for both parameter size and performance.
 
-## NLP Tasks
+## Tasks that can be solved by NLP
 
-Some fundamental tasks appear across many NLP projects.
-For example, if you want to find out if some tweets have a positive or negative meaning (as in sentiment analysis), or if an email is spam or not, both would be a text classification task.
-The following table gives an overview of frequently used NLP tasks.
+NLP is used for a wide variety of language-related tasks, including answering questions, classifying text in a variety of ways, and conversing with users.
 
-| NLP Task                   | Description                                                                                    | Examples                                                                                                                    |
-| -------------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| **Language modeling**      | Predict the next word in a sentence based on the previous word or context                      | auto-correction or auto-completion                                                                                          |
-| **Text classification**    | Classify text in different categories, depending on the use-case                               | Email spam filter or sentiment analysis                                                                                     |
-| **Information extraction** | Extract relevant information from text                                                         | Extract calendar events from emails or names in social media posts                                                          |
-| **Information retrieval**  | Find documents that are relevant to a specific user query                                      | Search engines like [Google](https://www.google.com/)                                                                       |
-| **Conversational agent**   | A dialogue system that can converse in human language                                          | Voice assistants like Alexa or Siri, ChatGPT                                                                                |
-| **Text summarization**     | Create short summaries of longer text while preserving the key message and meaning of the text | [Reddit autotldr](https://www.reddit.com/r/autotldr/comments/31b9fm/faq_autotldr_bot/) to summarize long Reddit submissions |
-| **Question answering**     | A system that can answer questions posed in natural language                                   | Search engines or voice assistants                                                                                          |
-| **Machine translation**    | Convert a piece of text from one language into another                                         | Translator apps like [DeepL](https://www.deepl.com/translator) or automatic transcription of calls or videos                |
-| **Topic modeling**         | Uncover the topical structure of a (large) set of documents                                    | Group blog posts by their main topic                                                                                        |
+If you design an NLP system, you may make use of multiple tasks.
 
-The figure shows the NLP tasks from the table organized by their complexity, where complexity means a best guess of the relative difficulty to develop a comprehensive solution.
+Here are some tasks that can be solved by NLP[^2]:
 
-![NLP Tasks ordered by their complexity](../img/nlp-tasks.drawio.svg "NLP tasks by complexity")
+### Sentiment analysis
 
-!!! warning
+- **Sentiment analysis classifies** the emotional intent of text.
+- **Input** is a text, and the **output** is the probability of the sentiment being positive, negative, or neutral.
+- **Features** used may include hand-generated features, word n-grams, TF-IDF, or deep learning models for capturing text dependencies.
+- Common **applications** include classifying customer reviews and identifying signs of mental illness in online comments.
 
-    Note that the **complexity** here is a rather loosely defined term and the mapping can be seen as a "best guess". What is complex or not is not only subjective, but also depends on factors, like use-case, client requirements, or preconditions of the NLP project.
+!!! example
+
+    Here is a fictional example of customer reviews of a hotel booking service:
+
+    - 😃 Great service for an affordable price. We will definitely be booking again!
+    - 😐 Just booked two nights at this hotel.
+    - 😡 Horrible service. The room was dirty and unpleasant. Not worth the money.
+
+    Email spam detection is another typical example of a binary text classification problem in NLP.
+
+!!! info "Toxicity classification"
+
+    Toxicity classification, a branch of sentiment analysis, categorizes hostile content like threats, insults, obscenities, and hate speech. It's used to moderate online conversations by detecting and silencing offensive comments or scanning for defamation.
+
+### Machine translation
+
+- **Machine translation** automates the process of **translating** text between different languages.
+- The **input** is text in a source language, and the **output** is text in a target language.
+- Machine translation improves communication on platforms like Facebook and Skype.
+- Effective models can distinguish between words with similar meanings.
+- Some systems also identify the language of the input text.
+
+!!! example
+
+    - [DeepL](https://www.deepl.com) is a well-known example of this application.
+
+### Named entity recognition
+
+- **Named Entity Recognition (NER)** extracts **entities** from text and classifies them into predefined categories (e.g., names, persons, organizations, locations, quantities, book title, etc.).
+- The **input** is text, and the **output** includes the identified entities and their positions in the text.
+- NER is valuable for **applications** like summarizing news articles and fighting disinformation.
+
+!!! example
+
+    The [spaCy library](https://spacy.io/) is an open-source Python library for advanced Natural Language Processing that provides efficient tools for tasks such as tokenization, part of speech tagging, named entity recognition, and dependency parsing.
+
+    Here is an [example](https://spacy.io/usage/linguistic-features#named-entities) of NER with spaCy
+
+    ```python
+    import spacy
+
+    nlp = spacy.load("en_core_web_sm")
+    doc = nlp("Apple is looking at buying U.K. startup for $1 billion")
+
+    for ent in doc.ents:
+        print(ent.text, ent.start_char, ent.end_char, ent.label_)
+    ```
+
+    | Text        | Start | End | Label | Description                                      |
+    |-------------|-------|-----|-------|--------------------------------------------------|
+    | Apple       | 0     | 5   | ORG   | Companies, agencies, institutions.               |
+    | U.K.       | 27    | 31  | GPE   | Geopolitical entity, i.e. countries, cities, states. |
+    | $1 billion  | 44    | 54  | MONEY | Monetary values, including unit.                 |
+
+    It can be visualized as follows:
+
+    ![NER with spaCy](../img/intro-ner.png)
+
+
+### Part-of-speech tagging
+
+- In NLP, the **anatomy** of a sentence is commonly described using **part-of-speech (POS) tags**, which involves assigning **grammatical categories** (e.g., noun, verb, adjective) to each word in the sentence.
+- The **input** is a sequence of words, and the **output** is a tagged sequence indicating the part of speech for each word.
+- POS tagging is essential for various NLP tasks, such as syntactic parsing, machine translation, and information retrieval.
+
+!!! example "POS-tagging with the Python spaCy library"
+
+    Here is an [example](https://spacy.io/usage/linguistic-features#pos-tagging) of POS-tagging with spaCy
+
+    ```python
+    import spacy
+    from spacy import displacy
+
+    nlp = spacy.load("en_core_web_sm")
+    doc = nlp("This is a sentence.")
+    displacy.serve(doc, style="dep")
+    ```
+
+    Output:
+
+    ![POS-tagging with spaCy](https://spacy.io/images/displacy.svg)
+
+!!! info "POS-tagsets"
+
+    A tagset is a predefined list of grammatical categories used in Natural Language Processing to classify words during tasks like part of speech tagging.
+
+    A popular tagging convention is [Penn Treebank tagset](https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html) which is also used by default by the Python [Natural Language Toolkit library](https://www.nltk.org/api/nltk.tag.html).
+
+    A simplified [universal tagset](https://github.com/slavpetrov/universal-pos-tags) by Google Research maps the Penn Treebank tagset to only 12 tags.
+
+
+### Topic modelling
+
+- **Topic modeling** is an **unsupervised text mining** task that identifies abstract topics in a collection of documents.
+- The **input** is a corpus of documents, and the **output** is a list of topics, with each topic consisting of relevant words and proportions assigned to documents.
+- Topic modeling has **commercial applications**, such as helping lawyers find evidence in legal documents.
+
+!!! info "Latent Dirichlet Allocation"
+
+    **[Latent Dirichlet Allocation](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation)** is a popular technique that views documents as mixtures of topics, and topics as mixtures of words.
+
+### Text generation
+
+- **Text generation** (aka natural language generation) produces text that mimics human-written content.
+- Models can be **fine-tuned** to generate text in various formats, like **tweets, blogs,** and **computer code**.
+- Common applications include **autocomplete** and **chatbots**.
+
+!!! info "Autocomplete"
+
+    **Autocomplete** predicts what word comes next, and autocomplete systems of varying complexity are used in chat applications like WhatsApp. Google uses autocomplete to predict search queries. One of the most famous models for autocomplete is GPT-2, which has been used to write articles, song lyrics, and much more.
+
+!!! info "Grammatical error correction"
+
+    Grammatical error correction models use grammatical rules to fix text. This is typically approached as a sequence-to-sequence task, where the model learns to transform an ungrammatical sentence into a correct one. Tools like [Grammarly](https://www.grammarly.com/) and Microsoft Word implement these models to enhance writing, while schools use them to grade student essays.
+
+
+### Information Retrieval
+
+- **Information retrieval** aims to find the most relevant documents for a given **query**.
+- It is essential in **search** and **recommendation systems** and focuses on retrieving a relevant set of documents, not directly answering the query.
+- These systems handle massive collections of documents (millions), retrieving the most relevant ones.
+- Two main processes involved are **indexing** (typically done using vector space models and Two-Tower Networks) and **matching** (based on similarity or distance scores).
+- Advanced systems, such as Google's, use **multimodal information retrieval**, working across **text, image, and video data**.
+
+!!! info "Elasticsearch"
+
+    A popular example for an information retrieval system is [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html). It is an open-source search and analytics engine built on top of [Apache Lucene](https://lucene.apache.org/). It is designed for fast, scalable search capabilities and is widely used for a variety of applications, including full-text search, structured data retrieval, and real-time analytics.
+
+### Summarization
+
+- **Summarization** aims to shorten text while emphasizing the most relevant information.
+- Some summarizers are able to evaluate **factual consistency** for accurate **output**.
+- **Extractive summarization**: Selects and combines the most important sentences from the **input** text.
+- **Abstractive summarization**: Creates a summary by paraphrasing the **input** text, resulting in an **output** that may contain new words and sentences not present in the original. This is modeled as a sequence-to-sequence task.
+
+### Question Answering
+
+- **Question answering** involves providing answers to human-posed questions in **natural language**.
+- Notable example: **Watson** won the game show **Jeopardy** against human champions in 2011.
+- **Multiple choice**: A question is paired with a set of possible answers, and the task is to select the **correct answer**.
+- **Open domain**: The model answers questions in **natural language** without provided options, often by querying a large number of **texts**.
 
 !!! question
 
@@ -108,25 +239,10 @@ The figure shows the NLP tasks from the table organized by their complexity, whe
 <!--
 Answer:
 - information extraction: suggest calendar events
-- text classification: spam or not spam
-- text summarization: a potential plugin for long and annoying emails
+- spam classification: spam or not spam
+- summarization: a potential plugin for long and annoying emails
 - information retrieval: email search capabilities
--->
-
-!!! info
-
-    An **NLP application** is usually use-case driven, i.e. it has a specific goal in mind or provides added value to its users. It makes use of one or more **NLP tasks** to achieve that goal.
-
-<!--
-
-Resources on the categorization of NLP tasks:
-
-- https://www.avenga.com/magazine/natural-language-processing-application-areas/
-- https://medium.com/@miranthaj/25-nlp-tasks-at-a-glance-52e3fdff32e2
-- https://en.wikipedia.org/wiki/Natural_language_processing
-- https://towardsdatascience.com/natural-language-processing-tasks-3278907702f3
-- https://www.analyticsvidhya.com/blog/2021/06/part-8-step-by-step-guide-to-master-nlp-useful-natural-language-processing-tasks/
-
+- text generation: suggest answers or sophisticated autocompletion
 -->
 
 ## Building Blocks of Language
