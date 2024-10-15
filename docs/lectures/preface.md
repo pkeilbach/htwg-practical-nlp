@@ -38,7 +38,7 @@ When working on NLP problems, it is important to know which perspective we are h
 
 There is an **academic perspective** on NLP, which is focused on advancing the field through research and innovation.
 And there is a **practical perspective** on NLP, which is focused on applying NLP techniques to solve real-world problems.
-It is important to understand the difference between these two views, as they require **different skills** and lead to different **career paths**.
+It is important to understand the difference between these two views, as they require **different skills** and lead to different **career paths**[^1].
 
 Depending on the perspective, the goals and metrics, the data and methodology, as well as the challenges that are faced, can be very different:
 
@@ -55,3 +55,6 @@ While we will cover all important theoretical foundations, the main objective is
 <!-- page links -->
 [perplexity]: https://en.wikipedia.org/wiki/Perplexity
 [F1 score]: https://en.wikipedia.org/wiki/F-score
+
+<!-- footnotes -->
+[^1]: <https://medium.com/bitgrit-data-science-publication/nlp-in-academia-vs-the-real-world-9dee491bea38>
