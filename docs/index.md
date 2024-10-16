@@ -1,14 +1,3 @@
-<!-- page links -->
-[Python]: https://docs.python.org/3/
-[Git]: https://git-scm.com/
-[getting started]: ./getting_started.md
-[Moodle]: https://moodle.htwg-konstanz.de/moodle/
-[course profile]: ./course_profile.md
-[prerequisities]: ./course_profile.md#prerequisites
-[GitHub]: https://github.com/
-[Mural]: https://www.mural.co/
-[contributing guide]: https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md
-
 # Welcome to the Practical Natural Language Processing! 👋
 
 [![Built with Material for MkDocs](https://img.shields.io/badge/Material_for_MkDocs-526CFE?style=for-the-badge&logo=MaterialForMkDocs&logoColor=white)](https://squidfunk.github.io/mkdocs-material/)
@@ -71,3 +60,14 @@ There are already a few things you can do _before_ our course officially starts:
 
     You can help to improve this course with your contributions and earn bonus points for the exam.
     The [contributing guide] contains all information on that.
+
+<!-- page links -->
+[Python]: https://docs.python.org/3/
+[Git]: https://git-scm.com/
+[getting started]: ./getting_started.md
+[Moodle]: https://moodle.htwg-konstanz.de/moodle/
+[course profile]: ./course_profile.md
+[prerequisities]: ./course_profile.md#prerequisites
+[GitHub]: https://github.com/
+[Mural]: https://www.mural.co/
+[contributing guide]: https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md
