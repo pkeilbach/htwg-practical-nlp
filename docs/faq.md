@@ -37,6 +37,26 @@ As the course content is subject to continuous change, there is no PDF version o
 But if you wish, you can convert any page to a PDF file by using the printing function of your browser.
 MkDocs will render a nice-looking PDF file without any menu or other web items.
 
+### What are the prerequisites to take this course?
+
+The prerequisites can be found [here](course_profile.md#prerequisites).
+
+In general, I want to keep the entry barrier as low as possible, but you should bring some basic computer science skills.
+
+Let me know if you are unsure if you are unsure whether you can take the course or not!
+
+### Can I take the course if I just started programming?
+
+I would say yes, and definitely encourage you to go for it even if you just started your programming journey! 💪
+
+My goal is to design the course materials in a way that also students with little programming experience can participate. I will try my best to make it clear whenever we have a more advanced or language specific concept that goes beyond basic object oriented programming.
+
+However, it is certainly easier for you to follow along and complete the assignments if you bring basic computer science and software engineering skills, like Linux, Git, Python.
+
+If you are new to programming, your learning curve is probably steeper, as you may have to deal with some technologies of the ecosystem that may be new to you. But you should keep in mind that this is probably related to a certain technology or framework, and not the concepts of NLP.
+
+Please check out the [course prerequisites](course_profile.md#prerequisites) and let me know if you have any doubts.
+
 ## Assessment
 
 ### How is this course graded?
@@ -47,22 +67,6 @@ For more details, see the [course profile](./course_profile.md#assessment).
 The presentation and assignments are ungraded.
 
 You can earn bonus points for the exam through [contributions](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md).
-
-### What are the prerequisites to take this course?
-
-The prerequisites can be found [here](course_profile.md#prerequisites).
-
-In general, I want to keep the entry barrier as low as possible, but you should bring some basic computer science skills.
-
-Let me know if you are unsure if you are unsure whether you can take the course or not!
-
-## Can I take the course if I just started programming?
-
-I would say yes. I try to design the course materials in a way that students with little programming experience can participate, and I want to encourage everybody to participate. I will try my best to make it clear whenever we have a more advanced or language specific concept that goes beyond basic object oriented programming.
-
-However, it is certainly easier for you to follow along and complete the assignments if you bring basic computer science and software engineering knowledge, like Linux, Git, Python.
-
-Please check out the [course prerequisites](course_profile.md#prerequisites) and let me know if you have any doubts.
 
 ## Contributions
 
