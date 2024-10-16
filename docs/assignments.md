@@ -136,7 +136,7 @@ If you don't want to deal with git, you could also work purely locally without c
 
 ## Pulling Updates
 
-As described in the getting started guide, there will be [updates](getting_started.md#pulling-updates) from time to time.
+As described in the getting started guide, there will be [updates](./getting_started.md#fetching-updates) from time to time.
 It can happen that these updates affect the assignments (just in case you are wondering why your tests suddenly fail 😅).
 
 Given that you work on a separate branch on your assignments, you can merge the latest version of the `main` branch into your assignment branch as follows:

@@ -2,60 +2,72 @@
 
 In thise course, we follow an open source development approach, and highly encourage and appreciate any kind of contributions. 👐
 
-For example, you can help by improving the documentation, setup guides, the lecture notes, provide bug fixes for the assignments, work on open issues (watch out for the [good first issue label](https://github.com/pkeilbach/htwg-practical-nlp/labels/good%20first%20issue)) or just fix some typos.
-However small it is, every contribution is welcome - and will probably be rewarded (TBD)! 🏆
+This guide will help you to get the most out of this course and get you started with your first contribution! 🚀
 
-This guide will help you to get started with your first contribution! 🚀
+**⚠️ Please wait with your contributions until we officially kick off our course in the first lecture. This is to give everybody a fair chance to contribute and find suitable issues.**
 
-## Forking the Course Repository
+## How to contribute
 
-The recommended way to work with this course is to [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks) the course repository.
+There are many ways in which you can contribute to the course.
 
-While cloning, as described in the [getting started guide](./docs/getting_started.md#clone-the-repository), lets you _participate_ in the course and work on the assignments, only forking the course repository allows you to contribute back bug fixes, enhancements, etc.
+Anything that you think improves the course repository should be suitable for a contribution.
 
-To fork this repository, you can follow the official GitHub documentation on how to [fork a repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo).
+Every contribution is welcome - and some can be [rewarded](#rewarding-your-contributions)! 🏅
 
-If you fork a repository, a copy of the repository will then be created in your user space.
-Besides the contributing aspect, you can also work independently on your assignments and push your changes to your remote repository.
+Here is some inspiration:
 
-Cloning and setting up the environment works as described in the [getting started guide](./docs/getting_started.md#clone-the-repository), besides that you need to clone your fork to your local machine (instead of the course repository):
+- Improve the documentation, setup guides, FAQs, etc. 📘
+- Fix already known [bugs](https://github.com/pkeilbach/htwg-practical-nlp/labels/bug) 🐞
+- Report unknown bugs (e.g. in the assignments) - and ideally try to fix them 🔧
+- Work on [open issues](https://github.com/pkeilbach/htwg-practical-nlp/issues) (specifically watch out for the [`good first issue`](https://github.com/pkeilbach/htwg-practical-nlp/labels/good%20first%20issue) label) 🐣
+- Engage in [discussions](https://github.com/pkeilbach/htwg-practical-nlp/discussions) 🗣️
+- fix some typos 🖊️
+- ...
 
-```sh
-git clone https://github.com/<your-username>/htwg-practical-nlp.git
-```
+Once you found something you can contribute:
 
-> 💡 Forking is a very common practice in open source developlment.
-> If you are new to open source development and have not forked a repository before, this may be a good learning opportunity for you! 🤓
+- create a [new issue](https://github.com/pkeilbach/htwg-practical-nlp/issues/new/choose), or
+- assign yourself to an existing [issue](https://github.com/pkeilbach/htwg-practical-nlp/issues)
 
-## Syncing you Fork
+so that it is clear to others and me that you are working on a topic.
 
-During the semester, it is very likely that the course repository will be updated.
-To pull those updates from the course repository (aka the `upstream`), you need to do the following:
+> 💡 Note that you can always open a blank issue if no issue template is suitable.
 
-```sh
-git fetch upstream
-git checkout main
-git merge upstream/main
-```
+After you implemented your changes, you need to open a [pull request](#making-contributions-to-the-course-repository) so that I can review your changes.
 
-You can also sync your fork in the web UI or GitHub CLI.
-Find more details in the official [GitHub docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork).
+When I approve, we will merge your pull request, and besides being [rewarded](#rewarding-your-contributions), you will be listed as a [contributor](https://github.com/pkeilbach/htwg-practical-nlp/graphs/contributors)! 🎉
 
-> 💡 Syncing your fork only updates your local copy of the repository. To update your fork on GitHub.com, you must [push your changes](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository).
+## Engage in discussions
 
-## Development Setup
+You will get the most out of this course if you actively participate and exchange with both your peers and me as the lecturer.
 
-Once you forked the course repository, you can start with the development setup.
+We use [GitHub discussions](https://github.com/pkeilbach/htwg-practical-nlp/discussions) as a tool to discuss all things related to the course content.
+Both your peers and me can comment on your topic and hopefully resolve your issue.
 
-The development setup is intented for contributors, and will install some additional dependencies.
+Here is how it works:
 
-You can setup the development environment as follows:
+- Stuck with an assignment? Post your question to the [Q&A board 🙏](https://github.com/pkeilbach/htwg-practical-nlp/discussions/categories/q-a), maybe your peers have the same issue
+- Anything that was covered in the lecture was confusing? Post it to the [Q&A board 🙏](https://github.com/pkeilbach/htwg-practical-nlp/discussions/categories/q-a) and I will get back to it
+- Having a more general question? Use the [general board 💬](https://github.com/pkeilbach/htwg-practical-nlp/discussions/categories/general)
+- You have an idea what could be improved? Use the [idea board 💡](https://github.com/pkeilbach/htwg-practical-nlp/discussions/categories/ideas)
 
-```
-make dev-setup
-```
+Using the GitHub discussion tool is highly encouraged.
+Every question is welcome and there is no such thing as stupid questions.
+We all come from different backgrounds, and usually, if somehing is unclear to you, you are not alone. 👐
 
-## Working with Pre-commit Hooks
+Also, initiating discussions offers the chance to earn bonus points, since a question of yours might reveal a bug or issue that needs to be solved! 🏅
+
+> ℹ️ Note that "internal" announcements that are specific to the current semester will still be posted in Moodle, so that nobody misses anything.
+
+## Making contributions to the course repository
+
+If you have something that you can contribute to the course repository, you need to open a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests).
+
+Since you are usually not listed as collaborator, you will need to [create a pull request from your fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
+
+When creating your pull request, please consider the [best practices for creating pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/getting-started/best-practices-for-pull-requests#best-practices-for-creating-pull-requests).
+
+## Working with `pre-commit` hooks
 
 One such additional dependency is the [`pre-commit` framework](https://pre-commit.com/).
 
@@ -79,3 +91,25 @@ git add .
 # now the commit shall pass
 git commit -m "some cool updates"
 ```
+
+## Rewarding your contributions
+
+To make contributions to the course repository more attractive for you, each contribution will be **rewarded with bonus points** that will be transferred to the exam. 🏅
+
+A rewardable contribution is a **code change** that is successfully merged to the main branch of the course repository.
+
+> While you could argue that engaging in discussions is also a kind of contribution, this is not rewardable contribution (but still encouraged 😃).
+> However, a question of yours might reveal a bug or issue that needs to be solved! 🏅
+
+You can make as many contributions as you want but you can earn a **maximum of 5 bonus points**.
+
+> For example, if you reached 86 out of 100 points in the exam, and made contributions worth 5 bonus points, then your total points will be 91 🚀
+
+Each contribution should be a separate [pull request](#making-contributions-to-the-course-repository).
+
+I will decide individually, based on the contribution, how much bonus points your contribution is worth.
+But as a rule of thumb, you can assume that each contribution is worth 1 bonus point.
+
+> For example, if you spot a bug in the assignments and provide the fix by yourself, this is probably worth 2-3 bonus points.
+> On the other hand, fixing a single typo like in `orsnge` 🍊, is probably not worth a bonus point.
+> However, fixing 5 typos with one pull request probably is worth a bonus point.

@@ -39,4 +39,21 @@ We will discuss the dates of the presentations in one of the first lectures.
 
 ## Submission
 
-You **don't need to submit** the presentation slides, but you may need to submit a notebook that demonstrates the practical part of your presentation (TBD).
+You **don't need to submit** the presentation slides, but you need to submit the code of your practical part.
+
+This should be in a format that is **directly executable** with a setup that is self-explanatory and follows common conventions (e.g. `npm start`).
+
+It is recommended to provide your code as a GitHub repository that I can clone.
+
+!!! example
+
+    Here are some examples of what I mean:
+
+    - If your practical part is a Jupyter Notebook, you could provide a [mybinder](https://mybinder.org/) link.
+    - If you build a web service, after I cloned the repository, the service should come up by running `make` or `npm install && npm start`.
+    - You could also provide a docker image that I can start with `docker run`.
+    - If you provide a Python script, it is acceptable to do a `pip install` followed by a `python my_script.py`, since this is conventional in Python.
+
+!!! info
+
+    In case of doubt, feel free to ask in our [discussion board](https://github.com/pkeilbach/htwg-practical-nlp/discussions) or reach out to me directly.

@@ -4,7 +4,7 @@ This module contains the TweetProcessor class which is used to preprocess tweets
 
 ASSIGNMENT-1:
 Your job in this assignment is to implement the methods of this class.
-Note that you will need to import several modules from the nltk library, 
+Note that you will need to import several modules from the nltk library,
 as well as from the Python standard library.
 You can find the documentation for the nltk library here: https://www.nltk.org/
 You can find the documentation for the Python standard library here: https://docs.python.org/3/library/
