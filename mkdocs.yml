@@ -60,7 +60,7 @@ nav:
   - Getting Started: getting_started.md
   - Lectures:
       - lectures/preface.md
-      - Introduction: lectures/nlp_intro.md
+      - Introduction: lectures/introduction.md
       - lectures/preprocessing.md
       - lectures/feature_extraction.md
       - lectures/logistic_regression.md
