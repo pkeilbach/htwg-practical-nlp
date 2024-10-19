@@ -31,6 +31,9 @@ format:
 type-check:
 	.venv/bin/mypy src/
 
+lint:
+	.venv/bin/ruff check --fix
+
 pytest:
 	.venv/bin/pytest
 
