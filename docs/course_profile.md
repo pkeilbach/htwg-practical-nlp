@@ -92,8 +92,20 @@ My goal is to keep the entry barrier as low as possible!
 
         If you are new to **GitHub** (a popular Git hosting service), you might want to check out [this module](https://learn.microsoft.com/en-us/training/modules/introduction-to-github/).
 
-
-
 !!! tip
 
     In general, [Microsoft Learn](https://docs.microsoft.com/en-us/learn/) offers some great tutorials for all kinds of technologies.
+
+## Literature
+
+Here is a list of recommended literature for this course:
+
+- Bird, Steven, Ewan Klein, and Edward Loper. *Natural Language Processing with Python: Analyzing Text with the Natural Language Toolkit*. Sebastopol, CA: O'Reilly Media, 2009. <https://www.nltk.org/book_1ed/>.
+
+- Bishop, Christopher M. *Pattern Recognition and Machine Learning*. New York: Springer, 2006. <https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf>.
+
+- Jurafsky, Daniel, and James H. Martin. *Speech and Language Processing: An Introduction to Natural Language Processing, Computational Linguistics, and Speech Recognition*. 2nd ed. Upper Saddle River, NJ: Prentice Hall, 2008. <https://web.stanford.edu/~jurafsky/slp3/>.
+
+- Raschka, Sebastian. *Build a Large Language Model (From Scratch)*. Shelter Island, NY: Manning, 2024. <https://www.manning.com/books/build-a-large-language-model-from-scratch>.
+
+- Vajjala, Sowmya, Bodhisattwa Majumder, Anuj Gupta, and Harshit Surana. *Practical Natural Language Processing: A Comprehensive Guide to Building Real-world NLP Systems*. Sebastopol, CA: O'Reilly Media, 2020. <https://www.practicalnlp.ai/>.
