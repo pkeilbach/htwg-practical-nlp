@@ -67,7 +67,6 @@ There are already a few things you can do _before_ our course officially starts:
 [getting started]: ./getting_started.md
 [Moodle]: https://moodle.htwg-konstanz.de/moodle/
 [course profile]: ./course_profile.md
-[prerequisities]: ./course_profile.md#prerequisites
 [GitHub]: https://github.com/
 [Mural]: https://www.mural.co/
 [contributing guide]: https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md
