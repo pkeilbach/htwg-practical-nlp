@@ -48,7 +48,6 @@ IMHO, every lecture should provide a little historical background in the beginni
 
         Together with [John Hopfield](https://en.wikipedia.org/wiki/John_Hopfield), he was awarded the 2024 Nobel Prize in Physics.
 
-
 - **2012**
   Advancements in deep learning architectures and larger data sets lead to the development of GPT (Generative Pre-trained Transformer).
 
@@ -147,7 +146,6 @@ Here are some tasks that can be solved by NLP[^3]:
 
     ![NER with spaCy](../img/intro-ner.png)
 
-
 ### Part-of-speech tagging
 
 - In NLP, the **anatomy** of a sentence is commonly described using **part-of-speech (POS) tags**, which involves assigning **grammatical categories** (e.g., noun, verb, adjective) to each word in the sentence.
@@ -179,7 +177,6 @@ Here are some tasks that can be solved by NLP[^3]:
 
     A simplified [universal tagset](https://github.com/slavpetrov/universal-pos-tags) by Google Research maps the Penn Treebank tagset to only 12 tags.
 
-
 ### Topic modelling
 
 - **Topic modeling** is an **unsupervised text mining** task that identifies abstract topics in a collection of documents.
@@ -203,7 +200,6 @@ Here are some tasks that can be solved by NLP[^3]:
 !!! info "Grammatical error correction"
 
     Grammatical error correction models use grammatical rules to fix text. This is typically approached as a sequence-to-sequence task, where the model learns to transform an ungrammatical sentence into a correct one. Tools like [Grammarly](https://www.grammarly.com/) and Microsoft Word implement these models to enhance writing, while schools use them to grade student essays.
-
 
 ### Information Retrieval
 
@@ -413,10 +409,6 @@ Important for:
 
     **Pragmatics** applies **world knowledge** and infers that this person is very hungry. 🍴
 
-<!--
-    The [sad story](https://en.wikipedia.org/wiki/For_sale:_baby_shoes,_never_worn) of how Hemingway supposedly won a 10$ bet shows the difference between semantics and pragmatics.
--->
-
 !!! info
 
     Being a linguistic expert is not necessary to master NLP, but by understanding the basic building blocks of language, we can use the right NLP tools in real-world projects.
@@ -512,8 +504,7 @@ Important for:
     The German word [*Heimat*](https://en.wikipedia.org/wiki/Heimat) has no exact English equivalent.
 
 <!--
-Comment:
-Anybody who used NLP solutions in another language than english probably has experienced lower performance.
+TODO: Anybody who used NLP solutions in another language than english probably has experienced lower performance.
 -->
 
 ## NLP in the era of Artificial Intelligence
@@ -579,7 +570,7 @@ However, in its simplest forms, NLP is **not necessarily based on AI**, and we c
 - A special focus needs to be put on **pre-processing** and **feature extraction**
 - training a model is then "business as usual"
 
-**Supervised learning**
+#### Supervised learning
 
 - learn **mapping function** from input to output
 - requires a large number of **labeled training data**, i.e. known input-output pairs
@@ -588,7 +579,7 @@ However, in its simplest forms, NLP is **not necessarily based on AI**, and we c
 
     An **email spam filter** is a common example where supervised learning is used in NLP.
 
-**Unsupervised learning**
+#### Unsupervised learning
 
 - Aims to find hidden patterns in given input data
 - Output is unknown, i.e. works with **unlabeled data**
@@ -605,7 +596,7 @@ Deep learing approaches in NLP led to **significant advances** in the recent yea
 
 This section gives a brief overview of the terms that are used in this context.
 
-**Language Models**
+#### Language Models
 
 - System that is trained to **understand and generate** human-like text
 - Designed to **predict** and generate sequences of words or characters based on the input it receives
@@ -616,35 +607,35 @@ This section gives a brief overview of the terms that are used in this context.
 
     GPT-3, based on the transformer architecture, is an example of a powerful language model.
 
-**Convolutional Neural Networks (CNNs)**
+#### Convolutional Neural Networks (CNNs)
 
 - Adapted from computer vision tasks
 - Require **word embeddings** to build sentences matrices, which can be treated analogously to images
 
-**Recurrent Neural Networks (RNNs)**
+#### Recurrent Neural Networks (RNNs)
 
 - language is sequential by nature, e.g. text flows from one direction to another
 - RNNs are a type of neural network designed for **sequential data**, making them suitable for tasks where the order of the input matters
 - Can remember what they have processed so far, but cannot remember long contexts
 
-**Long Short-Term Memory (LSTM)**
+#### Long Short-Term Memory (LSTM)
 
 - LSTMs are a specific type of RNN designed to address the vanishing gradient problem, enabling better learning of long-range dependencies in sequential data.
 - Let go of **irrelevant context**, and only remember the context that is required to solve the task at hand
 
-**Transformers**
+#### Transformers
 
 - **Type of architecture** that has gained prominence in NLP
 - Use **attention mechanisms** to capture relationships between different parts of a sequence simultaneously, making them effective for processing sequential data, including language
 - Look at surrounding words to derive context (e.g. bank as a river bank or financial institution)
 
-**Transfer Learning**
+#### Transfer Learning
 
 - Transfer learning is a machine learning **paradigm** where a model trained on one task is **adapted or fine-tuned** for a different but related task
 - Often used to leverage **pre-trained models** for specific applications
 - The model is able to **transfer** the pre-trained knowledge for downstream tasks
 
-**Foundation Models**
+#### Foundation Models
 
 - The term **foundation model** refers to **large-scale** language models **based on the transformer** architecture
 - They serve as a **starting point** for various NLP tasks
@@ -654,7 +645,7 @@ This section gives a brief overview of the terms that are used in this context.
 
     GPT-3 is known to be trained on 45 TB of text data and the model has about 175 billion parameters.
 
-**Attention**
+#### Attention
 
 - The attention mechanism is a key component of the transformer model architecture and plays a crucial role in capturing **contextual information across sequences**.
 - Attention mechanisms, particularly **self-attention** in the context of transformers, allow models to **focus on different parts of the input sequence** when making predictions.
@@ -739,12 +730,6 @@ However, DL is not the silver bullet for all NLP tasks, especially when it comes
     This is useful advice in many areas of software development. 😃
 
     ![Occam's Razor Comic](https://phdcomics.com/comics/archive/phd101209s.gif "Occam's Razor Comic")
-
-<!--
-Answer:
-
-
--->
 
 ## Key Takeaways
 

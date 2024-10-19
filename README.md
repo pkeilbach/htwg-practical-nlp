@@ -67,7 +67,6 @@ There are already a few things you can do _before_ our course officially starts:
 [getting started]: ./docs/getting_started.md
 [Moodle]: https://moodle.htwg-konstanz.de/moodle/
 [course profile]: ./docs/course_profile.md
-[prerequisities]: ./docs/course_profile.md#prerequisites
 [GitHub]: https://github.com/
 [Mural]: https://www.mural.co/
 [contributing guide]: ./CONTRIBUTING.md

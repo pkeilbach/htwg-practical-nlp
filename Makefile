@@ -31,8 +31,9 @@ format:
 type-check:
 	.venv/bin/mypy src/
 
-lint:
+lint: markdownlint
 	.venv/bin/ruff check --fix
+	markdownlint --fix '**/*.md'
 
 pytest:
 	.venv/bin/pytest
