@@ -18,8 +18,15 @@ requires-python = ">=3.8"
 dev = [
     "pre-commit~=3.8.0",
     "black[jupyter]~=24.10.0",
-    "mypy~=1.11.2"
+    "mypy~=1.11.2",
+    "ruff~=0.7.0",
 ]
 
 [tool.mypy]
 ignore_missing_imports = true
+
+[tool.ruff.lint]
+ignore = ["F401"]
+
+[tool.ruff.lint.pycodestyle]
+max-line-length = 120
