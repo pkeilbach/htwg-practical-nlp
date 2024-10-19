@@ -1,0 +1,12 @@
+{
+    "MD013": false,
+    "MD030": {
+        "ol_multi": 2
+    },
+    "MD033": {
+        "allowed_elements": [
+            "img", "div"
+        ]
+    },
+    "MD046": false
+}
