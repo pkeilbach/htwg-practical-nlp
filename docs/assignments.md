@@ -134,22 +134,10 @@ If you don't want to deal with git, you could also work purely locally without c
     When pulling updates, you probably need to [stash](https://git-scm.com/docs/git-stash) your changes.
     But be careful: if not done properly, you may lose your progress! 😱
 
-## Pulling Updates
+## Fetching Updates
 
-As described in the getting started guide, there will be [updates](./getting_started.md#fetching-updates) from time to time.
-It can happen that these updates affect the assignments (just in case you are wondering why your tests suddenly fail 😅).
+As described in the [getting started](./getting_started.md) guide, there will be updates from time to time.
 
-Given that you work on a separate branch on your assignments, you can merge the latest version of the `main` branch into your assignment branch as follows:
+It can happen that these updates affect the assignments - just in case you are wondering why your tests suddenly fail 😅).
 
-```sh
-# Fetch the latest changes from the remote main branch
-git fetch origin main
-
-# Merge the main branch into your current feature branch, e.g. my-assignments
-git merge origin/main
-```
-
-!!! info
-
-    In case you work on a fork (which is awesome 🙌), the process is similar, but you need to fetch from the `upstream` remote repository.
-    This is described in the [contributing guide](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md#syncing-you-fork) in more detail.
+So make sure to always [fetch the latest updates](./getting_started.md#fetching-updates) before working on your assignments.
