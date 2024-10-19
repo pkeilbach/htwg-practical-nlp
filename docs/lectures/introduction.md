@@ -570,7 +570,7 @@ However, in its simplest forms, NLP is **not necessarily based on AI**, and we c
 - A special focus needs to be put on **pre-processing** and **feature extraction**
 - training a model is then "business as usual"
 
-**Supervised learning**
+#### Supervised learning
 
 - learn **mapping function** from input to output
 - requires a large number of **labeled training data**, i.e. known input-output pairs
@@ -579,7 +579,7 @@ However, in its simplest forms, NLP is **not necessarily based on AI**, and we c
 
     An **email spam filter** is a common example where supervised learning is used in NLP.
 
-**Unsupervised learning**
+#### Unsupervised learning
 
 - Aims to find hidden patterns in given input data
 - Output is unknown, i.e. works with **unlabeled data**
@@ -596,7 +596,7 @@ Deep learing approaches in NLP led to **significant advances** in the recent yea
 
 This section gives a brief overview of the terms that are used in this context.
 
-**Language Models**
+#### Language Models
 
 - System that is trained to **understand and generate** human-like text
 - Designed to **predict** and generate sequences of words or characters based on the input it receives
@@ -607,35 +607,35 @@ This section gives a brief overview of the terms that are used in this context.
 
     GPT-3, based on the transformer architecture, is an example of a powerful language model.
 
-**Convolutional Neural Networks (CNNs)**
+#### Convolutional Neural Networks (CNNs)
 
 - Adapted from computer vision tasks
 - Require **word embeddings** to build sentences matrices, which can be treated analogously to images
 
-**Recurrent Neural Networks (RNNs)**
+#### Recurrent Neural Networks (RNNs)
 
 - language is sequential by nature, e.g. text flows from one direction to another
 - RNNs are a type of neural network designed for **sequential data**, making them suitable for tasks where the order of the input matters
 - Can remember what they have processed so far, but cannot remember long contexts
 
-**Long Short-Term Memory (LSTM)**
+#### Long Short-Term Memory (LSTM)
 
 - LSTMs are a specific type of RNN designed to address the vanishing gradient problem, enabling better learning of long-range dependencies in sequential data.
 - Let go of **irrelevant context**, and only remember the context that is required to solve the task at hand
 
-**Transformers**
+#### Transformers
 
 - **Type of architecture** that has gained prominence in NLP
 - Use **attention mechanisms** to capture relationships between different parts of a sequence simultaneously, making them effective for processing sequential data, including language
 - Look at surrounding words to derive context (e.g. bank as a river bank or financial institution)
 
-**Transfer Learning**
+#### Transfer Learning
 
 - Transfer learning is a machine learning **paradigm** where a model trained on one task is **adapted or fine-tuned** for a different but related task
 - Often used to leverage **pre-trained models** for specific applications
 - The model is able to **transfer** the pre-trained knowledge for downstream tasks
 
-**Foundation Models**
+#### Foundation Models
 
 - The term **foundation model** refers to **large-scale** language models **based on the transformer** architecture
 - They serve as a **starting point** for various NLP tasks
@@ -645,7 +645,7 @@ This section gives a brief overview of the terms that are used in this context.
 
     GPT-3 is known to be trained on 45 TB of text data and the model has about 175 billion parameters.
 
-**Attention**
+#### Attention
 
 - The attention mechanism is a key component of the transformer model architecture and plays a crucial role in capturing **contextual information across sequences**.
 - Attention mechanisms, particularly **self-attention** in the context of transformers, allow models to **focus on different parts of the input sequence** when making predictions.
