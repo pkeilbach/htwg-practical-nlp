@@ -48,7 +48,6 @@ IMHO, every lecture should provide a little historical background in the beginni
 
         Together with [John Hopfield](https://en.wikipedia.org/wiki/John_Hopfield), he was awarded the 2024 Nobel Prize in Physics.
 
-
 - **2012**
   Advancements in deep learning architectures and larger data sets lead to the development of GPT (Generative Pre-trained Transformer).
 
@@ -147,7 +146,6 @@ Here are some tasks that can be solved by NLP[^3]:
 
     ![NER with spaCy](../img/intro-ner.png)
 
-
 ### Part-of-speech tagging
 
 - In NLP, the **anatomy** of a sentence is commonly described using **part-of-speech (POS) tags**, which involves assigning **grammatical categories** (e.g., noun, verb, adjective) to each word in the sentence.
@@ -179,7 +177,6 @@ Here are some tasks that can be solved by NLP[^3]:
 
     A simplified [universal tagset](https://github.com/slavpetrov/universal-pos-tags) by Google Research maps the Penn Treebank tagset to only 12 tags.
 
-
 ### Topic modelling
 
 - **Topic modeling** is an **unsupervised text mining** task that identifies abstract topics in a collection of documents.
@@ -203,7 +200,6 @@ Here are some tasks that can be solved by NLP[^3]:
 !!! info "Grammatical error correction"
 
     Grammatical error correction models use grammatical rules to fix text. This is typically approached as a sequence-to-sequence task, where the model learns to transform an ungrammatical sentence into a correct one. Tools like [Grammarly](https://www.grammarly.com/) and Microsoft Word implement these models to enhance writing, while schools use them to grade student essays.
-
 
 ### Information Retrieval
 
@@ -413,10 +409,6 @@ Important for:
 
     **Pragmatics** applies **world knowledge** and infers that this person is very hungry. 🍴
 
-<!--
-    The [sad story](https://en.wikipedia.org/wiki/For_sale:_baby_shoes,_never_worn) of how Hemingway supposedly won a 10$ bet shows the difference between semantics and pragmatics.
--->
-
 !!! info
 
     Being a linguistic expert is not necessary to master NLP, but by understanding the basic building blocks of language, we can use the right NLP tools in real-world projects.
@@ -512,8 +504,7 @@ Important for:
     The German word [*Heimat*](https://en.wikipedia.org/wiki/Heimat) has no exact English equivalent.
 
 <!--
-Comment:
-Anybody who used NLP solutions in another language than english probably has experienced lower performance.
+TODO: Anybody who used NLP solutions in another language than english probably has experienced lower performance.
 -->
 
 ## NLP in the era of Artificial Intelligence
@@ -739,12 +730,6 @@ However, DL is not the silver bullet for all NLP tasks, especially when it comes
     This is useful advice in many areas of software development. 😃
 
     ![Occam's Razor Comic](https://phdcomics.com/comics/archive/phd101209s.gif "Occam's Razor Comic")
-
-<!--
-Answer:
-
-
--->
 
 ## Key Takeaways
 
