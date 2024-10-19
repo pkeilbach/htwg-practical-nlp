@@ -68,7 +68,7 @@ See the [Getting Started](./getting_started.md) guide for instructions on how to
 
 To submit an assignment, you will need to provide screenshots of a successful test run.
 
-<!-- TODO issue-121 provide example screenshot -->
+![Example of a successful test run](./img/assignment-test-run.png)
 
 You can submit the screenshots via GitHub issue using the issue template for [Assignment Submission](https://github.com/pkeilbach/htwg-practical-nlp/issues/new/choose).
 
