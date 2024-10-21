@@ -26,9 +26,9 @@ class NaiveBayes:
 
     Attributes:
         word_probabilities (pd.DataFrame): the word probabilities per class, None before training
-        df_freqs (pd.DataFrame): the word frequencies per class, None before training
-        log_ratios (pd.Series): the log ratios of the word probabilities, None before training
-        logprior (float): the logprior of the model, 0 before training
+        df_freqs (pd.DataFrame): the word frequencies per class, None before training. The index of the DataFrame is the vocabulary.
+        log_ratios (pd.Series): the log ratios of the word probabilities, None before training. The index of the Series is the vocabulary.
+        logprior (float): the logprior of the model, 0 before training. The index of the Series is the vocabulary.
         alpha (float): the smoothing parameter of the model
     """
 
