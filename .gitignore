@@ -4,6 +4,8 @@
 
 # local files
 local/
+notebooks/output/*
+!notebooks/output/.keep
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
