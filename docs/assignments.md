@@ -70,11 +70,13 @@ To submit an assignment, you will need to provide screenshots of a successful te
 
 ![Example of a successful test run](./img/assignment-test-run.png)
 
-You can submit the screenshots via GitHub issue using the issue template for [Assignment Submission](https://github.com/pkeilbach/htwg-practical-nlp/issues/new/choose).
+Please submit your screenshots via [email](mailto:pascal.keilbach@htwg-konstanz.de) to me.
 
-!!! note
+When you submit your assignments, please provide a short description of your major learnings or challenges for each assignment.
 
-    Submission via GitHub issue is preferred, but it is also accpeted if submit the screenshots via [email](mailto:pascal.keilbach@htwg-konstanz.de).
+!!! info
+
+    Depending on your preference, you can submit all assignments at once, or submit them separately.
 
 ## Working on your Assignments
 
@@ -141,3 +143,19 @@ As described in the [getting started](./getting_started.md) guide, there will be
 It can happen that these updates affect the assignments - just in case you are wondering why your tests suddenly fail 😅).
 
 So make sure to always [fetch the latest updates](./getting_started.md#fetching-updates) before working on your assignments.
+
+## Bonus Points
+
+The assignment code is organized as a **fully functional Python package** which you can **push** to a package index and **install** it via `pip`.
+
+If you manage to push your code to [Test PyPI](https://test.pypi.org/), you will earn 2 bonus points for the exam! 🤑
+
+Find more details on how to package and publish your code [here](https://packaging.python.org/en/latest/tutorials/packaging-projects/#a-simple-project).
+
+!!! info "Acceptance Criteria"
+
+    As soon as I can install your package with the following command, you are eligible for the bonus points:
+
+    ```sh
+    pip install --index-url https://test.pypi.org/simple/ --no-deps htwgnlp_YOUR_GITHUB_USERNAME
+    ```
