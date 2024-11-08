@@ -1,6 +1,35 @@
 # Preprocessing
 
-## The NLP pipeline
+Natural language data is inherently **unstructured** and often contains noise, irregularities, and inconsistencies.
+
+Machine learning models **cannot process raw text directly**.
+Since text is categorical, it isn’t compatible with the mathematical operations used to implement and train neural networks. Therefore, we need a way to represent words as continuous-valued vectors (aka [embeddings](http://127.0.0.1:8000/lectures/word_embeddings/)).[^1]
+
+!!! info "Embeddings"
+
+    As we will learn [later](http://127.0.0.1:8000/lectures/word_embeddings/), embeddings are a numerical representation of a token.
+
+The **goal** of preprocessing is to transform raw text data into such embeddings so that we can use them for training machine learning models.
+
+In this lecture, we will look at some **common preprocessing** steps that are essential for preparing text data for NLP tasks.
+
+## Overview
+
+The image shows the typical preprocessing steps of text data:[^1]
+
+![From input text to embeddings](../img/preprocessing.drawio.svg "From input text to embeddings")
+
+- When we have the raw input text available, we need to [**tokenize**](#tokenization) it.
+- Afterwards, the each individual token is **mapped to an ID**.
+- Then, we convert the token IDs into **embedding vectors**.
+
+!!! info "Embeddings"
+
+    As we will learn later, embeddings are a numerical representation of a token.
+    In the beginning, we initialize them **randomly**.
+    Later, during training, they are optimized to represent the token in a way that is useful for the task at hand.
+
+## The pipeline concept in NLP
 
 Like with many other complex problems, in NLP, it makes sense to break the problem that needs to be solved down into several sub-problems.
 This step-by-step processing is also referred to as a _pipeline_.
@@ -53,7 +82,7 @@ It facilitates the transformation of raw text data into valuable insights by sys
     An NLP pipeline can be seen as an adapted machine learning pipeline, as many of its steps apply to machine learning in general.
 
 The following figure shows a generic NLP pipeline, followed by a high-level description of each step.
-The color indicates whether the pipeline step is relevant for the course.
+The color indicates whether the pipeline step is relevant for the course.[^2][^3]
 
 ![Generic NLP pipeline which indicates the scope for this course](../img/nlp-pipeline.drawio.svg "Generic NLP pipeline ")
 
@@ -93,11 +122,7 @@ The color indicates whether the pipeline step is relevant for the course.
 
     Depending on the specific NLP task and the complexity of the data, you might need to delve deeper into each step and consider additional techniques or subtasks.
 
-<!-- TODO
-https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/well-architected-machine-learning-lifecycle.html
--->
-
-## Data Acquisition
+## Acquiring data for NLP
 
 Data acquisition techniques in Natural Language Processing (NLP) are crucial for obtaining high-quality data to train and evaluate models.
 Here's an overview of four common data acquisition techniques:
@@ -112,13 +137,7 @@ Here's an overview of four common data acquisition techniques:
     Examples include the [IMDb dataset](https://developer.imdb.com/non-commercial-datasets/) for sentiment analysis, the [Penn Treebank](https://catalog.ldc.upenn.edu/LDC99T42) for language modeling, or the [CoNLL dataset](https://www.clips.uantwerpen.be/conll2003/ner/) for named entity recognition.
     Also, these datasets serve as benchmarks for various NLP tasks.
 
-3.  **Human Annotation:**
-    For tasks that require labeled data, researchers often rely on human annotators to label samples.
-    This is common in tasks like text classification, part-of-speech tagging, and entity recognition.
-    Annotators follow guidelines provided by researchers to label data accurately.
-    Crowdsourcing platforms like [Amazon Mechanical Turk](https://www.mturk.com/) allow to distribute such tasks to human annotators.
-
-4.  **Data Augmentation:**
+3.  **Data Augmentation:**
     Data augmentation involves creating new data samples from existing ones by applying various transformations.
     In NLP, this can involve techniques like paraphrasing, synonym replacement, and perturbation of sentences.
     Augmentation helps increase the diversity of the training data and can improve model generalization.
@@ -175,9 +194,11 @@ else:
     As you may know, [kaggle](https://www.kaggle.com/) is an excellent source for browsing public datasets for various use cases.
     Also, the [Linguistic Data Consortium](https://www.ldc.upenn.edu/) has curated a [top ten list](https://catalog.ldc.upenn.edu/topten) of datasets for NLP tasks.
 
-## Text Cleaning
+!!! example
 
-Text cleaning involves removing any elements from the text that are considered irrelevant, noisy, or potentially problematic for downstream NLP tasks.
+    The `data_acquisition.ipynb` notebook in the demonstrates how to acquire data from New York Times articles using the [New York Times API](https://developer.nytimes.com/apis).
+
+## Working with text data
 
 ### Lowercasing
 
@@ -189,9 +210,15 @@ Convert all text to lowercase to ensure consistent handling of words regardless 
 'welcome to the htwg practical nlp course'
 ```
 
-!!! warning
+!!! note
 
-    Lowercasing is common in NLP, but it may not always be appropriate for every NLP task.
+    Back in the days, having all text lowercase was common practice because it had a positive impact on the performance of machine learning models.
+
+    But in the era of large language models (LLMs), lowercasing is not common anymore,
+    and capitalization helps LLMs distinguish between proper nouns and common nouns, understand sentence structure, and learn to generate text with proper capitalization.
+
+!!! example
+
     In some cases, the case of the text may carry valuable information, such as in tasks related to named entity recognition, where distinguishing between "US" (the country) and "us" (the pronoun) is essential.
 
 !!! info
@@ -199,7 +226,7 @@ Convert all text to lowercase to ensure consistent handling of words regardless 
     Depending on the use case, you may need to do other string operations.
     Python offers a lot of useful [string methods](https://docs.python.org/3/library/stdtypes.html#string-methods) to work with text data.
 
-### Remove Punctuation
+### Remove punctuation
 
 Punctuation marks like commas, periods, and semicolons can add complexity to text, but they might not always contribute essential information. By removing them, the text is simplified, and the complexity of the data is reduced, which can make it easier for certain NLP tasks to process and analyze.
 
@@ -210,7 +237,7 @@ Punctuation marks like commas, periods, and semicolons can add complexity to tex
 ['Hey', 'what', 'are', 'you', 'up', 'to', 'Let', 'have', 'a', 'pizza', 'tonight']
 ```
 
-### Remove HTML Tags and URLs
+### Remove HTML tags and URLs
 
 When dealing with text from web pages, HTML tags are often present and need to be removed.
 
@@ -228,38 +255,65 @@ Usually, it's also a good idea to remove URLs, as they often contain random char
     While you could also achieve it with a simple regex `re.sub(r'<.*?>', '', html)`, it might not cover all edge cases and HTML entities like, e.g., `&nsbm`.
     Therefore, using a well-established library for such tasks is generally a better approach.
 
-### Other Cleaning Steps
+### Other common text processing steps
 
-Here are some other text cleaning steps worth mentioning:
+Here are some other common text processing steps worth mentioning:
 
 1.  **Handling Numbers:**
     Decide whether to keep or remove numbers based on the analysis's goals.
     You might replace numbers with placeholders like `NUM` or convert them to words.
 
-2.  **Handling Special Characters**
+1.  **Handling Special Characters**
     Special characters like "+" or emojis often convey a meaning.
     Depending on your application, you can choose to preserve emojis as-is, replace them with their textual descriptions, e.g., "☺️" becomes "smiley face", or remove them altogether.
     Not surprisingly, emojis are helpful for sentiment analysis.
 
-3.  **Removing whitespace:**
+1.  **Removing whitespace:**
     Extra spaces, tabs `\t`, or line breaks `\n` should be normalized to a single space to ensure consistent formatting.
 
-## Text Normalization
+1.  **Spelling Correction:**
+    Human-typed data often has spelling errors. Custom solutions are usually not robust enough, but online services like [Bing Spell Check](https://learn.microsoft.com/en-us/azure/cognitive-services/bing-spell-check/quickstarts/python) offer REST APIs to tackle the spelling correction problem more sophisticatedly.
 
-Text normalization involves transforming the text to a standard or canonical form, making it consistent and easier to work with.
-At this stage, the text most likely still contains morphological variants of the same word, like conjunctions, plural, tenses, etc.
-Text normalization steps aim to bring the text into a standardized form.
+1.  **Contractions expansion:**
+    Especially in the English language, expanding contractions like "can't" to "cannot" or "I'm" to "I am." should be resolved to ensure consistent word representations.
 
-!!! example
+1.  **Handling Abbreviations and Acronyms:**
+    Expanding abbreviations and acronyms to their full forms, or vice versa, to ensure consistency.
 
-    For information retrieval or information extraction about the US, we might want to see information from documents, whether they mention the US or the USA.
+1.  **Normalization of Date and Time Formats:**
+    Converting various date and time representations into a standardized format, for example, transforming `September 1st, 2023` to `2023-09-01`.
 
-### Tokenization
+## Tokenization
 
 Tokenization is the process of breaking down a text into substrings, like words or tokens.
 In English and many other languages, words are often separated by spaces, making space a common delimiter.
-However, tokenization can be more complex in languages where words are not always separated by spaces or in scenarios where tokens could include punctuation marks or special characters.
-Tokenization is a fundamental step before further analysis because it defines the basic units of language that will be processed.
+
+We could use a simple regex to perform tokenization:
+
+```python
+>>> import re
+>>> txt = "The quick brown fox jumps over the lazy dog."
+>>> re.split(r'\s+', txt)
+['The', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog']
+```
+
+But a simple regex might not always be sufficient in practice.
+Consider the following example:
+
+```python
+>>> txt = "Hello, world. This, is a test."
+>>> re.split(r'\s+', txt)
+['Hello,', 'world.', 'This,', 'is', 'a', 'test.']
+```
+
+Usually, we also want to have the punctuation marks separated from the words, so a simple whitespace split is not sufficient anymore, and the regex will become more complex:
+
+```python
+>>> re.split(r'([,.]|\s)', txt)
+['Hello', 'world', 'This', 'is', 'a', 'test']
+```
+
+Like this, the task of tokenization can become quite complex, and it's better to use dedicated libraries like [NLTK](https://www.nltk.org/) or [spaCy](https://spacy.io/) for tokenization.
 
 ```python
 >>> from nltk.tokenize import word_tokenize
@@ -283,7 +337,9 @@ You can also tokenize at the level of sentences using the sentence tokenizer:
     The code example above uses NLTK's [default word tokenizer](https://www.nltk.org/api/nltk.tokenize.html#nltk.tokenize.word_tokenize), but others are available.
     Please consider the [API reference](https://www.nltk.org/api/nltk.tokenize.html#submodules) of NLTK's tokenize module for more information.
 
-### Stopword Removal
+The following sections show some more sophisticated tokenization techniques.
+
+### Stopword removal
 
 Stopwords are common words (such as "and," "the," "is," etc.) that don't carry significant meaning in a text.
 Stopword removal involves filtering out these words from a text to reduce noise and save processing time.
@@ -297,13 +353,11 @@ The goal is to focus on the more meaningful content words that contribute to the
 ['Early', 'morning', 'walks', 'provide', 'fresh', 'air', 'energy', 'day', '.']
 ```
 
-### Stemming and Lemmatization
+!!! question
 
-Stemming and lemmatization are both text normalization techniques used in NLP to reduce words to their base or root form.
-This helps to improve the efficiency of various NLP tasks.
-However, they work slightly differently and have distinct characteristics.
+    In the era of LLMs, would you say it is still a good idea to remove stopwords?
 
-#### Stemming
+### Stemming
 
 Stemming is a process of reducing words to their base or root form by removing suffixes or prefixes.
 The resulting stem might **not always be a valid word**, but it's intended to capture the core meaning of the word.
@@ -322,7 +376,7 @@ Stemming can be computationally faster than lemmatization since it involves simp
 
     Stemming algorithms use heuristic rules to perform these transformations, which can lead to over-stemming (reducing words too aggressively) or under-stemming (not reducing words enough).
 
-#### Lemmatization
+### Lemmatization
 
 Lemmatization is a more advanced technique that reduces words to their base form, known as the lemma.
 Unlike stemming, lemmatization takes into account the word's morphological analysis and its part of speech (POS) to ensure that the resulting lemma is **a valid word** in the language.
@@ -347,25 +401,73 @@ The choice between these techniques depends on the specific NLP task and the des
     Note that we require the POS tag as a second argument for NLTK's [`WordNetLemmatizer`](https://www.nltk.org/api/nltk.stem.wordnet.html#nltk.stem.wordnet.WordNetLemmatizer.lemmatize).
     This is why we use the [Python unpacking operator `*`](https://docs.python.org/3/tutorial/controlflow.html#unpacking-argument-lists) here
 
-### Other Text Normalization Steps
+## Converting tokens into embeddings
 
-1.  **Spelling Correction:**
-    Human-typed data often has spelling errors. Custom solutions are usually not robust enough, but online services like [Bing Spell Check](https://learn.microsoft.com/en-us/azure/cognitive-services/bing-spell-check/quickstarts/python) offer REST APIs to tackle the spelling correction problem more sophisticatedly.
+Now, let’s convert these tokens from a Python string to an integer representation to produce the token IDs.
+This conversion is an intermediate step before converting the token IDs into embedding vectors.[^1]
 
-2.  **Contractions expansion:**
-    Especially in the English language, expanding contractions like "can't" to "cannot" or "I'm" to "I am." should be resolved to ensure consistent word representations.
+![Converting tokens into a vocabulary](https://sebastianraschka.com/images/LLMs-from-scratch-images/ch02_compressed/06.webp "Converting tokens into a vocabulary"){width=80%}
 
-3.  **Handling Abbreviations and Acronyms:**
-    Expanding abbreviations and acronyms to their full forms, or vice versa, to ensure consistency.
+- We build a vocabulary by **tokenizing** the entire text in a training dataset into individual tokens.
+- These individual tokens are then **sorted alphabetically**, and duplicate tokens are removed.
+- The unique tokens are then aggregated into a **vocabulary** that defines a **mapping** from each unique token to a unique integer value.
 
-4.  **Normalization of Date and Time Formats:**
-    Converting various date and time representations into a standardized format, for example, transforming `September 1st, 2023` to `2023-09-01`.
+The next goal is to apply this vocabulary to convert **new text into token IDs**:[^1]
 
-## Key Takeaways
+![Process of encoding tokens into token IDs](https://sebastianraschka.com/images/LLMs-from-scratch-images/ch02_compressed/06.webp "[Process of encoding tokens into token IDs"){width=80%}
 
+- Starting with a new text sample, we **tokenize** the text and use the vocabulary to convert the text tokens into token IDs.
+- The **vocabulary** is built from the entire training set and can be applied to the training set itself and any new text samples.
+
+!!! info "Encoding and Decoding"
+
+    The process of converting tokens into token IDs is also known as **encoding**, while the reverse process of converting token IDs back into tokens is also known as **decoding**.[^1]
+
+    ![Example of encoding and decoding](https://sebastianraschka.com/images/LLMs-from-scratch-images/ch02_compressed/08.webp "Example of encoding and decoding"){width=80%}
+
+!!! example
+
+    According to the illustration, the following **sentence**:
+
+    ```txt
+    The quick fox.
+    ```
+
+    would be tokenized into the following **tokens**:
+
+    ```txt
+    ["The", "quick", "fox"]
+    ```
+
+    and could be represented by the following **token IDs**:
+
+    ```
+    [7, 6, 2]
+    ```
+
+## Adding special context tokens
+
+To address the issue of unknown words or other edge cases, we can add special context tokens to the vocabulary.
+These special tokens can be used to represent specific contexts or conditions that are not covered by the regular vocabulary tokens.
+For example, these special tokens can include markers for unknown words or document boundaries.[^1]
+
+![Adding special context tokens](https://sebastianraschka.com/images/LLMs-from-scratch-images/ch02_compressed/09.webp "Adding special context tokens"){width=80%}
+
+- In this example, we add special tokens to a vocabulary to deal with certain contexts.
+- For instance, we add an `<|unk|>` token to represent new and unknown words that were not part of the training data and thus not part of the existing vocabulary.
+- Furthermore, we add an `<|endoftext|>` token that we can use to separate two unrelated text sources. This helps a model to understand that although these text sources are concatenated for training, they are, in fact, unrelated.
+
+## Key takeaways
+
+- In **preprocessing**, we convert raw input text into tokens, map them to IDs, and convert these IDs into embeddings.
 - The NLP **pipeline** is a systematic approach to solving NLP problems by breaking them down into **distinct steps**.
 - Many times, the success of an NLP project is determined already before the actual modeling step. **Preprocessing** and data acquisition play an important role, and **in practice, much effort** is spent on these steps.
-- Text cleaning and normalization are essential steps in the NLP pipeline that help **standardize the text** and make it ready for further analysis.
-- **Text cleaning** involves removing any elements from the text that are considered irrelevant, noisy, or potentially problematic for downstream NLP tasks.
-- **Text normalization** involves transforming the text to a **standard** or canonical **form**, making it consistent and easier to work with.
-- It **depends** on the specific NLP task which text cleaning and normalization techniques are appropriate. We need clear **requirements** to decide which techniques to apply.
+- When working with text data, we can apply a variety of **text processing techniques** to clean and normalize the text, including lowercasing, removing punctuation, and handling special characters.
+- **Tokenization** is the process of breaking down text into tokens, which is essential for further processing and analysis.
+- **Encoding** refers to the process of converting tokens into token IDs, while **decoding** refers to the reverse process of converting token IDs back into tokens.
+- We can add **special context tokens** to the vocabulary to address edge cases and unknown words that are not covered by the regular vocabulary tokens.
+
+<!-- footnotes -->
+[^1]: Image adapted from Raschka, Sebastian. _Build a Large Language Model (From Scratch)_. Shelter Island, NY: Manning, 2024. <https://www.manning.com/books/build-a-large-language-model-from-scratch>.
+[^2]: Vajjala, Sowmya, S.V. Bharathi, Bodhisattwa Majumder, Anuj Gupta, and Harshit Surana. _Practical Natural Language Processing: A Comprehensive Guide to Building Real-world NLP Systems_. Sebastopol, CA: O'Reilly Media, 2020. <https://www.practicalnlp.ai/>.
+[^3]: <https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/well-architected-machine-learning-lifecycle.html>
