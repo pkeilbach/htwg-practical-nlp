@@ -38,6 +38,9 @@ lint:
 pytest:
 	.venv/bin/pytest
 
+assignment-0:
+	.venv/bin/pytest tests/htwgnlp/test_python_basics.py
+
 assignment-1:
 	.venv/bin/pytest tests/htwgnlp/test_preprocessing.py
 
