@@ -146,7 +146,7 @@ So make sure to always [fetch the latest updates](./getting_started.md#fetching-
 
 ## Bonus Points
 
-The assignment code is organized as a fully functional Python package which you can push to a package index and install it via `pip`.
+The assignment code is organized as a **fully functional Python package** which you can **push** to a package index and **install** it via `pip`.
 
 If you manage to push your code to [Test PyPI](https://test.pypi.org/), you will earn 2 bonus points for the exam! 🤑
 
