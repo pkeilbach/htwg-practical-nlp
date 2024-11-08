@@ -1,4 +1,6 @@
 """Tests for `python_basics.py` module using pytest.
+
+This test file can be run using `make assignment-0`
 """
 
 import os
