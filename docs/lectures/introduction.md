@@ -291,8 +291,8 @@ The layer of **words** consists of morphemes and lexemes.
 
 Morphemes:
 
-- Smallest unit of language that has a meaning
-- Formed by a combination of phonemes
+- Smallest unit of language that has a **meaning**
+- Formed by a **combination of phonemes**
 - All prefixes or suffixes are morphemes, e.g. `multi` as in `multimedia`
 - When breaking down words into their morphemes, variations may occur
 
@@ -300,7 +300,7 @@ Lexemes:
 
 - Consists of one or more morphemes
 - Multiple words can go back to the same lexeme
-- Not synonymous with the term "word", rather comparable to an entry in a dictionary or an encyclopedia
+- Not synonymous with the term "word", rather comparable to an **entry in a dictionary** or an encyclopedia
 - Different verb forms go back to the same lexeme
 
 Important for:
@@ -378,7 +378,7 @@ The following snippet shows POS-tagging in Python using the NLTK library and the
 
     Find some [further information here](https://aclanthology.org/2021.acl-long.110v1.pdf).
 
-    ??? info "Answer
+    ??? info "Answer"
 
         It would depend on the use case, there are situations where the emoji is a crucial part of the sentence, to indicate emotions (e.g. social media posts).
         If it is just about the conveyed information, it is probably OK to remove them during pre-processing.
@@ -554,7 +554,8 @@ However, in its simplest forms, NLP is **not necessarily based on AI**, and we c
 
     ??? info "Answer"
 
-        - example: sentiment analysis based on word count, or a regex to map tracking numbers to shipping companies
+        Examples would be sentiment analysis based on word count, or a regex to map tracking numbers to shipping companies.
+
         - advantages: light-weight, quick & easy compared to DL models, are deterministic
         - limitations: hard to solve more complex NLP tasks
 
