@@ -3,7 +3,7 @@ from collections import defaultdict
 import numpy as np
 import pytest
 
-from htwgnlp.features import CountVectorizer
+from src.htwgnlp.features import CountVectorizer
 
 tweets = [
     ["this", "is", "a", "tweet"],  # 1
@@ -15,18 +15,15 @@ labels = np.array([[1], [1], [0], [1], [0]])
 
 @pytest.fixture
 def vectorizer():
-    vectorizer = CountVectorizer()
-    vectorizer.build_word_frequencies(tweets, labels)
-    return vectorizer
+    return CountVectorizer()
 
-
-def test_init():
-    vec = CountVectorizer()
-    assert isinstance(vec.word_frequencies, defaultdict)
-    assert vec.word_frequencies["some_non_existent_key"] == 0
+def test_init(vectorizer):
+    assert isinstance(vectorizer.word_frequencies, defaultdict)
+    assert vectorizer.word_frequencies["some_non_existent_key"] == 0
 
 
 def test_build_word_frequencies(vectorizer):
+    vectorizer.build_word_frequencies(tweets, labels)
     assert vectorizer.word_frequencies[("this", 1)] == 1
     assert vectorizer.word_frequencies[("is", 1)] == 1
     assert vectorizer.word_frequencies[("a", 1)] == 2
