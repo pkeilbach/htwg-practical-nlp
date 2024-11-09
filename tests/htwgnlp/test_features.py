@@ -3,7 +3,7 @@ from collections import defaultdict
 import numpy as np
 import pytest
 
-from src.htwgnlp.features import CountVectorizer
+from htwgnlp.features import CountVectorizer
 
 tweets = [
     ["this", "is", "a", "tweet"],  # 1
