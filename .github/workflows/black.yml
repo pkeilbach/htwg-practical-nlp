@@ -1,7 +1,5 @@
-name: Lint
-
+name: Black
 on: [push, pull_request]
-
 jobs:
   lint:
     runs-on: ubuntu-latest
