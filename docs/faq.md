@@ -126,5 +126,5 @@ No, you don't need to submit any slides.
 
 ### What do I need to submit?
 
-You need to submit the practical part of your presentation in a format that is easily executable.
+You need to submit the practical part of your presentation as a GitHub repository.
 For more details, check the [presentation submission](./presentations.md#submission) section.
