@@ -8,17 +8,17 @@ The presentation is ungraded, but mandatory to pass the course.
 
 The presentation can be about a tool, framework, technology, or just anything that you are interested in, as long as it fits into the broader context of NLP.
 
-The idea is that you can explore an exciting NLP topic, hack around with some new framewrok, and share your findings with the class.
+The idea is that you can explore an exciting NLP topic, hack around with some new framework, and share your findings with the class.
 
-You can find the **list of topics** in the GitHub issues when filtering for the [`presentations`](https://github.com/pkeilbach/htwg-practical-nlp/labels/presentations) label.
+You can find the **list of topics** in the GitHub [presentation topic pool](https://github.com/pkeilbach/htwg-practical-nlp/issues/90) issue.
 
-If you are interested in a topic, you can add yourself as an **assignee** to the issue.
+If you are interested in a topic, please add a comment to the issue, stating the topic you would like to work on.
 
 We will discuss the topic assignments in one of the first lectures.
 
 !!! tip
 
-    You can also **suggest your own topic**. If you do so, please create a new issue using the issue template for [Presentation Topic Suggestion](https://github.com/pkeilbach/htwg-practical-nlp/issues/new/choose), and **add both yourself and me as an assignee.** This will give me the chance to review your suggested topic.
+    You can also **suggest your own topic**! Just add a comment to the issue with your idea, and we can discuss it.
 
 !!! note
 
@@ -31,6 +31,10 @@ The scope of the presentation should be around **15-20 minutes**. Ideally, you s
 
 For the **practical part**, try to aim for 25-50% of the time (depending on the topic). Feel free to use any tool you want. You can show something in the browser, use Postman or Jupyter notebooks, or do some live hacking on the command line. 🤓
 
+!!! note
+
+    If you work on a paper, there may be fewer practiical parts as if you work on a tool or framework. That's totally fine!
+
 Besides that, there are no strict rules about the presentation format. You can use slides if you want, but it is not mandatory.
 
 ## Presentation Dates
@@ -39,11 +43,11 @@ We will discuss the dates of the presentations in one of the first lectures.
 
 ## Submission
 
-You **don't need to submit** the presentation slides, but you need to submit the code of your practical part.
+You **don't need to submit** the presentation slides.
 
-This should be in a format that is **directly executable** with a setup that is self-explanatory and follows common conventions (e.g. `npm start`).
+For the practical part, please push your code to a GitHub repository and provide a **README** with instructions on how to run your code.
 
-It is recommended to provide your code as a GitHub repository that I can clone.
+Ideally, your code should be **directly executable** with a setup that is self-explanatory and follows common conventions (e.g. `npm start`).
 
 !!! example
 
@@ -51,7 +55,6 @@ It is recommended to provide your code as a GitHub repository that I can clone.
 
     - If your practical part is a Jupyter Notebook, you could provide a [mybinder](https://mybinder.org/) link.
     - If you build a web service, after I cloned the repository, the service should come up by running `make` or `npm install && npm start`.
-    - You could also provide a docker image that I can start with `docker run`.
     - If you provide a Python script, it is acceptable to do a `pip install` followed by a `python my_script.py`, since this is conventional in Python.
 
 !!! info
