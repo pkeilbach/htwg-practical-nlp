@@ -17,6 +17,7 @@ labels = np.array([[1], [1], [0], [1], [0]])
 def vectorizer():
     return CountVectorizer()
 
+
 def test_init(vectorizer):
     assert isinstance(vectorizer.word_frequencies, defaultdict)
     assert vectorizer.word_frequencies["some_non_existent_key"] == 0
