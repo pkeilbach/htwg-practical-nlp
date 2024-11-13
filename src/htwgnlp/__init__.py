@@ -1,6 +1,5 @@
 """HTWG NLP Course Package
 
-This is an empty __init__.py file to make Python treat the directory as a package.
 
 The `htwgnlp` package contains code for the HTWG NLP lecture and assignments. To locate all
 code parts to be implemented for an assignments, search for the corresponding assignment
