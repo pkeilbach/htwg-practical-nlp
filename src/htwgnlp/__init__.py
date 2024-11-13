@@ -3,7 +3,7 @@
 
 The `htwgnlp` package contains code for the HTWG NLP lecture and assignments. To locate all
 code parts to be implemented for an assignments, search for the corresponding assignment
-number (0-4) using `ASSIGNMENT-X` as a search term.
+number (0-4) using `TODO ASSIGNMENT-X` as a search term.
 Test the code by running `make assignment-x` command from the root directory of the project.
 
 Assignments:
