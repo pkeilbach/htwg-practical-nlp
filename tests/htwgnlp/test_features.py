@@ -45,4 +45,5 @@ def test_build_word_frequencies(vectorizer):
     ],
 )
 def test_get_features(vectorizer, tweet, expected):
+    vectorizer.build_word_frequencies(tweets, labels)
     assert np.array_equal(vectorizer.get_features(tweet), expected)
