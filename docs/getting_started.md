@@ -154,7 +154,7 @@ Jupyter is now accessible at <http://localhost:8888/>.
 If you want, you can bring up the lecture notes on your local machine.
 
 ```sh
-make docs
+make mkdocs
 ```
 
 The lecture notes are now accessible at <http://localhost:8000/>.
