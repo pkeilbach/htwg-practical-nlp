@@ -20,7 +20,7 @@ venv:
 # General check for any tool in .venv/bin, based on the target name
 check-%:
 	@if [ ! -f .venv/bin/$* ]; then \
-		echo "You need to execute 'make' first to install dependencies"; \
+		echo "Tool '$*' not found in .venv/bin. Please run 'make' (or 'make install-dev') to install dependencies"; \
 		exit 1; \
 	fi
 
