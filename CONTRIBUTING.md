@@ -27,7 +27,7 @@ Here is some inspiration:
 Once you found something you can contribute:
 
 - create a [new issue](https://github.com/pkeilbach/htwg-practical-nlp/issues/new/choose), or
-- assign yourself to an existing [issue](https://github.com/pkeilbach/htwg-practical-nlp/issues)
+- comment on an [existing issue](https://github.com/pkeilbach/htwg-practical-nlp/issues) that you want to work on it
 
 so that it is clear to others and me that you are working on a topic.
 
