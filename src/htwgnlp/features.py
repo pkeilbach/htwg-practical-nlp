@@ -31,7 +31,7 @@ class CountVectorizer:
         raise NotImplementedError("This method needs to be implemented.")
 
     def build_word_frequencies(
-        self, tweets: list[list[str]], labels: list[str]
+        self, tweets: list[list[str]], labels: np.ndarray
     ) -> None:
         """Builds a dictionary of word frequencies by counting the number of occurrences of each word in each class.
 

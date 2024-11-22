@@ -15,26 +15,29 @@ labels = np.array([[1], [1], [0], [1], [0]])
 
 @pytest.fixture
 def vectorizer():
-    vectorizer = CountVectorizer()
+    return CountVectorizer()
+
+
+@pytest.fixture
+def vectorizer_initialized(vectorizer):
     vectorizer.build_word_frequencies(tweets, labels)
     return vectorizer
 
 
-def test_init():
-    vec = CountVectorizer()
-    assert isinstance(vec.word_frequencies, defaultdict)
-    assert vec.word_frequencies["some_non_existent_key"] == 0
+def test_init(vectorizer):
+    assert isinstance(vectorizer.word_frequencies, defaultdict)
+    assert vectorizer.word_frequencies["some_non_existent_key"] == 0
 
 
-def test_build_word_frequencies(vectorizer):
-    assert vectorizer.word_frequencies[("this", 1)] == 1
-    assert vectorizer.word_frequencies[("is", 1)] == 1
-    assert vectorizer.word_frequencies[("a", 1)] == 2
-    assert vectorizer.word_frequencies[("tweet", 1)] == 2
-    assert vectorizer.word_frequencies[("what", 0)] == 1
-    assert vectorizer.word_frequencies[("a", 0)] == 1
-    assert vectorizer.word_frequencies[("sad", 0)] == 1
-    assert vectorizer.word_frequencies[("tweet", 0)] == 1
+def test_build_word_frequencies(vectorizer_initialized):
+    assert vectorizer_initialized.word_frequencies[("this", 1)] == 1
+    assert vectorizer_initialized.word_frequencies[("is", 1)] == 1
+    assert vectorizer_initialized.word_frequencies[("a", 1)] == 2
+    assert vectorizer_initialized.word_frequencies[("tweet", 1)] == 2
+    assert vectorizer_initialized.word_frequencies[("what", 0)] == 1
+    assert vectorizer_initialized.word_frequencies[("a", 0)] == 1
+    assert vectorizer_initialized.word_frequencies[("sad", 0)] == 1
+    assert vectorizer_initialized.word_frequencies[("tweet", 0)] == 1
 
 
 @pytest.mark.parametrize(
@@ -46,5 +49,5 @@ def test_build_word_frequencies(vectorizer):
         (["this", "is", "a", "sunny", "and", "a", "warm", "day"], np.array([1, 6, 2])),
     ],
 )
-def test_get_features(vectorizer, tweet, expected):
-    assert np.array_equal(vectorizer.get_features(tweet), expected)
+def test_get_features(vectorizer_initialized, tweet, expected):
+    assert np.array_equal(vectorizer_initialized.get_features(tweet), expected)
