@@ -100,7 +100,7 @@ The color indicates whether the pipeline step is relevant for the course.[^2][^3
 
 4.  **Feature Engineering:**
     Feature engineering involves transforming the pre-processed text into numerical representations that machine learning models can work with.
-    This could include techniques like TF-IDF (Term Frequency-Inverse Document Frequency) or word embeddings like Word2Vec or GloVe.
+    This could include techniques like TF-IDF or word embeddings like Word2Vec or GloVe.
 
 5.  **Modeling:**
     In this step, you select and train a machine learning or deep learning model that suits your NLP task, such as text classification, named entity recognition, or machine translation.
