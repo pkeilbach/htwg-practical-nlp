@@ -864,7 +864,7 @@ Since the perplexity is the inverse probability of the set set, the lower the pe
 
 ## Out of Vocabulary Words
 
-In some cases we need to deal with words that we **haven't seen before**. Such words are called **out of vocabulary** (OOV) words, and are usually replaced by a **special token `<unk>`**.
+In some cases we need to deal with words that we **haven't seen before**. Such words are called OOV words, and are usually replaced by a **special token `<unk>`**.
 
 We need to think about how to make predictions for words that we have not seen in the training corpus. What would be the N-gram probability of a word that is not in the corpus?
 
@@ -887,7 +887,7 @@ Any other words would be replaced by `<unk>`.
 
 !!! warning
 
-    Using a lot of out of vocabulary words can influence the **perplexity** score. If there are a lot of OOV words in the test set, the model will predict them with a high probability, which will result in a low perplexity score.
+    Using a lot of OOV words can influence the **perplexity** score. If there are a lot of OOV words in the test set, the model will predict them with a high probability, which will result in a low perplexity score.
 
     This means the model with generate sentences that contain a lot of `<unk>` tokens.
 
