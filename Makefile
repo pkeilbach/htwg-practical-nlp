@@ -17,39 +17,44 @@ pip: venv
 venv:
 	python3 -m venv --upgrade-deps .venv
 
-# the following commands can only be used when `make` was executed successfully
-# TODO issue-135: print a hint on the console to execute `make`
-jupyter:
+# General check for any tool in .venv/bin, based on the target name
+check-%:
+	@if [ ! -f .venv/bin/$* ]; then \
+		echo "Tool '$*' not found in .venv/bin. Please run 'make' (or 'make install-dev') to install dependencies"; \
+		exit 1; \
+	fi
+
+jupyter: check-jupyter
 	.venv/bin/jupyter notebook --no-browser
 
-mkdocs:
+mkdocs: check-mkdocs
 	.venv/bin/mkdocs serve
 
-format:
+format: check-black
 	.venv/bin/black .
 
-type-check:
+type-check: check-mypy
 	.venv/bin/mypy src/
 
-lint:
+lint: check-ruff
 	.venv/bin/ruff check --fix
 	markdownlint --fix '**/*.md'
 
-pytest:
+pytest: check-pytest
 	.venv/bin/pytest
 
-assignment-0:
+assignment-0: check-pytest
 	.venv/bin/pytest tests/htwgnlp/test_python_basics.py
 
-assignment-1:
+assignment-1: check-pytest
 	.venv/bin/pytest tests/htwgnlp/test_preprocessing.py
 
-assignment-2:
+assignment-2: check-pytest
 	.venv/bin/pytest tests/htwgnlp/test_features.py
 	.venv/bin/pytest tests/htwgnlp/test_logistic_regression.py
 
-assignment-3:
+assignment-3: check-pytest
 	.venv/bin/pytest tests/htwgnlp/test_naive_bayes.py
 
-assignment-4:
+assignment-4: check-pytest
 	.venv/bin/pytest tests/htwgnlp/test_embeddings.py
