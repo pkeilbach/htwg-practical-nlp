@@ -103,7 +103,7 @@ The color indicates whether the pipeline step is relevant for the course.[^2][^3
     This could include techniques like TF-IDF or word embeddings like Word2Vec or GloVe.
 
 5.  **Modeling:**
-    In this step, you select and train a machine learning or deep learning model that suits your NLP task, such as text classification, named entity recognition, or machine translation.
+    In this step, you select and train a machine learning or deep learning model that suits your NLP task, such as text classification, NER, or machine translation.
     The model learns patterns from the numerical representations of the text data.
 
 6.  **Evaluation:**
@@ -134,7 +134,7 @@ Here's an overview of four common data acquisition techniques:
 
 2.  **Pre-existing Datasets:**
     Many publicly available datasets have been curated for specific NLP tasks.
-    Examples include the [IMDb dataset](https://developer.imdb.com/non-commercial-datasets/) for sentiment analysis, the [Penn Treebank](https://catalog.ldc.upenn.edu/LDC99T42) for language modeling, or the [CoNLL dataset](https://www.clips.uantwerpen.be/conll2003/ner/) for named entity recognition.
+    Examples include the [IMDb dataset](https://developer.imdb.com/non-commercial-datasets/) for sentiment analysis, the [Penn Treebank](https://catalog.ldc.upenn.edu/LDC99T42) for language modeling, or the [CoNLL dataset](https://www.clips.uantwerpen.be/conll2003/ner/) for NER.
     Also, these datasets serve as benchmarks for various NLP tasks.
 
 3.  **Data Augmentation:**
@@ -219,7 +219,7 @@ Convert all text to lowercase to ensure consistent handling of words regardless 
 
 !!! example
 
-    In some cases, the case of the text may carry valuable information, such as in tasks related to named entity recognition, where distinguishing between "US" (the country) and "us" (the pronoun) is essential.
+    In some cases, the case of the text may carry valuable information, such as in tasks related to NER, where distinguishing between "US" (the country) and "us" (the pronoun) is essential.
 
 !!! info
 
