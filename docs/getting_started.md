@@ -171,7 +171,12 @@ git fetch upstream
 git checkout main
 git merge upstream/main
 
-# otherwise, you need to fetch from origin
+# make sure the correct upstream repository is set:
+git remote -v
+# if not, add the upstream:
+git remote add upstream https://github.com/pkeilbach/htwg-practical-nlp.git
+
+# otherwise (if you have cloned the repository), you need to fetch from origin
 git fetch origin
 git checkout main
 git merge origin/main
