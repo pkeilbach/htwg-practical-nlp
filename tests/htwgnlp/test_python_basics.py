@@ -113,11 +113,11 @@ def test_get_word_lengths(words, expected_output):
 @pytest.mark.parametrize(
     "product, price, expected_output",
     [
-        ("banana", 1.5, "The price of banana is 1.50 USD."),
-        ("apple", 2, "The price of apple is 2.00 USD."),
-        ("orange", 0.99, "The price of orange is 0.99 USD."),
-        ("grape", 10.123, "The price of grape is 10.12 USD."),
-        ("watermelon", 5.6789, "The price of watermelon is 5.68 USD."),
+        ("banana", 1.5, 'The price of the product "banana" is 1.50 USD.'),
+        ("apple", 2, 'The price of the product "apple" is 2.00 USD.'),
+        ("orange", 0.99, 'The price of the product "orange" is 0.99 USD.'),
+        ("grape", 10.123, 'The price of the product "grape" is 10.12 USD.'),
+        ("watermelon", 5.6789, 'The price of the product "watermelon" is 5.68 USD.'),
     ],
 )
 def test_print_product_price(product, price, expected_output):

@@ -116,13 +116,13 @@ Here are some tasks that can be solved by NLP[^3]:
 
 ### Named entity recognition
 
-- **Named Entity Recognition (NER)** extracts **entities** from text and classifies them into predefined categories (e.g., names, persons, organizations, locations, quantities, book title, etc.).
+- **NER** extracts **entities** from text and classifies them into predefined categories (e.g., names, persons, organizations, locations, quantities, book title, etc.).
 - The **input** is text, and the **output** includes the identified entities and their positions in the text.
 - NER is valuable for **applications** like summarizing news articles and fighting disinformation.
 
 !!! example
 
-    The [spaCy library](https://spacy.io/) is an open-source Python library for advanced Natural Language Processing that provides efficient tools for tasks such as tokenization, part of speech tagging, named entity recognition, and dependency parsing.
+    The [spaCy library](https://spacy.io/) is an open-source Python library for advanced Natural Language Processing that provides efficient tools for tasks such as tokenization, part of speech tagging, NER, and dependency parsing.
 
     Here is an [example](https://spacy.io/usage/linguistic-features#named-entities) of NER with spaCy
 
