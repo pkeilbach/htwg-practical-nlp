@@ -328,7 +328,7 @@ We can evaluate the relationship between words using the following methods:
 
     Correct answers could be "hive", "colony", or "swarm".
 
-In **external evaluation**, we use the word embeddings as input to a downstream task, e.g. sentiment analysis, named entity recognition, or parts-of-speech tagging, and evaluate the performance of the task with established metrics such as accuracy or F1-score.
+In **external evaluation**, we use the word embeddings as input to a downstream task, e.g. sentiment analysis, NER, or parts-of-speech tagging, and evaluate the performance of the task with established metrics such as accuracy or F1-score.
 
 The performance of the task is then used as a measure of the quality of the word embeddings.
 
@@ -336,7 +336,7 @@ External evaluation is more **practical**, because it allows us to evaluate the 
 
 !!! example
 
-    In named entity recognition, we want to identify the names of people, places, organizations, etc. in a text. Given the sentence:
+    In NER, we want to identify the names of people, places, organizations, etc. in a text. Given the sentence:
 
     > "Marc is going to Paris to visit the Louvre."
 
