@@ -114,6 +114,10 @@ The exact policy will be discussed at the beginning of the course of each semest
 
 The assignments are ungraded but the specified number of assignments need to be completed in order to be admitted to the exam.
 
+### Can we get the sample solutions for the assignments?
+
+I will show my sample solutions during the lecture but they will not be published or shared.
+
 ## Presentations
 
 ### How is the presentation graded?
