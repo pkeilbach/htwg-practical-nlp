@@ -862,7 +862,7 @@ Since the perplexity is the inverse probability of the set set, the lower the pe
     The perplexity score of GPT-2 is reported to be 18.34 on the [WikiText-2](https://openai.com/research/better-language-models).
     There is no official perplexity score published by OpenAI for later versions of GPT, but according to [this](https://www.predictea.com/exploring-the-latest-advancements-in-gpt-4-a-comprehensive-overview/) source, GPT-3.5 achieves a perplexity score of 4.5 while GPT-4 achieves a perplexity score of 2.6.
 
-## Out of Vocabulary Words
+## Out of Vocabulary (OOV) Words
 
 In some cases we need to deal with words that we **haven't seen before**. Such words are called OOV words, and are usually replaced by a **special token `<unk>`**.
 
