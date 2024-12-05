@@ -146,9 +146,9 @@ Here are some tasks that can be solved by NLP[^3]:
 
     ![NER with spaCy](../img/intro-ner.png)
 
-### Part-of-speech tagging
+### Part-of-speech (POS) tagging
 
-- In NLP, the **anatomy** of a sentence is commonly described using **part-of-speech (POS) tags**, which involves assigning **grammatical categories** (e.g., noun, verb, adjective) to each word in the sentence.
+- In NLP, the **anatomy** of a sentence is commonly described using **POS tags**, which involves assigning **grammatical categories** (e.g., noun, verb, adjective) to each word in the sentence.
 - The **input** is a sequence of words, and the **output** is a tagged sequence indicating the POS for each word.
 - POS tagging is essential for various NLP tasks, such as syntactic parsing, machine translation, and information retrieval.
 
