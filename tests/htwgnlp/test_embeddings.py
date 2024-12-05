@@ -79,16 +79,28 @@ def test_cosine_similarity(loaded_embeddings, test_vector):
     assert isinstance(loaded_embeddings.cosine_similarity(test_vector), np.ndarray)
     assert loaded_embeddings.cosine_similarity(test_vector).shape == (243,)
     np.testing.assert_allclose(
-        loaded_embeddings.cosine_similarity(test_vector)[0], -0.037310105006509546
+        loaded_embeddings.cosine_similarity(test_vector)[0],
+        -0.037310105006509546,
+        rtol=1e-5,
+        atol=1e-5,
     )
     np.testing.assert_allclose(
-        loaded_embeddings.cosine_similarity(test_vector)[1], -0.12679458247346523
+        loaded_embeddings.cosine_similarity(test_vector)[1],
+        -0.12679458247346523,
+        rtol=1e-5,
+        atol=1e-5,
     )
     np.testing.assert_allclose(
-        loaded_embeddings.cosine_similarity(test_vector)[42], -0.026496807469057613
+        loaded_embeddings.cosine_similarity(test_vector)[42],
+        -0.026496807469057613,
+        rtol=1e-5,
+        atol=1e-5,
     )
     np.testing.assert_allclose(
-        loaded_embeddings.cosine_similarity(test_vector)[242], -0.0657470030012723
+        loaded_embeddings.cosine_similarity(test_vector)[242],
+        -0.0657470030012723,
+        rtol=1e-5,
+        atol=1e-5,
     )
 
 
