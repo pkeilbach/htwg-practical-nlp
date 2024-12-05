@@ -414,7 +414,7 @@ This conversion is an intermediate step before converting the token IDs into emb
 
 The next goal is to apply this vocabulary to convert **new text into token IDs**:[^1]
 
-![Process of encoding tokens into token IDs](https://sebastianraschka.com/images/LLMs-from-scratch-images/ch02_compressed/06.webp "[Process of encoding tokens into token IDs"){width=80%}
+![Process of encoding tokens into token IDs](https://sebastianraschka.com/images/LLMs-from-scratch-images/ch02_compressed/07.webp "[Process of encoding tokens into token IDs"){width=80%}
 
 - Starting with a new text sample, we **tokenize** the text and use the vocabulary to convert the text tokens into token IDs.
 - The **vocabulary** is built from the entire training set and can be applied to the training set itself and any new text samples.

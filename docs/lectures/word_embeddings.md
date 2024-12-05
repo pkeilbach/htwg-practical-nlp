@@ -1,6 +1,6 @@
 # Word Embeddings
 
-In this lecture, we will learn about word embeddings, which are a way to represent words as vectors. We will learn about the Continuous Bag-of-Words (CBOW) model, which is a machine learning model that learns word embeddings from a corpus.
+In this lecture, we will learn about word embeddings, which are a way to represent words as vectors. We will learn about the CBOW model, which is a machine learning model that learns word embeddings from a corpus.
 
 ## Revisit One-Hot Encoding
 
@@ -96,7 +96,7 @@ The dimension of the word embeddings is one of the **hyperparameters** of the mo
 
 ## Continuous Bag of Words (CBOW)
 
-For the Continuous Bag-of-Words (CBOW) model, the learning task is to **predict the center word** based on its context $C$.
+For the CBOW model, the learning task is to **predict the center word** based on its context $C$.
 
 The **rationale** of the CBOW model is, that if two words are surrounded by a similar sets of words when used in various sentences, then those two words tend to be **related in their meaning**.
 
@@ -353,7 +353,7 @@ External evaluation is more **practical**, because it allows us to evaluate the 
 - Word embeddings are a way to represent words as vectors.
 - With word embeddings, each dimension represents a different **aspect** of the word. We do not know what exactly each dimension represents, but we know that similar words are close to each other in the vector space.
 - To create word embeddings, we typically use a **machine learning model** that performs a **learning task** on a corpus.
-- A famous example of a word embeddings model is the **Continuous Bag-of-Words (CBOW)** model. It learns to predict the center word based on its context words.
+- A famous example of a word embeddings model is the **CBOW** model. It learns to predict the center word based on its context words.
 - The **rationale** of the CBOW model is, that if two words are surrounded by a similar sets of words when used in various sentences, then those two words tend to be **related in their meaning**.
 - It's architecture is a **shallow dense neural network** with a single hidden layer. The word embeddings are essentially a by-product of the learning task, i.e. they are the **weights of the hidden layer** after training.
 - We can evaluate the quality of word embeddings using **intrinsic** and **extrinsic** evaluation methods, where extrinsic evaluation is more practical, because it allows us to evaluate the word embeddings in the context of a real-world application.

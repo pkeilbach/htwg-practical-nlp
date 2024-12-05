@@ -58,3 +58,6 @@ assignment-3: check-pytest
 
 assignment-4: check-pytest
 	.venv/bin/pytest tests/htwgnlp/test_embeddings.py
+
+check-pre-commit:
+	.venv/bin/pre-commit run --all-files
