@@ -342,7 +342,7 @@ Important for:
 - Layer of **phrases and sentences**
 - Set of rules to construct grammatically correct sentences out of words
 - The syntactic structure can be described in many different ways, e.g. grammar
-- In NLP, it is common to describe the anatomy of a sentence using part-of-speech (POS) tags
+- In NLP, it is common to describe the anatomy of a sentence using POS tags
 
 The following snippet shows POS-tagging in Python using the NLTK library and the [universal tagset](https://github.com/slavpetrov/universal-pos-tags):
 
