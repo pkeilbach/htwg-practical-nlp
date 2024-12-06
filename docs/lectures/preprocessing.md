@@ -379,7 +379,7 @@ Stemming can be computationally faster than lemmatization since it involves simp
 ### Lemmatization
 
 Lemmatization is a more advanced technique that reduces words to their base form, known as the lemma.
-Unlike stemming, lemmatization takes into account the word's morphological analysis and its part of speech (POS) to ensure that the resulting lemma is **a valid word** in the language.
+Unlike stemming, lemmatization takes into account the word's morphological analysis and its POS to ensure that the resulting lemma is **a valid word** in the language.
 This makes lemmatization more accurate but potentially slower than stemming.
 
 ```python

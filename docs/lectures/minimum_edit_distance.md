@@ -657,7 +657,7 @@ While the Levenshtein distance algorithm is a very popular algorithm for calcula
 Specfically, it does not take into account the following:
 
 - **Context**: It only looks at the words themselves, not the words around them.
-- **Part of speech:** It treats all words equally, regardless of their part of speech.
+- **Part of speech:** It treats all words equally, regardless of their POS.
 - **Word order:** The position in the sentence is not considered
 - **Frequency**: Generally, the algorithm does not take frequency into account. To do that, we would need to calculate the word frequencies, as indicated [above](#calculating-word-probabilities).
 - **Long strings**: It does not work well with long strings, since the number of possible edit paths increases exponentially with the length of the strings.

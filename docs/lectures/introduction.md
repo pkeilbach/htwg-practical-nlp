@@ -122,7 +122,7 @@ Here are some tasks that can be solved by NLP[^3]:
 
 !!! example
 
-    The [spaCy library](https://spacy.io/) is an open-source Python library for advanced Natural Language Processing that provides efficient tools for tasks such as tokenization, part of speech tagging, NER, and dependency parsing.
+    The [spaCy library](https://spacy.io/) is an open-source Python library for advanced Natural Language Processing that provides efficient tools for tasks such as tokenization, POS tagging, NER, and dependency parsing.
 
     Here is an [example](https://spacy.io/usage/linguistic-features#named-entities) of NER with spaCy
 
@@ -146,10 +146,10 @@ Here are some tasks that can be solved by NLP[^3]:
 
     ![NER with spaCy](../img/intro-ner.png)
 
-### Part-of-speech tagging
+### Part-of-speech (POS) tagging
 
-- In NLP, the **anatomy** of a sentence is commonly described using **part-of-speech (POS) tags**, which involves assigning **grammatical categories** (e.g., noun, verb, adjective) to each word in the sentence.
-- The **input** is a sequence of words, and the **output** is a tagged sequence indicating the part of speech for each word.
+- In NLP, the **anatomy** of a sentence is commonly described using **POS tags**, which involves assigning **grammatical categories** (e.g., noun, verb, adjective) to each word in the sentence.
+- The **input** is a sequence of words, and the **output** is a tagged sequence indicating the POS for each word.
 - POS tagging is essential for various NLP tasks, such as syntactic parsing, machine translation, and information retrieval.
 
 !!! example "POS-tagging with the Python spaCy library"
@@ -171,7 +171,7 @@ Here are some tasks that can be solved by NLP[^3]:
 
 !!! info "POS-tagsets"
 
-    A tagset is a predefined list of grammatical categories used in Natural Language Processing to classify words during tasks like part of speech tagging.
+    A tagset is a predefined list of grammatical categories used in Natural Language Processing to classify words during tasks like POS tagging.
 
     A popular tagging convention is [Penn Treebank tagset](https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html) which is also used by default by the Python [Natural Language Toolkit library](https://www.nltk.org/api/nltk.tag.html).
 
@@ -342,7 +342,7 @@ Important for:
 - Layer of **phrases and sentences**
 - Set of rules to construct grammatically correct sentences out of words
 - The syntactic structure can be described in many different ways, e.g. grammar
-- In NLP, it is common to describe the anatomy of a sentence using part-of-speech (POS) tags
+- In NLP, it is common to describe the anatomy of a sentence using POS tags
 
 The following snippet shows POS-tagging in Python using the NLTK library and the [universal tagset](https://github.com/slavpetrov/universal-pos-tags):
 
