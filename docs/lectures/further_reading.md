@@ -36,6 +36,7 @@ Also Google has great learning resources available on [Google Cloud](https://www
 ## Podcasts
 
 - Lex Fridman's [Podcast](https://lexfridman.com/podcast/) is a podcast about AI, deep learning, science, and technology. He interviews some of the most interesting people in the field of AI and machine learning, like [Sam Altman](https://www.youtube.com/watch?v=L_Guz73e6fw), [Andrew Ng](https://www.youtube.com/watch?v=0jspaMLxBig), or [Yann LeCun](https://www.youtube.com/watch?v=SGSOCuByo24).
+- In his episode with [Dario Amodei](https://www.youtube.com/watch?v=ugvHCXCOmm4) (CEO of Anthropic, the company that created Claude, one of the best AI systems in the world) they talk about scaling, safety, regulation, and a lot of technical details about the present and future of AI and humanity.
 
 ## Related fields of study
 
