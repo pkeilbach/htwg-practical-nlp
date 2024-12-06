@@ -4,9 +4,18 @@
 
 ### Is this an online course?
 
-No, this is a hybrid course. There will be a few in-person lectures in Konstanz.
+No, this is a hybrid course.
+There will be a few in-person lectures in Konstanz.
+It will be announced individually which lectures will be held in-person and which will be held online.
 
-The online lectures will be conducted through HTWG Webex.
+### Is it mandatory to attend the lectures?
+
+No. Attending the lectures is voluntary - but of course highly recommended and encouraged!
+If you are more comfortable with self-study, feel free to go through the course materials at your own pace.
+
+Note that if you go this way, it is even more important to actively engage in GitHub discussions and exchange with your fellow students.
+
+As of now, the only requirement to be admitted to the exam is to give a presentation.
 
 ### What communication channels do we use?
 
