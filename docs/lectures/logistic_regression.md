@@ -98,6 +98,9 @@ The goal is to **iteratively update the parameters** in the direction that minim
 !!! info "Bias Term"
 
     The **bias term** (also known as the intercept or offset) in logistic regression serves to shift the decision boundary away from the origin (0,0) in the feature space.
+
+    Without the bias term, the decision boundary would always pass through the origin, but this is barely the case in real-world data.
+
     While the weights associated with the features determine the slope of the decision boundary, the bias term influences where the decision boundary is positioned on the y-axis.
 
 !!! info "Learning Rate"
