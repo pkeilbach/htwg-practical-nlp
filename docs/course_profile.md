@@ -102,11 +102,15 @@ My goal is to keep the entry barrier as low as possible!
 
 Here is a list of recommended literature for this course:
 
+- Alammar, Jay, and Maarten Grootendorst. *Hands-On Large Language Models*. Sebastopol, CA: O'Reilly Media, 2024. <https://www.oreilly.com/library/view/hands-on-large-language/9781098150952/>.
+
 - Bird, Steven, Ewan Klein, and Edward Loper. *Natural Language Processing with Python: Analyzing Text with the Natural Language Toolkit*. Sebastopol, CA: O'Reilly Media, 2009. <https://www.nltk.org/book_1ed/>.
 
 - Bishop, Christopher M. *Pattern Recognition and Machine Learning*. New York: Springer, 2006. <https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf>.
 
 - Jurafsky, Daniel, and James H. Martin. *Speech and Language Processing: An Introduction to Natural Language Processing, Computational Linguistics, and Speech Recognition*. 2nd ed. Upper Saddle River, NJ: Prentice Hall, 2008. <https://web.stanford.edu/~jurafsky/slp3/>.
+
+- Kamath, U., Keenan, K., Somers, G., and Sorenson, S. Large Language Models: A Deep Dive: Bridging Theory and Practice. 2024. Springer. <https://link.springer.com/book/10.1007/978-3-031-65647-7>.
 
 - Raschka, Sebastian. *Build a Large Language Model (From Scratch)*. Shelter Island, NY: Manning, 2024. <https://www.manning.com/books/build-a-large-language-model-from-scratch>.
 
