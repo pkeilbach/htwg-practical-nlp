@@ -61,6 +61,12 @@ There are already a few things you can do _before_ our course officially starts:
     You can help to improve this course with your contributions and earn bonus points for the exam.
     The [contributing guide] contains all information on that.
 
+- **Get started with the assignments**: 🤓
+
+    If you already want to get hands-on, you can go ahead and start looking into the [assignments].
+    Assignments 0 and 1 are great starting points.
+    This also gives you a better feeling of what is expected on the practical side in this course.
+
 <!-- page links -->
 [Python]: https://docs.python.org/3/
 [Git]: https://git-scm.com/
@@ -70,3 +76,4 @@ There are already a few things you can do _before_ our course officially starts:
 [GitHub]: https://github.com/
 [Mural]: https://www.mural.co/
 [contributing guide]: https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md
+[assignments]: ./assignments.md

@@ -101,9 +101,10 @@ A rewardable contribution is a **code change** that is successfully merged to th
 > While you could argue that engaging in discussions is also a kind of contribution, this is not rewardable contribution (but still encouraged 😃).
 > However, a question of yours might reveal a bug or issue that needs to be solved! 🏅
 
-You can make as many contributions as you want but you can earn a **maximum of 5 bonus points**.
+You can make as many contributions as you want but you can earn a **maximum of 10 bonus points** throughout the semester.
 
-> For example, if you reached 86 out of 100 points in the exam, and made contributions worth 5 bonus points, then your total points will be 91 🚀
+> For example, if you reached 86 out of 100 points in the exam, and made contributions worth 6 bonus points, then your total points will be 92! 🚀
+> Also note that completing [assignments](https://pkeilbach.github.io/htwg-practical-nlp/assignments/) can also earn you bonus points.
 
 Each contribution should be a separate [pull request](#making-contributions-to-the-course-repository).
 
