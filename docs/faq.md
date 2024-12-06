@@ -66,7 +66,18 @@ For more details, see the [course profile](./course_profile.md#assessment).
 
 The presentation and assignments are ungraded.
 
-You can earn bonus points for the exam through [contributions](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md).
+### What are bonus points?
+
+Throughout the semester you can earn bonus points that will be added to your exam score.
+
+### How can I earn bonus points?
+
+You can earn bonus points for the exam through [contributions](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md)
+and by [completing assignments](./assignments.md#bonus-points-for-assignments).
+
+### How many bonus points can I earn?
+
+You can earn a maximum of 10 bonus points throughout the semester.
 
 ## Contributions
 
@@ -79,10 +90,6 @@ You can make multiple contributions throughout the semester.
 
 Each contribution will be rewarded with bonus points, depending on the size and the scope of the contribution.
 The value of the contribution will be defined by the instructor.
-
-### How many bonus points can I earn?
-
-You can earn a maximum of 5 bonus points throughout the semester with your [contributions](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/CONTRIBUTING.md).
 
 ### What kind of contributions can be rewarded?
 
@@ -106,13 +113,11 @@ An assignment is considered completed when all of its tests pass.
 
 ### How many assignmnents do I need to complete?
 
-Currently, all assignments need to be completed.
-As there will be more assignments added over time, you may only need to complete a subset of assignments.
-The exact policy will be discussed at the beginning of the course of each semester.
+All assignments are voluntary. But you can earn [bonus points](./assignments.md#bonus-points-for-assignments) for the exam by completing assignments.
 
 ### How are the assignments graded?
 
-The assignments are ungraded but the specified number of assignments need to be completed in order to be admitted to the exam.
+The assignments are ungraded and voluntary.
 
 ### Can we get the sample solutions for the assignments?
 

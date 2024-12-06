@@ -1,7 +1,8 @@
 # Assignments
 
-During the semester, each student has to complete a couple of assignments.
-The assignments are ungraded, but they are mandatory to pass the course.
+The course materials are accompanied by assignments to deepen your understanding of the topics.
+
+The assignments are voluntary. But completing the assignment earns you [bonus points](#bonus-points-for-assignments) for the exam!
 
 If you have basic programming skills, you should be able to complete the assignments.
 
@@ -144,18 +145,24 @@ It can happen that these updates affect the assignments - just in case you are w
 
 So make sure to always [fetch the latest updates](./getting_started.md#fetching-updates) before working on your assignments.
 
-## Bonus Points
+## Bonus Points for Assignments
 
-The assignment code is organized as a **fully functional Python package** which you can **push** to a package index and **install** it via `pip`.
+Each completed assignment earns you **one bonus points** for the exam. 🏅
 
-If you manage to push your code to [Test PyPI](https://test.pypi.org/), you will earn 2 bonus points for the exam! 🤑
+Furthermore, you can earn an **extra two bonus points** if you manage to package and publish your code to [Test PyPI](https://test.pypi.org/).
 
-Find more details on how to package and publish your code [here](https://packaging.python.org/en/latest/tutorials/packaging-projects/#a-simple-project).
+!!! tip
+
+    Note that the assignment code is organized as a **fully functional Python package** which you can **push** to a package index and **install** it via `pip`.
+
+    Find more details on how to package and publish your code [here](https://packaging.python.org/en/latest/tutorials/packaging-projects/#a-simple-project).
 
 !!! info "Acceptance Criteria"
 
-    As soon as I can install your package with the following command, you are eligible for the bonus points:
+    As soon as I can install your package with the following command, you are eligible for the two bonus points:
 
     ```sh
     pip install --index-url https://test.pypi.org/simple/ --no-deps htwgnlp_YOUR_GITHUB_USERNAME
     ```
+
+    Please let me know via email when you are ready for me to test your package!

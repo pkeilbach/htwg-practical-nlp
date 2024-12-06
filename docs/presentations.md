@@ -2,7 +2,7 @@
 
 During the semester, each student should give a presentation about an NLP-related topic.
 
-The presentation is ungraded, but mandatory to pass the course.
+The presentation is ungraded, but it is mandatory to give a presentation in order to be admitted to the exam.
 
 ## Topic
 
