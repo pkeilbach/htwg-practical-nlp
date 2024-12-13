@@ -215,6 +215,7 @@ def test_read_dict_from_json_file():
 
     assert data == expected_data
 
+
 @pytest.mark.parametrize(
     "numbers, start, end, expected_output",
     [
@@ -241,6 +242,7 @@ def test_get_middle_elements(numbers, start, end, expected_output):
 def test_get_middle_elements_exceptions(numbers, start, end, expected_exception):
     with pytest.raises(expected_exception):
         get_middle_elements(numbers, start, end)
+
 
 @pytest.mark.parametrize(
     "numbers, start, end, expected_output",
