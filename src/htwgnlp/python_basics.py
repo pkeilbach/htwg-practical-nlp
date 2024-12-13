@@ -227,3 +227,24 @@ def read_dict_from_json_file(filename: str) -> dict:
     """
     # TODO ASSIGNMENT-0: implement this function
     raise NotImplementedError("This function needs to be implemented.")
+
+def get_middle_elements(numbers: list[int], start: int, end: int) -> list[int]:
+    """Returns a slice of the list from the specified start index to the end index (exclusive).
+
+    Args:
+        numbers (list[int]): A list of numbers.
+        start (int): The start index for the slice.
+        end (int): The end index (exclusive) for the slice.
+
+    Returns:
+        list[int]: A new list containing elements from the start index to the end index.
+
+    Raises:
+        ValueError: If start or end indices are out of range or invalid.
+
+    Example:
+        >>> get_middle_elements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 7)
+        [4, 5, 6, 7]
+    """
+    # TODO ASSIGNMENT-0: implement this function
+    raise NotImplementedError("This function needs to be implemented.")

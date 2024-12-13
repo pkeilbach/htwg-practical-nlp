@@ -13,6 +13,7 @@ from htwgnlp.python_basics import (
     count_purchases,
     get_even_numbers,
     get_long_words,
+    get_middle_elements,
     get_top_x_products,
     get_uppercase_words,
     get_word_lengths,
@@ -213,3 +214,52 @@ def test_read_dict_from_json_file():
     data = read_dict_from_json_file(filename)
 
     assert data == expected_data
+
+@pytest.mark.parametrize(
+    "numbers, start, end, expected_output",
+    [
+        ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 7, [4, 5, 6, 7]),
+        ([0, 1, 2, 3, 4, 5, 6], 0, 3, [0, 1, 2]),
+        ([10, 20, 30, 40, 50], 1, 4, [20, 30, 40]),
+        ([1, 2, 3], 0, 1, [1]),
+        ([], 0, 0, []),
+    ],
+)
+def test_get_middle_elements(numbers, start, end, expected_output):
+    assert get_middle_elements(numbers, start, end) == expected_output
+
+
+@pytest.mark.parametrize(
+    "numbers, start, end, expected_exception",
+    [
+        ([1, 2, 3], -1, 2, ValueError),
+        ([1, 2, 3], 1, 5, ValueError),
+        ([1, 2, 3], 3, 1, ValueError),
+        ([], 0, 1, ValueError),
+    ],
+)
+def test_get_middle_elements_exceptions(numbers, start, end, expected_exception):
+    with pytest.raises(expected_exception):
+        get_middle_elements(numbers, start, end)
+
+@pytest.mark.parametrize(
+    "numbers, start, end, expected_output",
+    [
+        ([100, 200, 300, 400, 500], 2, 5, [300, 400, 500]),
+        ([1, 2, 3, 4, 5], 0, 5, [1, 2, 3, 4, 5]),
+    ],
+)
+def test_get_middle_elements_extra(numbers, start, end, expected_output):
+    assert get_middle_elements(numbers, start, end) == expected_output
+
+
+@pytest.mark.parametrize(
+    "numbers, start, end, expected_exception",
+    [
+        ([1, 2, 3], 4, 6, ValueError),
+        ([1, 2, 3], 2, 2, ValueError),
+    ],
+)
+def test_get_middle_elements_extra_exceptions(numbers, start, end, expected_exception):
+    with pytest.raises(expected_exception):
+        get_middle_elements(numbers, start, end)
