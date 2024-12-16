@@ -13,12 +13,12 @@ from htwgnlp.python_basics import (
     count_purchases,
     get_even_numbers,
     get_long_words,
-    get_middle_elements,
     get_top_x_products,
     get_uppercase_words,
     get_word_lengths,
     print_product_price,
     read_dict_from_json_file,
+    slicing_examples,
     sort_people_by_age,
     write_dict_to_json_file,
 )
@@ -217,51 +217,49 @@ def test_read_dict_from_json_file():
 
 
 @pytest.mark.parametrize(
-    "numbers, start, end, expected_output",
+    "input_list, expected_output",
     [
-        ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 7, [4, 5, 6, 7]),
-        ([0, 1, 2, 3, 4, 5, 6], 0, 3, [0, 1, 2]),
-        ([10, 20, 30, 40, 50], 1, 4, [20, 30, 40]),
-        ([1, 2, 3], 0, 1, [1]),
-        ([], 0, 0, []),
+        (
+            [1, 2, 3, 4, 5, 6],
+            {
+                "first_three": [1, 2, 3],
+                "last_two": [5, 6],
+                "reversed": [6, 5, 4, 3, 2, 1],
+                "skip_two": [1, 3, 5],
+                "middle_slice": [2, 3, 4, 5],
+            },
+        ),
+        (
+            [10, 20, 30],
+            {
+                "first_three": [10, 20, 30],
+                "last_two": [20, 30],
+                "reversed": [30, 20, 10],
+                "skip_two": [10, 30],
+                "middle_slice": [20],
+            },
+        ),
+        (
+            [1],
+            {
+                "first_three": [1],
+                "last_two": [1],
+                "reversed": [1],
+                "skip_two": [1],
+                "middle_slice": [],
+            },
+        ),
+        (
+            [],
+            {
+                "first_three": [],
+                "last_two": [],
+                "reversed": [],
+                "skip_two": [],
+                "middle_slice": [],
+            },
+        ),
     ],
 )
-def test_get_middle_elements(numbers, start, end, expected_output):
-    assert get_middle_elements(numbers, start, end) == expected_output
-
-
-@pytest.mark.parametrize(
-    "numbers, start, end, expected_exception",
-    [
-        ([1, 2, 3], -1, 2, ValueError),
-        ([1, 2, 3], 1, 5, ValueError),
-        ([1, 2, 3], 3, 1, ValueError),
-        ([], 0, 1, ValueError),
-    ],
-)
-def test_get_middle_elements_exceptions(numbers, start, end, expected_exception):
-    with pytest.raises(expected_exception):
-        get_middle_elements(numbers, start, end)
-
-
-@pytest.mark.parametrize(
-    "numbers, start, end, expected_output",
-    [
-        ([100, 200, 300, 400, 500], 2, 5, [300, 400, 500]),
-        ([1, 2, 3, 4, 5], 0, 5, [1, 2, 3, 4, 5]),
-    ],
-)
-def test_get_middle_elements_extra(numbers, start, end, expected_output):
-    assert get_middle_elements(numbers, start, end) == expected_output
-
-
-@pytest.mark.parametrize(
-    "numbers, start, end, expected_exception",
-    [
-        ([1, 2, 3], 4, 6, ValueError),
-        ([1, 2, 3], 2, 2, ValueError),
-    ],
-)
-def test_get_middle_elements_extra_exceptions(numbers, start, end, expected_exception):
-    with pytest.raises(expected_exception):
-        get_middle_elements(numbers, start, end)
+def test_slicing_examples(input_list, expected_output):
+    assert slicing_examples(input_list) == expected_output

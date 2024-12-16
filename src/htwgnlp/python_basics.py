@@ -229,23 +229,39 @@ def read_dict_from_json_file(filename: str) -> dict:
     raise NotImplementedError("This function needs to be implemented.")
 
 
-def get_middle_elements(numbers: list[int], start: int, end: int) -> list[int]:
-    """Returns a slice of the list from the specified start index to the end index (exclusive).
+def slicing_examples(input_list):
+    """
+    This function takes a list and returns a dictionary with results of different slicing operations.
+
+    Implement the following:
+    1. "first_three": Get the first three elements.
+    2. "last_two": Get the last two elements.
+    3. "reversed": Reverse the list.
+    4. "skip_two": Get every second element in the list.
+    5. "middle_slice": Get all elements except the first and last.
 
     Args:
-        numbers (list[int]): A list of numbers.
-        start (int): The start index for the slice.
-        end (int): The end index (exclusive) for the slice.
+        input_list (list): A list of elements.
 
     Returns:
-        list[int]: A new list containing elements from the start index to the end index.
-
-    Raises:
-        ValueError: If start or end indices are out of range or invalid.
-
-    Example:
-        >>> get_middle_elements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 7)
-        [4, 5, 6, 7]
+        dict: A dictionary with keys as the operation names and values as the resulting sliced lists.
     """
-    # TODO ASSIGNMENT-0: implement this function
-    raise NotImplementedError("This function needs to be implemented.")
+    # Example structure for the return dictionary
+    return {
+        "first_three": None,  # Replace with slicing logic
+        "last_two": None,  # Replace with slicing logic
+        "reversed": None,  # Replace with slicing logic
+        "skip_two": None,  # Replace with slicing logic
+        "middle_slice": None,  # Replace with slicing logic
+    }
+
+    # Example usage:
+    # slicing_examples([1, 2, 3, 4, 5, 6])
+    # Expected output:
+    # {
+    #     "first_three": [1, 2, 3],
+    #     "last_two": [5, 6],
+    #     "reversed": [6, 5, 4, 3, 2, 1],
+    #     "skip_two": [1, 3, 5],
+    #     "middle_slice": [2, 3, 4, 5]
+    # }
