@@ -240,28 +240,22 @@ def slicing_examples(input_list):
     4. "skip_two": Get every second element in the list.
     5. "middle_slice": Get all elements except the first and last.
 
+    Example usage:
+    slicing_examples([1, 2, 3, 4, 5, 6])
+    Expected output:
+    {
+        "first_three": [1, 2, 3],
+        "last_two": [5, 6],
+        "reversed": [6, 5, 4, 3, 2, 1],
+        "skip_two": [1, 3, 5],
+        "middle_slice": [2, 3, 4, 5]
+    }
+
     Args:
         input_list (list): A list of elements.
 
     Returns:
         dict: A dictionary with keys as the operation names and values as the resulting sliced lists.
     """
-    # Example structure for the return dictionary
-    return {
-        "first_three": None,  # Replace with slicing logic
-        "last_two": None,  # Replace with slicing logic
-        "reversed": None,  # Replace with slicing logic
-        "skip_two": None,  # Replace with slicing logic
-        "middle_slice": None,  # Replace with slicing logic
-    }
-
-    # Example usage:
-    # slicing_examples([1, 2, 3, 4, 5, 6])
-    # Expected output:
-    # {
-    #     "first_three": [1, 2, 3],
-    #     "last_two": [5, 6],
-    #     "reversed": [6, 5, 4, 3, 2, 1],
-    #     "skip_two": [1, 3, 5],
-    #     "middle_slice": [2, 3, 4, 5]
-    # }
+    # TODO ASSIGNMENT-0: implement this function
+    raise NotImplementedError("This function needs to be implemented.")
