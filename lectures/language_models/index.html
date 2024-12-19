@@ -1,0 +1,2655 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A practical course on natural language processing @ HTWG Konstanz.">
+      
+      
+      
+      
+        <link rel="prev" href="../minimum_edit_distance/">
+      
+      
+        <link rel="next" href="../word_embeddings/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Language Models - Practical NLP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#language-models" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Practical NLP" class="md-header__button md-logo" aria-label="Practical NLP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Practical NLP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Language Models
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/pkeilbach/htwg-practical-nlp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pkeilbach/htwg-practical-nlp
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../course_profile/" class="md-tabs__link">
+        
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../getting_started/" class="md-tabs__link">
+        
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../preface/" class="md-tabs__link">
+          
+  
+    
+  
+  Lectures
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../assignments/" class="md-tabs__link">
+        
+  
+    
+  
+  Assignments
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../presentations/" class="md-tabs__link">
+        
+  
+    
+  
+  Presentations
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../faq/" class="md-tabs__link">
+        
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Practical NLP" class="md-nav__button md-logo" aria-label="Practical NLP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Practical NLP
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/pkeilbach/htwg-practical-nlp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pkeilbach/htwg-practical-nlp
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_profile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Lectures
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Lectures
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../preface/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Preface
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../preprocessing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Preprocessing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature_extraction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Extraction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logistic_regression/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logistic Regression
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../naive_bayes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Naive Bayes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vector_space_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vector Space Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../minimum_edit_distance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Minimum Edit Distance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Language Models
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Language Models
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#applications-of-language-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Applications of Language Models
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#text-corpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Text Corpus
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequence-of-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sequence of Words
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#n-gram" class="md-nav__link">
+    <span class="md-ellipsis">
+      N-gram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#n-gram-probabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      N-gram Probabilities
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="N-gram Probabilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unigram-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unigram Probability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bigram-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bigram Probability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trigram-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trigram Probability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n-gram-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      N-gram Probability
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequence-probabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sequence Probabilities
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markov-assumption" class="md-nav__link">
+    <span class="md-ellipsis">
+      Markov Assumption
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-and-end-of-sequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start and End of Sequences
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#count-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Count Matrix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#probability-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probability Matrix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#language-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Language Model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Language Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#predicting-the-next-word" class="md-nav__link">
+    <span class="md-ellipsis">
+      Predicting the Next Word
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sentence-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sentence Probability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Text Generation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log Probability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#perplexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perplexity
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#out-of-vocabulary-oov-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      Out of Vocabulary (OOV) Words
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#smoothing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Smoothing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Smoothing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#laplacian-smoothing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laplacian Smoothing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backoff
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interpolation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Takeaways
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../word_embeddings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Word Embeddings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sequence_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sequence Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attention_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Attention Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../further_reading/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Where to go from here?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../assignments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assignments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../presentations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Presentations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#applications-of-language-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Applications of Language Models
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#text-corpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Text Corpus
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequence-of-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sequence of Words
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#n-gram" class="md-nav__link">
+    <span class="md-ellipsis">
+      N-gram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#n-gram-probabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      N-gram Probabilities
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="N-gram Probabilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unigram-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unigram Probability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bigram-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bigram Probability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trigram-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trigram Probability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n-gram-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      N-gram Probability
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequence-probabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sequence Probabilities
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markov-assumption" class="md-nav__link">
+    <span class="md-ellipsis">
+      Markov Assumption
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-and-end-of-sequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start and End of Sequences
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#count-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Count Matrix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#probability-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probability Matrix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#language-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Language Model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Language Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#predicting-the-next-word" class="md-nav__link">
+    <span class="md-ellipsis">
+      Predicting the Next Word
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sentence-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sentence Probability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Text Generation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log Probability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#perplexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perplexity
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#out-of-vocabulary-oov-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      Out of Vocabulary (OOV) Words
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#smoothing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Smoothing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Smoothing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#laplacian-smoothing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laplacian Smoothing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backoff
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interpolation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Takeaways
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="language-models">Language Models<a class="headerlink" href="#language-models" title="Permanent link">&para;</a></h1>
+<p>This lecture is about <strong>language models</strong>. A language model is able to calculate the probability of a sequence of words, such as a sentence. They can also estimate the probability of an upcoming word given a history of previous words.</p>
+<p>A popular application of language models is <strong>auto-complete</strong>.</p>
+<p><img alt="auto-complete" src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/sf_autocomplete_search.width-1600.format-webp.webp" /></p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Given the sentence:</p>
+<blockquote>
+<p>"I want to eat an ..."</p>
+</blockquote>
+<p>A language model can predict the next word:</p>
+<ul>
+<li>apple 🍏</li>
+<li>orange 🍊</li>
+</ul>
+</div>
+<h2 id="applications-of-language-models">Applications of Language Models<a class="headerlink" href="#applications-of-language-models" title="Permanent link">&para;</a></h2>
+<p>N-gram Language Models can be used for almost any task that involves predicting the next word in a sentence:</p>
+<ul>
+<li><strong>Auto-complete</strong>: predict the next word in a sentence</li>
+<li><strong>Summarization</strong>: generate a summary of a long text</li>
+<li><strong>Spelling correction</strong>: correct typos in a word</li>
+<li><strong>Speech recognition</strong>: convert speech to text</li>
+<li><strong>Machine translation</strong>: convert text in one language to another language</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Speech recognition:</p>
+<ul>
+<li>"I need to water 💦 a dozen red noses 👃 for my adversary." ❌</li>
+<li>"I need to order 🛒 a dozen red roses 🌹 for my anniversary." ✅</li>
+</ul>
+<p>Spell correction:</p>
+<ul>
+<li>"He entered the ship 🚢 and bought a bannaa 🍌." ❌</li>
+<li>"He entered the shop 🛒 and bought a banana 🍌." ✅</li>
+</ul>
+</div>
+<h2 id="text-corpus">Text Corpus<a class="headerlink" href="#text-corpus" title="Permanent link">&para;</a></h2>
+<p>A text corpus is a large and structured <strong>set of texts</strong>, such as:</p>
+<ul>
+<li>Wikipedia</li>
+<li>News articles</li>
+<li>Books</li>
+<li>Blog posts</li>
+<li>Tweets</li>
+</ul>
+<p>A corpus can be <strong>general</strong>, such as Wikipedia or news articles, or it can be <strong>domain specific</strong>, such as medical texts or legal documents.</p>
+<div class="admonition note">
+<p class="admonition-title">Vocabulary size vs. corpus size</p>
+<p>Note that the <strong>vocabulary size</strong> <span class="arithmatex">\(|V|\)</span> is the number of unique words in the corpus, whereas the <strong>corpus size</strong> <span class="arithmatex">\(|C|\)</span> is the total number of words in the corpus.</p>
+</div>
+<p><img alt="Creating a language model from a text corpus" src="../../img/language-model-text-corpus.drawio.svg" /></p>
+<h2 id="sequence-of-words">Sequence of Words<a class="headerlink" href="#sequence-of-words" title="Permanent link">&para;</a></h2>
+<p>When building language models, we make use of <strong>sequence of words</strong> in a text corpus.</p>
+<p>Given a corpus <span class="arithmatex">\(C\)</span> and a sequence of words <span class="arithmatex">\(w_1, w_2, \ldots, w_n\)</span> with <span class="arithmatex">\(w_i \in C\)</span>, we can denote the sequence as:</p>
+<div class="arithmatex">\[
+w_1^n = w_1, w_2, \ldots, w_n
+\]</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Given a corpus <span class="arithmatex">\(C\)</span> of size <span class="arithmatex">\(n\)</span>, we can denote the first three words as:</p>
+<div class="arithmatex">\[
+w_1^3 = w_1, w_2, w_3
+\]</div>
+<p>The last three words are:</p>
+<div class="arithmatex">\[
+w_{n-2}^n = w_{n-2}, w_{n-1}, w_n
+\]</div>
+</div>
+<h2 id="n-gram">N-gram<a class="headerlink" href="#n-gram" title="Permanent link">&para;</a></h2>
+<p>In general, the term N-gram refers to a sequence of <span class="arithmatex">\(N\)</span> items.</p>
+<p>In the context of NLP, an N-gram is a sequence of <span class="arithmatex">\(N\)</span> words:</p>
+<ul>
+<li><strong>Unigram (1 word)</strong>: set of all unique single words in a text corpus</li>
+<li><strong>Bigram (2 words)</strong>: set of all unique pairs of words in a text corpus</li>
+<li><strong>Trigram (3 words)</strong>: set of all unique triplets of words in a text corpus</li>
+<li><strong>N-gram (<span class="arithmatex">\(N\)</span> words)</strong>: set of all unique sequences of <span class="arithmatex">\(N\)</span> words in a text corpus</li>
+</ul>
+<p><img alt="N-grams" src="../../img/language-models-n-grams.drawio.svg" /></p>
+<p><strong>Punctuation</strong> is usually treated like words.</p>
+<p>N-grams refer to <strong>unique</strong> sequences of words. So if a sentence contains the same N-gram multiple times, it appears only once in the <strong>set of N-grams</strong>.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>The sentence "I want to eat an apple." 🍏 contains the following N-grams:</p>
+<ul>
+<li>unigrams: <span class="arithmatex">\(\{\text{I}, \text{want}, \text{to}, \text{eat}, \text{an}, \text{apple}, \text{.}\}\)</span></li>
+<li>bigrams: <span class="arithmatex">\(\{\text{I want}, \text{want to}, \text{to eat}, \text{eat an}, \text{an apple}, \text{apple .}\}\)</span></li>
+<li>trigrams: <span class="arithmatex">\(\{\text{I want to}, \text{want to eat}, \text{to eat an}, \text{eat an apple}, \text{an apple .}\}\)</span></li>
+</ul>
+</div>
+<p>The <strong>order</strong> is important. Only words that appear next to each other in the text can form an N-gram.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Given the example above, the words "I" and "eat" do not form a bigram ❌</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Collocations</p>
+<p>Words that appear next to each other frequently are called <strong>collocations</strong>.</p>
+<p>An N-gram language model can learn and leverage these collocations to improve its predictive accuracy and generate more coherent and contextually relevant language. They play a key role in understanding the nuances of a language.</p>
+<p>Here are some examples:</p>
+<ul>
+<li>"ice cream" 🍦</li>
+<li>"machine learning" 🤖</li>
+<li>"New York" 🗽</li>
+<li>"want to"</li>
+</ul>
+</div>
+<h2 id="n-gram-probabilities">N-gram Probabilities<a class="headerlink" href="#n-gram-probabilities" title="Permanent link">&para;</a></h2>
+<p>Now we will learn how to calculate the probability of an N-gram. We will start with the unigram probability, which is simply the probability of a word appearing in the corpus, and then generalize to bigrams, trigrams, and N-grams.</p>
+<h3 id="unigram-probability">Unigram Probability<a class="headerlink" href="#unigram-probability" title="Permanent link">&para;</a></h3>
+<p>The unigram probability of a word <span class="arithmatex">\(w\)</span> is the probability of the word appearing in the corpus <span class="arithmatex">\(C\)</span>:</p>
+<div class="arithmatex">\[
+P(w) = \frac{\text{freq}(w)}{|C|}
+\]</div>
+<p>where</p>
+<ul>
+<li><span class="arithmatex">\(\text{freq}(w)\)</span> is the number of times the word <span class="arithmatex">\(w\)</span> appears in the corpus <span class="arithmatex">\(C\)</span></li>
+<li><span class="arithmatex">\(|C|\)</span> is the size of the corpus <span class="arithmatex">\(C\)</span>, i.e. the total number of words in the corpus</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Unigram Probability</p>
+<p>Given the corpus:</p>
+<blockquote>
+<p>I am happy because I am learning</p>
+</blockquote>
+<p>The unigram probability of the word "I" is given by:</p>
+<div class="arithmatex">\[
+P(\text{I}) = \frac{\text{freq}(\text{I})}{|C|} = \frac{2}{7}
+\]</div>
+<p>And the unigram probability of the word "happy" is given by:</p>
+<div class="arithmatex">\[
+P(\text{happy}) = \frac{\text{freq}(\text{happy})}{|C|} = \frac{1}{7}
+\]</div>
+</div>
+<h3 id="bigram-probability">Bigram Probability<a class="headerlink" href="#bigram-probability" title="Permanent link">&para;</a></h3>
+<p>The general formula for the bigram probability of a word <span class="arithmatex">\(w_i\)</span> given the previous word <span class="arithmatex">\(w_{i-1}\)</span> is given by:</p>
+<div class="arithmatex">\[
+P(w_i | w_{i-1}) = \frac{\text{freq}(w_{i-1},w_i)}{\text{freq}(w_{i-1})}
+\]</div>
+<p>where</p>
+<ul>
+<li><span class="arithmatex">\(\text{freq}(w_{i-1}, w_i)\)</span> is the number of times the bigram <span class="arithmatex">\(w_{i-1}, w_i\)</span> appears in the corpus <span class="arithmatex">\(C\)</span></li>
+<li><span class="arithmatex">\(\text{freq}(w_{i-1})\)</span> is the number of times the word <span class="arithmatex">\(w_{i-1}\)</span> appears in the corpus <span class="arithmatex">\(C\)</span></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Bigram vs. Conditional Probability</p>
+<p>Note that the bigram probability is the same as the <a href="../naive_bayes/#conditional-probability">conditional probability</a> of the word <span class="arithmatex">\(w_i\)</span> given the previous word <span class="arithmatex">\(w_{i-1}\)</span>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Bigram Probability</p>
+<p>Given the corpus:</p>
+<blockquote>
+<p>I am happy because I am learning</p>
+</blockquote>
+<p>The bigram probability of the "I am", i.e. the probability of the word "am" following the word "I", is given by:</p>
+<div class="arithmatex">\[
+P(\text{am} | \text{I}) = \frac{\text{freq}(\text{I am})}{\text{freq}(\text{I})} = \frac{2}{2} = 1
+\]</div>
+<p>The probability of the bigram "I happy" is given by:</p>
+<div class="arithmatex">\[
+P(\text{happy} | \text{I}) = \frac{\text{freq}(\text{I happy})}{\text{freq}(\text{I})} = \frac{0}{2} = 0
+\]</div>
+<p>The probability of the bigram "am learning" is given by:</p>
+<div class="arithmatex">\[
+P(\text{learning} | \text{am}) = \frac{\text{freq}(\text{am learning})}{\text{freq}(\text{am})} = \frac{1}{2} = 0.5
+\]</div>
+</div>
+<h3 id="trigram-probability">Trigram Probability<a class="headerlink" href="#trigram-probability" title="Permanent link">&para;</a></h3>
+<p>The general formula for the trigram probability of a word <span class="arithmatex">\(w_i\)</span> given the previous two words <span class="arithmatex">\(w_{i-2}\)</span> and <span class="arithmatex">\(w_{i-1}\)</span> is given by:</p>
+<div class="arithmatex">\[
+P(w_i | w_{i-2}, w_{i-1}) = \frac{\text{freq}(w_{i-2},w_{i-1},w_i)}{\text{freq}(w_{i-2},w_{i-1})}
+\]</div>
+<p>where</p>
+<ul>
+<li><span class="arithmatex">\(\text{freq}(w_{i-2},w_{i-1},w_i)\)</span> is the number of times the trigram <span class="arithmatex">\(w_{i-2},w_{i-1},w_i\)</span> appears in the corpus <span class="arithmatex">\(C\)</span></li>
+<li><span class="arithmatex">\(\text{freq}(w_{i-2},w_{i-1})\)</span> is the number of times the bigram <span class="arithmatex">\(w_{i-2},w_{i-1}\)</span> appears in the corpus <span class="arithmatex">\(C\)</span></li>
+</ul>
+<p>Note that we can think of a trigram as a bigram followed by a unigram. From the <a href="#sequence-of-words">sequence notation</a> shown above, we can rewrite a trigram as:</p>
+<div class="arithmatex">\[
+w_{i-2},w_{i-1},w_i = w_{i-2}^{i-1},w_i = w_{i-2}^i
+\]</div>
+<p>The trigram probability can then be rewritten as:</p>
+<div class="arithmatex">\[
+P(w_i | w_{i-2}^{i-1}) = \frac{\text{freq}(w_{i-2}^{i-1},w_i)}{\text{freq}(w_{i-2}^{i-1})}
+\]</div>
+<p>The formula states that the conditional probability of the third word given the previous two words is the count of all three words appearing divided by the count of the previous two words appearing in the correct sequence.</p>
+<div class="admonition quote">
+<p class="admonition-title">Trigram Probability</p>
+<p>The probability of the trigram <span class="arithmatex">\(w_{i-2},w_{i-1},w_i\)</span> is the probability of the word <span class="arithmatex">\(w_i\)</span> given the bigram <span class="arithmatex">\(w_{i-2},w_{i-1}\)</span> has already occurred.</p>
+<p>We can also say it is the <em>conditional probabity</em> of the third word, given that the previous two words have already occurred.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Given the corpus:</p>
+<blockquote>
+<p>I am happy because I am learning</p>
+</blockquote>
+<p>The trigram probability of the "I am happy", i.e. the probability of the word "happy" following the bigram "I am", is given by:</p>
+<div class="arithmatex">\[
+P(\text{happy} | \text{I am}) = \frac{\text{freq}(\text{I am happy})}{\text{freq}(\text{I am})} = \frac{1}{2} = 0.5
+\]</div>
+</div>
+<h3 id="n-gram-probability">N-gram Probability<a class="headerlink" href="#n-gram-probability" title="Permanent link">&para;</a></h3>
+<p>To generalize the formula to N-grams for any <span class="arithmatex">\(N\)</span>, we can write the N-gram probability of a word <span class="arithmatex">\(w_i\)</span> given the previous <span class="arithmatex">\(N-1\)</span> words <span class="arithmatex">\(w_{i-N+1}, \ldots, w_{i-1}\)</span> as:</p>
+<div class="arithmatex">\[
+P(w_i | w_{i-N+1}^{i-1}) = \frac{\text{freq}(w_{i-N+1}^{i-1},w_i)}{\text{freq}(w_{i-N+1}^{i-1})}
+\]</div>
+<p>where</p>
+<ul>
+<li><span class="arithmatex">\(\text{freq}(w_{i-N+1}^{i-1},w_i)\)</span> is the number of times the N-gram <span class="arithmatex">\(w_{i-N+1}^{i-1},w_i\)</span> appears in the corpus <span class="arithmatex">\(C\)</span></li>
+<li><span class="arithmatex">\(\text{freq}(w_{i-N+1}^{i-1})\)</span> is the number of times the (N-1)-gram <span class="arithmatex">\(w_{i-N+1}^{i-1}\)</span> appears in the corpus <span class="arithmatex">\(C\)</span></li>
+</ul>
+<p>Note that we can think of an N-gram as an (N-1)-gram followed by a unigram:</p>
+<div class="arithmatex">\[
+w_{i-N+1}^{i-1},w_i = w_{i-N+1}^i
+\]</div>
+<div class="admonition quote">
+<p class="admonition-title">N-gram Probability</p>
+<p>The probability of the N-gram <span class="arithmatex">\(w_{i-N+1}^{i-1},w_i\)</span> is the probability of the word <span class="arithmatex">\(w_i\)</span> given the (N-1)-gram <span class="arithmatex">\(w_{i-N+1}^{i-1}\)</span> has already occurred.</p>
+<p>We can also say it is the conditional probabity of the <span class="arithmatex">\(i\)</span>-th word, given that the previous <span class="arithmatex">\(N-1\)</span> words have already occurred.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Given the corpus:</p>
+<blockquote>
+<p>In every place of great resort the monster was the fashion. They sang of it in the cafes, ridiculed it in the papers, and represented it on the stage</p>
+<p><em>Jules Verne, Twenty Thousand Leagues under the Sea</em></p>
+</blockquote>
+<p>The probability of word "papers" following the phrase "it in the" is given by:</p>
+<div class="arithmatex">\[
+P(\text{papers} | \text{it in the}) = \frac{\text{count}(\text{it in the papers})}{\text{count}(\text{it in the})} = \frac{1}{2}
+\]</div>
+</div>
+<h2 id="sequence-probabilities">Sequence Probabilities<a class="headerlink" href="#sequence-probabilities" title="Permanent link">&para;</a></h2>
+<p>If we think of a sentence as a sequence of words, how can we calculate the probability of the sentence?</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="arithmatex">\[P(\text{The teacher drinks tea}) = ?\]</div>
+</div>
+<p>Recall the conditional probability of <span class="arithmatex">\(A\)</span> given <span class="arithmatex">\(B\)</span>:</p>
+<div class="arithmatex">\[
+P(A|B) = \frac{P(A \cap B)}{P(B)}
+\]</div>
+<p>From <a href="../naive_bayes/#bayes-rule">Bayes rule</a>, we know that:</p>
+<div class="arithmatex">\[
+P(A \cap B) = P(A) \cdot P(B | A)
+\]</div>
+<p>This means that the probability of <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> is the probability of <span class="arithmatex">\(A\)</span> times the probability of <span class="arithmatex">\(B\)</span> given <span class="arithmatex">\(A\)</span>.</p>
+<p>We can generalize this to a sequence of events <span class="arithmatex">\(A, B, C, D\)</span> as follows:</p>
+<div class="arithmatex">\[
+P(A, B, C, D) = P(A) \cdot P(B | A) \cdot P(C | A, B) \cdot P(D | A, B, C)
+\]</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Let's take a look at a simple example, to get a better understanding of the formula.</p>
+<div class="arithmatex">\[
+P(\text{The teacher drinks tea}) = P(\text{The}) \cdot P(\text{teacher} | \text{The}) \cdot P(\text{drinks} | \text{The teacher}) \cdot P(\text{tea} | \text{The teacher drinks})
+\]</div>
+<p>This means that the probability of the sentence "The teacher drinks tea" is</p>
+<ul>
+<li>the probability of the word "The"</li>
+<li>times the probability of the word "teacher" given the word "The"</li>
+<li>times the probability of the word "drinks" given the words "The teacher"</li>
+<li>times the probability of the word "tea" given the words "The teacher drinks".</li>
+</ul>
+</div>
+<p>From this example, we can see that the longer the sentence gets, the more unlikely it is to occur in the corpus.</p>
+<p>We can also see this by looking at the probability of a sentence vs. the probability of a single word. From the <a href="../naive_bayes/#intersection-of-two-events">intersection of probabilities</a>, we know that:</p>
+<div class="arithmatex">\[
+P(A \cap B) \leq P(A)
+\]</div>
+<p>And thus, a sequence of events <span class="arithmatex">\(A, B, C, D\)</span> is less likely to occur than the first event <span class="arithmatex">\(A\)</span>:</p>
+<div class="arithmatex">\[
+P(A, B, C, D) &lt; P(A)
+\]</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>In a regular corpus, we can assume that the probability of the word "drinks" is higher than the probability of the sentence "The teacher drinks tea", because the word "drinks" will appear in other sentences as well.</p>
+<div class="arithmatex">\[
+P(\text{The teacher drinks tea}) &lt; P(\text{drinks})
+\]</div>
+</div>
+<p>Note that the probability of a sentence can be zero, because not every possible sentence will <strong>appear in the corpus</strong>.</p>
+<p>In fact, a corpus almost never contains the exact sentence that we want to calculate the probability for.</p>
+<p>The longer the sentence, the more unlikely it is to occur in the corpus.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Consider the following sentence:</p>
+<blockquote>
+<p>The teacher drinks tea</p>
+</blockquote>
+<p>The probability of this sentence is given by:</p>
+<div class="arithmatex">\[
+P(\text{The teacher drinks tea}) = P(\text{The}) \cdot P(\text{teacher} | \text{The}) \cdot P(\text{drinks} | \text{The teacher}) \cdot P(\text{tea} | \text{The teacher drinks})
+\]</div>
+<p>If we look at the probability of the word "tea" or the word "drinks", we can imagine that those words occur regularly in a regular corpus.</p>
+<p>However, if we look at the last part of the equation, which is the probability of the word "tea" given the words "The teacher drinks", we can imagine that they do not occur very often in a regular corpus, and thus, the probability of the sentence is very low.</p>
+<div class="arithmatex">\[
+P(\text{tea} | \text{The teacher drinks}) = \frac{\text{freq}(\text{The teacher drinks tea})}{\text{freq}(\text{The teacher drinks})}
+\]</div>
+<p>We can easily construct sentences that are very unlikely to occur in a regular corpus.</p>
+<blockquote>
+<p>The teacher drinks tea 🍵 and eats pizza 🍕 and afterwards the teacher builds a house 🏠</p>
+</blockquote>
+<p>In such cases, the nominator and the denominator of the formula will be zero.</p>
+</div>
+<h2 id="markov-assumption">Markov Assumption<a class="headerlink" href="#markov-assumption" title="Permanent link">&para;</a></h2>
+<p>To overcome this problem, we can use the <strong>Markov assumption</strong>.</p>
+<p>In general, the Markov assumption says that the probability of the next event only depends on the previous event. So we only look at the previous event, and ignore the rest.</p>
+<div class="arithmatex">\[
+P(D | A, B, C) \approx P(D | C)
+\]</div>
+<p>Transferring this to sentences, i.e. sequences of words, the Markov assumption says that the probability of the next word only depends on the previous word.</p>
+<div class="arithmatex">\[
+P(w_i | w_{i-1}, w_{i-2}, \ldots, w_1) \approx P(w_i | w_{i-1})
+\]</div>
+<p>That means, we can only look at the previous word, and ignore the rest.</p>
+<p>Generalizing this to N-grams, we can write the Markov assumption for N-grams as:</p>
+<div class="arithmatex">\[
+P(w_i | w_{i-1}, w_{i-2}, \ldots, w_1) \approx P(w_i | w_{i-N+1}^{i-1})
+\]</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="arithmatex">\[
+P(\text{The teacher drinks tea}) \approx P(\text{The}) \cdot P(\text{teacher} | \text{The}) \cdot P(\text{drinks} | \text{teacher}) \cdot P(\text{tea} | \text{drinks})
+\]</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The Markov assumption is a <strong>simplifying assumption</strong> that allows us to estimate the probability of a word given the previous <span class="arithmatex">\(N\)</span> words, without having to consider the entire history of the sentence.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Andrey Markov</p>
+<p>The Markov assumption is named after the Russian mathematician <a href="https://en.wikipedia.org/wiki/Andrey_Markov">Andrey Markov</a> (1856-1922).</p>
+<p><img alt="Andrey Markov" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Andrei_Markov.jpg/168px-Andrei_Markov.jpg" /></p>
+<p>He was the first to study the theory of stochastic processes, and he discovered the <a href="https://en.wikipedia.org/wiki/Markov_chain">Markov chains</a>, which are a special case of the Markov assumption.</p>
+<p>Markov chains are used in many applications, such as:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/PageRank">Google PageRank</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Hidden_Markov_model">Hidden Markov Models</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Markov_decision_process">Markov Decision Processes</a></li>
+</ul>
+</div>
+<p>Using the Markov assumption for bigrams, only the previous word is considered:</p>
+<div class="arithmatex">\[
+P(w_i | w_{i-1}, w_{i-2}, \ldots, w_1) \approx P(w_i | w_{i-1})
+\]</div>
+<p>For N-grams, only the previous <span class="arithmatex">\(N-1\)</span> words are considered:</p>
+<div class="arithmatex">\[
+P(w_i | w_{i-1}, w_{i-2}, \ldots, w_1) \approx P(w_i | w_{i-N+1}^{i-1})
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Notation</p>
+<p>Recall the notation for a sequence of words:</p>
+<div class="arithmatex">\[
+P(w_i | w_{i-1}, w_{i-2}, \ldots, w_1) = P(w_i | w_{1}^{i-1})
+\]</div>
+</div>
+<p>Using the Markov assumption, we can rewrite the probability of a sequence of <span class="arithmatex">\(n\)</span> words as the product of conditional probabilities of the words and their immediate predecessors:</p>
+<div class="arithmatex">\[
+\begin{align}
+P(w_1^n) &amp;= P(w_1) \cdot P(w_2 | w_1) \cdot P(w_3 | w_2) \cdot \ldots \cdot P(w_n | w_{n-1}) \\
+&amp;= \prod_{i=1}^n P(w_i | w_{i-1})
+\end{align}
+\]</div>
+<p>For N-grams, the probability of a sequence of <span class="arithmatex">\(n\)</span> words is the product of conditional probabilities of the words and their <span class="arithmatex">\(N-1\)</span> immediate predecessors:</p>
+<div class="arithmatex">\[
+\begin{align}
+P(w_1^n) &amp;= P(w_1) \cdot P(w_2 | w_1) \cdot P(w_3 | w_1^2) \cdot \ldots \cdot P(w_n | w_{n-N+1}^{n-1}) \\
+&amp;= \prod_{i=1}^n P(w_i | w_{i-N+1}^{i-1})
+\end{align}
+\]</div>
+<div class="admonition warning">
+<p class="admonition-title">Notation</p>
+<p>Note that</p>
+<ul>
+<li><span class="arithmatex">\(n\)</span> is the number of words in the sequence, while</li>
+<li><span class="arithmatex">\(N\)</span> is the number of words in the N-gram.</li>
+</ul>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Markov Assumption</p>
+<p>Whenn applying the Markov assumption to N-grams, we can say that the probability of a word only depends on its <span class="arithmatex">\(N-1\)</span> immediate predecessors. That means, only the last <span class="arithmatex">\(N\)</span> words are relevant, and the rest can be ignored.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Naive Bayes vs. Markov Assumption</p>
+<p>As you may recall, this is in contrast with <a href="../naive_bayes/#likelihood">Naive Bayes</a> where we approximated sentence probability without considering any word history.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Given the folloing probabilities:</p>
+<table>
+<thead>
+<tr>
+<th>N-gram</th>
+<th>Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(P(\text{Mary})\)</span></td>
+<td>0.1</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P(\text{likes})\)</span></td>
+<td>0.2</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P(\text{cats})\)</span></td>
+<td>0.3</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P(\text{Mary} \vert \text{likes})\)</span></td>
+<td>0.2</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P(\text{likes} \vert \text{Mary})\)</span></td>
+<td>0.3</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P(\text{cats} \vert \text{likes})\)</span></td>
+<td>0.1</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P(\text{likes} \vert \text{cats})\)</span></td>
+<td>0.4</td>
+</tr>
+</tbody>
+</table>
+<p>We can calculate the approximated probability of the sentence</p>
+<blockquote>
+<p>Mary likes cats</p>
+</blockquote>
+<p>using a bigram language model as follows:</p>
+<div class="arithmatex">\[
+\begin{align}
+P(\text{Mary likes cats}) &amp;= P(\text{Mary}) \cdot P(\text{likes} | \text{Mary}) \cdot P(\text{cats} | \text{likes}) \\
+&amp;= 0.1 \cdot 0.3 \cdot 0.1 \\
+&amp;= 0.003
+\end{align}
+\]</div>
+</div>
+<h2 id="start-and-end-of-sequences">Start and End of Sequences<a class="headerlink" href="#start-and-end-of-sequences" title="Permanent link">&para;</a></h2>
+<p>When we calculate the probability of a sentence using N-grams, we need to take a closer look at the first and last word of the sentence.</p>
+<p>At the beginning of a sentence, we do not have any <strong>context</strong>, so we cannot calculate the N-gram probability of the first word in a sentence.</p>
+<p>To overcome this problem, we can add <span class="arithmatex">\(N-1\)</span> <strong>start tokens</strong> &lt;s&gt; at the beginning of the sentence.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Given the sentence:</p>
+<blockquote>
+<p>The teacher drinks tea</p>
+</blockquote>
+<p>If we want to calculate the bigram probability of the sentence, we can add a start token &lt;s&gt; at the beginning of the sentence:</p>
+<blockquote>
+<p>&lt;s&gt; The teacher drinks tea</p>
+</blockquote>
+<p>We can then calculate the bigram probability of the sentence as follows:</p>
+<div class="arithmatex">\[
+P(\text{&lt;s&gt; The teacher drinks tea}) = P(\text{The} | \text{&lt;s&gt;}) \cdot P(\text{teacher} | \text{The}) \cdot P(\text{drinks} | \text{teacher}) \cdot P(\text{tea} | \text{drinks})
+\]</div>
+<p>If we want to calculate the trigram probability of the sentence, we can add two start tokens &lt;s&gt; at the beginning of the sentence:</p>
+<blockquote>
+<p>&lt;s&gt; &lt;s&gt; The teacher drinks tea</p>
+</blockquote>
+<p>We can then calculate the trigram probability of the sentence as follows:</p>
+<div class="arithmatex">\[
+P(\text{&lt;s&gt; &lt;s&gt; The teacher drinks tea}) = P(\text{The} | \text{&lt;s&gt; &lt;s&gt;}) \cdot P(\text{teacher} | \text{&lt;s&gt; The}) \cdot P(\text{drinks} | \text{The teacher}) \cdot P(\text{tea} | \text{teacher drinks})
+\]</div>
+</div>
+<p>Similarly we need to add an <strong>end token</strong> &lt;/s&gt; at the end of the sentence.</p>
+<p>However, we only need to add a <strong>single end token</strong> &lt;/s&gt; at the end of the sentence, because we only need to calculate the probability of the <strong>sentence ending</strong> given its last <span class="arithmatex">\(N-1\)</span> words.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Given the sentence:</p>
+<blockquote>
+<p>The teacher drinks tea</p>
+</blockquote>
+<p>If we want to calculate the bigram probability of the sentence, we can add one start token &lt;s&gt; at the beginning of the sentence, and one end token &lt;/s&gt; at the end of the sentence:</p>
+<blockquote>
+<p>&lt;s&gt; The teacher drinks tea &lt;/s&gt;</p>
+</blockquote>
+<p>Since the last word in the sentence is "tea", we only need to calculate the probability of the word "tea" being the last word in the sentence, which is given by:</p>
+<div class="arithmatex">\[
+P(\text{&lt;/s&gt;} | \text{tea})
+\]</div>
+<p>So we can calculate the bigram probability of the sentence as follows:</p>
+<div class="arithmatex">\[
+P(\text{&lt;s&gt; The teacher drinks tea &lt;/s&gt;}) = P(\text{The} | \text{&lt;s&gt;}) \cdot P(\text{teacher} | \text{The}) \cdot P(\text{drinks} | \text{teacher}) \cdot P(\text{tea} | \text{drinks}) \cdot P(\text{&lt;/s&gt;} | \text{tea})
+\]</div>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Start and End Tokens</p>
+<p>To calculate N-gram probabilities at the beginning and end of sequences, we need to add <span class="arithmatex">\(N-1\)</span> start tokens &lt;s&gt; at the beginning of the sentence, and a single end token &lt;/s&gt; at the end of the sentence.</p>
+</div>
+<h2 id="count-matrix">Count Matrix<a class="headerlink" href="#count-matrix" title="Permanent link">&para;</a></h2>
+<p>The count matrix captures the counts of all N-grams in the corpus.</p>
+<ul>
+<li>the rows represent the unique (N-1)-grams in the corpus</li>
+<li>the columns represent the unique words in the corpus</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Recap the formula for the <a href="#n-gram-probability">N-gram probability</a>, where the counts of an N-gram is repesented by the <strong>numerator</strong>:</p>
+<div class="arithmatex">\[
+\text{freq}(w_{i-N+1}^{i-1},w_i)
+\]</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The count matrix tells us how often a word occurs after a certain (N-1)-gram. It is a variant of the <a href="../vector_space_models/#co-occurrence-matrix">co-occurrence matrix</a> we learned in the lecture about vector space models.</p>
+<p>You can also imagine <em>sliding a window</em> of size <span class="arithmatex">\(N\)</span> over the whole corpus, and incrementing the counts in the matrix every time the window moves.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Bigram Count Matrix</p>
+<p>Given the corpus:</p>
+<blockquote>
+<p>I study I learn</p>
+</blockquote>
+<p>If we look at the bigram "study I", we can see that it appears once in the corpus.</p>
+<p>That means, for the row "study", that is the (N-1)-gram, and for the column "I", that is the word that follows the (N-1)-gram, the count is one.</p>
+<p>The complete count matrix for bigrams looks as follows (note that we need to add the start and end tokens):</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>&lt;s&gt;</th>
+<th>I</th>
+<th>study</th>
+<th>learn</th>
+<th>&lt;/s&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>&lt;s&gt;</strong></td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>I</strong></td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>study</strong></td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>learn</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>&lt;/s&gt;</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Trigram Count Matrix</p>
+<p>Given the corpus:</p>
+<blockquote>
+<p>I study I learn</p>
+</blockquote>
+<p>If we look at the trigram "study I learn", we can see that it appears once in the corpus.</p>
+<p>That means, for the row "study I", that is the (N-1)-gram, and for the column "learn", that is the word that follows the (N-1)-gram, the count is one.</p>
+<p>The complete count matrix for trigrams looks as follows (note that we need to add the start and end tokens):</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>&lt;s&gt;</th>
+<th>I</th>
+<th>study</th>
+<th>learn</th>
+<th>&lt;/s&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>&lt;s&gt; &lt;s&gt;</strong></td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>&lt;s&gt; I</strong></td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>I study</strong></td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>study I</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>I learn</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>learn &lt;/s&gt;</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="probability-matrix">Probability Matrix<a class="headerlink" href="#probability-matrix" title="Permanent link">&para;</a></h2>
+<p>To get the probabilities, we need to divide the counts by the total number of occurrences of the (N-1)-gram.</p>
+<p>This is the same as dividing each row by the sum of the row.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Recall the formula for the <a href="#n-gram-probability">N-gram probability</a>, where the counts of an (N-1)-gram is represented by the <strong>denominator</strong>:</p>
+<div class="arithmatex">\[
+\text{freq}(w_{i-N+1}^{i-1})
+\]</div>
+<p>Note that we want to know the probability of the word <span class="arithmatex">\(w_i\)</span> given the (N-1)-gram <span class="arithmatex">\(w_{i-N+1}^{i-1}\)</span> has already occurred.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Given the corpus:</p>
+<blockquote>
+<p>I study I learn</p>
+</blockquote>
+<p>The count matrix for bigrams looks as follows:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>&lt;s&gt;</th>
+<th>I</th>
+<th>study</th>
+<th>learn</th>
+<th>&lt;/s&gt;</th>
+<th><span class="arithmatex">\(\sum\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>&lt;s&gt;</strong></td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><strong>1</strong></td>
+</tr>
+<tr>
+<td><strong>I</strong></td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td><strong>2</strong></td>
+</tr>
+<tr>
+<td><strong>study</strong></td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><strong>1</strong></td>
+</tr>
+<tr>
+<td><strong>learn</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td><strong>1</strong></td>
+</tr>
+<tr>
+<td><strong>&lt;/s&gt;</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Note that last column, where we sum up the counts of each row.</p>
+<p>We can now calculate the probability matrix by dividing each cell by the sum of the row:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>&lt;s&gt;</th>
+<th>I</th>
+<th>study</th>
+<th>learn</th>
+<th>&lt;/s&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>&lt;s&gt;</strong></td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>I</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0.5</td>
+<td>0.5</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>study</strong></td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>learn</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>&lt;/s&gt;</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="language-model">Language Model<a class="headerlink" href="#language-model" title="Permanent link">&para;</a></h2>
+<p>A language model is a model that assigns a probability to a sequence of words. It can be used to predict the next word in a sentence, or to calculate the probability of a sentence.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In a simple form, a language model can be as simple as a script that operates on the probability matrix.</p>
+</div>
+<h3 id="predicting-the-next-word">Predicting the Next Word<a class="headerlink" href="#predicting-the-next-word" title="Permanent link">&para;</a></h3>
+<p><strong>Predicting the next word</strong> of a sentence, as in auto-complete, works as follows:</p>
+<ul>
+<li>extract the last (N-1)-gram from the sentence</li>
+<li>find the word with the highest probability for the given the (N-1)-gram in the probability matrix</li>
+</ul>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Given the bigram probability matrix from above, what is the most likely element to follow the word "study"?</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Coding Example</p>
+<p>Given a probability matrix as a pandas dataframe, where the index is the (N-1)-gram, and the columns are the words, in a trigram language model, we could predict the next word as follows:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">predict_next_word</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="c1"># extract the last (N-1)-gram from the sentence</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">last_n_gram</span> <span class="o">=</span> <span class="n">sentence</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="c1"># find the word with the highest probability for the given the (N-1)-gram in the probability matrix</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">return</span> <span class="n">probability_matrix</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">last_n_gram</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+</code></pre></div>
+</div>
+<h3 id="sentence-probability">Sentence Probability<a class="headerlink" href="#sentence-probability" title="Permanent link">&para;</a></h3>
+<p>To predict the <strong>probility of a sentence</strong>:</p>
+<ul>
+<li>split sentence into N-grams and extract the probability of each N-gram from the probability matrix</li>
+<li>multiply the probabilities of the N-grams to get the probability of the sentence</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Let's assume we want to calculate the probability of the sentence "I learn" using the bigram probability matrix from above:</p>
+<div class="arithmatex">\[
+\begin{align}
+P(\text{&lt;s&gt; I learn &lt;/s&gt;}) &amp;= P(\text{I} | \text{&lt;s&gt;}) \cdot P(\text{learn} | \text{I}) \cdot P(\text{&lt;/s&gt;} | \text{learn}) \\
+&amp;= 1 \cdot 0.5 \cdot 1 \\
+&amp;= 0.5
+\end{align}
+\]</div>
+</div>
+<h3 id="text-generation">Text Generation<a class="headerlink" href="#text-generation" title="Permanent link">&para;</a></h3>
+<p>Using the probability matrix, we can also generate text from scratch or by providing a small hint.</p>
+<ul>
+<li>Choose a sentence start (or provide a hint)</li>
+<li>Choose the next word based on the previous (N-1)-gram</li>
+<li>Repeat until the end of the sentence &lt;/s&gt; is reached</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Given the following corpus:</p>
+<blockquote>
+<p>&lt;s&gt; Lyn drinks chocolate &lt;/s&gt;
+&lt;s&gt; John drinks tea &lt;/s&gt;
+&lt;s&gt; Lyn eats chocolate &lt;/s&gt;</p>
+</blockquote>
+<p>A generated text could be:</p>
+<blockquote>
+<p>Lyn drinks tea</p>
+</blockquote>
+<p>because:</p>
+<ol>
+<li><strong>(&lt;s&gt; Lyn)</strong> or (&lt;s&gt; John)</li>
+<li>(Lyn eats) or <strong>(Lyn drinks)</strong></li>
+<li><strong>(drinks tea)</strong> or (drinks chocolate)</li>
+<li><strong>(tea &lt;/s&gt;)</strong></li>
+</ol>
+</div>
+<h2 id="log-probability">Log Probability<a class="headerlink" href="#log-probability" title="Permanent link">&para;</a></h2>
+<p>When we calculate the probability of a sentence, we multiply the probabilities of the N-grams:</p>
+<div class="arithmatex">\[
+P(w_1^n) = \prod_{i=1}^n P(w_i | w_{i-N+1}^{i-1})
+\]</div>
+<p>Since probability values are in the range <span class="arithmatex">\([0,1]\)</span>, the product of many probabilities can become very small, which can lead to <a href="../naive_bayes/#using-logarithms">numerical underflow</a>.</p>
+<p>To avoid this problem, we can use the <strong>log probability</strong> instead:</p>
+<div class="arithmatex">\[
+\log P(w_1^n) = \sum_{i=1}^n \log P(w_i | w_{i-N+1}^{i-1})
+\]</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Recall the logarithmic property:</p>
+<div class="arithmatex">\[
+\log(ab) = \log(a) + \log(b)
+\]</div>
+</div>
+<h2 id="perplexity">Perplexity<a class="headerlink" href="#perplexity" title="Permanent link">&para;</a></h2>
+<p>In theory, we could evaluate our language model by calculating the probability of all words in the test set, i.e. the probability of the test set. In practice, a variation of this is used, called <strong>perplexity</strong>.</p>
+<p>Perplexity is a commonly used metric to evaluate language models.</p>
+<p>You can interpret perplexity as a measure of</p>
+<ul>
+<li>how complex a text is</li>
+<li>how well a language model predicts a text</li>
+<li>if a text looks like it was written by a human or by a computer.</li>
+</ul>
+<p>A text with a low perplexity will sound more <strong>natural</strong> to a human than a text with a high perplexity.</p>
+<p>The more information the N-gram gives us about the word sequence, the lower the perplexity score, as the following data based on an experiment by <a href="https://web.stanford.edu/~jurafsky/slp3/">Jurafsky &amp; Martin</a> shows:</p>
+<table>
+<thead>
+<tr>
+<th>N-gram</th>
+<th>Perplexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unigram</td>
+<td>962</td>
+</tr>
+<tr>
+<td>Bigram</td>
+<td>170</td>
+</tr>
+<tr>
+<td>Trigram</td>
+<td>109</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>The following table shows three sentences randomly generated from three n-gram models computed from 40 million words of the Wall Street Journal.</p>
+<table>
+<thead>
+<tr>
+<th>N-gram</th>
+<th>Generated Text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unigram</td>
+<td>Months the my and issue of year foreign new exchange’s september were recession exchange new endorsed a acquire to six executives</td>
+</tr>
+<tr>
+<td>Bigram</td>
+<td>Last December through the way to preserve the Hudson corporation N. B. E. C. Taylor would seem to complete the major central planners one point five percent of U. S. E. has already old M. X. corporation of living on information such as more frequently fishing to keep her</td>
+</tr>
+<tr>
+<td>Trigram</td>
+<td>They also point to ninety nine point six billion dollars from two hundred four oh six three percent of the rates of interest stores as Mexico and Brazil on market conditions</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example from <a href="https://web.stanford.edu/~jurafsky/slp3/">Speech and Language Processing, 3rd ed. draft</a>, by Jurafsky &amp; Martin, 2023.</p>
+</blockquote>
+</div>
+<p>The perplexity of a language model on a test set is the inverse probability of the test set, normalized by the number of words.</p>
+<p>For a unigram model, the perplexity of a test set <span class="arithmatex">\(W\)</span> that consists of <span class="arithmatex">\(m\)</span> words, is defined as:</p>
+<div class="arithmatex">\[
+\begin{align}
+\text{perplexity}(W) &amp;= P(w_1^m)^{-\frac{1}{m}} \\
+&amp;= \sqrt[m]{\frac{1}{P(w_1^m)}} \\
+\end{align}
+\]</div>
+<p>Generalizing this to N-grams, the perplexity of a test set <span class="arithmatex">\(W\)</span> that consists of <span class="arithmatex">\(m\)</span> words, is defined as:</p>
+<div class="arithmatex">\[
+\text{perplexity}(W) = \sqrt[m]{\prod_{i=1}^m \frac{1}{P(w_i | w_{i-N+1}^{i-1})}}
+\]</div>
+<p>Since the perplexity is the inverse probability of the set set, the lower the perplexity, the better the model.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Imagine a test set with 100 words, and a really good language model that assigns a probability of <span class="arithmatex">\(P(W)=0.9\)</span> to the test set.</p>
+<div class="arithmatex">\[
+\text{perplexity}(W) = 0.9^{-\frac{1}{100}} \approx 1.001054
+\]</div>
+<p>Now, imagine a language model with a poor performance of only <span class="arithmatex">\(P(W)=10^{-250}\)</span>. The perplexity of this model is:</p>
+<div class="arithmatex">\[
+\text{perplexity}(W) = (10^{-250})^{-\frac{1}{100}} \approx 316.227766
+\]</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Sometimes the log perplexity is used instead:</p>
+<div class="arithmatex">\[
+\text{log perplexity} = \frac{1}{m} \sum_{i=1}^m \log P(w_i | w_{i-N+1}^{i-1})
+\]</div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The perplexity score of GPT-2 is reported to be 18.34 on the <a href="https://openai.com/research/better-language-models">WikiText-2</a>.
+There is no official perplexity score published by OpenAI for later versions of GPT, but according to <a href="https://www.predictea.com/exploring-the-latest-advancements-in-gpt-4-a-comprehensive-overview/">this</a> source, GPT-3.5 achieves a perplexity score of 4.5 while GPT-4 achieves a perplexity score of 2.6.</p>
+</div>
+<h2 id="out-of-vocabulary-oov-words">Out of Vocabulary (<abbr title="out of vocabulary">OOV</abbr>) Words<a class="headerlink" href="#out-of-vocabulary-oov-words" title="Permanent link">&para;</a></h2>
+<p>In some cases we need to deal with words that we <strong>haven't seen before</strong>. Such words are called <abbr title="out of vocabulary">OOV</abbr> words, and are usually replaced by a <strong>special token <code>&lt;unk&gt;</code></strong>.</p>
+<p>We need to think about how to make predictions for words that we have not seen in the training corpus. What would be the N-gram probability of a word that is not in the corpus?</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Let's assume we have a trigram language model, and we want to predict the next word for the two given words <code>(I sip)</code>. Furthermore we assume that we have seen the bigram <code>(I drink)</code> but not the bigram <code>(I sip)</code>.</p>
+<p>Instead of predicting the next word for the bigram <code>(I sip)</code>, we would predict the next word for the bigram <code>(I &lt;unk&gt;)</code>.</p>
+</div>
+<p>Ultimately, the use of the <code>&lt;unk&gt;</code> token depends on the vocabulary size. If there are limitations regarding the vocabulary size, we could use the following strategies:</p>
+<ul>
+<li><strong>Minimum word frequency</strong>: only add words to the vocabulary that occur at least <span class="arithmatex">\(n\)</span> times in the corpus</li>
+<li><strong>Maximum vocabulary size</strong>: only add the <span class="arithmatex">\(n\)</span> most frequent words to the vocabulary</li>
+</ul>
+<p>Any other words would be replaced by <code>&lt;unk&gt;</code>.</p>
+<div class="admonition info">
+<p class="admonition-title">Open vs. Closed Vocabulary</p>
+<p>A <strong>closed vocabulary</strong> (aka <em>logical</em> vocabulary) consists of a fixed set of words, whereas an <strong>open vocabulary</strong> (aka <em>non-logical</em> vocabulary) means we may encounter words that we have not seen before.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Using a lot of <abbr title="out of vocabulary">OOV</abbr> words can influence the <strong>perplexity</strong> score. If there are a lot of <abbr title="out of vocabulary">OOV</abbr> words in the test set, the model will predict them with a high probability, which will result in a low perplexity score.</p>
+<p>This means the model with generate sentences that contain a lot of <code>&lt;unk&gt;</code> tokens.</p>
+<p>For this reason, perplexities should only be compared across language models with the same vocabularies.</p>
+</div>
+<h2 id="smoothing">Smoothing<a class="headerlink" href="#smoothing" title="Permanent link">&para;</a></h2>
+<p>In the previous section, we saw how to address missing words. However, there is another problem of missing information that we need to address: <strong>missing N-grams</strong>.</p>
+<p>In other words, there can be N-grams that are made from words that occur in the corpus, but the N-gram itself <em>has not been seen</em> in the corpus.</p>
+<p>The probability of such N-grams would be zero, and thus, considered "impossible" by the language model.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Given the corpus:</p>
+<blockquote>
+<p>&lt;s&gt; Lyn drinks chocolate &lt;/s&gt;
+&lt;s&gt; John drinks tea &lt;/s&gt;
+&lt;s&gt; Lyn eats chocolate &lt;/s&gt;</p>
+</blockquote>
+<p>The words "John" and "eats" occur in the corpus, but the bigram "John eats" has not been seen in the corpus.</p>
+<p>Thus, the frequency of the bigram "John eats" would be zero, and its probability would be zero as well.</p>
+</div>
+<h3 id="laplacian-smoothing">Laplacian Smoothing<a class="headerlink" href="#laplacian-smoothing" title="Permanent link">&para;</a></h3>
+<p>We have already seen Laplacian smoothing <a href="../naive_bayes/#laplacian-smoothing">previously</a>. If we apply it to N-grams, the formula looks as follows:</p>
+<div class="arithmatex">\[
+P(w_i | w_{i-N+1}^{i-1}) = \frac{\text{freq}(w_{i-N+1}^{i-1},w_i) + 1}{\text{freq}(w_{i-N+1}^{i-1}) + V}
+\]</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Since there are <span class="arithmatex">\(V\)</span> words in the vocabulary and <em>each one was incremented</em>, we also need to adjust the denominator to take into account the extra <span class="arithmatex">\(V\)</span> observations.</p>
+</div>
+<p>Or in its generalized form:</p>
+<div class="arithmatex">\[
+P(w_i | w_{i-N+1}^{i-1}) = \frac{\text{freq}(w_{i-N+1}^{i-1},w_i) + k}{\text{freq}(w_{i-N+1}^{i-1}) + k \cdot V}
+\]</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The Laplacian smoothing is also called <strong>add-one smoothing</strong>. In its general form, it is called <strong>add-k smoothing</strong>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Hyperparameter <span class="arithmatex">\(k\)</span></p>
+<p>Since we are dealing with small values, adding <span class="arithmatex">\(k=1\)</span> can be too much and negatively affect the probability estimates.</p>
+<p>In practice, this means we need to find a good value for <span class="arithmatex">\(k\)</span>. As a hyperparameter, it needs to be learned from the validation set.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Other Smoothing Techniques</p>
+<p>There are a couple of advanced smoothing techniques, such as <a href="https://en.wikipedia.org/wiki/Good%E2%80%93Turing_frequency_estimation">Good-Turing</a> smoothing or <a href="https://en.wikipedia.org/wiki/Kneser%E2%80%93Ney_smoothing">Kneser-Ney</a> smoothing.</p>
+</div>
+<h3 id="backoff">Backoff<a class="headerlink" href="#backoff" title="Permanent link">&para;</a></h3>
+<p>Another smoothing approach to deal with N-grams that do not occur in the corpus is to use information about lower order N-grams. This is called <strong>backoff</strong>.</p>
+<p>If the N-gram we need has zero counts, we can approximate it by backing off to the (N-1)-gram. If the (N-1)-gram has zero counts, we can approximate it by backing off to the (N-2)-gram, and so on.
+We continue backing off until we reach something that has non-zero counts.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>In other words, sometimes using <em>less context</em> is a good thing, helping to generalize more for contexts that the model hasn’t learned much about.</p>
+</div>
+<p>Here is the general formula for backoff:</p>
+<div class="arithmatex">\[
+P_{bo}(w_i | w_{i-N+1}^{i-1}) =
+\begin{cases}
+P(w_i | w_{i-N+1}^{i-1}) &amp; \text{if } \text{freq}(w_{i-N+1}^{i}) &gt; 0 \\
+\alpha P(w_i | w_{i-N+2}^{i-1}) &amp; \text{otherwise}
+\end{cases}
+\]</div>
+<div class="admonition warning">
+<p class="admonition-title">Discount</p>
+<p>If we replace an unseen N-gram which has zero probability with a lower order N-gram, we would be <em>adding probability mass</em>, and the total <strong>probability</strong> assigned to all possible strings by the language model would be <strong>greater than 1</strong>!</p>
+<p>To account for this, we need to <em>discount</em> the probability mass from the higher order N-gram and <em>redistribute</em> it to the lower order N-grams.</p>
+<p>This is expressed by the parameter <span class="arithmatex">\(\alpha\)</span> in the formula above. There are different ways to set the value of <span class="arithmatex">\(\alpha\)</span>.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Katz Backoff</p>
+<p>A popular smoothing technique is the <a href="https://www.cis.upenn.edu/~danroth/Teaching/CS598-05/Papers/Katz87.pdf">Katz backoff</a> by Katz (1987). It involves a quite detailed computation for estimating the <span class="arithmatex">\(\alpha\)</span> parameter.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Stupid Backoff</p>
+<p>A simple yet efficient approach is the <a href="https://www.aclweb.org/anthology/D07-1090.pdf">Stupid Backoff</a> by Brants et al. (2007), where the <span class="arithmatex">\(\alpha\)</span> parameter was heuristically set to 0.4.</p>
+<p>Originally, the authors thought that such simple approach cannot possibly be good, but it turned out to be very effective and inexpensive.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Given the corpus:</p>
+<blockquote>
+<p>&lt;s&gt; Lyn drinks chocolate &lt;/s&gt;
+&lt;s&gt; John drinks tea &lt;/s&gt;
+&lt;s&gt; Lyn eats chocolate &lt;/s&gt;</p>
+</blockquote>
+<p>The probability of the sentence "John drinks chocolate" cannot be directly estimated:</p>
+<div class="arithmatex">\[
+P(\text{chocholate} | \text{John drinks}) = ?
+\]</div>
+<p>However, we can use the bigram probability of <span class="arithmatex">\(P(\text{chocholate} | \text{drinks})\)</span> to estimate the probability of the sentence.</p>
+<p>Using <strong>stupid backoff</strong>, we can estimate the probability as follows:</p>
+<div class="arithmatex">\[
+P(\text{chocholate} | \text{John drinks}) = 0.4 \cdot P(\text{chocholate} | \text{drinks})
+\]</div>
+</div>
+<h3 id="interpolation">Interpolation<a class="headerlink" href="#interpolation" title="Permanent link">&para;</a></h3>
+<p>We can even make use of backoff in our model and <em>always</em> mix the probability of the higher order N-gram with the lower order N-gram, even if the higher order N-gram has non-zero counts.</p>
+<p>This is called <strong>interpolation</strong>.</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>What does this mean for building such a model?</p>
+</div>
+<!-- ANSWER: We need to train a separate model for each N-gram. -->
+
+<p>Here is the general formula for <em>linear</em> interpolation, where each N-gram is weighted by a parameter <span class="arithmatex">\(\lambda\)</span>:</p>
+<div class="arithmatex">\[
+P_{inter}(w_i | w_{i-N+1}^{i-1}) = \lambda_1 P(w_i | w_{i-N+1}^{i-1}) + \lambda_2 P(w_i | w_{i-N+2}^{i-1}) + \ldots + \lambda_n P(w_i)
+\]</div>
+<p>such that</p>
+<div class="arithmatex">\[
+\sum_{i=1}^n \lambda_i = 1
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <span class="arithmatex">\(\lambda\)</span> parameters are <strong>hyperparameters</strong> that need to be learned from the validation set.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Given the corpus:</p>
+<blockquote>
+<p>&lt;s&gt; Lyn drinks chocolate &lt;/s&gt;
+&lt;s&gt; John drinks tea &lt;/s&gt;
+&lt;s&gt; Lyn eats chocolate &lt;/s&gt;</p>
+</blockquote>
+<p>Let's assume we have an interpolation model and trained the following <span class="arithmatex">\(\lambda\)</span> parameters:</p>
+<table>
+<thead>
+<tr>
+<th>N-gram</th>
+<th><span class="arithmatex">\(\lambda\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unigram</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>Bigram</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>Trigram</td>
+<td>0.7</td>
+</tr>
+</tbody>
+</table>
+<p>Using an interpolation model, we would estimate the probability of the sentence "Lyn drinks chocolate" as follows:</p>
+<div class="arithmatex">\[
+\begin{align}
+P(\text{Lyn drinks chocolate}) &amp;= \lambda_1 P(\text{chocolate} | \text{Lyn drinks}) + \lambda_2 P(\text{chocolate} | \text{drinks}) + \lambda_3 P(\text{chocolate}) \\
+&amp;= 0.7 \cdot P(\text{chocolate} | \text{Lyn drinks}) + 0.2 \cdot P(\text{chocolate} | \text{drinks}) + 0.1 \cdot \lambda_3 P(\text{chocolate}) \\
+\end{align}
+\]</div>
+</div>
+<h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Language models</strong> are able to assign a probability to a sequence of words, or to predict the next word in a sentence. This enables many intersting NLP applications, such as auto-complete, text generation, or machine translation.</li>
+<li>this lecture specifically looked at <strong>N-gram language models</strong>. An N-gram is a sequence of <span class="arithmatex">\(N\)</span> words, and instead of estimating the probability of a word given the entire history of the sentence, the N-gram language model only considers the last <span class="arithmatex">\(N-1\)</span> words.</li>
+<li>N-gram language models are based on the <strong>Markov assumption</strong>, which says that the probability of a word only depends on its <span class="arithmatex">\(N-1\)</span> immediate predecessors.</li>
+<li>Building the language model means <strong>filling the probability matrix</strong>, where the rows represent the unique (N-1)-grams in the corpus, and the columns represent the unique words in the corpus.</li>
+<li>When building the <strong>probability matrix</strong>, we need to add <span class="arithmatex">\(N-1\)</span> start tokens &lt;s&gt; at the beginning of the sentence, and a single end token &lt;/s&gt; at the end of the sentence.</li>
+<li>Having the probability matrix available, we can already predict the next word in a sentence, or calculate the probability of a sentence, simply by performing several <strong>lookups</strong> in the probability matrix.</li>
+<li>Also here, we usually make use of the <strong>log probability</strong> to avoid numerical underflow.</li>
+<li>To evaluate the <strong>performance</strong> of a language model, we can calculate the <strong>perplexity</strong> score. The lower the perplexity, the better the model.</li>
+<li>To deal with <strong>missing information</strong>, we introduce a special token for <abbr title="out of vocabulary">OOV</abbr> words. For missing N-grams, we can make use of smoothing techniques, such as Laplacian smoothing, backoff, or interpolation.</li>
+</ul>
+<!-- markdownlint-disable MD041 -->
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="mailto:pascal.keilbach@htwg-konstanz.de" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.8l167.6-182.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/pkeilbach/htwg-practical-nlp" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.tooltips", "navigation.indexes", "navigation.instant", "navigation.tabs", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

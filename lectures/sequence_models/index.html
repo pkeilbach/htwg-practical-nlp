@@ -1,0 +1,1317 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A practical course on natural language processing @ HTWG Konstanz.">
+      
+      
+      
+      
+        <link rel="prev" href="../word_embeddings/">
+      
+      
+        <link rel="next" href="../attention_models/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Sequence Models - Practical NLP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sequence-models" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Practical NLP" class="md-header__button md-logo" aria-label="Practical NLP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Practical NLP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sequence Models
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/pkeilbach/htwg-practical-nlp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pkeilbach/htwg-practical-nlp
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../course_profile/" class="md-tabs__link">
+        
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../getting_started/" class="md-tabs__link">
+        
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../preface/" class="md-tabs__link">
+          
+  
+    
+  
+  Lectures
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../assignments/" class="md-tabs__link">
+        
+  
+    
+  
+  Assignments
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../presentations/" class="md-tabs__link">
+        
+  
+    
+  
+  Presentations
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../faq/" class="md-tabs__link">
+        
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Practical NLP" class="md-nav__button md-logo" aria-label="Practical NLP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Practical NLP
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/pkeilbach/htwg-practical-nlp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pkeilbach/htwg-practical-nlp
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_profile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Lectures
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Lectures
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../preface/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Preface
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../preprocessing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Preprocessing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature_extraction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Extraction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logistic_regression/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logistic Regression
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../naive_bayes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Naive Bayes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vector_space_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vector Space Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../minimum_edit_distance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Minimum Edit Distance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../word_embeddings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Word Embeddings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Sequence Models
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Sequence Models
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#limitations-of-n-gram-language-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limitations of N-Gram Language Models
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recurrent-neural-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recurrent Neural Networks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bi-directional-rnns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bi-directional RNNs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vanishing-gradient-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vanishing Gradient Problem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#long-short-term-memory-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Long Short-Term Memory Networks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Takeaways
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attention_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Attention Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../further_reading/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Where to go from here?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../assignments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assignments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../presentations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Presentations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#limitations-of-n-gram-language-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limitations of N-Gram Language Models
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recurrent-neural-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recurrent Neural Networks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bi-directional-rnns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bi-directional RNNs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vanishing-gradient-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vanishing Gradient Problem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#long-short-term-memory-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Long Short-Term Memory Networks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Takeaways
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="sequence-models">Sequence Models<a class="headerlink" href="#sequence-models" title="Permanent link">&para;</a></h1>
+<p>In this lecture, we will cover <strong>sequence models</strong>. Starting with the limitations of N-gram language models, we will introduce recurrent neural networks along with some of their variants. We will also introduce the concept of the vanishing gradient problem, and explain how it can be addressed using long short-term memory networks.</p>
+<h2 id="limitations-of-n-gram-language-models">Limitations of N-Gram Language Models<a class="headerlink" href="#limitations-of-n-gram-language-models" title="Permanent link">&para;</a></h2>
+<p>Recall that N-gram language models are used to compute the probability of a sequence of words. For that, we need to compute the conditional probability of a word given the <span class="arithmatex">\(N-1\)</span> previous words. This approach has two main limitations:</p>
+<ul>
+<li>N-gram models consider only a fixed number of preceding words, i.e. <span class="arithmatex">\(N-1\)</span>, to predict the next word, and thus, have <strong>limited contextual information</strong>. This limitation results in the model being unable to capture <strong>long-range dependencies</strong> or understand the context beyond the immediate history.</li>
+<li>To capture dependencies of words that are very distant from each other, we need to use a large <span class="arithmatex">\(N\)</span>. This can be difficult to estimate without a large corpus. In practice, this can lead to <strong>sparsity</strong> issues, where many possible n-grams may not be observed in the training data.</li>
+<li>Even with a large corpus, such a model would require a lot of <strong>memory</strong> to store the counts of all possible <span class="arithmatex">\(N\)</span>-grams.</li>
+</ul>
+<p>So for large <span class="arithmatex">\(N\)</span>, this becomes very impractical. A type of model that can help us with this is the recurrent neural network (RNN).</p>
+<div class="admonition example">
+<p class="admonition-title">long-range dependencies</p>
+<p>Consider the following sentence:</p>
+<blockquote>
+<p>Mary was supposed to study with me. I called her, but she did not &lt;?&gt;.</p>
+</blockquote>
+<p>Where the expected word is "answer".</p>
+<p>A traditional language model (let's say trigram) would probably predict a word like "have", since we can assume that the combination "did not have" is very frequent (or at least more frequent than the word "answer") in regular corpora.</p>
+<p>We would need a very large <span class="arithmatex">\(N\)</span> to capture the dependency between "did not" and "answer", as we would also need to consider the beginning of the sentence "I called her".</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Penta-gram</p>
+<p>To predict the probability of a five-word sequence using a penta-gram model, we can use the following formula:</p>
+<div class="arithmatex">\[P(w_1, w_2, w_3, w_4, w_5) = P(w_1) \cdot P(w_2 | w_1) \cdot P(w_3 | w_1, w_2) \cdot P(w_4 | w_1, w_2, w_3) \cdot P(w_5 | w_1, w_2, w_3, w_4)\]</div>
+<p>We can easily imagine that the larger the <span class="arithmatex">\(N\)</span>, the more sparse the data will be, as large (N-1)-grams are unlikely to appear in the corpus. Thus, the more difficult it will be to estimate the probabilities for the N-grams.</p>
+<p>Note that the formula above shows the <a href="../language_models/#sequence-probabilities">sequence probability</a> (which makes use of the <a href="../language_models/#markov-assumption">Markov assumption</a>), and not the <a href="../language_models/#n-gram-probability">N-gram probability</a>.</p>
+</div>
+<h2 id="recurrent-neural-networks">Recurrent Neural Networks<a class="headerlink" href="#recurrent-neural-networks" title="Permanent link">&para;</a></h2>
+<p>RNNs <strong>propagate information</strong> from the beginning of a sequence through to the end. This allows them to capture long-range dependencies.</p>
+<p>We can see this process illustrated in the following figure:</p>
+<p><img alt="Illustration of a Recurrent Neural Network" src="../../img/sequence-models-rnn.png" /></p>
+<p>Here is a summary of the steps:</p>
+<ul>
+<li>Each of the boxes represent the <strong>values</strong> computed at each particular step.</li>
+<li>The <strong>colors</strong> represent the <strong>information</strong> that is propagated through the network.</li>
+<li>The <strong>arrows</strong> indicate how the information is propagated through the network.</li>
+<li>The information from every word in the sequence is multiplied by the <strong>input weight matrix</strong> <span class="arithmatex">\(W_x\)</span>.</li>
+<li>To propagate information from one step to the next, we multiply the information from the previous step by the <strong>hidden state weight matrix</strong> <span class="arithmatex">\(W_h\)</span>.</li>
+<li>The hidden state at each time step is computed as a <strong>function</strong> of the previous hidden state <span class="arithmatex">\(h_{t-1}\)</span> and the input at the current step <span class="arithmatex">\(x_t\)</span>.</li>
+</ul>
+<p>The hidden states are what allow the RNN to capture long-range dependencies. As we can see, in the last step, there is still information from the first step. This is what allows the RNN to capture long-range dependencies.</p>
+<div class="admonition info">
+<p class="admonition-title">Hidden State</p>
+<p>We can think of the hidden state as a <strong>memory</strong> or internal representation that the network updates as it processes each element of a sequence.</p>
+<p>The hidden state acts as a way for the network to maintain information about what it has seen so far and use that information to make predictions or decisions about the current input.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The weights <span class="arithmatex">\(W_x\)</span> and <span class="arithmatex">\(W_h\)</span> are shared across all steps, that means we only need to learn them <strong>once</strong>, and then we can apply them to every step.</p>
+<p>This is why the RNN is called a <strong>recurrent</strong> neural network, because it performs the same task for every element of a sequence, with the output being dependent on the previous computations.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Loss Function</p>
+<p>For RNNs, typically the <a href="https://en.wikipedia.org/wiki/Cross_entropy">cross entropy</a> loss function is used.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Implementation Note</p>
+<p>Tensorflows <a href="https://www.tensorflow.org/api_docs/python/tf/scanz"><code>tf.scan</code></a> function can be used to implement RNNs. It takes a function and applies it to all elements of a sequence. You can also pass an optional initializer, which is used to initialize the first element of the sequence.</p>
+<p>Here is a simple variant of the <code>scan</code> function, which shows how it basically works:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">elems</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">h_0</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">h_t</span> <span class="o">=</span> <span class="n">h_0</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">ys</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">elems</span><span class="p">:</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="n">y</span><span class="p">,</span> <span class="n">h_t</span> <span class="o">=</span> <span class="n">fn</span><span class="p">([</span><span class="n">e</span><span class="p">,</span> <span class="n">h_t</span><span class="p">],</span> <span class="n">weights</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="n">ys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">return</span> <span class="n">ys</span><span class="p">,</span> <span class="n">h_t</span>
+</code></pre></div>
+<p>Note that in Python, you can pass a function as an argument to another function.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Gated Recurrent Units</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Gated_recurrent_unit"><strong>Gated Recurrent Unit (GRU)</strong></a> is a variant of the RNN that is easier to train, and often performs better in practice.</p>
+<p>It is similar to the RNN, but it has two gates:</p>
+<ul>
+<li>The <strong>update gate</strong> controls how much of the previous state is kept.</li>
+<li>The <strong>reset gate</strong> controls how much of the previous state is forgotten.</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In general, we can say that sequence models like RNNs have the form of a <strong>chain</strong> of repeating modules of neural networks.</p>
+</div>
+<h2 id="bi-directional-rnns">Bi-directional RNNs<a class="headerlink" href="#bi-directional-rnns" title="Permanent link">&para;</a></h2>
+<p>In a bi-directional RNN, information flows in <strong>both directions</strong>.</p>
+<ul>
+<li>The <strong>forward RNN</strong> propagates information from the beginning of the sequence to the end.</li>
+<li>The <strong>backward RNN</strong> propagates information from the end of the sequence to the beginning.</li>
+</ul>
+<p>With this, a bi-directional RNN can capture information from both the past and the future context.</p>
+<p>Note that the computations of the forward and backward RNNs are independent of each other, and thus, can be parallelized.</p>
+<p><img alt="Illustration of a bi-directional RNN" src="https://colah.github.io/posts/2015-09-NN-Types-FP/img/RNN-bidirectional.png" /></p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Given the sentence:</p>
+<blockquote>
+<p>I was trying really hard to get a hold of &lt;?&gt;. Louise finally answered when I was about to give up.</p>
+</blockquote>
+<p>Since Louise doesn't appear until the beginning of the second sentence, a regular RNN would have to guess between "her", "him", or "them". However, a bi-directional RNN would be able to capture the context from the end of the sequence, and thus, would be able to predict "her" with a higher probability.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Deep RNNs</p>
+<p>Another variant of RNNs are deep RNNs. Similar to deep neural networks, deep RNNs are RNNs with <strong>multiple hidden layers</strong>. They can be used to capture more complex patterns. We can think of them as multiple RNNs stacked on top of each other.</p>
+<ol>
+<li>Get the hidden state for the current layer (propagate information through time). ➡️</li>
+<li>Use the hidden state of the current layer as input for the next layer (propagate information through layers). ⬆️</li>
+</ol>
+<p><img alt="Illustration of a deep RNN" src="../../img/sequence-models-deep-rnn.png" /></p>
+</div>
+<h2 id="vanishing-gradient-problem">Vanishing Gradient Problem<a class="headerlink" href="#vanishing-gradient-problem" title="Permanent link">&para;</a></h2>
+<p>While RNNs are very powerful, they have a major limitation: the <strong>vanishing gradient problem</strong>.</p>
+<p>Here is an illustration:</p>
+<p><img alt="Illustration of the vanishing gradient problem" src="../../img/sequence-models-vanishing-gradient.png" /></p>
+<p>The problem can be summarized as follows:</p>
+<ul>
+<li>During the training of neural networks, the <strong>backpropagation algorithm</strong> is used to calculate gradients of the loss function with respect to the weights of the network.</li>
+<li>These gradients are then used to <strong>update the weights</strong> of the network.</li>
+<li>The vanishing gradient problem occurs when the gradients calculated by the backpropagation algorithm become <strong>very small</strong> as the algorithm progresses backward through the layers of the network.</li>
+<li>This means that the weights of the network are not updated significantly, and thus, the network is <strong>not trained effectively</strong>.</li>
+</ul>
+<p>We can summarize the <strong>advantages and disadvantages of RNNs</strong> as follows:</p>
+<ul>
+<li>✅ They can capture long-range dependencies</li>
+<li>✅ They can be used to process sequences of varying lengths</li>
+<li>✅ They use less memory than traditional N-gram language models</li>
+<li>❌ They suffer from the vanishing or exploding gradient problem</li>
+<li>❌ Struggle with very long sequences</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Think of the weights as factors that influence the <strong>importance of information</strong> at each step. If these factors are repeatedly small, the overall impact of the information from earlier steps diminishes exponentially as you go back in time.</p>
+<p>Here is an analogy:</p>
+<p>It's like whispering a secret in a long line of people, and each person passing it on speaks in a softer voice. By the time it reaches the end of the line (representing the earlier steps in the sequence), the original message is barely audible.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Backpropagation</p>
+<p>The backpropagation algorithm is used in the training of deep neural networks (i.e. networks with more than one hidden layer). It is used to <strong>update the weights</strong> of the network by <strong>propagating the error backwards</strong> through the network.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Exploding Gradient Problem</p>
+<p>The opposite of the vanishing gradient problem is the <strong>exploding gradient problem</strong>. This occurs when the gradients calculated by the backpropagation algorithm become very large as the algorithm progresses backward through the layers of the network.</p>
+<p>This can cause the weights of the network to be updated too much, and thus, the network is also <strong>not trained effectively</strong>.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Further Reading</p>
+<p>Here are some nice blog posts for further reading:</p>
+<ul>
+<li><a href="https://blog.paperspace.com/vanishing-gradients-activation-function/">Intro to Optimization in Deep Learning: Vanishing Gradients and Choosing the Right Activation Function</a></li>
+<li><a href="https://blog.paperspace.com/intro-to-optimization-in-deep-learning-gradient-descent/">Intro to optimization in deep learning: Gradient Descent</a></li>
+</ul>
+</div>
+<h2 id="long-short-term-memory-networks">Long Short-Term Memory Networks<a class="headerlink" href="#long-short-term-memory-networks" title="Permanent link">&para;</a></h2>
+<p><strong>Long Short-Term Memory (LSTM)</strong> networks are a type of RNN that are designed to address the vanishing gradient problem.</p>
+<p>The following figure shows the <strong>architecture</strong> of an LSTM model:</p>
+<p><img alt="Illustration of an LSTM model" src="https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-chain.png" /></p>
+<p>LSTM allows your model to <strong>remember and forget</strong> certain inputs. It does this by using a combination of two states:</p>
+<ul>
+<li><strong>Cell state</strong>, that can be thought of as a memory cell. It is the horizontal line running through the top of the diagram. It is like a conveyor belt and runs straight down the entire chain, with only some minor linear interactions.</li>
+<li><strong>Hidden state</strong>, that is used to propagate information through time. It outputs <span class="arithmatex">\(h_t\)</span> and is the vertical line running through the right of the diagram.</li>
+</ul>
+<p>The hidden state is used to control the flow of information in the LSTM. It consists of <strong>three gates</strong>. Gates are a way to optionally let information through. They are passed in the following order:</p>
+<ul>
+<li><strong>Forget gate</strong>: decides what information should be thrown away or kept (left sigmoid gate)</li>
+<li><strong>Input gate</strong>: decides which values from the input to update (middle sigmoid and tanh gates)</li>
+<li><strong>Output gate</strong>: decides what information to pass over to the next hidden state (right sigmoid gate)</li>
+</ul>
+<p>The gates allow the gradients to <strong>flow unchanged</strong>. This means the risk of vanishing or exploding gradients is mitigated.</p>
+<p>An LSTM model is a <strong>chain</strong> of repeating LSTM units.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Here is a little <strong>analogy</strong> that may help you to better understand the idea of LSTMs:</p>
+<p>Imagine you receive a phone call from a friend. ☎️ 👧</p>
+<p>At the time your phone rings, you might be thinking of any number of things unrelated to your friend. 🏃🍕🏖️</p>
+<blockquote>
+<p>This is similar to the cell state at the beginning of the loop.</p>
+</blockquote>
+<p>When you answer the call, you put aside those unrelated thoughts while retaining anything you meant to talk to your friend about. 👧</p>
+<blockquote>
+<p>This is similar to what the forget gate does.</p>
+</blockquote>
+<p>As your conversation progresses, you'll be taking in all the new information from your friend while also thinking of what else might be relevant to talk about next. 🥳☕🏙️</p>
+<blockquote>
+<p>This is similar to what the input gates does.</p>
+</blockquote>
+<p>Finally, you decide what to say next. 🍔</p>
+<blockquote>
+<p>This is similar to what the output gate does.</p>
+</blockquote>
+<p>You will then continue to evolve the conversation in this way until you hang up at the end of the call, leaving you with a new set of thoughts and memories. ☎️👋</p>
+<blockquote>
+<p>your cell states have been updated a few times since you began your conversation</p>
+</blockquote>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>We can say that an LSTM is able to learn <strong>which information</strong> it should <strong>remember</strong> and which information it should <strong>forget</strong>.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>LSTMs were introduced in the paper <a href="https://www.bioinf.jku.at/publications/older/2604.pdf">Long Short-Term Memory</a> by <em>Hochreiter and Schmidhuber</em> (1997).</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Further Reading</p>
+<p>Here is a nice blog post that explains for better understanding the concepts of RNNs and LSTMs: <a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">Understanding LSTM Networks</a>.</p>
+</div>
+<h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>N-gram language models</strong> have <strong>limited contextual information</strong>, and thus, have difficulty capturing long-range dependencies.</li>
+<li><strong>Recurrent Neural Networks (RNNs)</strong> are a type of neural network that can capture long-range dependencies.</li>
+<li>They achieve this by <strong>propagating information</strong> from the beginning of a sequence through to the end.</li>
+<li>There are some variants of RNNs, such as <strong>bi-directional RNNs</strong> and <strong>deep RNNs</strong>, that can be used to capture more complex patterns.</li>
+<li>Even though they can capture long range dependencies, RNNs suffer from the <strong>vanishing gradient problem</strong>. This occurs when the <strong>gradients</strong> calculated by the backpropagation algorithm become <strong>very small</strong>. As a result, the weights of the network are not updated significantly, and thus, the network is <strong>not trained effectively</strong>.</li>
+<li><strong>Long Short-Term Memory (LSTM)</strong> networks are a type of RNN that are designed to address the vanishing gradient problem. They are able to learn which information it should remember and which information it should forget.</li>
+</ul>
+<!-- markdownlint-disable MD041 -->
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="mailto:pascal.keilbach@htwg-konstanz.de" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.8l167.6-182.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/pkeilbach/htwg-practical-nlp" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.tooltips", "navigation.indexes", "navigation.instant", "navigation.tabs", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

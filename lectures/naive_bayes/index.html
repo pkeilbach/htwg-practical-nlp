@@ -1,0 +1,2052 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A practical course on natural language processing @ HTWG Konstanz.">
+      
+      
+      
+      
+        <link rel="prev" href="../logistic_regression/">
+      
+      
+        <link rel="next" href="../vector_space_models/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Naive Bayes - Practical NLP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#naive-bayes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Practical NLP" class="md-header__button md-logo" aria-label="Practical NLP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Practical NLP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Naive Bayes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/pkeilbach/htwg-practical-nlp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pkeilbach/htwg-practical-nlp
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../course_profile/" class="md-tabs__link">
+        
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../getting_started/" class="md-tabs__link">
+        
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../preface/" class="md-tabs__link">
+          
+  
+    
+  
+  Lectures
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../assignments/" class="md-tabs__link">
+        
+  
+    
+  
+  Assignments
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../presentations/" class="md-tabs__link">
+        
+  
+    
+  
+  Presentations
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../faq/" class="md-tabs__link">
+        
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Practical NLP" class="md-nav__button md-logo" aria-label="Practical NLP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Practical NLP
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/pkeilbach/htwg-practical-nlp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pkeilbach/htwg-practical-nlp
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_profile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Lectures
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Lectures
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../preface/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Preface
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../preprocessing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Preprocessing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature_extraction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Extraction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logistic_regression/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logistic Regression
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Naive Bayes
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Naive Bayes
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    <span class="md-ellipsis">
+      TL;DR
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#probability-recap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probability Recap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intersection-of-two-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intersection of Two Events
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditional-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conditional Probability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bayes-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bayes Rule
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laplacian-smoothing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laplacian Smoothing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#word-probabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Word Probabilities
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ratio-of-probabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ratio of Probabilities
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#likelihood" class="md-nav__link">
+    <span class="md-ellipsis">
+      Likelihood
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prior" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prior
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prior-ratio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prior Ratio
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-logarithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Logarithms
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Logarithms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#log-likelihood" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log Likelihood
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-prior-ratio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log Prior Ratio
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-ratio-of-probabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log Ratio of Probabilities
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#training" class="md-nav__link">
+    <span class="md-ellipsis">
+      Training
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prediction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limitations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Takeaways
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vector_space_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vector Space Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../minimum_edit_distance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Minimum Edit Distance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../word_embeddings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Word Embeddings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sequence_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sequence Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attention_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Attention Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../further_reading/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Where to go from here?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../assignments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assignments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../presentations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Presentations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    <span class="md-ellipsis">
+      TL;DR
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#probability-recap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probability Recap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intersection-of-two-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intersection of Two Events
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditional-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conditional Probability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bayes-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bayes Rule
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laplacian-smoothing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laplacian Smoothing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#word-probabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Word Probabilities
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ratio-of-probabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ratio of Probabilities
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#likelihood" class="md-nav__link">
+    <span class="md-ellipsis">
+      Likelihood
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prior" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prior
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prior-ratio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prior Ratio
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-logarithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Logarithms
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Logarithms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#log-likelihood" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log Likelihood
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-prior-ratio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log Prior Ratio
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-ratio-of-probabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log Ratio of Probabilities
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#training" class="md-nav__link">
+    <span class="md-ellipsis">
+      Training
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prediction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limitations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Takeaways
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="naive-bayes">Naive Bayes<a class="headerlink" href="#naive-bayes" title="Permanent link">&para;</a></h1>
+<p>In this lecture, we will learn about the Naive Bayes classifier for binary classification.</p>
+<p>Naive Bayes is a <strong>simple but powerful</strong> classifier that doesn't require to find any hyperparameters.</p>
+<p>It is very fast to train and predict, and can perform surprisingly well.</p>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
+<p>When using Naive Bayes for binary classification, we need to calculate the <strong>likelihood</strong> of a tweet being positive or negative.</p>
+<p>To do this, we need to build the <strong>log ratio of probabilities</strong> for each word in the vocabulary.</p>
+<p>For example, if the word "happy" appears 20 times in positive tweets and 5 times in negative tweets, then the ratio of probabilities is <span class="arithmatex">\(20/5=4\)</span>. This means that the word "happy" is more likely to appear in a positive tweet. If the ratio would be less than 1, then the word is more likely to appear in a negative tweet.</p>
+<p>Taking the <strong>logarithm</strong> is a mathematical trick to avoid <strong>numerical underflow</strong> and simplify the calculations.</p>
+<p>Using the <strong>log ratio of probabilities</strong>, we can calculate the log likelihood of a tweet being positive or negative by summing up the log ratio of probabilities for each word in the tweet, and thus, <strong>predict</strong> the class of the tweet.</p>
+<h2 id="probability-recap">Probability Recap<a class="headerlink" href="#probability-recap" title="Permanent link">&para;</a></h2>
+<p>Let</p>
+<ul>
+<li><span class="arithmatex">\(A\)</span> be the event that a tweet being labeled positive</li>
+<li><span class="arithmatex">\(N_{pos}\)</span> be the number of positive tweets</li>
+<li><span class="arithmatex">\(N\)</span> be the total number of tweets</li>
+</ul>
+<p>Then the probability <span class="arithmatex">\(P(A)\)</span> of a tweet being positive is the <strong>number of positive tweets</strong> divided by the <strong>total number of tweets</strong>:</p>
+<div class="arithmatex">\[
+P(A) = \frac{N_{pos}}{N}
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For <strong>binary classification</strong>, if there a tweet can only be either positive or negative, then the probability of a tweet being negative is <span class="arithmatex">\(1-P(A)\)</span>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>If there are 35 positive tweets and 100 tweets in total, then the probability <span class="arithmatex">\(P(A)\)</span> of a <strong>tweet being positive</strong> is calculated as</p>
+<div class="arithmatex">\[
+P(A)=35/100=0.35.
+\]</div>
+<p>The probability of the <strong>tweet being negative</strong> is then calculated as <span class="arithmatex">\(1-P(A) = 0.65\)</span>.</p>
+</div>
+<p>Let <span class="arithmatex">\(B\)</span> be the event that a tweet contains the word "amazing". Then the probability <span class="arithmatex">\(P(B)\)</span> of a <strong>tweet containing the word "amazing"</strong> is the number of tweets containing the word divided by the total number of tweets:</p>
+<div class="arithmatex">\[
+P(B) = \frac{N_{amazing}}{N}
+\]</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>If there are 5 tweets containing the word "amazing" and 100 tweets in total, then the probability <span class="arithmatex">\(P(B)\)</span> of a tweet containing the word "amazing" is calculated as</p>
+<div class="arithmatex">\[
+P(B) = 5/100 = 0.05
+\]</div>
+</div>
+<h2 id="intersection-of-two-events">Intersection of Two Events<a class="headerlink" href="#intersection-of-two-events" title="Permanent link">&para;</a></h2>
+<p>Let <span class="arithmatex">\(A \cap B\)</span> be the event that a <strong>tweet is positive and contains the word "amazing"</strong>.</p>
+<p>Then the probability <span class="arithmatex">\(P(A \cap B)\)</span> is calculated as the number of tweets that are positive and contain the word "amazing" divided by the total number of tweets:</p>
+<div class="arithmatex">\[
+P(A \cap B) = \frac{N_{pos \cap amazing}}{N}
+\]</div>
+<p>The following Venn diagram illustrates this:</p>
+<p><img alt="Probability of the intersection of two events" src="../../img/naive-bayes-probability-intersection.drawio.svg" /></p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Let's assume a corpus of 100 tweets:</p>
+<ul>
+<li>35 tweets are positive</li>
+<li>65 tweets are negative</li>
+<li>5 tweets contain the word "amazing", but one of them is negative (e.g. "I thought this movie was amazing, but it was actually terrible!")</li>
+</ul>
+<p>Then the probability <span class="arithmatex">\(P(A \cap B)\)</span> of a tweet being positive and containing the word "amazing" is calculated as</p>
+<div class="arithmatex">\[
+P(A \cap B) = \frac{4}{100} = 0.04
+\]</div>
+</div>
+<h2 id="conditional-probability">Conditional Probability<a class="headerlink" href="#conditional-probability" title="Permanent link">&para;</a></h2>
+<p>Continuing the example from above, let's assume we want to calculate the probability of a tweet being positive, but knowing that the tweet contains the word "amazing".</p>
+<p>Looking at the diagram from above, this means we only consider the <strong>blue circle</strong>.</p>
+<p>In our example, this is the <strong>probability of the intersection</strong> of the tweets being positive and containing the word "amazing" divided by the probability of all tweets containing the word "amazing".</p>
+<p>This is called the <strong>conditional probability</strong> of a tweet being positive, <em>given that</em> it contains the word "amazing".</p>
+<div class="admonition quote">
+<p class="admonition-title">Conditional Probability</p>
+<p>Generally speaking, the <strong>conditional probability</strong> <span class="arithmatex">\(P(A|B)\)</span> is the probability of event <span class="arithmatex">\(A\)</span> <em>given that</em> event <span class="arithmatex">\(B\)</span> has already occurred.</p>
+<p>It is calculated as the probability of <strong>both events occuring</strong> divided by the probability of the event that <strong>has already occurred</strong>:</p>
+<div class="arithmatex">\[
+P(A|B) = \frac{P(A \cap B)}{P(B)}
+\]</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Let's continue the example from above, where we have 5 tweets containing the word "amazing" and 4 of them are positive.</p>
+<p>Then the probability <span class="arithmatex">\(P(positive|amazing)\)</span> of a tweet being positive, given that it contains the word "amazing" is calculated as</p>
+<div class="arithmatex">\[
+P(positive|amazing) = \frac{P(positive \cap amazing)}{P(amazing)} = \frac{4/100}{5/100} = \frac{4}{5} = 0.8
+\]</div>
+<p>Now let's turn it around and calculate the probability of a tweet containing the word "amazing", given that it is positive.</p>
+<p>This is calculated as follows:</p>
+<div class="arithmatex">\[
+P(amazing|positive) = \frac{P(positive \cap amazing)}{P(positive)} = \frac{4/100}{35/100} = \frac{4}{35} = 0.1143
+\]</div>
+</div>
+<h2 id="bayes-rule">Bayes Rule<a class="headerlink" href="#bayes-rule" title="Permanent link">&para;</a></h2>
+<p>Now we can derive Bayes Rule, which is based on conditional probabilities.</p>
+<p>We know that the conditional probability <span class="arithmatex">\(P(A|B)\)</span> is calculated as follows:</p>
+<div class="arithmatex">\[
+P(A|B) = \frac{P(A \cap B)}{P(B)}
+\]</div>
+<p>and we also know that the conditional probability <span class="arithmatex">\(P(B|A)\)</span> is calculated as follows:</p>
+<div class="arithmatex">\[
+P(B|A) = \frac{P(B \cap A)}{P(A)}
+\]</div>
+<p>We can rewrite this as:</p>
+<div class="arithmatex">\[
+P(B \cap A) = P(B|A)P(A)
+\]</div>
+<p>Given that</p>
+<div class="arithmatex">\[
+P(A \cap B) = P(B \cap A)
+\]</div>
+<p>we can plug in the previous equation and get:</p>
+<div class="arithmatex">\[
+P(A|B) = \frac{P(B|A)P(A)}{P(B)}
+\]</div>
+<p>With that, we have <strong>derived Bayes Rule</strong>.</p>
+<div class="admonition quote">
+<p class="admonition-title">Bayes Rule</p>
+<p>Bayes Rule is a way to calculate the conditional probability <span class="arithmatex">\(P(A|B)\)</span>, given that we know <span class="arithmatex">\(P(B|A)\)</span>.</p>
+<p>It is calculated as follows:</p>
+<div class="arithmatex">\[
+P(A|B) = \frac{P(B|A)P(A)}{P(B)}
+\]</div>
+<p>In other words: <em>Out of all the times <span class="arithmatex">\(B\)</span> happens, what fraction are due to <span class="arithmatex">\(A\)</span>?</em></p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Suppose that in your dataset, 25% of the positive tweets contain the word "amazing".
+You also know that a total of 13% of the tweets in your dataset contain the word "amazing", and that 40% of the total number of tweets are positive.
+Given the tweet "amazing to be here". What is the probability that this tweet is positive?</p>
+<p>Let <span class="arithmatex">\(A\)</span> be the event that a tweet is positive and <span class="arithmatex">\(B\)</span> be the event that a tweet contains the word "amazing".</p>
+<div class="arithmatex">\[
+\begin{align}
+P(A) &amp;= 0.4 \\
+P(B) &amp;= 0.13 \\
+P(B|A) &amp;= 0.25 \\
+P(A|B) &amp;= \frac{P(B|A)P(A)}{P(B)} = \frac{0.25 \times 0.4}{0.13} = 0.7692
+\end{align}
+\]</div>
+<p>The probability that the tweet "amazing to be here" is positive is 0.7692.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Thomas Bayes</p>
+<p><img alt="Thomas Bayes" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Thomas_Bayes.gif" /></p>
+<p><a href="https://en.wikipedia.org/wiki/Thomas_Bayes">Thomas Bayes</a> (1701 - 1761) was an English statistician, philosopher and Presbyterian minister.
+Bayes never published what would become his most famous accomplishment; his notes were edited and published posthumously by Richard Price.</p>
+<p>In NLP, Bayes' Theorem can be used for:</p>
+<ul>
+<li><strong>classification</strong>: given a document, what is the probability that it belongs to a certain class? (e.g. spam or not spam or sentiment analysis)</li>
+<li><strong>information retrieval</strong>: given a query, what is the probability that a document is relevant?</li>
+<li><strong>word sense disambiguation</strong>: given a word, what is the probability that it has a certain meaning?</li>
+</ul>
+<p>Besides machine learning and NLP, Bayes' Theorem is also used in many other fields, such as:</p>
+<ul>
+<li><strong>medicine</strong>: given a symptom, what is the probability that a patient has a certain disease?</li>
+<li><strong>biology</strong>: given a genetic profile, what is the probability that a person will develop a certain disease?</li>
+<li><strong>economics</strong>: given a set of economic conditions, what is the probability that the economy will be in a recession next year?</li>
+<li><strong>finance</strong>: given a set of financial conditions, what is the probability that a stock will increase in value next year?</li>
+</ul>
+</div>
+<h2 id="laplacian-smoothing">Laplacian Smoothing<a class="headerlink" href="#laplacian-smoothing" title="Permanent link">&para;</a></h2>
+<p>Using Bayes Rule, we can calculate the probability of a word given a class <span class="arithmatex">\(P(w|c)\)</span> as follows:</p>
+<div class="arithmatex">\[
+P(w|c) = \frac{P(c|w)P(w)}{P(c)} = \frac{freq(w,c)}{N_c}
+\]</div>
+<p>However, for <abbr title="out of vocabulary">OOV</abbr> words, if a word has not been seen in the training data, then <span class="arithmatex">\(freq(w,c) = 0\)</span> and thus, <span class="arithmatex">\(P(w|c) = 0\)</span>.</p>
+<p>To account for this, we can use Laplacian Smoothing (aka Additive Smoothing).</p>
+<p>This is done by adding the <strong>smoothing constant</strong> <span class="arithmatex">\(\alpha\)</span> to the numerator and <span class="arithmatex">\(\alpha|V|\)</span> to the denominator:</p>
+<div class="arithmatex">\[
+P(w|c) = \frac{freq(w,c) + \alpha}{N_c + \alpha|V|}
+\]</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>If we add a constant <span class="arithmatex">\(\alpha\)</span> to the numerator, and since there are <span class="arithmatex">\(|V|\)</span> words in the vocabulary to normalize, we have to add <span class="arithmatex">\(\alpha|V|\)</span> to the denominator.
+This way, the probabilities will sum up to 1.</p>
+<p>Note that <span class="arithmatex">\(\alpha\)</span> is usually set to 1.</p>
+</div>
+<h2 id="word-probabilities">Word Probabilities<a class="headerlink" href="#word-probabilities" title="Permanent link">&para;</a></h2>
+<p>Let's assume we have the following table of word frequencies (as from the <a href="../feature_extraction/#positive-and-negative-frequencies">feature extraction lecture</a>):</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(V\)</span></th>
+<th><span class="arithmatex">\(n_{pos}\)</span></th>
+<th><span class="arithmatex">\(n_{neg}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>am</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>happy</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>sad</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>because</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>love</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>hate</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>the</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>weather</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong><span class="arithmatex">\(\sum\)</span></strong></td>
+<td><strong>11</strong></td>
+<td><strong>11</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Note that we added the last row to calculate the total number of words per class.
+This allows us to calculate the probabilities <span class="arithmatex">\(P(w|pos)\)</span> and <span class="arithmatex">\(P(w|neg)\)</span> for each word <span class="arithmatex">\(w\)</span> in a class.</p>
+<p>Using the formula for Laplacian Smoothing with <span class="arithmatex">\(\alpha=1\)</span></p>
+<div class="arithmatex">\[
+P(w|c) = \frac{freq(w,c) + 1}{N_c + |V|}
+\]</div>
+<p>We end up with the following table:</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(V\)</span></th>
+<th><span class="arithmatex">\(P(w \vert pos)\)</span></th>
+<th><span class="arithmatex">\(P(w \vert neg)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I</td>
+<td>0.2</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>am</td>
+<td>0.15</td>
+<td>0.15</td>
+</tr>
+<tr>
+<td>happy</td>
+<td>0.15</td>
+<td>0.05</td>
+</tr>
+<tr>
+<td>sad</td>
+<td>0.05</td>
+<td>0.15</td>
+</tr>
+<tr>
+<td>because</td>
+<td>0.1</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>love</td>
+<td>0.1</td>
+<td>0.05</td>
+</tr>
+<tr>
+<td>hate</td>
+<td>0.05</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>the</td>
+<td>0.1</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>weather</td>
+<td>0.1</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td><strong><span class="arithmatex">\(\sum\)</span></strong></td>
+<td><strong><span class="arithmatex">\(1\)</span></strong></td>
+<td><strong><span class="arithmatex">\(1\)</span></strong></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Let's calculate the probability <span class="arithmatex">\(P(\text{happy}|\text{pos})\)</span> of the word "happy" given that the tweet is <strong>positive</strong>.</p>
+<div class="arithmatex">\[
+\begin{align}
+P(\text{happy}|\text{pos}) &amp;= \frac{freq(\text{happy},\text{pos}) + 1}{N_{pos} + |V|} \\
+&amp;= \frac{2 + 1}{11 + 9} \\
+&amp;= \frac{3}{20} \\
+&amp;= 0.15
+\end{align}
+\]</div>
+<p>Let's calculate the probability <span class="arithmatex">\(P(\text{happy}|\text{neg})\)</span> of the word "happy" given that the tweet is <strong>negative</strong>.</p>
+<div class="arithmatex">\[
+\begin{align}
+P(\text{happy}|\text{neg}) &amp;= \frac{freq(\text{happy},\text{neg}) + 1}{N_{neg} + |V|} \\
+&amp;= \frac{0 + 1}{11 + 9} \\
+&amp;= \frac{1}{20} \\
+&amp;= 0.05
+\end{align}
+\]</div>
+</div>
+<h2 id="ratio-of-probabilities">Ratio of Probabilities<a class="headerlink" href="#ratio-of-probabilities" title="Permanent link">&para;</a></h2>
+<p>Now that we have the probabilities <span class="arithmatex">\(P(w|pos)\)</span> and <span class="arithmatex">\(P(w|neg)\)</span> for each word <span class="arithmatex">\(w\)</span> in a class, we can calculate the ratio of probabilities for each word <span class="arithmatex">\(w\)</span> in the vocabulary:</p>
+<div class="arithmatex">\[
+\frac{P(w \vert pos)}{P(w \vert neg)}
+\]</div>
+<p>Based on the ratio, we can make the following observations:</p>
+<ul>
+<li>If the ratio is <strong>greater than 1</strong>, then the word is more likely to appear in a <strong>positive</strong> tweet.</li>
+<li>If the ratio is <strong>less than 1</strong>, then the word is more likely to appear in a <strong>negative</strong> tweet.</li>
+<li>If the ratio is <strong>equal to 1</strong>, then the word is considered <strong>neutral</strong> and equally likely to appear in a positive or negative tweet.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(V\)</span></th>
+<th><span class="arithmatex">\(P(w \vert pos)\)</span></th>
+<th><span class="arithmatex">\(P(w \vert neg)\)</span></th>
+<th><span class="arithmatex">\(\frac{P(w \vert pos)}{P(w \vert neg)}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I</td>
+<td>0.2</td>
+<td>0.2</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>am</td>
+<td>0.15</td>
+<td>0.15</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>happy</td>
+<td>0.15</td>
+<td>0.05</td>
+<td>3.0</td>
+</tr>
+<tr>
+<td>sad</td>
+<td>0.05</td>
+<td>0.15</td>
+<td>0.3333</td>
+</tr>
+<tr>
+<td>because</td>
+<td>0.1</td>
+<td>0.1</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>love</td>
+<td>0.1</td>
+<td>0.05</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>hate</td>
+<td>0.05</td>
+<td>0.1</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>the</td>
+<td>0.1</td>
+<td>0.1</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>weather</td>
+<td>0.1</td>
+<td>0.1</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Words that are neutral don't provide any information for classification.</p>
+</div>
+<h2 id="likelihood">Likelihood<a class="headerlink" href="#likelihood" title="Permanent link">&para;</a></h2>
+<p>Now that we have the ratio of probabilities for each word <span class="arithmatex">\(w\)</span> in the vocabulary, we can calculate the probability of a tweet being positive or negative.</p>
+<p>To <strong>classify a whole tweet</strong>, we need to <strong>multiply the ratios of probabilities</strong> for each word in the tweet.</p>
+<p>This is called the <strong>likelihood</strong> <span class="arithmatex">\(P(tweet|pos)\)</span> of a tweet being positive and is calculated as follows:</p>
+<div class="arithmatex">\[
+P(\text{pos}|\text{tweet}) = \prod_{i=1}^{m} \frac{P(w_i|pos)}{P(w_i|neg)}
+\]</div>
+<p>where</p>
+<ul>
+<li><span class="arithmatex">\(m\)</span> is the number of words in the tweet and</li>
+<li><span class="arithmatex">\(w_i\)</span> is the <span class="arithmatex">\(i\)</span>-th word in the tweet.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>If the likelihood is greater than 1, then the tweet is more likely to be positive.</li>
+<li>If the likelihood is less than 1, then the tweet is more likely to be negative.</li>
+<li>If the likelihood is equal to 1, then the tweet is equally likely to be positive or negative and thus, neutral.</li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Given the table above, let's see if the following tweet is positive or negative:</p>
+<blockquote>
+<p>I am happy because I love ice cream</p>
+</blockquote>
+<p>We have the following ratios of probabilities:</p>
+<div class="arithmatex">\[
+\begin{align}
+\frac{P(\text{I}|\text{pos})}{P(\text{I}|\text{neg})} &amp;= \frac{0.2}{0.2} = 1.0 \\
+\frac{P(\text{am}|\text{pos})}{P(\text{am}|\text{neg})} &amp;= \frac{0.15}{0.15} = 1.0 \\
+\frac{P(\text{happy}|\text{pos})}{P(\text{happy}|\text{neg})} &amp;= \frac{0.15}{0.05} = 3.0 \\
+\frac{P(\text{because}|\text{pos})}{P(\text{because}|\text{neg})} &amp;= \frac{0.1}{0.1} = 1.0 \\
+\frac{P(\text{I}|\text{pos})}{P(\text{I}|\text{neg})} &amp;= \frac{0.2}{0.2} = 1.0 \\
+\frac{P(\text{love}|\text{pos})}{P(\text{love}|\text{neg})} &amp;= \frac{0.1}{0.05} = 2.0 \\
+\end{align}
+\]</div>
+<p>Note that the words "ice" and "cream" are not in the vocabulary, so we ignore them.</p>
+<p>Given these ratios, we can calculate the likelihood of the tweet being positive as follows:</p>
+<div class="arithmatex">\[
+\begin{align}
+P(\text{pos}|\text{tweet}) &amp;= \prod_{i=1}^{m} \frac{P(w_i|pos)}{P(w_i|neg)} \\
+&amp;= 1.0 \times 1.0 \times 3.0 \times 1.0 \times 1.0 \times 2.0 \\
+&amp;= 6.0
+\end{align}
+\]</div>
+</div>
+<h2 id="prior">Prior<a class="headerlink" href="#prior" title="Permanent link">&para;</a></h2>
+<p>The prior <span class="arithmatex">\(P(pos)\)</span> is the probability of a tweet being positive, <strong>regardless</strong> of the words in the tweet.</p>
+<p>The prior probability represents the probability of a particular class <strong>before considering any features</strong>.</p>
+<p>The prior is especially important when the dataset is <strong>unbalanced</strong>.</p>
+<p>In a binary classification problem, the prior for a class is calculated as follows:</p>
+<div class="arithmatex">\[
+prior = \frac{N_c}{N}
+\]</div>
+<p>where</p>
+<ul>
+<li><span class="arithmatex">\(N_c\)</span> is the number of tweets in the class and</li>
+<li><span class="arithmatex">\(N\)</span> is the total number of tweets.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Let's assume we have the following corpus of 100 tweets:</p>
+<ul>
+<li>35 tweets are positive</li>
+<li>65 tweets are negative</li>
+</ul>
+<p>Then the prior probability of a tweet being positive is calculated as</p>
+<div class="arithmatex">\[
+prior = \frac{N_c}{N} = \frac{35}{100} = 0.35
+\]</div>
+<p>and the prior probability of a tweet being negative is calculated as</p>
+<div class="arithmatex">\[
+prior = \frac{N_c}{N} = \frac{65}{100} = 0.65
+\]</div>
+</div>
+<h2 id="prior-ratio">Prior Ratio<a class="headerlink" href="#prior-ratio" title="Permanent link">&para;</a></h2>
+<p>The prior ratio is the ratio of the prior probabilities of the two classes.</p>
+<p>In a binary classification problem, the prior ratio is calculated as follows:</p>
+<div class="arithmatex">\[
+\text{prior ratio} = \frac{P(pos)}{P(neg)}
+\]</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Let's assume we have the following corpus of 100 tweets:</p>
+<ul>
+<li>35 tweets are positive</li>
+<li>65 tweets are negative</li>
+</ul>
+<p>Then the prior ratio is calculated as</p>
+<div class="arithmatex">\[
+\frac{P(pos)}{P(neg)} = \frac{0.35}{0.65} = 0.5385
+\]</div>
+</div>
+<p>If we apply the prior to the likelihood, we get the following formula:</p>
+<div class="arithmatex">\[
+P(\text{pos}|\text{tweet}) = \frac{P(pos)}{P(neg)} \times \prod_{i=1}^{m} \frac{P(w_i|pos)}{P(w_i|neg)}
+\]</div>
+<h2 id="using-logarithms">Using Logarithms<a class="headerlink" href="#using-logarithms" title="Permanent link">&para;</a></h2>
+<p>The likelihood is the product of many probabilities, i.e. values between 0 and 1.</p>
+<p>This can have several consequences, and numbers can become so <strong>small</strong> that computers have trouble representing them.</p>
+<p>This is called <strong>numerical underflow</strong>.</p>
+<p>To avoid this, we can use the logarithm instead.</p>
+<div class="admonition warning">
+<p class="admonition-title">Numerical Underflow</p>
+<p>Numerical underflow occurs when the result of a calculation is too small to be represented by the computer.</p>
+<p>This can happen when multiplying many small numbers, because the result gets smaller and smaller with each multiplication.</p>
+<p>The computer can only represent numbers up to a certain precision, so at some point the result will be rounded to zero.</p>
+<p>This is a problem and can lead to errors, as we lose information about the probabilities.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Because they avoid the risk of numerical underflow and they are way more convenient to work with, <strong>logarithms</strong> appear throughout deep-learning and NLP.</p>
+</div>
+<h3 id="log-likelihood">Log Likelihood<a class="headerlink" href="#log-likelihood" title="Permanent link">&para;</a></h3>
+<p>Applying the logarithm to the likelihood formula from above, we get the following formula:</p>
+<div class="arithmatex">\[
+\log P(\text{pos}|\text{tweet}) = \log \frac{P(pos)}{P(neg)} + \sum_{i=1}^{m} \log \frac{P(w_i|pos)}{P(w_i|neg)}
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Logarithm</p>
+<p>Besides avoiding numerical underflow, another advantage of logarithms is that they allow us to use simpler operations, such as addition instead of multiplication.</p>
+<p>This is because of the following property of logarithms:</p>
+<div class="arithmatex">\[
+\log (ab) = \log a + \log b
+\]</div>
+<p>Thus, the product changes to a sum in the formula above.</p>
+</div>
+<h3 id="log-prior-ratio">Log Prior Ratio<a class="headerlink" href="#log-prior-ratio" title="Permanent link">&para;</a></h3>
+<p>When using the logarithm, we speak of the prior as the <strong>log prior</strong>, and of the prior ratio as the <strong>log prior ratio</strong>.</p>
+<div class="arithmatex">\[
+\log \frac{P(pos)}{P(neg)}
+\]</div>
+<h3 id="log-ratio-of-probabilities">Log Ratio of Probabilities<a class="headerlink" href="#log-ratio-of-probabilities" title="Permanent link">&para;</a></h3>
+<p>Now, if we calculate the ratio of probabilities using the logarithm, the table above looks as follows:</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(V\)</span></th>
+<th><span class="arithmatex">\(P(w \vert pos)\)</span></th>
+<th><span class="arithmatex">\(P(w \vert neg)\)</span></th>
+<th><span class="arithmatex">\(\log \frac{P(w \vert pos)}{P(w \vert neg)}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I</td>
+<td>0.2</td>
+<td>0.2</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>am</td>
+<td>0.15</td>
+<td>0.15</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>happy</td>
+<td>0.15</td>
+<td>0.05</td>
+<td>1.0986</td>
+</tr>
+<tr>
+<td>sad</td>
+<td>0.05</td>
+<td>0.15</td>
+<td>-1.0986</td>
+</tr>
+<tr>
+<td>because</td>
+<td>0.1</td>
+<td>0.1</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>love</td>
+<td>0.1</td>
+<td>0.05</td>
+<td>0.6931</td>
+</tr>
+<tr>
+<td>hate</td>
+<td>0.05</td>
+<td>0.1</td>
+<td>-0.6931</td>
+</tr>
+<tr>
+<td>the</td>
+<td>0.1</td>
+<td>0.1</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>weather</td>
+<td>0.1</td>
+<td>0.1</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Let's look at a single example, e.g. the word "happy". The ratio of probabilities is calculated as follows:</p>
+<div class="arithmatex">\[
+\log \frac{P(\text{happy}|\text{pos})}{P(\text{happy}|\text{neg})} = \log \frac{0.15}{0.05} = \log 3.0 = 1.0986
+\]</div>
+</div>
+<h2 id="training">Training<a class="headerlink" href="#training" title="Permanent link">&para;</a></h2>
+<p>For training of the Naive Bayes classifier for binary classification, we need to do the following:</p>
+<ol>
+<li>Calculate the <a href="#log-prior-ratio">log prior ratio</a></li>
+<li>Compute the table of <a href="../feature_extraction/#positive-and-negative-frequencies">word frequencies</a> for each class</li>
+<li>Compute the table of <a href="#word-probabilities">conditional probabilities</a> of a word given a class using Laplacian Smoothing</li>
+<li>Compute the <a href="#log-ratio-of-probabilities">log ratio</a> of the conditional probabilities</li>
+</ol>
+<p>Of course, we need to apply the desired preprocessing steps before the training.</p>
+<p><img alt="Naive Bayes Training" src="../../img/naive-bayes-training.drawio.svg" /></p>
+<h2 id="prediction">Prediction<a class="headerlink" href="#prediction" title="Permanent link">&para;</a></h2>
+<p>To predict a tweet using the Naive Bayes classifier for binary classification, we need to apply the likelihood formula to the tweet, and check if the log likelihood is greater than 0.</p>
+<div class="arithmatex">\[
+\log \frac{P(pos)}{P(neg)} + \sum_{i=1}^{m} \log \frac{P(w_i|pos)}{P(w_i|neg)} &gt; 0
+\]</div>
+<p>So for every word in the tweet, we look up the log ratio of probabilities in our likelihood table and sum them up. Then we add the log prior ratio to the sum.</p>
+<p><abbr title="out of vocabulary">OOV</abbr> Words are <strong>ignored</strong>. They are considered neutral and do not contribute to the log likelihood, as the model can only give a score for words that it has seen in the training data.</p>
+<p><img alt="Naive Bayes Prediction" src="../../img/naive-bayes-prediction.drawio.svg" /></p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Let's assume we have a <strong>balanced corpus</strong>:</p>
+<div class="arithmatex">\[
+\log \frac{P(pos)}{P(neg)} = \log \frac{0.5}{0.5} = \log 1.0 = 0.0
+\]</div>
+<p>Given the table above, let's see if the following tweet is positive or negative:</p>
+<blockquote>
+<p>I am happy because I love ice cream</p>
+</blockquote>
+<p>We have the following <strong>ratios of probabilities</strong>:</p>
+<div class="arithmatex">\[
+\begin{align}
+\log \frac{P(\text{I}|\text{pos})}{P(\text{I}|\text{neg})} &amp;= \log \frac{0.2}{0.2} = \log 1.0 = 0.0 \\
+\log \frac{P(\text{am}|\text{pos})}{P(\text{am}|\text{neg})} &amp;= \log \frac{0.15}{0.15} = \log 1.0 = 0.0 \\
+\log \frac{P(\text{happy}|\text{pos})}{P(\text{happy}|\text{neg})} &amp;= \log \frac{0.15}{0.05} = \log 3.0 = 1.0986 \\
+\log \frac{P(\text{because}|\text{pos})}{P(\text{because}|\text{neg})} &amp;= \log \frac{0.1}{0.1} = \log 1.0 = 0.0 \\
+\log \frac{P(\text{I}|\text{pos})}{P(\text{I}|\text{neg})} &amp;= \log \frac{0.2}{0.2} = \log 1.0 = 0.0 \\
+\log \frac{P(\text{love}|\text{pos})}{P(\text{love}|\text{neg})} &amp;= \log \frac{0.1}{0.05} = \log 2.0 = 0.6931 \\
+\end{align}
+\]</div>
+<p>Note that the words "ice" and "cream" are not in the vocabulary, so we ignore them.</p>
+<p>Given these ratios, and considering the <strong>log prior</strong>, we can calculate the <strong>log likelihood</strong> of the tweet being positive as follows:</p>
+<div class="arithmatex">\[
+\begin{align}
+\log \frac{P(pos)}{P(neg)} + \sum_{i=1}^{m} \log \frac{P(w_i|pos)}{P(w_i|neg)} &amp;= 0.0 + 0.0 + 0.0 + 1.0986 + 0.0 + 0.0 + 0.6931\\
+&amp;= 1.0986 + 0.6931 \\
+&amp;= 1.7917
+\end{align}
+\]</div>
+<p>Since <span class="arithmatex">\(1.7917 &gt; 0\)</span>, the tweet is classified as <strong>positive</strong>.</p>
+<p>Note how only the words "happy" and "love" contribute to the log likelihood, since the other words are neutral.</p>
+</div>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
+<p>Naive Bayes is a very simple but powerful classifier and doesn't require to find any hyperparameters.</p>
+<p>However, it has some limitations, with the most important one being the <strong>independence assumption</strong>.</p>
+<p>The independence assumption in Naive Bayes refers to the assumption that the presence or absence of a particular feature is independent of the presence or absence of any other feature, given the class label.</p>
+<p>In other words, Naive Bayes assumes that the features are independent of each other, which typically isn't the case in NLP.</p>
+<p>Some words are more likely to appear together than others, and are thus not independent. Also words can be related to the thing they describe.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<blockquote>
+<p>It is sunny and hot in the Sahara desert.</p>
+</blockquote>
+<ul>
+<li>the word "sunny" is more likely to appear with the word "hot" than with the word "cold"</li>
+<li>the word "Sahara" is more likely to appear with the word "desert" than with the word "ocean"</li>
+<li>the words "sunny" and "hot" are related to the word "desert"</li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Which word to fill in the blank?</p>
+<blockquote>
+<p>It is always cold and snowy in ...</p>
+</blockquote>
+<p>For Naive Bayes, the words "spring", "summer", "autumn" and "winter" are all equally likely, but from the context, we know that "winter" is the most obvious candidate.</p>
+</div>
+<h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Naive Bayes is a <strong>simple but powerful</strong> classifier that doesn't require to find any hyperparameters.</li>
+<li>Naive Bayes is based on Bayes Rule, which is a way to calculate the <strong>conditional probability</strong> <span class="arithmatex">\(P(A|B)\)</span>, given that we know <span class="arithmatex">\(P(B|A)\)</span>.</li>
+<li>By using <strong>Logarithms</strong>, we can avoid numerical underflow and simplify the calculations.</li>
+<li>For <strong>training</strong> a Naive Bayes classifier, we need to obtain the <a href="#log-ratio-of-probabilities">log ratio of probabilities</a> for each word in the vocabulary.</li>
+<li>For <strong>prediction</strong>, we need to use those ratios to calculate the <a href="#log-likelihood">log likelihood</a> of a tweet being positive or negative.</li>
+<li>The main limitation of Naive Bayes is the <strong>independence assumption</strong>, which assumes that the features are independent of each other, which typically isn't the case in NLP.</li>
+<li>However, because of its simplicity, Naive Bayes is often used as a <strong>baseline</strong> for text classification tasks and can perform surprisingly well.</li>
+</ul>
+<!-- markdownlint-disable MD041 -->
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="mailto:pascal.keilbach@htwg-konstanz.de" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.8l167.6-182.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/pkeilbach/htwg-practical-nlp" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.tooltips", "navigation.indexes", "navigation.instant", "navigation.tabs", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2066 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A practical course on natural language processing @ HTWG Konstanz.">
+      
+      
+      
+      
+        <link rel="prev" href="../vector_space_models/">
+      
+      
+        <link rel="next" href="../language_models/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Minimum Edit Distance - Practical NLP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#minimum-edit-distance" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Practical NLP" class="md-header__button md-logo" aria-label="Practical NLP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Practical NLP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Minimum Edit Distance
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/pkeilbach/htwg-practical-nlp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pkeilbach/htwg-practical-nlp
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../course_profile/" class="md-tabs__link">
+        
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../getting_started/" class="md-tabs__link">
+        
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../preface/" class="md-tabs__link">
+          
+  
+    
+  
+  Lectures
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../assignments/" class="md-tabs__link">
+        
+  
+    
+  
+  Assignments
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../presentations/" class="md-tabs__link">
+        
+  
+    
+  
+  Presentations
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../faq/" class="md-tabs__link">
+        
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Practical NLP" class="md-nav__button md-logo" aria-label="Practical NLP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Practical NLP
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/pkeilbach/htwg-practical-nlp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pkeilbach/htwg-practical-nlp
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_profile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Lectures
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Lectures
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../preface/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Preface
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../preprocessing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Preprocessing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature_extraction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Extraction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logistic_regression/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logistic Regression
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../naive_bayes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Naive Bayes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vector_space_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vector Space Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Minimum Edit Distance
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Minimum Edit Distance
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#edit-distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Edit Distance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Applications
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#autocorrect-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autocorrect Process
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifying-incorrect-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identifying Incorrect Words
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finding-strings-within-edit-distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finding Strings within Edit Distance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Finding Strings within Edit Distance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#insertion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insertion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deletion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replacement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Replacement
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filtering-candidate-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering Candidate Words
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calculating-word-probabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculating Word Probabilities
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-levenshtein-distance-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Levenshtein Distance Algorithm
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Levenshtein Distance Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edit-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      Edit Cost
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      Edit Paths
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-distance-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating the Distance Matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initializing-the-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initializing the Matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deriving-the-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deriving the Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completing-the-first-rows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Completing the first rows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completing-the-remaining-cells" class="md-nav__link">
+    <span class="md-ellipsis">
+      Completing the remaining cells
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limitations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Takeaways
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../word_embeddings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Word Embeddings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sequence_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sequence Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attention_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Attention Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../further_reading/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Where to go from here?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../assignments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assignments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../presentations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Presentations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#edit-distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Edit Distance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Applications
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#autocorrect-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autocorrect Process
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifying-incorrect-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identifying Incorrect Words
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finding-strings-within-edit-distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finding Strings within Edit Distance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Finding Strings within Edit Distance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#insertion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insertion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deletion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replacement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Replacement
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filtering-candidate-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering Candidate Words
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calculating-word-probabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculating Word Probabilities
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-levenshtein-distance-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Levenshtein Distance Algorithm
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Levenshtein Distance Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edit-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      Edit Cost
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      Edit Paths
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-distance-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating the Distance Matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initializing-the-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initializing the Matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deriving-the-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deriving the Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completing-the-first-rows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Completing the first rows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completing-the-remaining-cells" class="md-nav__link">
+    <span class="md-ellipsis">
+      Completing the remaining cells
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limitations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Takeaways
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="minimum-edit-distance">Minimum Edit Distance<a class="headerlink" href="#minimum-edit-distance" title="Permanent link">&para;</a></h1>
+<p>Minimum edit distance is another similarity measure that can be used to find strings that are close to a given string.</p>
+<p>A popular use in NLP is in <strong>autocorrection</strong> systems, where it is used to suggest corrections for misspelled words. Autocorrect is a feature that is built into many devices and applications, such as smartphones, email clients, and text processors.</p>
+<p>It does not always work as intended, and sometimes it can even be quite funny. You have probably seen examples like the following:</p>
+<div style="display: flex; justify-content: space-around; align-items: center; margin: ">
+  <img src="https://img.buzzfeed.com/buzzfeed-static/static/2019-10/15/16/asset/6112cf8bfdeb/sub-buzz-214-1571155829-1.jpg?downsize=600:*&output-format=auto&output-quality=auto" width="300" alt="A funny autocorrect example">
+  <img src="https://i.chzbgr.com/full/9638603264/h398BF81A/can-go-gym-tomorrow-sure-abby-baby-oh-boy-here-go-read-859-pm-imessage" width="300" alt="Another funny autocorrect example">
+</div>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Find more funny autocorrect examples <a href="https://www.buzzfeed.com/andrewziegler/autocorrect-fails-of-the-decade">here</a> and <a href="https://cheezburger.com/15340293/25-outrageous-autocorrect-fails-to-make-you-lol-cheezburger">here</a>.</p>
+</div>
+<h2 id="edit-distance">Edit Distance<a class="headerlink" href="#edit-distance" title="Permanent link">&para;</a></h2>
+<p>Edit distance, also known as Levenshtein distance, is a <strong>measure of the similarity</strong> between two strings by calculating the <strong>minimum number of single-character edits</strong> required to change one string into the other. It provides a quantitative measure of how <em>different</em> or <em>similar</em> two strings are.</p>
+<p>The operations that can be performed are:</p>
+<ul>
+<li>Insertion</li>
+<li>Deletion</li>
+<li>Replacement</li>
+</ul>
+<p>For the <strong>minimum edit distance</strong>, we want to find the <strong>minimum number of operations</strong> that are needed to transform one string into another string.</p>
+<div class="admonition quote">
+<p class="admonition-title">Minimum Edit Distance</p>
+<p>Given a string, the <strong>minimum edit distance</strong> is the minimum number of single-character edits (insertions, deletions, or substitutions) required to change one string into the other.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The term is named after the Soviet mathematician <strong>Vladimir Levenshtein</strong>, who first introduced the concept in 1965.</p>
+<p><img alt="Vladimir Levenshtein" src="https://ethw.org/w/images/8/83/Levenshtein.jpg" /></p>
+<p>Note that there are other algorithms for calculating the edit distance, including the <a href="https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm">Wagner-Fischer algorithm</a>, the <a href="https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm">Needleman-Wunsch algorithm</a>, or the <a href="https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance">Jaro-Winkler algorithm</a>.</p>
+<p>Also see NLTK's <a href="https://www.nltk.org/api/nltk.metrics.distance.html">edit distance</a> module for more information.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Consider the words <code>kitten</code> 🐈 and <code>sitting</code> 🧘. The edit distance between them is 3 because the following three operations can transform one into the other:</p>
+<ul>
+<li>Replace <code>k</code> with <code>s</code></li>
+<li>Replace <code>e</code> with <code>i</code></li>
+<li>Insert <code>g</code> at the end</li>
+</ul>
+<p>For this intuitive example, we do not consider the cost of each operation. We will look at that later.</p>
+</div>
+<h2 id="applications">Applications<a class="headerlink" href="#applications" title="Permanent link">&para;</a></h2>
+<p>The edit distance is used in various NLP applications, including:</p>
+<ul>
+<li>
+<p><strong>Autocorrection / Spell checking:</strong> Minimum Edit Distance is often used in spell-checking algorithms to <strong>suggest corrections for misspelled words</strong>. By calculating the minimum edit distance between a misspelled word and candidate words in a dictionary, a spell checker can identify potential corrections.</p>
+</li>
+<li>
+<p><strong>Information Retrieval:</strong> Minimum Edit Distance can be used in information retrieval systems to <strong>find similar words or phrases</strong> in a database. This is particularly useful in <strong>search engines</strong> when dealing with queries that may contain <strong>typos</strong> or slight variations.</p>
+</li>
+<li>
+<p><strong>Plagiarism Detection:</strong> Minimum Edit Distance can be applied to compare and analyze text documents for plagiarism detection. By measuring the similarity between documents in terms of edit operations, it becomes possible to <strong>identify instances of copied or closely paraphrased</strong> content.</p>
+</li>
+<li>
+<p><strong>OCR (Optical Character Recognition):</strong> OCR systems may use Minimum Edit Distance to recognize and correct errors in the recognized text. It helps improve the accuracy of <strong>converting scanned or photographed documents</strong> into machine-readable text.</p>
+</li>
+</ul>
+<p>But also in other fields, such as:</p>
+<ul>
+<li>
+<p><strong>DNA Sequencing:</strong> In bioinformatics, Minimum Edit Distance is applied to <strong>compare DNA or RNA sequences</strong>. It helps identify the evolutionary relationships between different genetic sequences by quantifying the number of mutations needed to transform one sequence into another.</p>
+</li>
+<li>
+<p><strong>Genealogy and Historical Linguistics:</strong> Minimum Edit Distance is used to study language evolution and historical relationships between languages by <strong>comparing words and phrases across different time periods</strong>.</p>
+</li>
+</ul>
+<p><img alt="Applications of Minimum Edit Distance for DNA Sequencing" src="https://www.baeldung.com/wp-content/uploads/sites/4/2020/08/lev-sample-blue.png" /></p>
+<p>For this lecture, we will specifally look at how the Minimum Edit Distance can be used in <strong>autocorrection</strong> systems.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The notebook associated with this lecture is the <code>minimum_edit_distance.ipynb</code> notebook in the <code>notebooks</code> folder.</p>
+</div>
+<h2 id="autocorrect-process">Autocorrect Process<a class="headerlink" href="#autocorrect-process" title="Permanent link">&para;</a></h2>
+<p>The autocorrect process can be broken down into four steps:</p>
+<ol>
+<li>Identify an incorrect word</li>
+<li>Find strings <span class="arithmatex">\(n\)</span> edit distance away</li>
+<li>Filter candidate words</li>
+<li>Calculate the word probabilities</li>
+</ol>
+<p><img alt="Autocorrect Process" src="../../img/minimum-edit-distance-autocorrect-process.drawio.svg" /></p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Consider the following sentence:</p>
+<blockquote>
+<p>"my <em>deah</em> friend" ❌</p>
+</blockquote>
+<ol>
+<li>
+<p>We can easily see that the word <code>deah</code> is incorrect. The intended word is probably <code>dear</code>.</p>
+<ul>
+<li>my <em>dear</em> friend ✅</li>
+</ul>
+</li>
+<li>
+<p>We can find words that are <strong>1 edit distance</strong> away from <code>deah</code>:</p>
+<p>Note that we do not care if the words are valid words or not. We just want to find words that are 1 edit distance away from <code>deah</code>.</p>
+<ul>
+<li>Replacements, e.g. <code>dear</code>, <code>dead</code>, <code>deas</code>, <code>yeah</code></li>
+<li>Insertions, e.g. <code>deahs</code>, <code>deaht</code>, <code>deahh</code></li>
+<li>Deletions, e.g. <code>dea</code>, <code>deh</code>, <code>eah</code></li>
+</ul>
+</li>
+<li>
+<p>We can filter out words that are not in the vocabulary.</p>
+<ul>
+<li><code>dear</code> ✅</li>
+<li><code>dead</code> ✅</li>
+<li><code>deal</code> ✅</li>
+<li><code>deas</code> ❌</li>
+<li>...</li>
+</ul>
+</li>
+<li>
+<p>We can calculate the word probabilities to find the most likely word.</p>
+<p>In our case, we can intuitively assume that <code>dear</code> is more likely than <code>dead</code>.</p>
+<ul>
+<li>My <em>dear</em> friend ✅</li>
+<li>My <em>dead</em> friend 😱🧟</li>
+</ul>
+</li>
+</ol>
+</div>
+<h2 id="identifying-incorrect-words">Identifying Incorrect Words<a class="headerlink" href="#identifying-incorrect-words" title="Permanent link">&para;</a></h2>
+<p>For humans, it is usually quite easy to identify incorrect words. But for a computer, we need to find a way to identify incorrect words.</p>
+<p>The simplified assumption we can in the lecture is that if a word is not in the vocabulary, then it is probably a typo.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">identify_incorrect_words</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">vocab</span><span class="p">):</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">incorrect_words</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="hll">        <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">vocab</span><span class="p">:</span>
+</span><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>            <span class="n">incorrect_words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="k">return</span> <span class="n">incorrect_words</span>
+</code></pre></div>
+<p>Note that the vocabulary is a <strong>set of words</strong>, i.e. it does not contain duplicates.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;happy&quot;</span><span class="p">,</span> <span class="s2">&quot;sad&quot;</span><span class="p">,</span> <span class="s2">&quot;excited&quot;</span><span class="p">,</span> <span class="s2">&quot;happy&quot;</span><span class="p">,</span> <span class="s2">&quot;sad&quot;</span><span class="p">,</span> <span class="s2">&quot;happy&quot;</span><span class="p">,</span> <span class="s2">&quot;cool&quot;</span><span class="p">,</span> <span class="s2">&quot;funny&quot;</span><span class="p">]</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">vocab</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">vocab</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">{</span><span class="s1">&#39;happy&#39;</span><span class="p">,</span> <span class="s1">&#39;sad&#39;</span><span class="p">,</span> <span class="s1">&#39;excited&#39;</span><span class="p">,</span> <span class="s1">&#39;funny&#39;</span><span class="p">,</span> <span class="s1">&#39;cool&#39;</span><span class="p">}</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>There are much more sophisticated techniques for identifying words that are probably incorrect by looking at the context of the word.
+However, in this lecture, we will only look at spelling errors, not grammatical or contextual errors.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Consider the following sentence:</p>
+<ul>
+<li>Happy birthday to you, my <em>dear</em> friend ✅</li>
+<li>Happy birthday to you, my <em>deah</em> friend ❌</li>
+</ul>
+<p>This is as expected, since <code>deah</code> is not in the vocabulary. But since we can expect the word <code>deer</code> to be in the vocabulary, we would not identify the following sentence as incorrect:</p>
+<ul>
+<li>Happy birthday to you, my <em>deer</em> friend ✅🦌</li>
+</ul>
+</div>
+<h2 id="finding-strings-within-edit-distance">Finding Strings within Edit Distance<a class="headerlink" href="#finding-strings-within-edit-distance" title="Permanent link">&para;</a></h2>
+<p>Next, we want to find strings that are within a certain edit distance <span class="arithmatex">\(n\)</span> from a given string.</p>
+<p>An edit is a type of operation that we can perform on a string to change it into another string, and ss we've already learned, there are three types of edits:</p>
+<ul>
+<li>Insertion</li>
+<li>Deletion</li>
+<li>Replacement</li>
+</ul>
+<p>So the edit distance <span class="arithmatex">\(n\)</span> tells us, how many operations one string is away from another string. We can combine these operations in any order.</p>
+<p>By combining these edits, we can find a list of all possible strings that are <span class="arithmatex">\(n\)</span> edit distances away from a given string, regardless of wheter those strings are <strong>valid words or not</strong>.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>For autocorrect, we want to find strings that are close to the incorrect word. For autocorrect, a good guess would be to find strings that are not more than 3 edit distances away from the incorrect word.</p>
+</div>
+<p>To implement the following operations, Python <a href="https://realpython.com/lessons/indexing-and-slicing/">index slicing</a> comes in handy. It allows you to access a subset of a sequence by specifying a range of indices.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">word</span> <span class="o">=</span> <span class="s2">&quot;play&quot;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="s1">&#39;pl&#39;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="s1">&#39;ay&#39;</span>
+</code></pre></div>
+<h3 id="insertion">Insertion<a class="headerlink" href="#insertion" title="Permanent link">&para;</a></h3>
+<p>An insertion is when we insert a character into a string. It does not matter where we insert the character.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span> <span class="nf">insert_char</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">char</span><span class="p">):</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="k">return</span> <span class="n">word</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">char</span> <span class="o">+</span> <span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">:]</span>
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>For the word <code>to</code></p>
+<ul>
+<li>if we do an insertion of the character <code>p</code>, we get the word <code>top</code>.</li>
+<li>if we do an insertion of the character <code>o</code>, we get the word <code>too</code>.</li>
+<li>if we do an insertion of the character <code>w</code>, we get the word <code>two</code>.</li>
+</ul>
+</div>
+<h3 id="deletion">Deletion<a class="headerlink" href="#deletion" title="Permanent link">&para;</a></h3>
+<p>A deletion is when we remove a character from a string. It does not matter which character we delete.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span> <span class="nf">delete_char</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="k">return</span> <span class="n">word</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>For the word <code>hat</code></p>
+<ul>
+<li>if we remove the character <code>h</code>, we get the word <code>at</code>.</li>
+<li>if we remove the character <code>a</code>, we get the word <code>ht</code>.</li>
+<li>if we remove the character <code>t</code>, we get the word <code>ha</code>.</li>
+</ul>
+</div>
+<h3 id="replacement">Replacement<a class="headerlink" href="#replacement" title="Permanent link">&para;</a></h3>
+<p>A replacement is when we replace a character in a string with another character. It does not matter which character we replace.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">def</span> <span class="nf">replace_char</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">char</span><span class="p">):</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="k">return</span> <span class="n">word</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">char</span> <span class="o">+</span> <span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>For the word <code>jaw</code></p>
+<ul>
+<li>if we replace the character <code>j</code> with <code>s</code>, we get the word <code>saw</code>.</li>
+<li>if we replace the character <code>w</code> with <code>r</code>, we get the word <code>jar</code>.</li>
+<li>if we replace the character <code>j</code> with <code>p</code>, we get the word <code>paw</code>.</li>
+</ul>
+</div>
+<h2 id="filtering-candidate-words">Filtering Candidate Words<a class="headerlink" href="#filtering-candidate-words" title="Permanent link">&para;</a></h2>
+<p>Many words returned by the edit distance algorithm are not valid words. We need to filter these words out.</p>
+<p>To do this, we can also check if the word is in the vocabulary. If it is, then we can keep it.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span> <span class="nf">filter_candidates</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">vocab</span><span class="p">):</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="n">valid_words</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="hll">        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">vocab</span><span class="p">:</span>
+</span><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>            <span class="n">valid_words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="k">return</span> <span class="n">valid_words</span>
+</code></pre></div>
+<h2 id="calculating-word-probabilities">Calculating Word Probabilities<a class="headerlink" href="#calculating-word-probabilities" title="Permanent link">&para;</a></h2>
+<p>If we have the candidate words available, the next step is to find the word that is most likely to be the correct word (or the <span class="arithmatex">\(n\)</span> most likely words).</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Consider the following sentence:</p>
+<blockquote>
+<p>"I like apples 🍎🍏 <em>ans</em> bananas" 🍌🍌</p>
+</blockquote>
+<p>The word <code>ans</code> is supposedly a typo of the word <code>and</code>.</p>
+<p>If we look at two candidate words, <code>and</code> and <code>ant</code>, we can observe that both are 1 edit distance away from <code>ans</code>. So how can we tell that <code>and</code> is more likely to be the correct word than <code>ant</code>? 🐜</p>
+<p>Usually, we can assume that the word <code>and</code> is more frequent than the word <code>ant</code> 🐜 in any given text, so based on word frequencies, the model should suggest the word <code>and</code> as the correct word. 💡</p>
+</div>
+<p>To do this, we can use the word probabilities. The word probabilities tell us how likely it is for a word to appear in a given text.</p>
+<p>The word probabilities can be calculated by counting the number of times a word appears in a text, and dividing it by the total number of words in the text.</p>
+<div class="arithmatex">\[
+P(w) = \frac{N(w)}{N}
+\]</div>
+<p>Where</p>
+<ul>
+<li><span class="arithmatex">\(P(w)\)</span> is the probability of the word <span class="arithmatex">\(w\)</span> appearing in a text</li>
+<li><span class="arithmatex">\(N(w)\)</span> is the frequency of the word <span class="arithmatex">\(w\)</span> in the text</li>
+<li><span class="arithmatex">\(N\)</span> is the total count of all words in the text</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>This is quite similar as from the lecture on <a href="../feature_extraction/#positive-and-negative-frequencies">feature extraction</a>, where we calculated the word frequencies per class. The difference here is that we are now calculating the word frequencies for the entire text, not per class. This gives us the probability of a <strong>word appearing in a text</strong>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Consider the following corpus:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">corpus</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="s2">&quot;I like apples and bananas&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="s2">&quot;I like apples and oranges&quot;</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">]</span>
+</code></pre></div>
+<p>By counting the number of times each word appears in the corpus, we get the word frequencies. Since the total number of words <span class="arithmatex">\(N\)</span> in the corpus is 10, we can calculate the word probabilities, and end up with the following table:</p>
+<p>If we build the word frequency table for this corpus, we get the following:</p>
+<table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Frequency</th>
+<th>Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I</td>
+<td>2</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>like</td>
+<td>2</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>apples</td>
+<td>2</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>and</td>
+<td>2</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>bananas</td>
+<td>1</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>oranges</td>
+<td>1</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td><strong>total</strong></td>
+<td><strong>10</strong></td>
+<td><strong>1.0</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Note that in Python, we can utilize the <code>Counter</code> class from the <code>collections</code> module to count the number of times each word appears in the corpus.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">freqs</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">corpus</span><span class="p">:</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="o">&gt;&gt;&gt;</span>     <span class="n">freqs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">freqs</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">Counter</span><span class="p">({</span><span class="s1">&#39;I&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;like&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;apples&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;and&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;bananas&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;oranges&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+</code></pre></div>
+<p>From there, we can calculate the word probabilities as follows:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">total_words</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">freqs</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">{</span><span class="n">word</span><span class="p">:</span> <span class="n">freq</span> <span class="o">/</span> <span class="n">total_words</span> <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">freqs</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">{</span><span class="s1">&#39;I&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;like&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;apples&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;and&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;bananas&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;oranges&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">}</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The code snippet above shows a Python <a href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries">dict comprehension</a>.</p>
+<p>They can be used to create dictionaries from arbitrary key and value expressions, like so:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">)}</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="p">{</span><span class="mi">2</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span> <span class="mi">36</span><span class="p">}</span>
+</code></pre></div>
+<p>This is equivalent to the following code:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="n">data</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+</code></pre></div>
+</div>
+<h2 id="the-levenshtein-distance-algorithm">The Levenshtein Distance Algorithm<a class="headerlink" href="#the-levenshtein-distance-algorithm" title="Permanent link">&para;</a></h2>
+<p>Now we take a look at a specific algorithm for calculating the minimum edit distance between two strings.</p>
+<p>In NLP, one of the most common algorithms for calculating the minimum edit distance is the <strong>Levenshtein distance algorithm</strong>.</p>
+<p>The Levenshtein distance algorithm is a <strong>dynamic programming</strong> algorithm that calculates the minimum edit distance between two strings.</p>
+<div class="admonition info">
+<p class="admonition-title">Dynamic Programming</p>
+<p>Dynamic programming is a method for solving complex problems by breaking them down into simpler subproblems. It is often used when the subproblems are overlapping, i.e. when subproblems share subproblems.</p>
+<p>The Levenshtein distance algorithm is a dynamic programming algorithm because it breaks down the problem of calculating the minimum edit distance into smaller subproblems, and it uses the results of those subproblems to solve the larger problem of calculating the minimum edit distance.</p>
+<p>We can often solve dynamic programming problems by using <strong>recursion</strong>.</p>
+<p>Here is a nice blog post that explains dynamic programming in more detail: <a href="https://stackoverflow.blog/2022/01/31/the-complete-beginners-guide-to-dynamic-programming/">The complete beginners guide to dynamic programming</a></p>
+</div>
+<p>When computing the minimum edit distance, you would start with a source word and transform it into the target word. The algorithm would then return the minimum cost of transforming the source word into the target word.</p>
+<p>We can do that by created a <strong>distance matrix <span class="arithmatex">\(D\)</span></strong> where the source word is shown on the vertical axis, and the target word is shown on the horizontal axis.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>To explain the algorithm in the following sections, we will use the following example words:</p>
+<ul>
+<li>Source: <code>play</code></li>
+<li>Target: <code>stay</code></li>
+</ul>
+</div>
+<h3 id="edit-cost">Edit Cost<a class="headerlink" href="#edit-cost" title="Permanent link">&para;</a></h3>
+<p>In the Minimum Edit Distance algorithm, each edit operation has a cost associated with it.</p>
+<p>For the Levenshtein distance algorithm, the cost of each edit operation is as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Insertion</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Deletion</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Replace</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Since a <strong>replacement</strong> can be seen as a deletion followed by an insertion, it makes sense that the cost of a replacement is given as 2.</p>
+</div>
+<p>If we transform one string into another string, we can calculate the <strong>total edit cost</strong> by adding up the costs of all edit operations. This is referred to as the <strong>total edit cost</strong>, and this is what we are trying to minimize.</p>
+<p>We can think of the cost as the <strong>distance</strong> between two words. The lower the cost, the closer the words are, and the more similar they are.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Consider our two example words:</p>
+<ul>
+<li>Source: <code>play</code></li>
+<li>Target: <code>stay</code></li>
+</ul>
+<p>To go from <code>play</code> to <code>stay</code>, we need to do the following operations:</p>
+<ul>
+<li><em>Replace</em> <code>p</code> with <code>s</code></li>
+<li><em>Replace</em> <code>l</code> with <code>t</code></li>
+</ul>
+<p>Since a replacement has a cost of 2, the total cost of changing <code>play</code> into <code>stay</code> is calculated by:</p>
+<div class="arithmatex">\[
+2 + 2 = 4
+\]</div>
+<p>So the edit distance between <code>play</code> and <code>stay</code> is 4.</p>
+</div>
+<h3 id="edit-paths">Edit Paths<a class="headerlink" href="#edit-paths" title="Permanent link">&para;</a></h3>
+<p>Sometimes there are multiple ways to transform the source word into the target word. Each possible sequence of edit operations is called an <strong>edit path</strong>.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>If we want to transform the letter <code>p</code> into the letter <code>s</code>, we can do this via the following edit paths:</p>
+<ul>
+<li>Insert <code>s</code> and delete <code>p</code>: <code>p</code> -&gt; <code>ps</code> -&gt; <code>s</code> (cost: 1 + 1 = 2)</li>
+<li>Delete <code>p</code> and insert <code>s</code>: <code>p</code> -&gt; <code>#</code> -&gt; <code>s</code> (cost: 1 + 1 = 2)</li>
+<li>Replace <code>p</code> with <code>s</code>: <code>p</code> -&gt; <code>s</code> (cost: 2)</li>
+</ul>
+</div>
+<h3 id="creating-the-distance-matrix">Creating the Distance Matrix<a class="headerlink" href="#creating-the-distance-matrix" title="Permanent link">&para;</a></h3>
+<p>We start by creating the distance matrix <span class="arithmatex">\(D\)</span> where the <strong>source</strong> word <code>play</code> is shown on the <strong>vertical</strong> axis, and the <strong>target</strong> word <code>stay</code> is shown on the <strong>horizontal</strong> axis.</p>
+<p><img alt="Minimum Edit Distance Phase 1" src="../../img/minimum-edit-distance-phase-1.drawio.svg" /></p>
+<p>Note that each letter is assigned an <strong>index</strong>.</p>
+<p>Also note that we also add an <strong>empty character</strong> <code>#</code> to the top and left of the table. This is because we need to be able to transform the source word into an empty string, and the empty string into the target word.</p>
+<p>Our goal is to fill each cell <code>D[i,j]</code> with the correct edit distance values, where:</p>
+<div class="arithmatex">\[
+D[i,j] = source[:i] \rightarrow target[:j]
+\]</div>
+<p>We can find the edit distance between the source word <code>play</code> and the target word <code>stay</code> in the <strong>bottom right corner</strong> of the table, which represents the transformation <code>play -&gt; stay</code>.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>The element <code>D[2,3]</code> represents the transformation <code>pl -&gt; sta</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">source</span> <span class="o">=</span> <span class="s2">&quot;play&quot;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">target</span> <span class="o">=</span> <span class="s2">&quot;stay&quot;</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">source</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="s1">&#39;pl&#39;</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">target</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="s1">&#39;sta&#39;</span>
+</code></pre></div>
+</div>
+<h3 id="initializing-the-matrix">Initializing the Matrix<a class="headerlink" href="#initializing-the-matrix" title="Permanent link">&para;</a></h3>
+<p>Let's start in the top left corner of the table, which represents the transformation <code># -&gt; #</code>, that is, transforming an empty string into an empty string. This is a special case, since we do not need to do any edits to transform an empty string into an empty string. So the cost of this transformation is zero.</p>
+<ul>
+<li>The cell <code>D[1,0]</code> represents the path <code>p -&gt; #</code>, that is, deleting <code>p</code> so that we have an empty string, which has a cost of 1.</li>
+<li>The cell <code>D[0,1]</code> represents the path <code># -&gt; s</code>, that is, inserting <code>s</code> into an empty string, which has a cost of 1.</li>
+<li>The cell <code>D[0,0]</code> represents the path <code># -&gt; #</code>, that is, transforming an empty string into an empty string, which has a cost of 0.</li>
+</ul>
+<p><img alt="Minimum Edit Distance Phase 2" src="../../img/minimum-edit-distance-phase-2.drawio.svg" /></p>
+<p>Now, consider the cell <code>D[1,1]</code>, which represents the transformation <code>p -&gt; s</code>. As we've seen <a href="#edit-paths">before</a>, there are three paths to do that:</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Operations</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>p -&gt; ps -&gt; s</code></td>
+<td>Insert <code>s</code> and delete <code>p</code></td>
+<td>1 + 1 = 2</td>
+</tr>
+<tr>
+<td><code>p -&gt; # -&gt; s</code></td>
+<td>Delete <code>p</code> and insert <code>s</code></td>
+<td>1 + 1 = 2</td>
+</tr>
+<tr>
+<td><code>p -&gt; s</code></td>
+<td>Replace <code>p</code> with <code>s</code></td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>
+<p><strong>First insert <code>s</code>, then delete <code>p</code></strong></p>
+<p>In cell <code>D[0,1]</code>, we already calculated the cost of inserting <code>s</code>, so we can reuse that cost, and add another deletion cost for <code>p</code>:</p>
+<div class="arithmatex">\[
+D[i-1,j] + \text{delete cost}
+\]</div>
+</li>
+<li>
+<p><strong>First delete <code>p</code>, then insert <code>s</code></strong></p>
+<p>In cell <code>D[1,0]</code>, we already calculated the cost of deleting <code>p</code>, so we can reuse that cost, and add another insertion cost for <code>s</code>:</p>
+<div class="arithmatex">\[
+D[i,j-1] + \text{insert cost}
+\]</div>
+</li>
+<li>
+<p><strong>Replace <code>p</code> with <code>s</code></strong></p>
+<p>Going directly from <code>p -&gt; s</code> is considered a replacement and has a cost of 2. In our case <code>p</code> and <code>s</code> are different. If they were the same, we would not need to replace them, and thus, the cost would be zero. So we need to differentiate those two cases here:</p>
+<div class="arithmatex">\[
+D[i-1,j-1] + \begin{cases}
+    0 &amp; \text{if } source[i] = target[j] \\
+    2 &amp; \text{otherwise}
+\end{cases}
+\]</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can think of a replace operation as moving diagonal in the table.</p>
+</div>
+</li>
+</ol>
+<p>In this example, all edit paths lead to a <strong>cost of 2</strong>. But remeber that we always want to find the <strong>minimum cost</strong> for the given transformation. So if one of those costs would be smaller than the other ones, this would be the cost to enter in <code>D[1,1]</code>.</p>
+<h3 id="deriving-the-algorithm">Deriving the Algorithm<a class="headerlink" href="#deriving-the-algorithm" title="Permanent link">&para;</a></h3>
+<p>Considering all of the above cases, we can formalize the algorithm as follows:</p>
+<div class="arithmatex">\[
+D[i,j] = \text{min} \begin{cases}
+        D[i-1,j] + \text{delete cost} \\
+        D[i,j-1] + \text{insert cost} \\
+        D[i-1,j-1] + \begin{cases}
+            0 &amp; \text{if } source[i] = target[j] \\
+            2 &amp; \text{otherwise}
+        \end{cases}
+    \end{cases}
+\]</div>
+<h3 id="completing-the-first-rows">Completing the first rows<a class="headerlink" href="#completing-the-first-rows" title="Permanent link">&para;</a></h3>
+<p>Now let's try to complete the first row horizontally and vertically.</p>
+<p>Let's start with the <strong>first row vertically</strong>. This means, we want to transform the source word <code>play</code> into an empty string <code>#</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Operations</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>p -&gt; #</code></td>
+<td>Delete <code>p</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>pl -&gt; #</code></td>
+<td>Delete <code>p</code> and <code>l</code></td>
+<td>1 + 1 = 2</td>
+</tr>
+<tr>
+<td><code>pla -&gt; #</code></td>
+<td>Delete <code>p</code>, <code>l</code>, and <code>a</code></td>
+<td>1 + 1 + 1 = 3</td>
+</tr>
+<tr>
+<td><code>play -&gt; #</code></td>
+<td>Delete <code>p</code>, <code>l</code>, <code>a</code>, and <code>y</code></td>
+<td>1 + 1 + 1 + 1 = 4</td>
+</tr>
+</tbody>
+</table>
+<p>Intuitively, we can just delete each of the four letters one by one, which gives us a cost of 4. That means, the <strong>minimum edit distance</strong> between <code>play</code> and <code>#</code> is 4.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>We can also think of this as adding one additional deletion for each letter to the already known cost of deleting the previous letters.</p>
+<p>This is exactly what is reflected in the algorithm:</p>
+<div class="arithmatex">\[
+D[i-1,j] + \text{delete cost}
+\]</div>
+</div>
+<!-- 1. To transform the letter `p` into `#`, we need to delete `p`, which has a cost of 1.
+2. To transform the letter `pl` into `#`, we need to delete the letters `p` and `l`, which have a cost of 1 each. We can also think of this as adding one additional deletion for the letter `l` to the already known cost of deleting `p`.
+3. To transform the letter `pla` into `#`, we need to delete the letters `p`, `l`, and `a`, which have a cost of 1 each. We can also think of this as adding one additional deletion for the letter `a` to the already known cost of deleting `pl`.
+4. To transform the letter `play` into `#`, we need to delete the letters `p`, `l`, `a`, and `y`, which have a cost of 1 each. We can also think of this as adding one additional deletion for the letter `y` to the already known cost of deleting `pla`. -->
+
+<p>The same applies to the <strong>first row horizontally</strong>. This means, we want to transform the empty string <code>#</code> into the target word <code>stay</code>. This time, instead of deleting characters, we need to insert characters:</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Operations</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code># -&gt; s</code></td>
+<td>Insert <code>s</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code># -&gt; st</code></td>
+<td>Insert <code>s</code> and <code>t</code></td>
+<td>1 + 1 = 2</td>
+</tr>
+<tr>
+<td><code># -&gt; sta</code></td>
+<td>Insert <code>s</code>, <code>t</code>, and <code>a</code></td>
+<td>1 + 1 + 1 = 3</td>
+</tr>
+<tr>
+<td><code># -&gt; stay</code></td>
+<td>Insert <code>s</code>, <code>t</code>, <code>a</code>, and <code>y</code></td>
+<td>1 + 1 + 1 + 1 = 4</td>
+</tr>
+</tbody>
+</table>
+<p>Intuitively, we can just insert each of the four letters one by one, which gives us a cost of 4. That means, the <strong>minimum edit distance</strong> between <code>#</code> and <code>stay</code> is 4.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>We can also think of this as adding one additional insertion for each letter to the already known cost of inserting the previous letters.</p>
+<p>This is exactly what is reflected in the algorithm:</p>
+<div class="arithmatex">\[
+D[i,j-1] + \text{insert cost}
+\]</div>
+</div>
+<!-- 1. To transform the empty string `#` into the letter `s`, we need to insert `s`, which has a cost of 1.
+2. To transform the empty string `#` into the letter `st`, we need to insert the letters `s` and `t`, which have a cost of 1 each. We can also think of this as adding one additional insertion for the letter `t` to the already known cost of inserting `s`.
+3. To transform the empty string `#` into the letter `sta`, we need to insert the letters `s`, `t`, and `a`, which have a cost of 1 each. We can also think of this as adding one additional insertion for the letter `a` to the already known cost of inserting `st`.
+4. To transform the empty string `#` into the letter `stay`, we need to insert the letters `s`, `t`, `a`, and `y`, which have a cost of 1 each. We can also think of this as adding one additional insertion for the letter `y` to the already known cost of inserting `sta`. -->
+
+<p>So far, our distance matrix looks like this:</p>
+<p><img alt="Minimum Edit Distance Phase 3" src="../../img/minimum-edit-distance-phase-3.drawio.svg" /></p>
+<h3 id="completing-the-remaining-cells">Completing the remaining cells<a class="headerlink" href="#completing-the-remaining-cells" title="Permanent link">&para;</a></h3>
+<p>Applying the algorithm to the <strong>remaining cells</strong>, we get the following table:</p>
+<p><img alt="Minimum Edit Distance Phase 4" src="../../img/minimum-edit-distance-phase-4.drawio.svg" /></p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Lets take a look at cell <code>D[3,3]</code> which represents the transformation <code>pla -&gt; sta</code>.</p>
+<ol>
+<li>
+<p>Coming from the cell above:</p>
+<div class="arithmatex">\[
+D[i-1,j] + \text{delete cost} = D[2,3] + 1 = 5 + 1 = 6
+\]</div>
+</li>
+<li>
+<p>Coming from the cell on the left:</p>
+<div class="arithmatex">\[
+D[i,j-1] + \text{insert cost} = D[3,2] + 1 = 5 + 1 = 6
+\]</div>
+</li>
+<li>
+<p>Coming from the cell diagonally:</p>
+<p>Remember that</p>
+<div class="arithmatex">\[
+D[i-1,j-1] + \begin{cases}
+    0 &amp; \text{if } source[i] = target[j] \\
+    2 &amp; \text{otherwise}
+\end{cases}
+\]</div>
+<p>In our case, since <code>a</code> and <code>a</code> are the same, we can add a cost of 0:</p>
+<div class="arithmatex">\[
+D[i-1,j-1] + 0 = D[2,2] + 0 = 4 + 0 = 4
+\]</div>
+</li>
+</ol>
+<p>So the minimum cost of transforming <code>pla</code> into <code>sta</code> is 4, and hence:</p>
+<div class="arithmatex">\[
+D[3,3] = 4
+\]</div>
+</div>
+<p>Finally, we can find the minimum edit distance between <code>play</code> and <code>stay</code> in the <strong>bottom right corner</strong> of the table, which is 4.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since there are no more edits needed from <code>pl</code> to <code>st</code>, the value of 4 is propagated to the bottom right corner.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Backtrace</p>
+<p>Now that we have the distance matrix, we can find the <strong>edit path</strong> that leads to the minimum edit distance.</p>
+<p>We can do this by starting in the bottom right corner, and then backtracing to the top left corner.</p>
+<p>The backtrace represents the optimal sequence of edit operations that transform the source word into the target word.</p>
+<p>This sequence provides insights into how two words are related to each other, and can be used to improve the autocorrect process and suggest better corrections.</p>
+</div>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
+<p>While the Levenshtein distance algorithm is a very popular algorithm for calculating the minimum edit distance, it has some limitations.
+Specfically, it does not take into account the following:</p>
+<ul>
+<li><strong>Context</strong>: It only looks at the words themselves, not the words around them.</li>
+<li><strong>Part of speech:</strong> It treats all words equally, regardless of their <abbr title="part of speech">POS</abbr>.</li>
+<li><strong>Word order:</strong> The position in the sentence is not considered</li>
+<li><strong>Frequency</strong>: Generally, the algorithm does not take frequency into account. To do that, we would need to calculate the word frequencies, as indicated <a href="#calculating-word-probabilities">above</a>.</li>
+<li><strong>Long strings</strong>: It does not work well with long strings, since the number of possible edit paths increases exponentially with the length of the strings.</li>
+</ul>
+<h2 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The <strong>minimum edit distance</strong> is the minimum number of single-character edits (insertions, deletions, or substitutions) required to change one string into the other.</li>
+<li>In NLP, a common use case for the minimum edit distance is in <strong>autocorrection</strong> systems, where it is used to suggest corrections for misspelled words.</li>
+<li>The <strong>Levenshtein distance algorithm</strong> is a common algorithm for calculating the minimum edit distance between two strings. Each edit operation has a cost associated with it.</li>
+<li>We want to find the <strong>minimum cost</strong> of transforming one string into another string. To do this we can create a <strong>distance matrix</strong> <span class="arithmatex">\(D\)</span> where the source word is shown on the vertical axis, and the target word is shown on the horizontal axis.</li>
+<li>After we have filled the distance matrix, we can find the minimum edit distance in the <strong>bottom right corner</strong> of the table.</li>
+</ul>
+<!-- markdownlint-disable MD041 -->
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="mailto:pascal.keilbach@htwg-konstanz.de" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.8l167.6-182.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/pkeilbach/htwg-practical-nlp" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.tooltips", "navigation.indexes", "navigation.instant", "navigation.tabs", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
