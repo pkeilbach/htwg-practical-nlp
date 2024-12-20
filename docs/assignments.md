@@ -63,7 +63,7 @@ Some of the assignments are accompanied by Jupyter notebooks.
 
 If you successfully complete an assignment, you can run the accompanying notebook and see your code in action.
 
-See the [Getting Started](./getting_started.md) guide for instructions on how to start the Jupyter server.
+See the [Getting Started](./getting_started.md) guide for instructions on how to start the Jupyter lab server.
 
 ## Submission
 

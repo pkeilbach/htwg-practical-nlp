@@ -137,17 +137,13 @@ Some of the assignments are accompanied by Jupyter notebooks.
 
 If your IDE supports it, you can execute the Jupyter notebooks natively in your IDE (e.g. using the [VSCode Jupyter extension](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)).
 
-If you prefer the web UI, you can start the Jupyter server with the following command.
+If you prefer the web UI, you can start the Jupyter lab server with the following command.
 
 ```sh
 make jupyter
 ```
 
 Jupyter is now accessible at <http://localhost:8888/>.
-
-!!! info
-
-    Of course you can also use JupyterLab if you wish, but this is not included in the setup script.
 
 ## Serve the Lecture Notes
 
