@@ -2,6 +2,12 @@
 
 In this lecture, we will learn about word embeddings, which are a way to represent words as vectors. We will learn about the CBOW model, which is a machine learning model that learns word embeddings from a corpus.
 
+Deep learning models cannot process data formats like video, audio, and text in their raw form.
+Thus, we use an embedding model to transform this raw data into a dense vector representation
+that deep learning architectures can easily understand and process. Specifically, this figure illustrates the process of converting raw data into a three-dimensional numerical vector.
+
+![Embedding models](https://sebastianraschka.com/images/LLMs-from-scratch-images/ch02_compressed/02.webp)
+
 ## Revisit One-Hot Encoding
 
 In the lecture about feature extraction, we have seen that we can represent words as vectors using [one hot encoding](./feature_extraction.md#one-hot-encoding).
@@ -199,6 +205,8 @@ The **architecture** of CBOW is a neural network model with a single hidden laye
 
     From an architectural point of view, we speak of a **shallow dense neural network**, because it has only one hidden layer and all neurons are connected to each other.
 
+    Note that the number of Neurons here is the first dimension of the matrix, i.e. the number of rows.
+
 The **learning objective** is to minimize the prediction error between the predicted target word and the actual target word. The hidden layer weights of the neural network are adjusted to achieve this task.
 
 ![CBOW Architecture](../img/word-embeddings-cbow-architecture.drawio.svg)
@@ -217,8 +225,8 @@ Now, let's look at the architecture in more detail:
 
 - $\mathbf{X}$ is the input matrix of size $V \times m$. This is the matrix of the context vectors, where each _column_ is a context vector. This means the **input layer** has $V$ neurons, one for each word in the vocabulary.
 - $\mathbf{H}$ is the **hidden layer** matrix of size $N \times m$. This means the **hidden layer** has $N$ neurons, which is the number of dimensions of the word embeddings.
-- $\mathbf{\hat{Y}}$ is the output matrix of size $V \times m$. This is the matrix of the word vectors of the predicted center words, where each _column_ is a word vector. This mean the **output layer** has $V$ neurons, one for each word in the vocabulary.
-- $\mathbf{Y}$ represent the expected output matrix of size $V \times m$. This is the matrix of the word vectors of the actual center words, where each _column_ is a word vector.
+- $\mathbf{\hat{Y}}$ is the output matrix of size $V \times m$. This is the matrix of the predicted center word vectors, where each _column_ is a word vector. This mean the **output layer** has $V$ neurons, one for each word in the vocabulary.
+- $\mathbf{Y}$ represent the expected output matrix of size $V \times m$. This is the matrix of the actual center word vectors, where each _column_ is a word vector.
 
 There are **two weight matrices**, one that connects the input layer to the hidden layer, and one that connects the hidden layer to the output layer.
 
@@ -239,7 +247,7 @@ There are **two weight matrices**, one that connects the input layer to the hidd
 To compute the next layer $\mathbf{Z}$, we multiply the weight matrix with the previous layer:
 
 $$
-\mathbf{Z} = \mathbf{W}_{N \times V} \cdot \mathbf{X}_{V \times m}
+\mathbf{Z}_{N \times m} = \mathbf{W}_{N \times V} \cdot \mathbf{X}_{V \times m}
 $$
 
 Since the number of columns in the weight matrix matches the number of rows in the input matrix, we can multiply the two matrices, and the resulting matrix $\mathbf{Z}$ will be of size $N \times m$.
