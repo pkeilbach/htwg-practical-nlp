@@ -25,7 +25,7 @@ check-%:
 	fi
 
 jupyter: check-jupyter
-	.venv/bin/jupyter notebook --no-browser
+	.venv/bin/jupyter lab --no-browser
 
 mkdocs: check-mkdocs
 	.venv/bin/mkdocs serve
