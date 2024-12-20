@@ -8,6 +8,17 @@ that deep learning architectures can easily understand and process. Specifically
 
 ![Embedding models](https://sebastianraschka.com/images/LLMs-from-scratch-images/ch02_compressed/02.webp)
 
+At its core, an embedding is a mapping from **discrete objects**, such as words, images, or even entire documents,
+to points in a continuous vector space.
+The primary purpose of embeddings is to convert **nonnumeric data** into a format that **neural networks can process**.[^1]
+
+!!! info
+
+    There are also embeddings for sentences, paragraphs, or whole documents.
+    Sentence or paragraph embeddings are popular choices for **retrieval-augmented generation**.
+    Retrieval augmented generation combines **generation** (like producing text) with **retrieval**
+    (like searching an external knowledge base) to pull relevant information when generating text.
+
 ## Revisit One-Hot Encoding
 
 In the lecture about feature extraction, we have seen that we can represent words as vectors using [one hot encoding](./feature_extraction.md#one-hot-encoding).
@@ -88,7 +99,7 @@ The dimension of the word embeddings is one of the **hyperparameters** of the mo
 
 !!! tip
 
-    Remeber that it is the [context](./vector_space_models.md#introduction) that determines the meaning of a word
+    Remember that it is the [context](./vector_space_models.md#introduction) that determines the meaning of a word.
 
 !!! info "Self-supervised Learning"
 
@@ -99,6 +110,9 @@ The dimension of the word embeddings is one of the **hyperparameters** of the mo
 !!! info "Dimensions of Word Embeddings"
 
     Using a higher number of dimensions allows us to capture more nuances of the meaning of the words, but it also requires more memory and computational resources.
+
+    The smallest GPT-2 models (117M and 125M parameters)use an embedding size of 768 dimensions.
+    The largest GPT-3 model (175B parameters) uses an embedding size of 12,288 dimensions.[^1]
 
 ## Continuous Bag of Words (CBOW)
 
@@ -145,6 +159,8 @@ The following visualization shows the CBOW model for a context size of $C=2$. Th
     The **Skip-Gram model** can be seen as the **opposite** of the CBOW model. It tries to predict the context words given the center word.
 
     More details can be found in the [original paper](https://arxiv.org/abs/1301.3781).
+
+    Both CBOW and Skip-Gram are architectures of the [Word2Vec](https://arxiv.org/abs/1301.3781) model.
 
 ## Training Data for CBOW Model
 
@@ -365,3 +381,6 @@ External evaluation is more **practical**, because it allows us to evaluate the 
 - The **rationale** of the CBOW model is, that if two words are surrounded by a similar sets of words when used in various sentences, then those two words tend to be **related in their meaning**.
 - It's architecture is a **shallow dense neural network** with a single hidden layer. The word embeddings are essentially a by-product of the learning task, i.e. they are the **weights of the hidden layer** after training.
 - We can evaluate the quality of word embeddings using **intrinsic** and **extrinsic** evaluation methods, where extrinsic evaluation is more practical, because it allows us to evaluate the word embeddings in the context of a real-world application.
+
+<!-- footnotes -->
+[^1]: Raschka, Sebastian. _Build a Large Language Model (From Scratch)_. Shelter Island, NY: Manning, 2024. <https://www.manning.com/books/build-a-large-language-model-from-scratch>.
