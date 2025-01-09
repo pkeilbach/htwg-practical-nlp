@@ -33,6 +33,7 @@ class WordEmbeddings:
     @property
     def embedding_values(self) -> np.ndarray:
         """Returns the embedding values.
+
         Raises:
             ValueError: if the embeddings have not been loaded yet
 
