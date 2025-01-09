@@ -16,6 +16,11 @@ def embeddings():
 
 
 @pytest.fixture
+def non_loaded_embeddings():
+    return WordEmbeddings()
+
+
+@pytest.fixture
 def loaded_embeddings(embeddings):
     embeddings._load_raw_embeddings("notebooks/data/embeddings.pkl")
     embeddings._load_embeddings_to_dataframe()
@@ -47,12 +52,16 @@ def test_load_embeddings_to_dataframe(loaded_embeddings):
     assert loaded_embeddings._embeddings_df.shape == (243, 300)
 
 
-def test_embedding_values(loaded_embeddings):
+def test_embedding_values(loaded_embeddings, non_loaded_embeddings):
+    with pytest.raises(ValueError):
+        non_loaded_embeddings.embedding_values
     assert isinstance(loaded_embeddings.embedding_values, np.ndarray)
     assert loaded_embeddings.embedding_values.shape == (243, 300)
 
 
-def test_get_embeddings(loaded_embeddings):
+def test_get_embeddings(loaded_embeddings, non_loaded_embeddings):
+    with pytest.raises(ValueError):
+        non_loaded_embeddings.embedding_values
     assert isinstance(loaded_embeddings.get_embeddings("happy"), np.ndarray)
     assert loaded_embeddings.get_embeddings("happy").shape == (300,)
     assert loaded_embeddings.get_embeddings("non_existent_word") is None
@@ -104,12 +113,16 @@ def test_cosine_similarity(loaded_embeddings, test_vector):
     )
 
 
-def test_find_closest_word(loaded_embeddings, test_vector):
+def test_find_closest_word(loaded_embeddings, test_vector, non_loaded_embeddings):
+    with pytest.raises(ValueError):
+        non_loaded_embeddings.embedding_values
     assert isinstance(loaded_embeddings.find_closest_word(test_vector), str)
     assert loaded_embeddings.find_closest_word(test_vector) == "Bahamas"
 
 
-def test_get_most_similar_words(loaded_embeddings):
+def test_get_most_similar_words(loaded_embeddings, non_loaded_embeddings):
+    with pytest.raises(ValueError):
+        non_loaded_embeddings.embedding_values
     assert isinstance(loaded_embeddings.get_most_similar_words("Germany"), list)
     assert loaded_embeddings.get_most_similar_words("Germany") == [
         "Austria",
