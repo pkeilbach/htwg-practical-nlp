@@ -33,6 +33,8 @@ class WordEmbeddings:
     @property
     def embedding_values(self) -> np.ndarray:
         """Returns the embedding values.
+        Raises:
+            ValueError: if the embeddings have not been loaded yet
 
         Returns:
             np.ndarray: the embedding values as a numpy array of shape (n, d), where n is the vocabulary size and d is the number of dimensions
@@ -75,6 +77,9 @@ class WordEmbeddings:
 
         Args:
             word (str): the word to get the embedding vector for
+
+        Raises:
+            ValueError: if the embeddings have not been loaded yet
 
         Returns:
             np.ndarray | None: the embedding vector for the given word in the form of a numpy array of shape (d,), where d is the number of dimensions, or None if the word is not in the vocabulary
@@ -121,6 +126,7 @@ class WordEmbeddings:
             metric (str, optional): the metric to use for computing the similarity. Defaults to "euclidean".
 
         Raises:
+            ValueError: if the embeddings have not been loaded yet
             ValueError: if the metric is not "euclidean" or "cosine"
             AssertionError: if the word is not in the vocabulary
 
@@ -140,6 +146,7 @@ class WordEmbeddings:
             metric (str, optional): the metric to use for computing the similarity. Defaults to "euclidean".
 
         Raises:
+            ValueError: if the embeddings have not been loaded yet
             ValueError: if the metric is not "euclidean" or "cosine"
 
         Returns:
