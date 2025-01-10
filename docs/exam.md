@@ -40,9 +40,11 @@ $$
 
 !!! example
 
-    Assuming you reach 83 points in the exam, and earned 7 bonus points throughout the semester,
-    your grade points would be 90. This would result in a grade of 1.3 (instead of 2.0).
+    Assuming you reach **83 points** in the exam, and earned **7 bonus points** throughout the semester,
+    your **grade points** would be **90**.
+
+    This would result in a **grade of 1.3** instead of **2.0**. 🥳
 
 !!! note
 
-    If you exceed 100 points with your bonus points, the grade points will be capped at 100.
+    If you exceed 100 points with your bonus points, the grade points will be **capped at 100**.

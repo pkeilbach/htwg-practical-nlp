@@ -4,15 +4,15 @@ This lecture will introduce an imprtant concept of state-of-the-art NLP models: 
 
 ## Attention
 
-Attention is a mechanism that allows models to focus on specific parts of input sequences when making predictions or generating output sequences. It mimics the human ability to selectively concentrate on relevant information while processing input data. This allows the model to understand and generate more contextually relevant and accurate text.
+Attention is a mechanism that allows models to **focus on specific parts** of input sequences when making predictions or generating output sequences. It mimics the **human ability to selectively concentrate** on relevant information while processing input data. This allows the model to understand and generate more contextually relevant and accurate text.
 
 !!! example
 
-    Imagine you're reading a long article or a book, and there's a specific word or phrase that is crucial for understanding the overall meaning. Your attention naturally focuses on that important part to comprehend the context better. Attention models work somewhat similarly.
+    Imagine you're reading a long article or a book, and there's a specific word or phrase that is **crucial for understanding the overall meaning**. Your attention naturally focuses on that important part to comprehend the context better. Attention models work somewhat similarly.
 
-In NLP, when a computer is trying to understand or generate text, attention models help it decide which parts of the input text are more important at any given moment. Instead of treating all words equally, an attention model allows the model to focus **more on specific words** that are relevant to the task at hand.
+In NLP, when a computer is trying to understand or generate text, attention models help to decide **which parts of the input text are more important** at any given moment. Instead of treating all words equally, an attention model allows the model to focus **more on specific words** that are relevant to the task at hand.
 
-The general attention mechanism makes use of three main components, namely **Query (Q), Key (K), and Value (V)**. They are used to capture the relationships between different words in a sequence, and thus, allow the model to focus on different parts of the input sequence when generating or understanding output.
+The general attention mechanism makes use of three main components, namely **Query (Q), Key (K), and Value (V)**. They are used to capture the **relationships** between different words in a sequence, and thus, allow the model to focus on different parts of the input sequence when generating or understanding output.
 
 - **Key (K):** The Key vector is like a unique identifier or key associated with each word in the input sequence. It captures information about the word that is relevant for determining its relationship with other words.
 
@@ -22,7 +22,7 @@ The general attention mechanism makes use of three main components, namely **Que
 
 Attention is the mechanism that allows the model to find the **best matching keys for a given query**, and return the corresponding values.
 
-The attention mechanism computes the attention scores by measuring the compatibility (or similarity) between the query and keys. The higher the attention score, the more focus the model places on the corresponding values associated with those keys.
+The attention mechanism computes the attention scores by **measuring the similarity** between the query and keys: the _higher_ the attention score, the _more focus_ the model places on the corresponding values associated with those keys.
 
 Here is a simplified visualization of the attention mechanism:
 
@@ -38,9 +38,9 @@ The input for the attention layer are the Query, Key, and Value vectors. The out
 
     > Vincent van Gogh is a painter, known for his stunning and emotionally expressive artworks.
 
-    When encoding the _query_ `van Gogh`, the output may be `Vincent van Gogh` as the _key_ with `painter` as the associated _value_.
+    When encoding the _query_ `van Gogh`, the output may be `Vincent van Gogh` as the _key_, with `painter` as the associated _value_.
 
-    The architecture stores keys and values in a table, which it can then use for future decoding:
+    The model stores keys and values in a table, which it can then use for future decoding:
 
     | Key | Value |
     | --- | --- |
@@ -52,13 +52,13 @@ The input for the attention layer are the Query, Key, and Value vectors. The out
 
     > Shakespeare's work has influenced many movies, mostly thanks to his work as a ...
 
-    The model can complete the sentence by taking `Shakespeare` as the query and finding it in the table of keys and values.
+    The model can complete the sentence by taking `Shakespeare` as the query and finding it in the table of keys and values:
 
     `Shakespeare` as _query_ is closest to `William Shakespeare` the _key_, and thus the associated _value_ `playwright` is presented as the output.
 
-!!! tip
+!!! tip "Analogy from Retrieval Systems"
 
-    From [StackExchange](https://stats.stackexchange.com/a/424127):
+    I found this analogy from retrieval systems quite helpful to understand the intuition behind the Query, Key, Value concept[^1]:
 
     > The Key/Query/Value concept can be seen analogous to retrieval systems. For example, when you search for videos on Youtube, the search engine will map your query  (text in the search bar) against a set of keys (video title, description, etc.) associated with candidate videos in their database, then present you the best matched videos (values).
 
@@ -123,15 +123,15 @@ Where:
 - $V$ is the matrix of Value vectors.
 - $d_k$ is the dimensionality of the Key vectors.
 
-In summary, attention allows the model to **dynamically** focus on different parts of the input sequence. It is a layer of calculations that let the model focus on the most important parts of the sequence for each step.
+In summary, attention allows the model to **dynamically focus** on different parts of the input sequence. It is a **layer of calculations** that let the model **focus on the most important parts** of the sequence for each step.
 
 The attention scores are obtained by measuring the **similarity** between Query and Key vectors, and the **softmax** function ensures that the weights are normalized (i.e. sum to 1).
 
 The weighted sum of the Value vectors, using these attention weights, gives the final **attention vector** for a specific word in the sequence.
 
-Combining all attention vectors for all words in the sequence gives the final **attention matrix**.
+**Combining all attention vectors** for all words in the sequence gives the final **attention matrix**.
 
-This mechanism allows the model to selectively attend to relevant information during processing.
+This mechanism allows the model to **selectively attend to relevant information** during processing.
 
 Attention models are used in many NLP tasks, such as machine translation, text summarization, and question answering.
 
@@ -139,19 +139,22 @@ Attention models are used in many NLP tasks, such as machine translation, text s
 
     The attention mechanism is particularly useful for machine translation as the most relevant words for the output often occur at similar positions in the input sequence.
 
-    Here is a visualization of the attention matrix of a translation model:
+    Here is a visualization of the attention matrix of a translation model[^2]:
 
     ![Visualization of the attention mechanism](../img/attention-models-visualization.png)
 
     The x-axis represents the source sentence and the y-axis represents the target sentence.
+    We can see which positions in the source sentence were considered more important when generating the target word.
 
-    The visualization is taken from the paper that first introduced the attention mechanism: [Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/abs/1409.0473).
+    The model correctly translates a phrase `European Economic Area` into `zone economique européen`.
+    It was able to correctly align `zone` with `Area`, jumping over the two words `European` and `Economic`,
+    and then looked one word back at a time to complete the whole phrase `zone economique européen`.
 
 !!! tip
 
     Here is a great interactive [visualization](https://distill.pub/2016/augmented-rnns/#attentional-interfaces) of the attention mechanism (make sure to scroll down a bit).
 
-Here is the general attention mechanism implemented with SciPy and NumPy (adapted from [this](https://machinelearningmastery.com/the-attention-mechanism-from-scratch/) article):
+Here is the general attention mechanism implemented with SciPy and NumPy[^3]
 
 ```python
 from numpy as np
@@ -200,9 +203,13 @@ This would output the following:
 
 ## Transformers
 
-Transformers make use of the attention mechanism to process sequences of words. They are a type of neural network architecture that is used for a wide range of natural language processing tasks, such as machine translation, text summarization, and question answering.
+Now the next step is to port the attention mechanism into a neural network architecture. This is where **transformers** come into play.
 
-Compared to sequential models like RNNs, Transformers are much faster to train and can capture long-range dependencies more effectively. They are also more parallelizable, making them a better fit for modern machine learning hardware. They also require less computation to train, speeding up training by up to an order of magnitude.
+Transformers make use of the **attention mechanism** to process sequences of words.
+
+> We could also say transformers is a type of neural network architecture that _implements_ the attention mechanism.
+
+They are a type of neural network architecture that is used for a wide range of natural language processing tasks, such as machine translation, text summarization, and question answering.
 
 The main **advantages** of Transformers over RNNs are:
 
@@ -215,7 +222,7 @@ The main **advantages** of Transformers over RNNs are:
 
 Since the position of a word and the order of words in a sentence are important to understand the meaning of a text, while still being able to process text in parallel, Transformers use **positional encoding** to keep track of the sequence.
 
-Also they use a variant of the attention mechanism, called **multi-head attention**, which allows them to capture more complex patterns and relationships between words in the sequence.
+To be more specific, transformers use a variant of the attention mechanism, called **multi-head attention**, which allows them to capture more complex patterns and relationships between words in the sequence.
 
 We will look at both of these concepts in more detail below.
 
@@ -223,7 +230,7 @@ We will look at both of these concepts in more detail below.
 
     The transformer architecture was introduced in the paper ["Attention Is All You Need"](https://arxiv.org/abs/1706.03762) by Vaswani, et al. from 2017.
 
-    It was a breakthrough in the field of natural language processing, as it outperformed previous state-of-the-art models on a wide range of tasks, including machine translation, text summarization, and question answering.
+    It was a breakthrough in the field of natural language processing, as it outperformed previous state-of-the-art models on a wide range of tasks, including machine translation, text summarization, and question answering[^4]:
 
     This figure is taken from Google's [blog post](https://blog.research.google/2017/08/transformer-novel-neural-network.html), accompanying the original paper:
 
@@ -231,15 +238,17 @@ We will look at both of these concepts in more detail below.
 
 !!! info "BLUE Score"
 
-    The BLEU score is a metric for evaluating the **quality of machine translation**. It is based on the precision of the translation, and it measures how many words in the machine translation match the reference translation. The higher the BLEU score, the better the translation.
+    The BLEU score is a metric for evaluating the **quality of machine translation**. It is based on the precision of the translation, and it measures how many words in the machine translation match the reference translation. The **higher** the BLEU score, the **better** the translation.
 
 !!! info "Large Language Models"
 
-    Large language models (LLMs) are essentially a type of transformer model that are trained on large amounts of text data. The GPT models by [OpenAI](https://platform.openai.com/docs/models) are examples of large language models.
+    Large language models (LLMs) are essentially a **type of transformer** model that are trained on large amounts of text data. The GPT models by [OpenAI](https://platform.openai.com/docs/models) are examples of large language models.
 
 ### Multi-Head Attention
 
-Attention mechanisms enable models to focus on different parts of the input sequence when processing each output token, allowing them to capture long-range dependencies effectively. Multi-head attention extends this concept by computing attention from multiple linearly projected "heads" in **parallel**, which are then concatenated and projected again to obtain the final output.
+Attention mechanisms enable models to focus on different parts of the input sequence when processing **each output token**, allowing them to capture long-range dependencies effectively.
+
+Multi-head attention extends this concept by computing attention from multiple linearly projected "heads" in **parallel**, which are then concatenated and projected again to obtain the final output.
 
 Multi-head attention involves the following steps:
 
@@ -253,33 +262,30 @@ Multi-head attention involves the following steps:
 
 ![Multi-Head Attention](https://production-media.paperswithcode.com/methods/Screen_Shot_2020-07-08_at_12.17.05_AM_st5S0XV.png){width=50%}
 
-Not only is this more computationally efficient, but it also enables the model to capture more complex patterns and relationships between words in the sequence. It enables the model to learn richer and more nuanced representations of the input data, leading to better performance on a wide range of natural language processing tasks.
-
-Here are some of the **benefits** of using multi-head attention:
-
-1.  **Diverse Representations**: By splitting the input into multiple heads and computing attention independently for each head, the model can attend to different parts of the input sequence simultaneously. This allows the model to capture **diverse** aspects of the data, leading to **richer** and more **comprehensive** representations.
-
-2.  **Redundancy Reduction**: Each head may focus on different aspects of the input, helping to reduce **redundancy** in the learned representations. By attending to **complementary** information across different heads, the model can capture a **wider range** of features and relationships present in the data.
-
-3.  **Robustness to Noise**: Multi-head attention can improve the model's **robustness** to noise and **irrelevant** information in the input sequence. Since different heads attend to different parts of the input, the model can learn to filter out noisy or irrelevant information by assigning **lower attention weights** to those parts.
-
-4.  **Enhanced Expressiveness**: Concatenating the outputs of multiple heads allows the model to combine information from different perspectives. This enhances the **expressiveness** of the learned representations, enabling the model to capture more **complex** patterns and relationships that may not be apparent when using a single attention mechanism.
+Not only is this more **computationally efficient**, but it also enables the model to **capture more complex patterns** and relationships between words in the sequence.
+This is because  it enables the model to process and combine multiple aspects of the input data simultaneously, leading to richer and more nuanced representations.
 
 !!! info "Self Attention"
 
-    Traditional attention focuses on different parts of the input sequence (e.g., English sentence) to generate each word in the output sequence (e.g., translated French sentence).
+    Traditional attention focuses on different parts of the **input sequence** (e.g., English sentence) to generate each word in the **output sequence** (e.g., translated French sentence).
 
     Self attention, on the other hand, captures dependencies and relationships **within the same sequence** (e.g., an English sentence) by allowing each element to attend to all other elements, including itself.
 
-    It is computed on the fly, meaning that the query, key, and value vectors are all derived from the same input sequence.
+    It is computed on the fly, meaning that the query, key, and value vectors are all **derived from the same input sequence**.
 
     Multi-head attention can be seen as an **extension** of self attention, where the input is split into multiple heads, and attention is computed independently for each head.
+
+    In the case where `it` refers to the animal, we can observe a different attention than when `it` refers to the street:
 
     ![Example of self attention](https://1.bp.blogspot.com/-AVGK0ApREtk/WaiAuzddKVI/AAAAAAAAB_A/WPV5ropBU-cxrcMpqJBFHg73K9NX4vywwCLcBGAs/s1600/image2.png)
 
 ### Positional Encoding
 
-Transformers do not inherently understand the sequential order of the input tokens. But the position of a word and the order of words in a sentence are important to understand the meaning of a text.
+Transformers **do not inherently understand the sequential order** of the input tokens.
+
+This brings huge computational benefits, because if the order doesn't matter, we can process the text in **parallel**.
+
+But the position of a word and the order of words in a sentence are important to understand the meaning of a text.
 
 Therefore transformers must still keep track of the **order of words in a sentence**, and must somehow inject the positional information of the words in the sequence into the model, namely into the input embeddings.
 
@@ -306,8 +312,6 @@ This is done by adding **positional encoding** to the input embeddings.
     | many | 6 |
     | movies | 7 |
 
-This also brings huge computational benefits: since they process all tokens in **parallel**, Transformers do not inherently understand the sequential order of the input tokens. Therefore, positional encoding is essential to convey the order or position of tokens within a sequence.
-
 Mathematically, positional encoding in transformers means **adding** the positional vectors to the input embeddings (they have the same shape). By doing so, the encoded text includes information about the **both the meaning and position** of a word in a sentence.
 
 !!! info
@@ -316,42 +320,19 @@ Mathematically, positional encoding in transformers means **adding** the positio
 
 For Transformers, the encoding mechanism is a bit more complex than in the example above. It uses a **sine** and **cosine** function to encode the position of a word in a sentence. This allows the model to learn **relative positions** between words, which is important for understanding the meaning of a sentence.
 
-!!! info "Positional Encoding Matrix"
-
-    The positional encoding matrix can be calculated using the following formulas:
-
-    $$
-    \begin{align}
-    \text{PE}(pos, 2i) &= \sin\left(\frac{pos}{10000^{2i/d_{\text{model}}}}\right) \\
-    \text{PE}(pos, 2i + 1) &= \cos\left(\frac{pos}{10000^{2i/d_{\text{model}}}}\right)
-    \end{align}
-    $$
-
-    Where:
-
-    - $\text{PE}(pos, 2i)$ represents the $(pos, 2i)$-th element of the positional encoding matrix.
-    - $\text{PE}(pos, 2i + 1)$ represents the $(pos, 2i + 1)$-th element of the positional encoding matrix.
-    - $pos$ is the position of the token in the sequence.
-    - $i$ is the dimension index within the embedding.
-    - $d_{\text{model}}$ is the dimensionality of the model's embeddings.
-
-    Each **row** of the positional encoding matrix corresponds to a **position in the input sequence**, and each **column** corresponds to a **dimension in the embedding space**.
-
-    The positional encoding matrix is then added element-wise to the input embeddings. This addition operation **combines** the information about the token itself (from the embedding) with information about its position in the sequence (from the positional encoding).
-
 ### Encoder-Decoder Architecture
 
 There are two main components in the transformer architecture:
 
-1.  **Encoder**: The encoder takes the input sequence and generates a representation of it (i.e. a vector) that captures the meaning of the sequence. This representation is then passed to the decoder.
+1.  **Encoder**: The encoder takes the **input sequence** and generates a representation of it (i.e. a vector) that captures the meaning of the sequence. This representation is then passed to the decoder.
 
-2.  **Decoder**: The decoder takes the representation generated by the encoder and uses it to generate the output sequence, one word at a time.
+2.  **Decoder**: The decoder takes the representation generated by the encoder and uses it to generate the **output sequence**, one word at a time.
 
-The encoder and decoder are both composed of multiple layers, each of which contains a multi-head attention layer and a feed-forward neural network. The encoder and decoder layers are stacked on top of each other, with each layer passing its output to the next layer in the stack.
+The encoder and decoder are both composed of **multiple layers**, each of which contains a multi-head attention layer and a feed-forward neural network. The encoder and decoder layers are stacked on top of each other, with each layer passing its output to the next layer in the stack.
 
 ![Simplified Encoder-Decoder Architecture of the Transformer Model](../img/attention-models-encoder-decoder.drawio.svg)
 
-The connection between the encoder and decoder is established through the **attention** mechanism, which allows the decoder to selectively attend to different parts of the input sequence based on their importance for generating the next token in the output sequence.
+The connection between the encoder and decoder is established through the **attention** mechanism, which allows the decoder to **selectively attend** to different parts of the input sequence based on their importance for generating the next token in the output sequence.
 
 This enables the model to effectively capture dependencies between input and output sequences, making it well-suited for tasks such as machine translation, where the input and output sequences may have complex and non-linear relationships.
 
@@ -365,9 +346,9 @@ This enables the model to effectively capture dependencies between input and out
 
     The animation below shows the encoder-decoder architecture of the transformer model in action. It is from the [transformer blog post](https://blog.research.google/2017/08/transformer-novel-neural-network.html) by Google:
 
-    - The Transformer starts by generating initial representations, or embeddings, for each word. These are represented by the unfilled circles.
-    - Then, using self-attention, it aggregates information from all of the other words, generating a new representation per word informed by the entire context, represented by the filled balls. This step is then repeated multiple times in parallel for all words, successively generating new representations.
-    - The decoder operates similarly, but generates one word at a time, from left to right. It attends not only to the other previously generated words, but also to the final representations generated by the encoder.
+    - The Transformer starts by generating **initial representations**, or embeddings, for each word. These are represented by the unfilled circles.
+    - Then, using self-attention, it **aggregates information from all of the other words**, generating a **new representation** per word **informed by the entire context**, represented by the filled balls. This step is then repeated multiple times in parallel for all words, successively generating new representations.
+    - The decoder operates similarly, but generates **one word at a time**, from left to right. It attends not only to the other previously generated words, but also to the final representations generated by the encoder.
 
     ![Animation of Transformer Encoder-Decoder for Machine Translation](https://3.bp.blogspot.com/-aZ3zvPiCoXM/WaiKQO7KRnI/AAAAAAAAB_8/7a1CYjp40nUg4lKpW7covGZJQAySxlg8QCLcBGAs/s1600/transform20fps.gif)
 
@@ -393,3 +374,11 @@ This enables the model to effectively capture dependencies between input and out
     - [The Annotated Transformer](https://nlp.seas.harvard.edu/2018/04/03/attention.html)
     - [Microsoft Learn: Understand the transformer architecture used for NLP](https://learn.microsoft.com/en-us/training/modules/explore-foundation-models-in-model-catalog/4-transformers)
     - [The Transformer Family](https://lilianweng.github.io/lil-log/2020/04/07/the-transformer-family.html)
+
+<!-- footnotes -->
+
+<!-- markdownlint-disable MD053 -->
+[^1]: <https://stats.stackexchange.com/a/424127>
+[^2]: [Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/abs/1409.0473)
+[^3]: <https://machinelearningmastery.com/the-attention-mechanism-from-scratch/>
+[^4]: <https://blog.research.google/2017/08/transformer-novel-neural-network.html>

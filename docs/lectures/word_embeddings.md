@@ -1,16 +1,20 @@
 # Word Embeddings
 
-In this lecture, we will learn about word embeddings, which are a way to represent words as vectors. We will learn about the CBOW model, which is a machine learning model that learns word embeddings from a corpus.
+In this lecture, we will learn about **word embeddings**, which are a way to represent words as vectors.
+We will learn about the CBOW model, which is a machine learning model that learns word embeddings from a corpus.
 
-Deep learning models cannot process data formats like video, audio, and text in their raw form.
-Thus, we use an embedding model to transform this raw data into a dense vector representation
-that deep learning architectures can easily understand and process. Specifically, this figure illustrates the process of converting raw data into a three-dimensional numerical vector.
+Deep learning models **cannot process** data formats like video, audio, and text in their raw form.
+Thus, we use an **embedding model** to transform this raw data into a dense vector representation
+that deep learning architectures can easily understand and process.
+Specifically, this figure illustrates the process of converting raw data into a three-dimensional numerical vector.
 
 ![Embedding models](https://sebastianraschka.com/images/LLMs-from-scratch-images/ch02_compressed/02.webp)
 
 At its core, an embedding is a mapping from **discrete objects**, such as words, images, or even entire documents,
 to points in a continuous vector space.
 The primary purpose of embeddings is to convert **nonnumeric data** into a format that **neural networks can process**.[^1]
+
+![Idea of word embeddings](../img/word-embeddings-idea.drawio.svg)
 
 !!! info
 
@@ -43,17 +47,17 @@ In the figure above, we have two dimensional word embeddings:
 - the first dimension represents the word's sentiment in terms of positive or negative.
 - the second dimensions indicates whether the word is more concrete or abstract.
 
-In the real world, word embeddings are usually much higher dimensional, e.g. 100 or 300 dimensions.
+In the real world, word embeddings are usually **much higher dimensional**, e.g. 100 or 300 dimensions.
 
-Each dimension represents a different aspect of the word. We do not know what exactly each dimension represents, but we know that similar words are close to each other in the vector space.
+Each dimension **represents a different aspect of the word**. We **do not know what** exactly each dimension represents, but we know that similar words are close to each other in the vector space.
 
 Word embeddings have the following **advantages**:
 
-- ✅ they are dense, i.e. they do not contain many zeros
-- ✅ they are low dimensional, i.e. they do not require much memory
-- ✅ they allow us to encode meaning
-- ✅ they capture semantic and syntactic information
-- ✅ they are computationally efficient
+- ✅ they are **dense**, i.e. they do not contain many zeros
+- ✅ they are **low dimensional**, i.e. they do not require much memory
+- ✅ they allow us to **encode meaning**
+- ✅ they **capture** semantic and syntactic **information**
+- ✅ they are **computationally efficient**
 
 !!! note
 
@@ -93,7 +97,7 @@ The [corpus](./language_models.md#text-corpus) are words in their context of int
 
 After **preprocessing**, we should have the words represented as **vectors**. Typically, we use one-hot encoding for this.
 
-Those one-hot encoded vectors are then fed into the word **embeddings method**. This is usually a machine learning model, that performs a **learning task** on the corpus, for example, predicting the next word in a sentence, or predicting the center word in a context window.
+Those one-hot encoded vectors are then fed into the word **embeddings method**. This is usually a machine learning model, that performs a **learning task** on the corpus, for example, predicting the next word in a sentence, or **predicting the center word** in a context window.
 
 The dimension of the word embeddings is one of the **hyperparameters** of the model which needs to be determined. In practice, it typically ranges from a few hundred to a few thousand dimensions.
 
@@ -111,8 +115,10 @@ The dimension of the word embeddings is one of the **hyperparameters** of the mo
 
     Using a higher number of dimensions allows us to capture more nuances of the meaning of the words, but it also requires more memory and computational resources.
 
-    The smallest GPT-2 models (117M and 125M parameters)use an embedding size of 768 dimensions.
+    The smallest GPT-2 models (117M and 125M parameters) use an embedding size of 768 dimensions.
     The largest GPT-3 model (175B parameters) uses an embedding size of 12,288 dimensions.[^1]
+
+    Note that a number of parameters is not the same as the number of dimensions of the word embeddings. The number of parameters is the _total number of weights_ in the model that need to be trained (aka all entries in the weight matrices), while the embedding size is the _number of dimensions_ of the word embeddings (aka the number of rows).
 
 ## Continuous Bag of Words (CBOW)
 
@@ -126,7 +132,7 @@ The **rationale** of the CBOW model is, that if two words are surrounded by a si
 
     > The little ___ is barking 🐶
 
-    Candidates for the center word are: dog, puppy, hound, terrier, etc., as they are all used frequently in the same context.
+    Candidates for the **center word** are: dog, puppy, hound, terrier, etc., as they are all used frequently in the same context.
 
 ![CBOW Schema](../img/word-embeddings-cbow-schema.drawio.svg)
 
@@ -157,6 +163,14 @@ The following visualization shows the CBOW model for a context size of $C=2$. Th
 !!! tip "Skip-Gram Model"
 
     The **Skip-Gram model** can be seen as the **opposite** of the CBOW model. It tries to predict the context words given the center word.
+
+    While this may seem counterintuitive at first, the Skip-Gram model predicts **each context word independently**, which allows it to capture more information about the context words.
+
+    Consider the sentence "The cat sat on the mat". For the center word "sat", the context words are ["cat", "on"], but the model doesn’t need to predict both "cat" and "on" simultaneously as a pair. Instead, it predicts "cat" given "sat" and "on" given "sat" as **separate tasks**.
+
+    Also, for "sat" as the center word, the model might assign higher probabilities to "cat", "on", and "mat" because they commonly appear in **similar contexts**, even if some surrounding words are missing or irrelevant.
+
+    So instead of learning an exact mapping, the model learns **probabilistic associations** between words.
 
     More details can be found in the [original paper](https://arxiv.org/abs/1301.3781).
 
@@ -352,7 +366,7 @@ We can evaluate the relationship between words using the following methods:
 
     Correct answers could be "hive", "colony", or "swarm".
 
-In **external evaluation**, we use the word embeddings as input to a downstream task, e.g. sentiment analysis, NER, or parts-of-speech tagging, and evaluate the performance of the task with established metrics such as accuracy or F1-score.
+In **external evaluation**, we use the word embeddings as input to a **downstream task**, e.g. sentiment analysis, NER, or parts-of-speech tagging, and evaluate the performance of the task with established metrics such as accuracy or F1-score.
 
 The performance of the task is then used as a measure of the quality of the word embeddings.
 

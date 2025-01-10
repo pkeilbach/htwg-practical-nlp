@@ -1,10 +1,10 @@
 # Sequence Models
 
-In this lecture, we will cover **sequence models**. Starting with the limitations of N-gram language models, we will introduce recurrent neural networks along with some of their variants. We will also introduce the concept of the vanishing gradient problem, and explain how it can be addressed using long short-term memory networks.
+In this lecture, we will cover **sequence models**. Starting with the limitations of [N-gram language models](language_models.md), we will introduce recurrent neural networks along with some of their variants. We will also introduce the concept of the vanishing gradient problem, and explain how it can be addressed using long short-term memory networks.
 
 ## Limitations of N-Gram Language Models
 
-Recall that N-gram language models are used to compute the probability of a sequence of words. For that, we need to compute the conditional probability of a word given the $N-1$ previous words. This approach has two main limitations:
+Recall that [N-gram language models](language_models.md) are used to compute the probability of a sequence of words. For that, we need to compute the conditional probability of a word given the $N-1$ previous words. This approach has two main limitations:
 
 - N-gram models consider only a fixed number of preceding words, i.e. $N-1$, to predict the next word, and thus, have **limited contextual information**. This limitation results in the model being unable to capture **long-range dependencies** or understand the context beyond the immediate history.
 - To capture dependencies of words that are very distant from each other, we need to use a large $N$. This can be difficult to estimate without a large corpus. In practice, this can lead to **sparsity** issues, where many possible n-grams may not be observed in the training data.
@@ -55,15 +55,15 @@ The hidden states are what allow the RNN to capture long-range dependencies. As 
 
 !!! info "Hidden State"
 
-    We can think of the hidden state as a **memory** or internal representation that the network updates as it processes each element of a sequence.
+    We can think of the **hidden state** as a **memory** or internal representation that the network updates as it processes each element of a sequence.
 
-    The hidden state acts as a way for the network to maintain information about what it has seen so far and use that information to make predictions or decisions about the current input.
+    The hidden state acts as a way for the network to maintain information about **what it has seen so far** and use that information to make predictions or decisions about the current input.
 
 !!! info
 
     The weights $W_x$ and $W_h$ are shared across all steps, that means we only need to learn them **once**, and then we can apply them to every step.
 
-    This is why the RNN is called a **recurrent** neural network, because it performs the same task for every element of a sequence, with the output being dependent on the previous computations.
+    This is why the RNN is called a **recurrent** neural network, because it performs the same task for every element of a sequence, with the output being dependent on the **previous computations**.
 
 !!! info "Loss Function"
 
@@ -109,7 +109,7 @@ In a bi-directional RNN, information flows in **both directions**.
 
 With this, a bi-directional RNN can capture information from both the past and the future context.
 
-Note that the computations of the forward and backward RNNs are independent of each other, and thus, can be parallelized.
+Note that the computations of the forward and backward RNNs are **independent of each other**, and thus, can be parallelized.
 
 ![Illustration of a bi-directional RNN](https://colah.github.io/posts/2015-09-NN-Types-FP/img/RNN-bidirectional.png)
 
@@ -147,19 +147,19 @@ The problem can be summarized as follows:
 
 We can summarize the **advantages and disadvantages of RNNs** as follows:
 
-- ✅ They can capture long-range dependencies
-- ✅ They can be used to process sequences of varying lengths
-- ✅ They use less memory than traditional N-gram language models
-- ❌ They suffer from the vanishing or exploding gradient problem
-- ❌ Struggle with very long sequences
+- ✅ They can capture **long-range dependencies**
+- ✅ They can be used to process sequences of **varying lengths**
+- ✅ They use **less memory** than traditional N-gram language models
+- ❌ They suffer from the vanishing or exploding **gradient problems**
+- ❌ Struggle with **very long sequences**
 
 !!! tip
 
     Think of the weights as factors that influence the **importance of information** at each step. If these factors are repeatedly small, the overall impact of the information from earlier steps diminishes exponentially as you go back in time.
 
-    Here is an analogy:
+    Here is an **analogy**:
 
-    It's like whispering a secret in a long line of people, and each person passing it on speaks in a softer voice. By the time it reaches the end of the line (representing the earlier steps in the sequence), the original message is barely audible.
+    It's like **whispering a secret** in a long line of people, and each person passing it on speaks in a softer voice. By the time it reaches the end of the line, the original message is barely audible.
 
 !!! info "Backpropagation"
 
@@ -182,14 +182,14 @@ We can summarize the **advantages and disadvantages of RNNs** as follows:
 
 **Long Short-Term Memory (LSTM)** networks are a type of RNN that are designed to address the vanishing gradient problem.
 
-The following figure shows the **architecture** of an LSTM model:
+The following figure shows the **architecture** of an LSTM model[^1]:
 
 ![Illustration of an LSTM model](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-chain.png)
 
 LSTM allows your model to **remember and forget** certain inputs. It does this by using a combination of two states:
 
-- **Cell state**, that can be thought of as a memory cell. It is the horizontal line running through the top of the diagram. It is like a conveyor belt and runs straight down the entire chain, with only some minor linear interactions.
-- **Hidden state**, that is used to propagate information through time. It outputs $h_t$ and is the vertical line running through the right of the diagram.
+- **Cell state**, that can be thought of as a **memory cell**. It is the horizontal line running through the top of the diagram. It is like a conveyor belt and runs straight down the entire chain, with only some minor linear interactions.
+- **Hidden state**, that is used to **propagate information through time**. It outputs $h_t$ and is the vertical line running through the right of the diagram.
 
 The hidden state is used to control the flow of information in the LSTM. It consists of **three gates**. Gates are a way to optionally let information through. They are passed in the following order:
 
@@ -197,7 +197,7 @@ The hidden state is used to control the flow of information in the LSTM. It cons
 - **Input gate**: decides which values from the input to update (middle sigmoid and tanh gates)
 - **Output gate**: decides what information to pass over to the next hidden state (right sigmoid gate)
 
-The gates allow the gradients to **flow unchanged**. This means the risk of vanishing or exploding gradients is mitigated.
+The gates allow the gradients to **flow unchanged**. This means, the risk of vanishing or exploding gradients is mitigated.
 
 An LSTM model is a **chain** of repeating LSTM units.
 
@@ -205,25 +205,25 @@ An LSTM model is a **chain** of repeating LSTM units.
 
     Here is a little **analogy** that may help you to better understand the idea of LSTMs:
 
-    Imagine you receive a phone call from a friend. ☎️ 👧
+    Imagine you receive a **phone call** from a friend. ☎️ 👧
 
-    At the time your phone rings, you might be thinking of any number of things unrelated to your friend. 🏃🍕🏖️
+    At the time your phone rings, you might be thinking of any number of things **unrelated** to your friend. 🏃🍕🏖️
 
     > This is similar to the cell state at the beginning of the loop.
 
-    When you answer the call, you put aside those unrelated thoughts while retaining anything you meant to talk to your friend about. 👧
+    When you answer the call, you put aside those unrelated thoughts while **retaining** anything you need to talk to your friend about. 👧
 
     > This is similar to what the forget gate does.
 
-    As your conversation progresses, you'll be taking in all the new information from your friend while also thinking of what else might be relevant to talk about next. 🥳☕🏙️
+    As your conversation progresses, you'll be taking in all the **new information** from your friend while also thinking of **what else might be relevant** to talk about next. 🥳☕🏙️
 
     > This is similar to what the input gates does.
 
-    Finally, you decide what to say next. 🍔
+    Finally, you **decide** what to say next. 🍔
 
     > This is similar to what the output gate does.
 
-    You will then continue to evolve the conversation in this way until you hang up at the end of the call, leaving you with a new set of thoughts and memories. ☎️👋
+    You will then continue to evolve the conversation in this way until you **hang up** at the end of the call, leaving you with a **new set of thoughts** and memories. ☎️👋
 
     > your cell states have been updated a few times since you began your conversation
 
@@ -247,3 +247,7 @@ An LSTM model is a **chain** of repeating LSTM units.
 - There are some variants of RNNs, such as **bi-directional RNNs** and **deep RNNs**, that can be used to capture more complex patterns.
 - Even though they can capture long range dependencies, RNNs suffer from the **vanishing gradient problem**. This occurs when the **gradients** calculated by the backpropagation algorithm become **very small**. As a result, the weights of the network are not updated significantly, and thus, the network is **not trained effectively**.
 - **Long Short-Term Memory (LSTM)** networks are a type of RNN that are designed to address the vanishing gradient problem. They are able to learn which information it should remember and which information it should forget.
+
+<!-- footnotes -->
+
+[^1]: <https://colah.github.io/posts/2015-08-Understanding-LSTMs/>
