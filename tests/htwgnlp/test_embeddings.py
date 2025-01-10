@@ -113,11 +113,13 @@ def test_cosine_similarity(loaded_embeddings, test_vector):
     )
 
 
+
 def test_find_closest_word(loaded_embeddings, test_vector, non_loaded_embeddings):
     with pytest.raises(ValueError):
         non_loaded_embeddings.embedding_values
-    assert isinstance(loaded_embeddings.find_closest_word(test_vector), str)
-    assert loaded_embeddings.find_closest_word(test_vector) == "Bahamas"
+    for metric in ["euclidean", "cosine"]:
+        assert isinstance(loaded_embeddings.find_closest_word(test_vector, metric), str)
+        assert loaded_embeddings.find_closest_word(test_vector, metric) == "Bahamas"
 
 
 def test_get_most_similar_words(loaded_embeddings, non_loaded_embeddings):

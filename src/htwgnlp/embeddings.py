@@ -10,6 +10,7 @@ Hints:
 """
 
 import pickle
+from typing import Literal
 
 import numpy as np
 import pandas as pd
@@ -113,7 +114,10 @@ class WordEmbeddings:
         raise NotImplementedError("This method needs to be implemented.")
 
     def get_most_similar_words(
-        self, word: str, n: int = 5, metric: str = "euclidean"
+        self,
+        word: str,
+        n: int = 5,
+        metric: Literal["euclidean", "cosine"] = "euclidean",
     ) -> list[str]:
         """Returns the `n` most similar words to the given word.
 
@@ -124,7 +128,7 @@ class WordEmbeddings:
         Args:
             word (str): the word to get the most similar words for
             n (int, optional): the number of most similar words to return. Defaults to 5.
-            metric (str, optional): the metric to use for computing the similarity. Defaults to "euclidean".
+            metric (Literal["euclidean", "cosine"], optional): the metric to use for computing the similarity. Defaults to "euclidean".
 
         Raises:
             ValueError: if the embeddings have not been loaded yet
@@ -137,14 +141,16 @@ class WordEmbeddings:
         # TODO ASSIGNMENT-4: implement this method
         raise NotImplementedError("This method needs to be implemented.")
 
-    def find_closest_word(self, v: np.ndarray, metric: str = "euclidean") -> str:
+    def find_closest_word(
+        self, v: np.ndarray, metric: Literal["euclidean", "cosine"] = "euclidean"
+    ) -> str:
         """Returns the word that is closest to the given vector `v`.
 
         The similarity is computed using the Euclidean distance or the cosine similarity.
 
         Args:
             v (np.ndarray): the vector to find the closest word for
-            metric (str, optional): the metric to use for computing the similarity. Defaults to "euclidean".
+            metric (Literal["euclidean", "cosine"], optional): the metric to use for computing the similarity. Defaults to "euclidean".
 
         Raises:
             ValueError: if the embeddings have not been loaded yet
