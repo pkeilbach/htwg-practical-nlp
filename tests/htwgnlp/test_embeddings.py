@@ -113,7 +113,6 @@ def test_cosine_similarity(loaded_embeddings, test_vector):
     )
 
 
-
 def test_find_closest_word(loaded_embeddings, test_vector, non_loaded_embeddings):
     with pytest.raises(ValueError):
         non_loaded_embeddings.embedding_values
