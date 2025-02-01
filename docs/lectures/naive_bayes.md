@@ -98,6 +98,7 @@ In our example, this is the **probability of the intersection** of the tweets be
 
 This is called the **conditional probability** of a tweet being positive, _given that_ it contains the word "amazing".
 
+<!-- TODO EXAM -->
 !!! quote "Conditional Probability"
 
     Generally speaking, the **conditional probability** $P(A|B)$ is the probability of event $A$ _given that_ event $B$ has already occurred.
@@ -174,6 +175,7 @@ With that, we have **derived Bayes Rule**.
 
     In other words: _Out of all the times $B$ happens, what fraction are due to $A$?_
 
+<!-- TODO EXAM -->
 !!! example
 
     Suppose that in your dataset, 25% of the positive tweets contain the word "amazing".
@@ -545,7 +547,12 @@ Of course, we need to apply the desired preprocessing steps before the training.
 
 ## Prediction
 
-To predict a tweet using the Naive Bayes classifier for binary classification, we need to apply the likelihood formula to the tweet, and check if the log likelihood is greater than 0.
+To predict a tweet using the Naive Bayes classifier for binary classification, we need to apply the likelihood formula to the tweet, and check _if the log likelihood is greater than 0_.
+
+<!-- TODO EXAM -->
+!!! note
+
+    Note that for the log likelihood, we need to check if the value is greater than 0, because we are working with logarithms.
 
 $$
 \log \frac{P(pos)}{P(neg)} + \sum_{i=1}^{m} \log \frac{P(w_i|pos)}{P(w_i|neg)} > 0

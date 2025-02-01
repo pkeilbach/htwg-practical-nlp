@@ -596,6 +596,7 @@ Applying the algorithm to the **remaining cells**, we get the following table:
 
 ![Minimum Edit Distance Phase 4](../img/minimum-edit-distance-phase-4.drawio.svg)
 
+<!-- TODO EXAM -->
 !!! example
 
     Lets take a look at cell `D[3,3]` which represents the transformation `pla -> sta`.

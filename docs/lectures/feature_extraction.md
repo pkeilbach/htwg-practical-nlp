@@ -146,6 +146,7 @@ Considering the **bias unit** as the first feature, the feature vector $x_i$ loo
 $$ x_i = [1, \sum_{j=1}^{m} n_{pos}(w_j), \sum_{j=1}^{m} n\_{neg}(w_j)] $$
 <!-- prettier-ignore-end -->
 
+<!-- TODO EXAM -->
 !!! example
 
     Given the table of frequencies above, let's consider the following document:

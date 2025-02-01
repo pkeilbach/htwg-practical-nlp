@@ -136,6 +136,7 @@ The **rationale** of the CBOW model is, that if two words are surrounded by a si
 
 ![CBOW Schema](../img/word-embeddings-cbow-schema.drawio.svg)
 
+<!-- TODO EXAM -->
 As a _by-product_ of this learning task, we will obtain the **word embeddings**.
 
 The following visualization shows the CBOW model for a context size of $C=2$. This means, we take into account the two words before and after the center word. This would be equivalent to a window size of 5.
@@ -146,6 +147,7 @@ The following visualization shows the CBOW model for a context size of $C=2$. Th
 
     The context window size $C$ is another **hyperparameter** of the model.
 
+<!-- TODO EXAM -->
 !!! example
 
     Given the sentence:
@@ -231,6 +233,7 @@ With this approach, we can generate training data for the CBOW model.
 
 The **architecture** of CBOW is a neural network model with a single hidden layer. The input layer corresponds to the context words, and the output layer corresponds to the target word.
 
+<!-- TODO EXAM -->
 !!! note "Shallow Dense Neural Network"
 
     From an architectural point of view, we speak of a **shallow dense neural network**, because it has only one hidden layer and all neurons are connected to each other.
@@ -258,6 +261,7 @@ Now, let's look at the architecture in more detail:
 - $\mathbf{\hat{Y}}$ is the output matrix of size $V \times m$. This is the matrix of the predicted center word vectors, where each _column_ is a word vector. This mean the **output layer** has $V$ neurons, one for each word in the vocabulary.
 - $\mathbf{Y}$ represent the expected output matrix of size $V \times m$. This is the matrix of the actual center word vectors, where each _column_ is a word vector.
 
+<!-- TODO EXAM -->
 There are **two weight matrices**, one that connects the input layer to the hidden layer, and one that connects the hidden layer to the output layer.
 
 - $\mathbf{W}_1$ is the weight matrix that connects the input layer to the hidden layer and is of size $N \times V$ (aka _weight matrix of the hidden layer_). This is the matrix of the **word embeddings**, where each _column_ represents the word embedding of a word in the vocabulary.
@@ -286,6 +290,7 @@ Since the number of columns in the weight matrix matches the number of rows in t
 
     When looking at the diagram, you may think it may be the other way around, i.e. $\mathbf{Z} = \mathbf{X} \cdot \mathbf{W}$, but this is **not** the case.
 
+<!-- TODO EXAM -->
 !!! example
 
     Assume you have a vocabulary size of 8000 words, and want to learn 400-dimensional word embeddings.
@@ -318,13 +323,14 @@ Since the number of columns in the weight matrix matches the number of rows in t
     A_{m \times n} \cdot B_{n \times p} = C_{m \times p}
     $$
 
+<!-- TODO EXAM -->
 !!! info "Batch Processing"
 
     Usually when training a neural network, we use **batch processing**, i.e. we process multiple samples at once. This is more efficient than processing one sample at a time.
 
     The batch size is another **hyperparameter** of the model.
 
-    As we can see from the matrix multiplication above, the weight matrices are independent of the batch size, i.e. they are the same for any batch size.
+    As we can see from the matrix multiplication above, _the weight matrices are independent of the batch size_, i.e. they are the same for any batch size.
 
     Batch processing is also important for **parallelization**, i.e. we can process multiple batches in parallel on different processors.
 

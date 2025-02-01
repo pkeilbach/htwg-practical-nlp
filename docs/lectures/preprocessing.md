@@ -29,6 +29,7 @@ The image shows the typical preprocessing steps of text data:[^1]
     In the beginning, we initialize them **randomly**.
     Later, during training, they are optimized to represent the token in a way that is useful for the task at hand.
 
+<!-- TODO EXAM -->
 ## The pipeline concept in NLP
 
 Like with many other complex problems, in NLP, it makes sense to break the problem that needs to be solved down into several sub-problems.
@@ -345,6 +346,7 @@ Stopwords are common words (such as "and," "the," "is," etc.) that don't carry s
 Stopword removal involves filtering out these words from a text to reduce noise and save processing time.
 The goal is to focus on the more meaningful content words that contribute to the overall context of the text.
 
+<!-- TODO EXAM -->
 ```python
 >>> from nltk.tokenize import word_tokenize
 >>> from nltk.corpus import stopwords

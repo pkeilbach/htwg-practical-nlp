@@ -14,6 +14,7 @@ In **supervised learning**, the goal is to **learn a function**, i.e. the parame
 
 When working with **text data**, we need to make sure to apply the required **preprocessing** steps in order to extract the required features from the text data.
 
+<!-- TODO EXAM -->
 ![Supervised learning overview](../img/supervised-learning-overview.drawio.svg)
 
 ## The Sigmoid Function

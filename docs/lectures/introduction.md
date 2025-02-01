@@ -69,6 +69,8 @@ IMHO, every lecture should provide a little historical background in the beginni
 
 ## Tasks that can be solved by NLP
 
+<!-- TODO EXAM -->
+
 NLP is used for a wide variety of language-related tasks, including answering questions, classifying text in a variety of ways, and conversing with users.
 
 If you design an NLP system, you may make use of multiple tasks.
@@ -310,6 +312,7 @@ Important for:
 - POS-tagging
 - Word embeddings
 
+<!-- TODO EXAM -->
 !!! example "Examples"
 
     Breaking down a word into its morphemes:
@@ -414,6 +417,8 @@ Important for:
     Being a linguistic expert is not necessary to master NLP, but by understanding the basic building blocks of language, we can use the right NLP tools in real-world projects.
 
 ## Challenges in NLP
+
+<!-- TODO EXAM -->
 
 ### Ambiguity
 

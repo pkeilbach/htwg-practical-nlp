@@ -83,6 +83,7 @@ In the following, we will look at two different approaches to create word embedd
 
 In the word by word design, the **co-occurrence matrix** counts the number of times that a word appears in the context of other words within a given window size $k$.
 
+<!-- TODO EXAM -->
 !!! example
 
     Suppose we have the following two sentences:
@@ -326,6 +327,7 @@ The following figure shows how we can use the cosine similarity to measure the s
 
 ![Cosine similarity](../img/vector-space-models-cosine-similarity.drawio.svg)
 
+<!-- TODO EXAM -->
 - If the vectors are orthogonal, like the vectors $\mathbf{v}$ and $\mathbf{w}$, the cosine similarity is 0, since $\cos(90) = 0$.
 - If the vectors point exactly in the same direction, like the vectors $\mathbf{x}$ and $\mathbf{y}$, the cosine similarity is 1, since $\cos(0) = 1$.
 
@@ -440,6 +442,7 @@ As we learned, we could use the Euclidean distance or the cosine similarity to a
 
 In the end, we can **leverage known relationship**s between words to find unknown relationships and make predictions.
 
+<!-- TODO EXAM -->
 !!! example
 
     Form the figure, we can see that

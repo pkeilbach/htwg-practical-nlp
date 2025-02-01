@@ -138,6 +138,7 @@ Here is an illustration:
 
 ![Illustration of the vanishing gradient problem](../img/sequence-models-vanishing-gradient.png)
 
+<!-- TODO EXAM -->
 The problem can be summarized as follows:
 
 - During the training of neural networks, the **backpropagation algorithm** is used to calculate gradients of the loss function with respect to the weights of the network.
@@ -193,6 +194,7 @@ LSTM allows your model to **remember and forget** certain inputs. It does this b
 
 The hidden state is used to control the flow of information in the LSTM. It consists of **three gates**. Gates are a way to optionally let information through. They are passed in the following order:
 
+<!-- TODO EXAM -->
 - **Forget gate**: decides what information should be thrown away or kept (left sigmoid gate)
 - **Input gate**: decides which values from the input to update (middle sigmoid and tanh gates)
 - **Output gate**: decides what information to pass over to the next hidden state (right sigmoid gate)

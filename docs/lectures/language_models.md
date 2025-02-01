@@ -98,6 +98,7 @@ In the context of NLP, an N-gram is a sequence of $N$ words:
 
 N-grams refer to **unique** sequences of words. So if a sentence contains the same N-gram multiple times, it appears only once in the **set of N-grams**.
 
+<!-- TODO EXAM -->
 !!! example
 
     The sentence "I want to eat an apple." 🍏 contains the following N-grams:
@@ -271,6 +272,7 @@ $$
 
     We can also say it is the conditional probabity of the $i$-th word, given that the previous $N-1$ words have already occurred.
 
+<!-- TODO EXAM -->
 !!! example
 
     Given the corpus:
@@ -483,6 +485,7 @@ $$
 
     As you may recall, this is in contrast with [Naive Bayes](./naive_bayes.md#likelihood) where we approximated sentence probability without considering any word history.
 
+<!-- TODO EXAM -->
 !!! example
 
     Given the folloing probabilities:

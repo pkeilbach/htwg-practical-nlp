@@ -12,6 +12,7 @@ Attention is a mechanism that allows models to **focus on specific parts** of in
 
 In NLP, when a computer is trying to understand or generate text, attention models help to decide **which parts of the input text are more important** at any given moment. Instead of treating all words equally, an attention model allows the model to focus **more on specific words** that are relevant to the task at hand.
 
+<!-- TODO EXAM -->
 The general attention mechanism makes use of three main components, namely **Query (Q), Key (K), and Value (V)**. They are used to capture the **relationships** between different words in a sequence, and thus, allow the model to focus on different parts of the input sequence when generating or understanding output.
 
 - **Key (K):** The Key vector is like a unique identifier or key associated with each word in the input sequence. It captures information about the word that is relevant for determining its relationship with other words.
@@ -211,6 +212,7 @@ Transformers make use of the **attention mechanism** to process sequences of wor
 
 They are a type of neural network architecture that is used for a wide range of natural language processing tasks, such as machine translation, text summarization, and question answering.
 
+<!-- TODO EXAM -->
 The main **advantages** of Transformers over RNNs are:
 
 - ❌ RNNs are slow to train because they process words sequentially and cannot be parallelized.
