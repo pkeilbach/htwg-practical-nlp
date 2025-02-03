@@ -70,7 +70,7 @@ Training in logistic regression is based on the **gradient descent** algorithm. 
 
 ![Logistic regresseion gradient descent steps](../img/logistic-regression-gradient-descent.drawio.svg)
 
-1.  **Initialize Parameters:** Set the initial values for the weights $\theta$, considering the **bias term**.
+1.  **Initialize Parameters:** Set the initial values for the weights $\theta$, considering the [**bias unit**](feature_extraction.md#positive-and-negative-frequencies).
     This is the starting point for the optimization process.
 
     In numpy, this can be done with the following code:
@@ -95,14 +95,6 @@ Training in logistic regression is based on the **gradient descent** algorithm. 
 These steps represent the core of the gradient descent algorithm in the context of logistic regression.
 
 The goal is to **iteratively update the parameters** in the direction that minimizes the cost function, eventually reaching a set of **parameters that optimally fit the training data**.
-
-!!! info "Bias Term"
-
-    The **bias term** (also known as the intercept or offset) in logistic regression serves to shift the decision boundary away from the origin (0,0) in the feature space.
-
-    Without the bias term, the decision boundary would always pass through the origin, but this is barely the case in real-world data.
-
-    While the weights associated with the features determine the slope of the decision boundary, the bias term influences where the decision boundary is positioned on the y-axis.
 
 !!! info "Learning Rate"
 
