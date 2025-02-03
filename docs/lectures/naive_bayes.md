@@ -34,7 +34,7 @@ $$
 
 !!! note
 
-    For **binary classification**, if there a tweet can only be either positive or negative, then the probability of a tweet being negative is $1-P(A)$.
+    For **binary classification**, if a tweet can only be either positive or negative, then the probability of a tweet being negative is $1-P(A)$.
 
 !!! example
 
