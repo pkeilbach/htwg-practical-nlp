@@ -197,7 +197,7 @@ else:
 
 !!! example
 
-    The `data_acquisition.ipynb` notebook in the demonstrates how to acquire data from New York Times articles using the [New York Times API](https://developer.nytimes.com/apis).
+    The [`data_acquisition.ipynb`](https://github.com/pkeilbach/htwg-practical-nlp/blob/main/notebooks/data_acquisition.ipynb) notebook demonstrates how to acquire data from New York Times articles using the [New York Times API](https://developer.nytimes.com/apis).
 
 ## Working with text data
 
