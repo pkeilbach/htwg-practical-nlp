@@ -9,7 +9,7 @@ Here is some basic information about the exam:
 - The questions are a mix of multiple choice, true/false, and open questions.
 - Open questions will require only short answers (1-2 sentences).
 - You won't need to write any code in the exam, but you should be able to understand and explain code snippets.
-- You won't need to memorize any formulas, but you should understand the concepts and be able to apply them.
+- You won't need to memorize any formulas. If you need to calculate something, the formula will be provided.
 - You are allowed to use a standard calculator during the exam.
 - You won't need to memorize parts of the script by heart, but you should be able to explain the concepts in your own words.
 - During preparation, try to focus on understanding the key concepts.
